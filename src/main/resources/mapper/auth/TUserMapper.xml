@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzg.wlxx.auth.mapper.TUserMapper">
+    <resultMap id="BaseResultMap" type="com.xzg.wlxx.auth.domain.TUser">
+        <id column="ID" property="id"/>
+        <result column="username"  property="username"/>
+        <result column="loginname" property="loginname"/>
+        <result column="password"  property="password"/>
+    </resultMap>
+
+    <sql id="BaseColumn">
+        id,username,loginname,password
+    </sql>
+
+    <!--TODO mybatis-plus 默认CURD方法也需要自己编写对应的sql？-->
+
+    <insert id="insert">
+        insert into t_user(<include refid="BaseColumn"/>) values(#{id},#{username},#{loginname},#{password})
+    </insert>
+
+    <update id="updateById" parameterType="com.xzg.wlxx.auth.domain.TUser">
+        update t_user set
+        <if test="et.username!=null">
+            username=#{et.username}
+        </if>
+        <if test="et.loginname!=null">
+            ,loginname=#{et.loginname}
+        </if>
+        <if test="et.password!=null">
+            ,password=#{et.password}
+        </if>
+        where id=#{et.id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from t_user where id=#{id}
+    </delete>
+
+    <select id="selectByMap" parameterType="java.util.Map" resultType="com.xzg.wlxx.auth.domain.TUser">
+        select * from t_user where 1=1
+        <if test="cm.d!=null">
+            and id = #{cm.id}
+        </if>
+        <if test="cm.username!=null">
+            and username = #{username}
+        </if>
+        <if test="cm.loginname!=null">
+            and loginname = #{cm.loginname}
+        </if>
+        <if test="cm.password!=null">
+            and password = #{cm.password}
+        </if>
+    </select>
+</mapper>
