@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Author: 肖志刚
  * @Date: 2020/7/5 22:00
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class ExceptionCtrl extends BaseCtrl {
     /**
      * @param req
@@ -22,9 +22,9 @@ public class ExceptionCtrl extends BaseCtrl {
      * @return
      * @throws Exception
      */
-    @ExceptionHandler(value = Exception.class)
-    @ResponseBody
-    public AjaxResult defaultError(HttpServletRequest req, HttpServletResponse res,Exception e) throws Exception{
-        return error(e);
-    }
+//    @ExceptionHandler(value = Exception.class)
+//    @ResponseBody
+//    public AjaxResult defaultError(HttpServletRequest req, HttpServletResponse res,Exception e) throws Exception{
+//        return error(e);
+//    }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzg.wlxx.module.mapper.TDictMapper">
+
+    <sql id="BaseColumn">
+        ID,CREATE_TIME,CREATE_USER,UPDATE_TIME,UPDATE_USER,DICT_ID,IS_DICT_ROOT,DESCRIPTION,DICT_CODE,DICT_NAME,STATE
+    </sql>
+    <sql id="InsertColumn">
+        ID
+        <if test="createUser!=null">
+            ,CREATE_TIME
+        </if>
+        <if test="createTime!=null">
+            ,CREATE_USER
+        </if>
+        <if test="updateTime!=null">
+            ,UPDATE_TIME
+        </if>
+        <if test="updateUser!=null">
+            ,UPDATE_USER
+        </if>
+        <if test="dictId!=null">
+            ,DICT_ID
+        </if>
+        <if test="isDictRoot!=null">
+            ,IS_DICT_ROOT
+        </if>
+        <if test="description!=null">
+            ,DESCRIPTION
+        </if>
+        <if test="dictCode!=null">
+            ,DICT_CODE
+        </if>
+        <if test="dictName!=null">
+            ,DICT_NAME
+        </if>
+        <if test="state!=null">
+            ,STATE
+        </if>
+    </sql>
+
+    <insert id="insert">
+        insert into t_dict(<include refid="InsertColumn"/>) values(#{id}
+        <if test="createTime!=null">
+            ,#{createTime}
+        </if>
+        <if test="createUser!=null">
+            ,#{createUser}
+        </if>
+        <if test="updateTime!=null">
+            ,#{updateTime}
+        </if>
+        <if test="updateUser!=null">
+            ,#{updateUser}
+        </if>
+        <if test="dictId!=null">
+            ,#{dictId}
+        </if>
+        <if test="isDictRoot!=null">
+            ,#{isDictRoot}
+        </if>
+        <if test="description!=null">
+            ,#{description}
+        </if>
+        <if test="dictCode!=null">
+            ,#{dictCode}
+        </if>
+        <if test="dictName!=null">
+            ,#{dictName}
+        </if>
+        <if test="state!=null">
+            ,#{state}
+        </if>)
+    </insert>
+
+    <select id="selectAll" resultType="com.xzg.wlxx.module.entity.TDict">
+        select * from t_dict
+    </select>
+</mapper>

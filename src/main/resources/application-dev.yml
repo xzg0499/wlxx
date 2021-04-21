@@ -40,3 +40,8 @@ logging:
 security:
   basic:
     enabled: false
+
+mybatis-plus:
+  configuration:
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

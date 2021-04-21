@@ -60,8 +60,10 @@ public class WebConfig extends WebMvcConfigurationSupport {
      */
     @Override
     protected void addCorsMappings(CorsRegistry registry) {
+//        When allowCredentials is true, allowedOrigins cannot contain the special value "*“since that cannot be set on the “Access-Control-Allow-Origin” response header. To allow credentials to a set of origins, list them explicitly or consider using"allowedOriginPatterns” instead.
+//        将.allowedOrigins替换成.allowedOriginPatterns即可。
         registry.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOriginPatterns("*")
                 .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .maxAge(3600)
                 .allowCredentials(true);

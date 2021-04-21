@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 public class MybatisPlusConfig {
 
     @Configuration
-    @MapperScan(basePackages = {"com.xzg.wlxx.framework.mapper"}, sqlSessionFactoryRef = "wlxxSqlSessionFactory")
+    @MapperScan(basePackages = {"com.xzg.wlxx.module.mapper"}, sqlSessionFactoryRef = "wlxxSqlSessionFactory")
     public static class WlxxDatasource{
         private final DataSource dataSource;
 
@@ -39,7 +39,7 @@ public class MybatisPlusConfig {
             SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
             factoryBean.setDataSource(dataSource);
             factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
-                    .getResources("classpath*:/mapper/wlxx/*.xml"));
+                    .getResources("classpath*:/mapper/module/*.xml"));
             //factoryBean.setConfigLocation(new ClassPathResource("/mapper/mybatis-config.xml"));
             return factoryBean.getObject();
         }

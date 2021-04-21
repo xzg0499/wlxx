@@ -1,4 +1,4 @@
-package com.xzg.wlxx.demo;
+package com.xzg.wlxx.demo.huang;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
