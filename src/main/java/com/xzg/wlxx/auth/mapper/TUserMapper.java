@@ -2,9 +2,6 @@ package com.xzg.wlxx.auth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xzg.wlxx.auth.domain.TUser;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * <p>

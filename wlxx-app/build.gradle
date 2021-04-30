@@ -4,7 +4,8 @@ version = '${rootProject.version}'
 sourceCompatibility = '11'
 
 dependencies {
-
+    compile(project(':wlxx-framework'))
+    compile(project(':wlxx-user'))
 }
 
 // TODO 怎么更改编译目录？

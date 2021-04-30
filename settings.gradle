@@ -1,3 +1,4 @@
 rootProject.name = 'wlxx'
 include('wlxx-framework')
 include('wlxx-user')
+include('wlxx-app')

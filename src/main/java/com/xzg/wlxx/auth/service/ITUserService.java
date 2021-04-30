@@ -2,8 +2,6 @@ package com.xzg.wlxx.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xzg.wlxx.auth.domain.TUser;
-import com.xzg.wlxx.auth.mapper.TUserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

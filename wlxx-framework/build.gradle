@@ -1,5 +1,5 @@
 
-group = 'com.xzg.wlxx.framework'
+group = 'com.xzg.wlxx'
 version = '${rootProject.version}'
 sourceCompatibility = '11'
 
