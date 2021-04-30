@@ -1,7 +1,6 @@
 package com.xzg.wlxx.auth.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.xzg.wlxx.framework.base.BaseDomain;

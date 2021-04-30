@@ -1,14 +1,6 @@
 package com.xzg.wlxx.framework.ctrl;
 
 import com.xzg.wlxx.framework.base.BaseCtrl;
-import com.xzg.wlxx.framework.model.AjaxResult;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author: 肖志刚

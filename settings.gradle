@@ -1,2 +1,3 @@
 rootProject.name = 'wlxx'
-include('framework')
+include('wlxx-framework')
+include('wlxx-user')

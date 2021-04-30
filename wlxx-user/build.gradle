@@ -1,0 +1,14 @@
+
+group = 'com.xzg.wlxx.user'
+version = '${rootProject.version}'
+sourceCompatibility = '11'
+
+dependencies {
+    compile(project(':wlxx-framework'))
+}
+
+// TODO 怎么更改编译目录？
+//compileJava {
+//    outputs.dir(file("../wlxx-framework/build"))
+//}
+
