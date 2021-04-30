@@ -1,0 +1,8 @@
+
+group = 'com.xzg.wlxx.framework'
+version = '${rootProject.version}'
+sourceCompatibility = '11'
+
+dependencies {
+
+}
