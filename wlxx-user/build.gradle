@@ -1,7 +1,5 @@
 
-group = 'com.xzg.wlxx'
-version = '${rootProject.version}'
-sourceCompatibility = '11'
+
 
 dependencies {
 
