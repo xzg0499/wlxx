@@ -24,7 +24,7 @@ public class AjaxResult<K,V> extends HashMap<K,V> {
     public AjaxResult<String,Object> success(){
         AjaxResult<String,Object> result = new AjaxResult<>();
         result.put("code",SUCCESS_CODE);
-        result.put("msg",ERROR_CODE);
+        result.put("msg",SUCCESS_MSG);
         return result;
     }
 

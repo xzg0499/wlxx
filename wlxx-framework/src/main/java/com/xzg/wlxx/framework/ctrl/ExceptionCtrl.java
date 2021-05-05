@@ -24,6 +24,6 @@ public class ExceptionCtrl extends BaseCtrl {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public AjaxResult defaultError(HttpServletRequest req, HttpServletResponse res, Exception e) throws Exception{
-        return error(e);
+        return error(e.getMessage());
     }
 }

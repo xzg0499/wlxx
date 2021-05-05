@@ -7,14 +7,19 @@ spring:
     hikari:
       # HikariPool 需要使用 jdbc-url
       wlxx:
-        jdbc-url: jdbc:mysql://47.110.139.158:3306/wlxx?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+        jdbc-url: jdbc:mysql://localhost:3306/wlxx?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
         driver-class-name: com.mysql.cj.jdbc.Driver
-        username: wlxx
+        username: root
         password: xiao
-      auth:
-        jdbc-url: jdbc:mysql://47.110.139.158:3306/auth?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      user:
+        jdbc-url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
         driver-class-name: com.mysql.cj.jdbc.Driver
-        username: auth
+        username: root
+        password: xiao
+      framework:
+        jdbc-url: jdbc:mysql://localhost:3306/framework?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
         password: xiao
   devtools:
     remote:
@@ -25,10 +30,10 @@ spring:
   resources:
     add-mappings: false
 #  关闭校验BPS检查bpmn文件的校验
-  activiti:
-    check-process-definitions: false
-  main:
-    allow-bean-definition-overriding: true
+#  activiti:
+#    check-process-definitions: false
+#  main:
+#    allow-bean-definition-overriding: true
 server:
   port: 8090
 

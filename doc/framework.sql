@@ -1,4 +1,4 @@
-use wlxx;
+use framework;
 
 drop table if exists t_dict;
 create table t_dict(
@@ -9,4 +9,3 @@ create table t_dict(
     parent_id varchar(128),
     sort int
 )
-

@@ -15,5 +15,16 @@ sourceSets {
         java {
             srcDirs = ['src/main/java','../wlxx-framework/src/main/java','../wlxx-user/src/main/java']
         }
+        resources {
+            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources','../wlxx-user/src/main/resources']
+        }
     }
+}
+
+bootJar {
+    enabled(false)
+}
+
+jar {
+    enabled(true)
 }

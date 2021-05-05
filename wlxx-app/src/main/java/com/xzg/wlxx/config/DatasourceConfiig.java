@@ -29,8 +29,14 @@ public class DatasourceConfiig {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.hikari.auth")
-    public DataSource authDatasource(){
+    @ConfigurationProperties(prefix = "spring.datasource.hikari.user")
+    public DataSource userDatasource(){
+        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.hikari.framework")
+    public DataSource frameworkDatasource(){
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
