@@ -1,4 +1,4 @@
-package com.xzg.wlxx.model;
+package com.xzg.wlxx.framework.model;
 
 import java.util.HashMap;
 import java.util.Map;

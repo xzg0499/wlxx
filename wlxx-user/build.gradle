@@ -2,11 +2,32 @@
 
 
 dependencies {
-
+    compile(project(':wlxx-framework'))
 }
 
-// TODO 怎么更改编译目录？
-//compileJava {
+compileJava {
+    outputs.dir(file("./wlxx-framework/build"))
+//    buildDir(file("./wlxx-framework/build"))
+//    println(buildDir.properties)
+}
+
+// 解决多模块之间依赖，在build时找不到类的问题
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main','../wlxx-framework/src/main']
+        }
+    }
+}
+
+//processResources {
 //    outputs.dir(file("../wlxx-framework/build"))
 //}
-
+//
+//classes {
+//    outputs.dir(file("../wlxx-framework/build"))
+//}
+//
+//jar {
+//    outputs.dir(file("../wlxx-framework/build"))
+//}
