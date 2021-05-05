@@ -1,6 +1,6 @@
 package com.xzg.wlxx.framework.utils;
 
-import com.xzg.wlxx.framework.domain.BaseDomain;
+import com.xzg.wlxx.framework.model.BaseDomain;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

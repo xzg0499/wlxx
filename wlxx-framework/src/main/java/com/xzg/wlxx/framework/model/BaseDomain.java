@@ -1,4 +1,4 @@
-package com.xzg.wlxx.framework.domain;
+package com.xzg.wlxx.framework.model;
 
 /**
  * Created by IntelliJ IDEA.
