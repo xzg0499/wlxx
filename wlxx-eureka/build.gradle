@@ -1,0 +1,24 @@
+
+
+
+dependencyManagement {
+
+}
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+//    implementation group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: '2021.1'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+}
+
+
+
+
+bootJar {
+    enabled(false)
+}
+
+jar {
+    enabled(true)
+}

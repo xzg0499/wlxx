@@ -1,6 +1,6 @@
 package com.xzg.wlxx.framework.utils;
 
-import com.xzg.wlxx.framework.model.BaseDomain;
+import com.xzg.wlxx.framework.model.BaseEntity;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -13,17 +13,17 @@ import java.util.Map;
  * User: xzgang
  * Date: 2020/11/16
  */
-public class DomainUtils {
-    public static Map<String,Object> toMap(BaseDomain domain){
+public class EntityUtils {
+    public static Map<String,Object> toMap(BaseEntity entity){
         Map<String,Object> map = new HashMap<>();
-        Class clzz = domain.getClass();
+        Class clzz = entity.getClass();
         Field[] fields = clzz.getDeclaredFields();
         for (Field field : fields){
             try {
                 String methodName = "get"+BasicUtils.firstToUpcase(field.getName());
                 if(!"getSerialVersionUID".equals(methodName)){
                     Method method = clzz.getDeclaredMethod(methodName);
-                    Object val = method.invoke(domain);
+                    Object val = method.invoke(entity);
                     map.put(field.getName(),val);
                 }
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
@@ -32,11 +32,11 @@ public class DomainUtils {
         }
         return map;
     }
-    public static BaseDomain toDomain(Map<String,Object> map){
-        BaseDomain domain = new BaseDomain();
+    public static BaseEntity toDomain(Map<String,Object> map){
+        BaseEntity entity = new BaseEntity();
         for(String propertyName : map.keySet()){
             String methodName = "set" + BasicUtils.firstToUpcase(propertyName);
         }
-        return domain;
+        return entity;
     }
 }

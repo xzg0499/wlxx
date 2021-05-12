@@ -2,7 +2,7 @@
 
 
 dependencies {
-    compileOnly(project(':wlxx-framework'))
+    compile(project(':wlxx-framework'))
 }
 
 compileJava {

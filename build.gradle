@@ -29,6 +29,7 @@ configure (allprojects){
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		developmentOnly 'org.springframework.boot:spring-boot-devtools'
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		compileOnly('org.springframework.boot:spring-boot-devtools')
 		/* mysql driver*/
 		runtimeOnly 'mysql:mysql-connector-java'
 		/* lomnbok */
@@ -37,16 +38,16 @@ configure (allprojects){
 		testCompileOnly 'org.projectlombok:lombok'
 		testAnnotationProcessor 'org.projectlombok:lombok'
 		/* mybatis plus */
-		compileOnly group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.1'
-		compileOnly group: 'com.baomidou', name: 'mybatis-plus-generator', version: '3.4.1'
-		compileOnly group: 'org.apache.velocity', name: 'velocity-engine-core', version: '2.2'
-		compileOnly group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
-		compileOnly group: 'com.ibeetl', name: 'beetl', version: '3.1.8.RELEASE'
+		compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.1'
+		compile group: 'com.baomidou', name: 'mybatis-plus-generator', version: '3.4.1'
+		compile group: 'org.apache.velocity', name: 'velocity-engine-core', version: '2.2'
+		compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+		compile group: 'com.ibeetl', name: 'beetl', version: '3.1.8.RELEASE'
 		/* hutool util*/
-		compileOnly 'cn.hutool:hutool-all:5.5.6'
+		compile 'cn.hutool:hutool-all:5.5.6'
 		/* swagger api */
-		compileOnly 'io.springfox:springfox-swagger2:2.9.2'
-		compileOnly 'io.springfox:springfox-swagger-ui:2.9.2'
+		compile 'io.springfox:springfox-swagger2:2.9.2'
+		compile 'io.springfox:springfox-swagger-ui:2.9.2'
 		/* activiti bps */
 //		compile 'org.activiti:activiti-spring-boot-starter-basic:6.0.0'
 	}
@@ -59,7 +60,6 @@ configure (allprojects){
 
 	repositories {
 		maven {
-			allowInsecureProtocol true
 			name "aliyunmaven"
 			url "http://maven.aliyun.com/nexus/content/groups/public/"
 		}

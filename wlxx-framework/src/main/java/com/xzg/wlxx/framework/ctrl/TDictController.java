@@ -1,7 +1,6 @@
 package com.xzg.wlxx.framework.ctrl;
 
 
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.xzg.wlxx.framework.entity.TDict;
 import com.xzg.wlxx.framework.model.AjaxResult;
 import com.xzg.wlxx.framework.service.ITDictService;
@@ -24,6 +23,11 @@ import java.util.List;
 public class TDictController extends BaseCtrl {
     @Autowired
     ITDictService itDictService;
+
+    /*
+    TODO 字典表，字典新增，字典修改，字典删除，字典查询
+    字典新增：code不能重复，可以采用数据库unique来做
+     */
 
     @PostMapping("/queryDict")
     public AjaxResult queryDict(){

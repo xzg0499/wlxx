@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: wlxx-eureka
+
+server:
+  port: 12000
+
