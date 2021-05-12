@@ -4,8 +4,8 @@
 
 
 dependencies {
-    compile(project(':wlxx-framework'))
-    compile(project(':wlxx-user'))
+    compileOnly(project(':wlxx-framework'))
+    compileOnly(project(':wlxx-user'))
 }
 
 
