@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: wlxx-app
+
+sever:
+  port: 8090
+
+eureka:
+  instance:
+    hostname: wlxx-app
+  client:
+    service-url:
+      defaultZone: http://localhost:12000/wlxx-eureka/

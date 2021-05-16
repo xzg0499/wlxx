@@ -6,6 +6,8 @@
 dependencies {
     compile(project(':wlxx-framework'))
     compile(project(':wlxx-user'))
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
 }
 
 
