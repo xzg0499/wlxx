@@ -1,9 +1,9 @@
-package com.xzg.wlxx.framework.service.impl;
+package com.xzg.wlxx.module.common.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.framework.entity.TDict;
-import com.xzg.wlxx.framework.mapper.TDictMapper;
-import com.xzg.wlxx.framework.service.ITDictService;
+import com.xzg.wlxx.module.common.entity.TDict;
+import com.xzg.wlxx.module.common.mapper.TDictMapper;
+import com.xzg.wlxx.module.common.service.ITDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

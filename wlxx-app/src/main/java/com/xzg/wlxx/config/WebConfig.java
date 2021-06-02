@@ -1,7 +1,11 @@
 package com.xzg.wlxx.config;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -10,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,16 +42,34 @@ public class WebConfig extends WebMvcConfigurationSupport {
      */
     @Bean
     public HttpMessageConverter<String> responseBodyConverter() {
-        StringHttpMessageConverter converter = new StringHttpMessageConverter(
-                Charset.forName("UTF-8"));
-        return converter;
+        return new StringHttpMessageConverter(
+                StandardCharsets.UTF_8);
     }
 
+    /**
+     * 配置接口统一json格式交互
+     * @param converters
+     */
     @Override
     public void configureMessageConverters(
             List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
-        converters.add(responseBodyConverter());
+        // 创建FastJson消息转换器
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        // 创建配置类
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        // 修改配置返回内容的过滤
+        fastJsonConfig.setSerializerFeatures(
+                SerializerFeature.PrettyFormat
+        );
+
+        List<MediaType> fastMediaType = new ArrayList<>();
+        fastMediaType.add(MediaType.APPLICATION_JSON);
+        fastJsonHttpMessageConverter.setSupportedMediaTypes(fastMediaType);
+        fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
+        // 将FastJson添加到视图消息转换器列表内
+        converters.add(fastJsonHttpMessageConverter);
+//        converters.add(responseBodyConverter());
     }
 
     @Override

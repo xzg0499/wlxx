@@ -1,11 +1,12 @@
-package com.xzg.wlxx.framework.entity;
+package com.xzg.wlxx.module.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.framework.model.BaseEntity;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -18,12 +19,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_dict")
-public class TDict extends BaseEntity {
+@Accessors(chain = true)
+@ApiModel(value="字典表", description="framework")
+public class TDict extends BaseEntity<TDict> {
 
     private static final long serialVersionUID = 1L;
-
-    @TableId("id")
-    private String id;
 
     @TableField("dict_id")
     private String dictId;
@@ -39,6 +39,7 @@ public class TDict extends BaseEntity {
 
     @TableField("sort")
     private Integer sort;
+
 
 
 }

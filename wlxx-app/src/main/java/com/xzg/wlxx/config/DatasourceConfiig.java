@@ -21,23 +21,24 @@ import java.util.Map;
 
 @Configuration
 public class DatasourceConfiig {
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.hikari.wlxx")
-    @Primary
-    public DataSource wlxxDatasource(){
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
-    }
-
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.hikari.user")
-    public DataSource userDatasource(){
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
-    }
-
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.hikari.framework")
-    public DataSource frameworkDatasource(){
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
-    }
+//    弃用多数据源配置
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource.hikari.wlxx")
+//    @Primary
+//    public DataSource wlxxDatasource(){
+//        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+//    }
+//
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource.hikari.user")
+//    public DataSource userDatasource(){
+//        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+//    }
+//
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource.hikari.framework")
+//    public DataSource frameworkDatasource(){
+//        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+//    }
 
 }

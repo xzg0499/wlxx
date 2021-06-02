@@ -32,7 +32,7 @@ public class EntityUtils {
         }
         return map;
     }
-    public static BaseEntity toDomain(Map<String,Object> map){
+    public static BaseEntity toEntity(Map<String,Object> map){
         BaseEntity entity = new BaseEntity();
         for(String propertyName : map.keySet()){
             String methodName = "set" + BasicUtils.firstToUpcase(propertyName);

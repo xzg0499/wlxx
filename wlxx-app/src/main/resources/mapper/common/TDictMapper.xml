@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzg.wlxx.module.common.mapper.TDictMapper">
+<!--    <resultMap id="BaseResultMap" type="com.xzg.wlxx.framework.pojo.entity.TDict">-->
+        <!--使用@TableField标签后，此处不需要再对字段做映射，也可以直接采用表做resultType-->
+<!--    </resultMap>-->
+
+    <sql id="BaseColumn">
+        id,dict_id,dict_name,level,parent_id,sort
+    </sql>
+
+    <!--TODO mybatis-plus 默认CURD方法也需要自己编写对应的sql？-->
+
+<!--    <insert id="insert">-->
+<!--        insert into t_dict(<include refid="BaseColumn"/>) values(#{id},#{dictId},#{dictName},#{level},#{parentId},#{sort})-->
+<!--    </insert>-->
+
+<!--    <update id="updateById" parameterType="com.xzg.wlxx.framework.pojo.entity.TDict">-->
+<!--        UPDATE t_dict-->
+<!--        SET parent_id=#{et.parentId},dict_name=#{et.dictName},dict_id=#{et.dictId},level=#{et.level},sort=#{et.sort}-->
+<!--        WHERE id=#{et.id};-->
+<!--    </update>-->
+
+<!--    <delete id="deleteBatchIds" parameterType="java.lang.String">-->
+<!--        DELETE FROM t_dict WHERE id in-->
+<!--        <foreach collection='coll' item='id' open='(' separator=',' close=')'>-->
+<!--        #{id}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+    <select id="select" resultType="com.xzg.wlxx.module.common.entity.TDict">
+        select <include refid="BaseColumn"/> from t_dict
+    </select>
+</mapper>

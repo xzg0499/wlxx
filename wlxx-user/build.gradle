@@ -21,6 +21,14 @@ sourceSets {
     }
 }
 
+bootJar {
+    enabled(false)
+}
+
+jar {
+    enabled(true)
+}
+
 //processResources {
 //    outputs.dir(file("../wlxx-framework/build"))
 //}

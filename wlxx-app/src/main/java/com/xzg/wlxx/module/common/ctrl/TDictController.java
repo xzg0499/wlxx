@@ -1,12 +1,16 @@
-package com.xzg.wlxx.framework.ctrl;
+package com.xzg.wlxx.module.common.ctrl;
 
 
-import com.xzg.wlxx.framework.entity.TDict;
+import com.xzg.wlxx.module.common.entity.TDict;
+import com.xzg.wlxx.framework.ctrl.BaseCtrl;
 import com.xzg.wlxx.framework.model.AjaxResult;
-import com.xzg.wlxx.framework.service.ITDictService;
 import com.xzg.wlxx.framework.utils.BasicUtils;
+import com.xzg.wlxx.module.common.service.ITDictService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -38,7 +42,8 @@ public class TDictController extends BaseCtrl {
     @PostMapping("/addDict")
     public AjaxResult addDict(@RequestBody TDict dict){
         dict.setId(BasicUtils.getUUID());
-        boolean flag = itDictService.save(dict);
+        //TODO 通过实现model来调用curd方法，未实现？
+        boolean flag = dict.insert();
         return success(flag);
     }
 

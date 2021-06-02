@@ -7,8 +7,8 @@ import java.util.HashMap;
  * @Date: 2020/7/4 22:07
  */
 public class AjaxResult<K,V> extends HashMap<K,V> {
-    private final static int SUCCESS_CODE = 200;
-    private final static int ERROR_CODE = 0;
+    private final static int SUCCESS_CODE = 20000;
+    private final static int ERROR_CODE = 10000;//TODO code的类型是int无法统一error和success的代码数位
 
     private final static String SUCCESS_MSG = "success";
     private final static String ERROR_MSG = "error";

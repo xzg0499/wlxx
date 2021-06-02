@@ -8,28 +8,30 @@ configure (allprojects){
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 	apply plugin: 'java'
+	apply plugin: 'maven'
 
 	group = 'com.xzg'
 	version = '0.0.1-SNAPSHOT'
-	sourceCompatibility = '11'
+	sourceCompatibility = '8'
+	targetCompatibility = '8'
 
 	ext {
 		set('springCloudVersion', "2020.0.2")
 	}
-
+	/*配置注解annotationProcessor*/
 	configurations {
 		compileOnly {
 			extendsFrom annotationProcessor
 		}
 	}
-
+	/*依赖*/
 	dependencies {
 		/* spring boot*/
 		implementation 'org.springframework.cloud:spring-cloud-starter'
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		developmentOnly 'org.springframework.boot:spring-boot-devtools'
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
-		compileOnly('org.springframework.boot:spring-boot-devtools')
+		compileOnly 'org.springframework.boot:spring-boot-devtools'
 		/* mysql driver*/
 		runtimeOnly 'mysql:mysql-connector-java'
 		/* lomnbok */
@@ -50,15 +52,18 @@ configure (allprojects){
 		compile 'io.springfox:springfox-swagger-ui:2.9.2'
 		/* activiti bps */
 //		compile 'org.activiti:activiti-spring-boot-starter-basic:6.0.0'
+		/* fastjson */
+		implementation "com.alibaba:fastjson:1.2.76"
 	}
-
+	/*不知道干啥的*/
 	dependencyManagement {
 		imports {
 			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 		}
 	}
-
+	/*配置aliyun中央仓库*/
 	repositories {
+		mavenLocal()
 		maven {
 			name "aliyunmaven"
 			url "http://maven.aliyun.com/nexus/content/groups/public/"
@@ -69,8 +74,22 @@ configure (allprojects){
 	test {
 		useJUnitPlatform()
 	}
-
+	/*设置java编译字符集*/
 	tasks.withType(JavaCompile) {
 		options.encoding = "UTF-8"
 	}
+	/*将模块打包为jar并上传到私服中，此处上传到本地库。解决各个模块间相互依赖问题*/
+//	def localRepositoryPath = 'file://'+new File(System.getProperty('user.home'),'.m2/repository').absolutePath
+//	uploadArchives {
+//		repositories {
+//			mavenDeployer {
+//				repository(url: localRepositoryPath)
+//				pom.project {
+//					name = project.name        // 当前项目名称
+//					version = project.version   //当前项目版本  0.0.1
+//					groupId = project.group     //  当前项目组  com.xxx
+//				}
+//			}
+//		}
+//	}
 }
