@@ -1,16 +1,13 @@
-package com.xzg.wlxx.module.common.ctrl;
+package com.xzg.wlxx.module.framework.ctrl;
 
 
-import com.xzg.wlxx.module.common.entity.TDict;
+import com.xzg.wlxx.framework.model.CtrlResult;
+import com.xzg.wlxx.module.framework.entity.TDict;
 import com.xzg.wlxx.framework.ctrl.BaseCtrl;
-import com.xzg.wlxx.framework.model.AjaxResult;
 import com.xzg.wlxx.framework.utils.BasicUtils;
-import com.xzg.wlxx.module.common.service.ITDictService;
+import com.xzg.wlxx.module.framework.service.ITDictService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,28 +31,32 @@ public class TDictController extends BaseCtrl {
      */
 
     @PostMapping("/queryDict")
-    public AjaxResult queryDict(){
+    public CtrlResult<List<TDict>> queryDict(){
         List<TDict> dicts = itDictService.select();
         return success(dicts);
     }
 
     @PostMapping("/addDict")
-    public AjaxResult addDict(@RequestBody TDict dict){
+    public CtrlResult addDict(@RequestBody TDict dict){
         dict.setId(BasicUtils.getUUID());
-        //TODO 通过实现model来调用curd方法，未实现？
         boolean flag = dict.insert();
         return success(flag);
     }
 
-    @PostMapping("/updateDict")
-    public AjaxResult updateDict(@RequestBody TDict dict){
-        boolean flag = itDictService.updateById(dict);
+    @PutMapping("/updateDict")
+    public CtrlResult updateDict(@RequestBody TDict dict){
+        boolean flag = dict.updateById();
         return success(flag);
     }
 
-    @PostMapping("/deleteDict")
-    public AjaxResult deleteDict(@RequestBody List<String> ids){
+    @DeleteMapping("/deleteDict")
+    public CtrlResult<Boolean> deleteDict(@RequestBody List<String> ids){
         boolean flag = itDictService.removeByIds(ids);
         return success(flag);
+    }
+
+    @GetMapping("/get")
+    public CtrlResult<TDict> getById(@RequestParam("id")String id){
+        return success(itDictService.getById(id));
     }
 }

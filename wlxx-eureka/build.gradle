@@ -5,6 +5,10 @@ dependencyManagement {
 
 }
 
+ext {
+    set('springBootVersion', "2.1.1.RELEASE")
+}
+
 dependencies {
 //    implementation 'io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry'
 //    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
@@ -21,10 +25,15 @@ dependencies {
 }
 
 
+//dependencyManagement {
+//    imports {
+//        mavenBom "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+//    }
+//}
 
 
 bootJar {
-    enabled(false)
+    enabled(true)
 }
 
 jar {

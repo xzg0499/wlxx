@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xzg.wlxx.module.common.mapper.TDictMapper">
+<mapper namespace="com.xzg.wlxx.module.framework.mapper.TDictMapper">
 <!--    <resultMap id="BaseResultMap" type="com.xzg.wlxx.framework.pojo.entity.TDict">-->
         <!--使用@TableField标签后，此处不需要再对字段做映射，也可以直接采用表做resultType-->
 <!--    </resultMap>-->
 
-    <sql id="BaseColumn">
-        id,dict_id,dict_name,level,parent_id,sort
-    </sql>
-
-    <!--TODO mybatis-plus 默认CURD方法也需要自己编写对应的sql？-->
+<!--    <sql id="BaseColumn">-->
+<!--        id,dict_id,dict_name,level,parent_id,sort-->
+<!--    </sql>-->
 
 <!--    <insert id="insert">-->
 <!--        insert into t_dict(<include refid="BaseColumn"/>) values(#{id},#{dictId},#{dictName},#{level},#{parentId},#{sort})-->
@@ -28,7 +26,7 @@
 <!--        </foreach>-->
 <!--    </delete>-->
 
-    <select id="select" resultType="com.xzg.wlxx.module.common.entity.TDict">
-        select <include refid="BaseColumn"/> from t_dict
-    </select>
+<!--    <select id="select" resultType="com.xzg.wlxx.module.framework.entity.TDict">-->
+<!--        select <include refid="BaseColumn"/> from t_dict-->
+<!--    </select>-->
 </mapper>

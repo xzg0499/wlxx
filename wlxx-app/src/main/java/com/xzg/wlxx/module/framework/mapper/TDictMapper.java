@@ -1,9 +1,7 @@
-package com.xzg.wlxx.module.common.mapper;
+package com.xzg.wlxx.module.framework.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xzg.wlxx.module.common.entity.TDict;
-
-import java.util.List;
+import com.xzg.wlxx.module.framework.entity.TDict;
 
 /**
  * <p>
@@ -15,6 +13,4 @@ import java.util.List;
  */
 public interface TDictMapper extends BaseMapper<TDict> {
 
-//    @Select("select * from t_dict")
-    public List<TDict> select();
 }

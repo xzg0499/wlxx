@@ -1,9 +1,10 @@
-package com.xzg.wlxx.module.common.service.impl;
+package com.xzg.wlxx.module.framework.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.module.common.entity.TDict;
-import com.xzg.wlxx.module.common.mapper.TDictMapper;
-import com.xzg.wlxx.module.common.service.ITDictService;
+import com.xzg.wlxx.module.framework.entity.TDict;
+import com.xzg.wlxx.module.framework.mapper.TDictMapper;
+import com.xzg.wlxx.module.framework.service.ITDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class TDictServiceImpl extends ServiceImpl<TDictMapper, TDict> implements
 
     @Override
     public List<TDict> select() {
-        return tDictMapper.select();
+        QueryWrapper<TDict> query = new QueryWrapper<TDict>();
+        return tDictMapper.selectList(query);
     }
 }

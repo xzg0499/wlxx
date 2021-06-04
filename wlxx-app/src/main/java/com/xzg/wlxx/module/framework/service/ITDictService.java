@@ -1,7 +1,7 @@
-package com.xzg.wlxx.module.common.service;
+package com.xzg.wlxx.module.framework.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xzg.wlxx.module.common.entity.TDict;
+import com.xzg.wlxx.module.framework.entity.TDict;
 
 import java.util.List;
 

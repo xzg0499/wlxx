@@ -1,4 +1,4 @@
-package com.xzg.wlxx.module.common.entity;
+package com.xzg.wlxx.module.framework.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

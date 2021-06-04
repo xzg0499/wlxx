@@ -1,7 +1,7 @@
 package com.xzg.wlxx.framework.ctrl;
 
 
-import com.xzg.wlxx.framework.model.AjaxResult;
+import com.xzg.wlxx.framework.model.CtrlResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +23,7 @@ public class ExceptionCtrl extends BaseCtrl {
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public AjaxResult defaultError(HttpServletRequest req, HttpServletResponse res, Exception e) throws Exception{
-        return error(e.getMessage());
+    public CtrlResult defaultError(HttpServletRequest req, HttpServletResponse res, Exception e) throws Exception{
+        return failure(e.getMessage());
     }
 }
