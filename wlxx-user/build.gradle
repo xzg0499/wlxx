@@ -2,14 +2,13 @@
 
 
 dependencies {
-    compile(project(':wlxx-framework'))
+    compileOnly(project(':wlxx-framework'))
 }
 
 compileJava {
 //    outputs.dir(file("./wlxx-framework/build"))
 //    buildDir(file("./wlxx-framework/build"))
 //    println(buildDir.properties)
-
 }
 
 // 解决多模块之间依赖，在build时找不到类的问题
@@ -17,6 +16,9 @@ sourceSets {
     main {
         java {
             srcDirs = ['src/main/java','../wlxx-framework/src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources']
         }
     }
 }

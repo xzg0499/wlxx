@@ -5,7 +5,7 @@
 
 dependencies {
 //    弃用多模块，改用微服务分布式
-    compile(project(':wlxx-framework'))
+    compileOnly(project(':wlxx-framework'))
 //    compile(project(':wlxx-user'))
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
@@ -16,10 +16,10 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDirs = ['src/main/java','../wlxx-framework/src/main/java']
+            srcDirs = ['src/main/java','../wlxx-framework/src/main/java','../wlxx-user/src/main/java']
         }
         resources {
-            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources']
+            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources','../wlxx-user/src/main/resources']
         }
     }
 }

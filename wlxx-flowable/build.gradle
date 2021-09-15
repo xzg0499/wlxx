@@ -1,0 +1,13 @@
+
+
+dependencies {
+    implementation group: 'org.flowable', name: 'flowable-engine', version: '6.7.0'
+}
+
+bootJar {
+    enabled(false)
+}
+
+jar{
+    enabled(true)
+}

@@ -6,6 +6,8 @@ package com.xzg.wlxx.framework.model;
  * Date: 2021/6/3
  */
 public enum ResultCode{
+    NULL(0,"空值异常"),
+
     SUCCESS(20000,"成功"),
     ERROR(10000,"失败");
 

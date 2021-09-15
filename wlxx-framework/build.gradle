@@ -1,13 +1,24 @@
 
 
+
+
+
 dependencies {
+//    弃用多模块，改用微服务分布式
+    compileOnly(project(':wlxx-framework'))
+//    compile(project(':wlxx-user'))
+}
+
+
+// 解决多模块之间依赖，在build时找不到类的问题
+sourceSets {
 
 }
 
 bootJar {
-    enabled(false)
+    enabled(true)
 }
 
-jar{
+jar {
     enabled(true)
 }

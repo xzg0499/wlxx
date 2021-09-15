@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    spring:
+      datasource:
+        driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+        url: jdbc:p6spy:h2:mem:test
+    url: jdbc:mysql://localhost:3306/db_flowable?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: xiao
+  application:
+    name: wlxx-flowable
+  devtools:
+    restart:
+      enabled: true
+    add-properties: false
+  cloud:
+    config:
+      enabled: false
+#  结合flowable需要禁用liquibase，否则无法启动
+  liquibase:
+    enabled: false
+
+server:
+  port: 12000
+
+
+
+
+#eureka:
+#  server:
+#    enable-self-preservation: true
+#  instance:
+#    hostname: localhost
+#  client:
+#    #由于自己就是服务器，不需要注册到自己
+#    register-with-eureka: true
+#    #由于自己就是服务器，不需要从服务器获取注册信息
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://admin:admin@${eureka.instance.hostname}:${server.port}/eureka
+
+
+
+logging:
+  level:
+    root: info

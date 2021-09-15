@@ -15,10 +15,18 @@ public class CtrlResult<T> implements Serializable {
     private String msg;
     private T result;
 
+    /**
+     * 保护class不被随意创建
+     */
     protected CtrlResult(){
 
     }
 
+    /**
+     * 接口请求失败
+     * @param msg
+     * @return
+     */
     public CtrlResult<T> failure(String msg){
         CtrlResult<T> result = new CtrlResult<>();
         result.setCode(ResultCode.ERROR.getCode());
@@ -26,6 +34,11 @@ public class CtrlResult<T> implements Serializable {
         return result;
     }
 
+    /**
+     * 接口请求成功
+     * @param data
+     * @return
+     */
     public CtrlResult<T> success(T data){
         CtrlResult<T> result = new CtrlResult<>();
         result.setCode(ResultCode.SUCCESS.getCode());
@@ -34,6 +47,7 @@ public class CtrlResult<T> implements Serializable {
         return result;
     }
 
+    // 附带给出消息提示
     public CtrlResult<T> success(String msg,T data){
         CtrlResult<T> result = new CtrlResult<>();
         result.setCode(ResultCode.SUCCESS.getCode());
@@ -42,6 +56,11 @@ public class CtrlResult<T> implements Serializable {
         return result;
     }
 
+    /**
+     * 通用消息接口
+     * @param code
+     * @return
+     */
     public CtrlResult<T> msg(ResultCode code){
         CtrlResult<T> result = new CtrlResult<>();
         result.setCode(code.getCode());
@@ -49,14 +68,14 @@ public class CtrlResult<T> implements Serializable {
         return result;
     }
 
+    /**
+     * Get/Set
+     * @return
+     */
     public Integer getCode() {
         return code;
     }
 
-    /**
-     * Get/Set
-     * @param code
-     */
     public void setCode(Integer code) {
         this.code = code;
     }
