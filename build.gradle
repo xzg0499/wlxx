@@ -5,8 +5,12 @@ buildscript {
 	}
 	dependencies{
 //		classpath: 'com.alibaba.cloud:spring-cloud-alibaba-dependencies'
+		classpath: 'com.bmuschko:gradle-docker-plugin:6.0.0'
+//		classpath: 'org.yaml:snakeyaml:1.27'
+		classpath group: 'org.yaml', name: 'snakeyaml', version: '1.27'
 	}
 }
+import org.yaml.snakeyaml.Yaml
 
 plugins {
 //	TODO 要集成flowable需要将spring boot的版本修改为：2.2.0.RELEASE，目前仅支持到这个版本
@@ -14,10 +18,11 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'  apply false
 //	id group: 'com.bmuschko',module: 'gradle-docker-plugin',version: '7.1.0'
 //	id 'com.alibaba.cloud'
+	id "com.bmuschko.docker-spring-boot-application" version "6.0.0"
 	id 'java'
 }
 
-
+//test
 task buildDocker {
 	def releaseTime= new Date().format("HHmmss", TimeZone.getTimeZone("GMT+08:00"))
 	def buildImage = 'bs-devops:5000/${project.group}.${project.name}:${project.version}.build-${releaseTime()}'
@@ -25,11 +30,11 @@ task buildDocker {
 	def debugImage = 'bs-devops:5000/${project.group}.${project.name}:${DEBUG_NAME}'
 	def debugContainer = '${DEBUG_NAME}.${project.group}.${project.name}'
 
-	print releaseTime
-	print buildImage
-	print image
-	print debugImage
-	print debugContainer
+//	print releaseTime
+//	print buildImage
+//	print image
+//	print debugImage
+//	print debugContainer
 }
 
 //task createImage {
@@ -48,12 +53,15 @@ configurations.all {
 	}
 }
 
+
+
 configure (subprojects){
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 //	apply plugin: 'com.alibaba.cloud'
 	apply plugin: 'java'
 	apply plugin: 'maven'
+	apply plugin: "com.bmuschko.docker-spring-boot-application"
 
 	group = 'com.xzg'
 	version = '0.0.1-SNAPSHOT'
@@ -62,6 +70,38 @@ configure (subprojects){
 
 	ext {
 		set('springCloudVersion', "2020.0.2")
+	}
+	/*获取当前服务配置的端口*/
+//	task getCurrPort {
+//		try {
+//			def config = new Yaml().load( new File("${projectDir}/src/main/resources/application.yml").newInputStream())
+//			print config.getAt('server').getAt('port')
+//		}catch(Exception e){
+//			e.printStackTrace()
+//		}
+//	}
+	/*推送docker镜像*/
+	docker {
+		def ports
+		try {
+			def config = new Yaml().load( new File("${projectDir}/src/main/resources/application.yml").newInputStream())
+			ports = [config.getAt('server').getAt('port')]
+		}catch(Exception e){
+			println('未获取文件')
+		}
+		springBootApplication {
+			baseImage = 'java:8' //指定运行镜像
+			ports = ports  //暴露的端口
+//		镜像名称和版本
+			images = ["${project.group}/${project.name}:${project.version}"]
+//		jvmArgs = ["-Dspring.profiles.active=$env", '-Xmx2048m']  //启动参数
+			jvmArgs = ["-Dspring.profiles.active=dev", '-Xmx2048m']  //启动参数
+		}
+		//如果url不指定的话
+		// Unix系统默认：unix:///var/run/docker.sock
+		//Windows系统默认：tcp://127.0.0.1:2375。
+//    url = 'https://127.0.0.1:2375'
+		url = 'http://47.110.139.158:2375'
 	}
 	/*配置注解annotationProcessor*/
 	configurations {
