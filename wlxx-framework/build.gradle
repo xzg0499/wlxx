@@ -5,7 +5,7 @@
 
 dependencies {
 //    弃用多模块，改用微服务分布式
-    compileOnly(project(':wlxx-framework'))
+//    compileOnly(project(':wlxx-framework'))
 //    compile(project(':wlxx-user'))
 }
 
@@ -16,9 +16,9 @@ sourceSets {
 }
 
 bootJar {
-    enabled(true)
+    enabled(false)
 }
 
 jar {
-    enabled(true)
+    enabled(false)
 }

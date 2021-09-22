@@ -11,3 +11,12 @@ configure (subprojects){
 		implementation 'com.alibaba.nacos:nacos-client:1.2.0'
 	}
 }
+
+
+bootJar {
+	enabled(false)
+}
+
+jar {
+	enabled(true)
+}

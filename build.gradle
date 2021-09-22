@@ -1,16 +1,46 @@
-//buildscript {
-//	dependencies{
+buildscript {
+	repositories {
+		gradlePluginPortal()
+		jcenter()
+	}
+	dependencies{
 //		classpath: 'com.alibaba.cloud:spring-cloud-alibaba-dependencies'
-//	}
-//}
+	}
+}
 
 plugins {
 //	TODO 要集成flowable需要将spring boot的版本修改为：2.2.0.RELEASE，目前仅支持到这个版本
 	id 'org.springframework.boot' version '2.4.5' apply false
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'  apply false
+//	id group: 'com.bmuschko',module: 'gradle-docker-plugin',version: '7.1.0'
 //	id 'com.alibaba.cloud'
 	id 'java'
 }
+
+
+task buildDocker {
+	def releaseTime= new Date().format("HHmmss", TimeZone.getTimeZone("GMT+08:00"))
+	def buildImage = 'bs-devops:5000/${project.group}.${project.name}:${project.version}.build-${releaseTime()}'
+	def image = 'bysun:5000/${project.group}.${project.name}:${project.version}'
+	def debugImage = 'bs-devops:5000/${project.group}.${project.name}:${DEBUG_NAME}'
+	def debugContainer = '${DEBUG_NAME}.${project.group}.${project.name}'
+
+	print releaseTime
+	print buildImage
+	print image
+	print debugImage
+	print debugContainer
+}
+
+//task createImage {
+//	from('bs-devops:5000/alpine-jre8:3.8-201')
+//	addFile("libs/${project.name}-${project.version}.jar", "/app.jar")
+//	exposePort(80)
+//	defaultCommand('java', '-jar', "/app.jar")
+//
+//	images.add(buildImage())
+//	images.add(image())
+//}
 
 configurations.all {
 	resolutionStrategy{
@@ -23,7 +53,7 @@ configure (subprojects){
 	apply plugin: 'io.spring.dependency-management'
 //	apply plugin: 'com.alibaba.cloud'
 	apply plugin: 'java'
-//	apply plugin: 'maven'
+	apply plugin: 'maven'
 
 	group = 'com.xzg'
 	version = '0.0.1-SNAPSHOT'
@@ -106,17 +136,21 @@ configure (subprojects){
 		options.encoding = "UTF-8"
 	}
 	/*将模块打包为jar并上传到私服中，此处上传到本地库。解决各个模块间相互依赖问题*/
-//	def localRepositoryPath = 'file://'+new File(System.getProperty('user.home'),'.m2/repository').absolutePath
-//	uploadArchives {
-//		repositories {
-//			mavenDeployer {
-//				repository(url: localRepositoryPath)
-//				pom.project {
-//					name = project.name        // 当前项目名称
-//					version = project.version   //当前项目版本  0.0.1
-//					groupId = project.group     //  当前项目组  com.xxx
-//				}
-//			}
-//		}
-//	}
+
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				def localRepositoryPath = 'file://'+new File(System.getProperty('user.home'),'.m2/repository').absolutePath
+				repository(url: localRepositoryPath)
+				pom.project {
+					name = project.name        // 当前项目名称
+					version = project.version   //当前项目版本  0.0.1
+					groupId = project.group     //  当前项目组  com.xxx
+				}
+			}
+		}
+	}
+
 }
+
+

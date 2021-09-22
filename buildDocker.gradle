@@ -1,0 +1,155 @@
+//buildscript {
+//    repositories {
+//        gradlePluginPortal()
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.bmuschko:gradle-docker-plugin:6.0.0'
+//    }
+//}
+//repositories {
+//    jcenter()
+//}
+//
+//ext {
+//    // 设置 DEBUG 容器对外端口
+//    DEBUG_PORT = "10081"
+//    DEBUG_NAME = "debug"
+//}
+//
+//def releaseTime() {
+//    return new Date().format("HHmmss", TimeZone.getTimeZone("GMT+08:00"))
+//}
+//
+//def buildImage() {
+//    return "bs-devops:5000/${project.group}.${project.name}:${project.version}.build-${releaseTime()}"
+//}
+//
+//def image() {
+//    return "bysun:5000/${project.group}.${project.name}:${project.version}"
+//}
+//
+//def debugImage() {
+//    return "bs-devops:5000/${project.group}.${project.name}:${DEBUG_NAME}"
+//}
+//
+//def debugContainer() {
+//    return "${DEBUG_NAME}.${project.group}.${project.name}"
+//}
+//
+//// use fully qualified class name
+//apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin
+////import task classes
+////import com.bmuschko.gradle.docker.tasks.image.*
+////import com.bmuschko.gradle.docker.tasks.container.*
+//
+//docker {
+//    url = 'tcp://bs-devops:2375'
+//}
+//
+//task _createDockerfile(type: Dockerfile) {
+//    group 'docker'
+//    description 'Generate docker file for the application'
+//    //destFile = project.file('Dockerfile')
+//
+//    from('bs-devops:5000/alpine-jre8:3.8-201')
+//    addFile("libs/${project.name}-${project.version}.jar", "/app.jar")
+//    exposePort(80)
+//    defaultCommand('java', '-jar', "/app.jar")
+//}
+//
+//task _createImage(type: DockerBuildImage) {
+//    group 'docker'
+//    description 'Executes build, generates a docker file and builds image from it'
+//    dependsOn(build, _createDockerfile)
+//
+//    dockerFile = project.file("${project.buildDir}/docker/Dockerfile")
+//    inputDir = project.buildDir
+//    images.add(buildImage())
+//    images.add(image())
+//}
+//
+//task pushDevImage(type: DockerPushImage) {
+//    group 'docker'
+//    dependsOn _createImage
+//    images = [buildImage().toString()]
+//}
+//
+//task pushPrdImage(type: DockerPushImage) {
+//    group 'docker'
+//    images = [image().toString()]
+//}
+//
+//task print() {
+//    group 'docker'
+//    doLast {
+//        println buildImage()
+//        println image()
+//    }
+//}
+//
+//
+//task printDebug() {
+//    group 'docker-debug'
+//    doLast {
+//        println debugImage()
+//    }
+//}
+//
+//task _createDebugDockerfile(type: Dockerfile) {
+//    group 'docker-debug'
+//    description 'Generate docker file for the application'
+//    //destFile = project.file('Dockerfile')
+//
+//    from('bs-devops:5000/alpine-jre8:3.8-201')
+//    addFile("libs/${project.name}-${project.version}.jar", "/app.jar")
+//    exposePort(80)
+//    defaultCommand('java', '-jar', '-Dspring.profiles.active=debug', "/app.jar")
+//}
+//
+//task _createDebugImage(type: DockerBuildImage) {
+//    group 'docker-debug'
+//    description 'Executes build, generates a docker file and builds image from it'
+//    dependsOn(build, _createDebugDockerfile)
+//    dockerFile = project.file("${project.buildDir}/docker/Dockerfile")
+//    inputDir = project.buildDir
+//    images.add(debugImage())
+//}
+//
+//task pushDebugImage(type: DockerPushImage) {
+//    group 'docker-debug'
+//    dependsOn _createDebugImage
+//
+//    doLast {
+//        images = ["bs-devops:5000/${project.group}.${project.name}:${DEBUG_NAME}".toString()]
+//    }
+//}
+//
+//task _createDebugContainer(type: DockerCreateContainer) {
+//    group 'docker-debug'
+//    dependsOn pushDebugImage
+//
+//    containerName = debugContainer()
+//    targetImageId debugImage()
+//
+//    hostConfig.portBindings = ["${DEBUG_PORT}:80"]
+//    // 因dockerJava代码重构，类结构调整导致无法正常运行，需要等 bmuschko/gradle-docker-plugin 升级修复此问题
+////    hostConfig.publishAll = true
+//    hostConfig.autoRemove = true
+//    exposePorts('tcp', [80])    // << NECESSARY, BUT NOT DOCUMENTED!
+//}
+//
+//task startDebugContainer(type: DockerStartContainer) {
+//    group 'docker-debug'
+//    dependsOn(_createDebugContainer)
+//    targetContainerId _createDebugContainer.getContainerId()
+//}
+//
+//task stopDebugContainer(type: DockerStopContainer) {
+//    group 'docker-debug'
+//    targetContainerId debugContainer()
+//}
+//
+//dependencies {
+//    testCompile 'com.bmuschko:gradle-docker-plugin:5.2.0'
+//}
