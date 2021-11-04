@@ -5,24 +5,25 @@
 
 dependencies {
 //    弃用多模块，改用微服务分布式
-    compileOnly(project(':wlxx-framework'))
+//    compileOnly(project(':wlxx-common'))
 //    compile(project(':wlxx-user'))
+    implementation("com.xzg:wlxx-common:0.0.1-SNAPSHOT")
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
 }
 
 
 // 解决多模块之间依赖，在build时找不到类的问题
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java','../wlxx-framework/src/main/java','../wlxx-user/src/main/java']
-        }
-        resources {
-            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources','../wlxx-user/src/main/resources']
-        }
-    }
-}
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs = ['src/main/java','../wlxx-framework/src/main/java']
+//        }
+//        resources {
+//            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources']
+//        }
+//    }
+//}
 
 bootJar {
     enabled(true)

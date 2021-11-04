@@ -2,7 +2,8 @@
 
 
 dependencies {
-    compileOnly(project(':wlxx-framework'))
+//    compileOnly(project(':wlxx-framework'))
+    implementation("com.xzg:wlxx-common:0.0.1-SNAPSHOT")
 }
 
 compileJava {
@@ -12,19 +13,19 @@ compileJava {
 }
 
 // 解决多模块之间依赖，在build时找不到类的问题
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java','../wlxx-framework/src/main/java']
-        }
-        resources {
-            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources']
-        }
-    }
-}
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs = ['src/main/java','../wlxx-framework/src/main/java']
+//        }
+//        resources {
+//            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources']
+//        }
+//    }
+//}
 
 bootJar {
-    enabled(false)
+    enabled(true)
 }
 
 jar {

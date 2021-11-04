@@ -1,10 +1,10 @@
 package com.xzg.wlxx.module.framework.ctrl;
 
 
-import com.xzg.wlxx.framework.model.CtrlResult;
+import com.xzg.wlxx.common.model.CtrlResult;
 import com.xzg.wlxx.module.framework.entity.TDict;
-import com.xzg.wlxx.framework.ctrl.BaseCtrl;
-import com.xzg.wlxx.framework.utils.BasicUtils;
+import com.xzg.wlxx.common.ctrl.BaseCtrl;
+import com.xzg.wlxx.common.utils.BasicUtils;
 import com.xzg.wlxx.module.framework.service.ITDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -2,7 +2,7 @@ package com.xzg.wlxx.module.framework.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xzg.wlxx.framework.model.BaseEntity;
+import com.xzg.wlxx.common.model.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -72,26 +72,25 @@ configure (subprojects){
 		set('springCloudVersion', "2020.0.2")
 	}
 	/*获取当前服务配置的端口*/
-//	task getCurrPort {
-//		try {
-//			def config = new Yaml().load( new File("${projectDir}/src/main/resources/application.yml").newInputStream())
-//			print config.getAt('server').getAt('port')
-//		}catch(Exception e){
-//			e.printStackTrace()
-//		}
-//	}
+	// TODO 由于循环导致无法获取当前project的路径
 	/*推送docker镜像*/
 	docker {
-		def ports
-		try {
-			def config = new Yaml().load( new File("${projectDir}/src/main/resources/application.yml").newInputStream())
-			ports = [config.getAt('server').getAt('port')]
-		}catch(Exception e){
-			println('未获取文件')
+		def getPorts = {
+			def ps = []
+			try {
+				def configFile = new File("${projectDir}/src/main/resources/application.yml")
+				if(configFile != null){
+					def config = new Yaml().load(configFile.newInputStream())
+					ps.add(config['server']['port'])
+				}
+			}catch(Exception e){
+//				println('no application.yml')
+			}
+			return ps
 		}
 		springBootApplication {
 			baseImage = 'java:8' //指定运行镜像
-			ports = ports  //暴露的端口
+			ports = getPorts()  //暴露的端口
 //		镜像名称和版本
 			images = ["${project.group}/${project.name}:${project.version}"]
 //		jvmArgs = ["-Dspring.profiles.active=$env", '-Xmx2048m']  //启动参数
@@ -100,8 +99,8 @@ configure (subprojects){
 		//如果url不指定的话
 		// Unix系统默认：unix:///var/run/docker.sock
 		//Windows系统默认：tcp://127.0.0.1:2375。
-//    url = 'https://127.0.0.1:2375'
-		url = 'http://47.110.139.158:2375'
+		url = 'https://127.0.0.1:2375'
+//		url = 'http://47.110.139.158:2375'
 	}
 	/*配置注解annotationProcessor*/
 	configurations {
@@ -118,7 +117,6 @@ configure (subprojects){
 		testImplementation('org.springframework.boot:spring-boot-starter-test'){
 			exclude group:'org.springframework.boot',module:'spring-boot-autoconfigure'
 		}
-//		compileOnly 'org.springframework.boot:spring-boot-devtools'
 		// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure
 //		implementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure'
 		/* mysql driver*/
@@ -165,6 +163,10 @@ configure (subprojects){
 			name "aliyunmaven"
 			url "http://maven.aliyun.com/nexus/content/groups/public/"
 		}
+		maven {
+			url 'https://repo.maven.apache.org/maven2'
+			name 'Maven Central'
+		}
 		mavenCentral()
 	}
 
@@ -181,12 +183,14 @@ configure (subprojects){
 		repositories {
 			mavenDeployer {
 				def localRepositoryPath = 'file://'+new File(System.getProperty('user.home'),'.m2/repository').absolutePath
-				repository(url: localRepositoryPath)
 				pom.project {
 					name = project.name        // 当前项目名称
 					version = project.version   //当前项目版本  0.0.1
 					groupId = project.group     //  当前项目组  com.xxx
+//					artifactId = project.artifacts
 				}
+				print(project.version)
+				repository(url: localRepositoryPath)
 			}
 		}
 	}
