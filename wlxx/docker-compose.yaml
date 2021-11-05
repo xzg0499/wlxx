@@ -38,13 +38,16 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    volumes:
+      - ${DATA_PATH}/rabbitmq:/var/lib/rabbitmq
   redis:
     container_name: redis
     image: redis:latest
     ports:
+      - "6379:6379"
       - "3680:3680"
     volumes:
       - ${DATA_PATH}/redis/redis.conf:/usr/local/etc/redis/redis.conf
       - ${DATA_PATH}/redis/data:/data
     command:
-      redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+      /bin/bash -c "redis-server /usr/local/etc/redis/redis.conf "
