@@ -9,7 +9,7 @@ services:
       - ./mysql/mysql.env
     privileged: true
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ${DATA_PATH}/mysql:/var/lib/mysql
 #      - ./mysql/my.cnf:/etc/mysql/my.cnf
 #      - ./mysql/conf.d:/etc/mysql/conf.d
 #      - ./data/mysql-files:/var/lib/mysql-files/
@@ -23,7 +23,7 @@ services:
     env_file:
       - ./nacos/nacos-standlone-mysql.env
     volumes:
-      - ./data/nacos/standalone-logs/:/home/nacos/logs
+      - ${DATA_PATH}/nacos/standalone-logs/:/home/nacos/logs
       - ./nacos/custom.properties:/home/nacos/init.d/custom.properties
     ports:
       - "8848:8848"
@@ -44,7 +44,7 @@ services:
     ports:
       - "3680:3680"
     volumes:
-      - ./data/redis/redis.conf:/usr/local/etc/redis/redis.conf
-      - ./data/redis/data:/data
+      - ${DATA_PATH}/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ${DATA_PATH}/redis/data:/data
     command:
       redis-server /usr/local/etc/redis/redis.conf --appendonly yes
