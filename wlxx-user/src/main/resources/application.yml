@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: wlxx-user
+  cloud:
+    nacos:
+      server-addr: 47.110.139.158:8848
+      discovery:
+        namespace: public
+
+server:
+  port: 12000

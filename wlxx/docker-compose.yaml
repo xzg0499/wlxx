@@ -1,0 +1,50 @@
+version: "3.0"
+services:
+  mysql:
+    container_name: mysql
+#    nacos正对mysql做了优化，无法直接使用MySQL原版镜像
+#    image: mysql:latest
+    image: nacos/nacos-mysql:8.0.16
+    env_file:
+      - ./mysql/mysql.env
+    privileged: true
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+#      - ./mysql/my.cnf:/etc/mysql/my.cnf
+#      - ./mysql/conf.d:/etc/mysql/conf.d
+#      - ./data/mysql-files:/var/lib/mysql-files/
+    ports:
+      - "3306:3306"
+  nacos:
+    container_name: nacos-server
+    image: nacos/nacos-server:${NACOS_VERSION}
+#    environment:
+#      - SPRING_DATASOURCE_PLATFORM=mysql
+    env_file:
+      - ./nacos/nacos-standlone-mysql.env
+    volumes:
+      - ./data/nacos/standalone-logs/:/home/nacos/logs
+      - ./nacos/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    depends_on:
+      - mysql
+#    restart: always
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - "3680:3680"
+    volumes:
+      - ./data/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis/data:/data
+    command:
+      redis-server /usr/local/etc/redis/redis.conf --appendonly yes
