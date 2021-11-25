@@ -33,3 +33,6 @@
 > idea command line is too long
 > 修改`.idea\workspace.xml`目录文件
 > 在`<component name=“PropertiesComponent”>`中添加`<property name="dynamic.classpath" value="true"/>`
+
+
+# 丧心病狂，又开始重构了

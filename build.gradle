@@ -1,200 +1,60 @@
-buildscript {
-	repositories {
-		gradlePluginPortal()
-		jcenter()
-	}
-	dependencies{
-//		classpath: 'com.alibaba.cloud:spring-cloud-alibaba-dependencies'
-		classpath: 'com.bmuschko:gradle-docker-plugin:6.0.0'
-//		classpath: 'org.yaml:snakeyaml:1.27'
-		classpath group: 'org.yaml', name: 'snakeyaml', version: '1.27'
-	}
-}
-import org.yaml.snakeyaml.Yaml
 
-plugins {
-//	TODO 要集成flowable需要将spring boot的版本修改为：2.2.0.RELEASE，目前仅支持到这个版本
-	id 'org.springframework.boot' version '2.4.5' apply false
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'  apply false
-//	id group: 'com.bmuschko',module: 'gradle-docker-plugin',version: '7.1.0'
-//	id 'com.alibaba.cloud'
-	id "com.bmuschko.docker-spring-boot-application" version "6.0.0"
-	id 'java'
-}
-
-//test
-task buildDocker {
-	def releaseTime= new Date().format("HHmmss", TimeZone.getTimeZone("GMT+08:00"))
-	def buildImage = 'bs-devops:5000/${project.group}.${project.name}:${project.version}.build-${releaseTime()}'
-	def image = 'bysun:5000/${project.group}.${project.name}:${project.version}'
-	def debugImage = 'bs-devops:5000/${project.group}.${project.name}:${DEBUG_NAME}'
-	def debugContainer = '${DEBUG_NAME}.${project.group}.${project.name}'
-
-//	print releaseTime
-//	print buildImage
-//	print image
-//	print debugImage
-//	print debugContainer
-}
-
-//task createImage {
-//	from('bs-devops:5000/alpine-jre8:3.8-201')
-//	addFile("libs/${project.name}-${project.version}.jar", "/app.jar")
-//	exposePort(80)
-//	defaultCommand('java', '-jar', "/app.jar")
-//
-//	images.add(buildImage())
-//	images.add(image())
+//plugins {
+//	id 'org.springframework.boot' version '2.4.5'
+//	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//	id 'java'
 //}
 
-configurations.all {
-	resolutionStrategy{
-		failOnVersionConflict()
+// 编译脚本
+buildscript {
+	ext {
+		springBootVersion = "2.4.5"
+		mybatisPlusVersion = "3.4.3.3"
+	}
+
+	// 仓库配置
+	repositories {
+		mavenLocal()
+		maven { url 'https://maven.aliyun.com/repository/central' }
+		maven { url 'https://maven.aliyun.com/repository/spring' }
+		maven { url 'https://maven.aliyun.com/repository/google' }
+		maven { url 'https://repo.spring.io/release' }
+		maven { url 'https://repo.spring.io/milestone' }
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
 
+description = "无聊写写"
 
-
-configure (subprojects){
-	apply plugin: 'org.springframework.boot'
-	apply plugin: 'io.spring.dependency-management'
-//	apply plugin: 'com.alibaba.cloud'
+allprojects {
 	apply plugin: 'java'
-	apply plugin: 'maven'
-	apply plugin: "com.bmuschko.docker-spring-boot-application"
 
 	group = 'com.xzg'
 	version = '0.0.1-SNAPSHOT'
-	sourceCompatibility = '8'
-	targetCompatibility = '8'
+	// 编译环境 JDK1.8
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
 
-	ext {
-		set('springCloudVersion', "2020.0.2")
-	}
-	/*获取当前服务配置的端口*/
-	// TODO 由于循环导致无法获取当前project的路径
-	/*推送docker镜像*/
-	docker {
-		def getPorts = {
-			def ps = []
-			try {
-				def configFile = new File("${projectDir}/src/main/resources/application.yml")
-				if(configFile != null){
-					def config = new Yaml().load(configFile.newInputStream())
-					ps.add(config['server']['port'])
-				}
-			}catch(Exception e){
-//				println('no application.yml')
-			}
-			return ps
-		}
-		springBootApplication {
-			baseImage = 'java:8' //指定运行镜像
-			ports = getPorts()  //暴露的端口
-//		镜像名称和版本
-			images = ["${project.group}/${project.name}:${project.version}"]
-//		jvmArgs = ["-Dspring.profiles.active=$env", '-Xmx2048m']  //启动参数
-			jvmArgs = ["-Dspring.profiles.active=dev", '-Xmx2048m']  //启动参数
-		}
-		//如果url不指定的话
-		// Unix系统默认：unix:///var/run/docker.sock
-		//Windows系统默认：tcp://127.0.0.1:2375。
-		url = 'https://127.0.0.1:2375'
-//		url = 'http://47.110.139.158:2375'
-	}
-	/*配置注解annotationProcessor*/
-	configurations {
-		compileOnly {
-			extendsFrom annotationProcessor
-		}
-	}
-	/*依赖*/
-	dependencies {
-		/* spring boot*/
-		implementation 'org.springframework.cloud:spring-cloud-starter'
-		implementation 'org.springframework.boot:spring-boot-starter-web'
-		implementation 'org.springframework.boot:spring-boot-devtools'
-		testImplementation('org.springframework.boot:spring-boot-starter-test'){
-			exclude group:'org.springframework.boot',module:'spring-boot-autoconfigure'
-		}
-		// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure
-//		implementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure'
-		/* mysql driver*/
-		runtimeOnly 'mysql:mysql-connector-java'
-		/* lomnbok */
-		compileOnly 'org.projectlombok:lombok'
-		annotationProcessor 'org.projectlombok:lombok'
-		testCompileOnly 'org.projectlombok:lombok'
-		testAnnotationProcessor 'org.projectlombok:lombok'
-		/* mybatis plus */
-		implementation group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.1'
-		implementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: '3.4.1'
-		implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: '2.2'
-		implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
-		implementation group: 'com.ibeetl', name: 'beetl', version: '3.1.8.RELEASE'
-		/* hutool util*/
-		compileOnly 'cn.hutool:hutool-all:5.5.6'
-		/* swagger api */
-		implementation ('io.springfox:springfox-swagger2:2.9.2') {
-			exclude group: 'org.springframework'
-		}
-		implementation ('io.springfox:springfox-swagger-ui:2.9.2'){
-			exclude group: 'org.springframework'
-		}
-		/* activiti bps */
-//		compile 'org.activiti:activiti-spring-boot-starter-basic:6.0.0'
-		/* fastjson */
-		implementation "com.alibaba:fastjson:1.2.76"
-	}
-	/*不知道干啥的*/
-	dependencyManagement {
-		imports {
-			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-		}
-//		imports {
-//			mavenBom 'com.alibaba.cloud:spring-cloud-alibaba-dependencies'
-//		}
-	}
-	/*配置aliyun中央仓库*/
 	repositories {
-		mavenLocal()
-		maven {
-			allowInsecureProtocol = true
-			name "aliyunmaven"
-			url "http://maven.aliyun.com/nexus/content/groups/public/"
-		}
-		maven {
-			url 'https://repo.maven.apache.org/maven2'
-			name 'Maven Central'
-		}
 		mavenCentral()
+	}
+}
+
+subprojects {
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	}
 
 	test {
 		useJUnitPlatform()
 	}
-	/*设置java编译字符集*/
-	tasks.withType(JavaCompile) {
-		options.encoding = "UTF-8"
-	}
-	/*将模块打包为jar并上传到私服中，此处上传到本地库。解决各个模块间相互依赖问题*/
-
-	uploadArchives {
-		repositories {
-			mavenDeployer {
-				def localRepositoryPath = 'file://'+new File(System.getProperty('user.home'),'.m2/repository').absolutePath
-				pom.project {
-					name = project.name        // 当前项目名称
-					version = project.version   //当前项目版本  0.0.1
-					groupId = project.group     //  当前项目组  com.xxx
-//					artifactId = project.artifacts
-				}
-//				print(project.version)
-				repository(url: localRepositoryPath)
-			}
-		}
-	}
 
 }
-
-
