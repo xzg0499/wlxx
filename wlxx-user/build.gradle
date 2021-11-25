@@ -1,47 +1,5 @@
-
-
+description = "公共工具、配置"
 
 dependencies {
-//    compileOnly(project(':wlxx-framework'))
-    implementation("com.xzg:wlxx-common:0.0.1-SNAPSHOT")
-    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2021.1'
-    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2021.1'
+
 }
-
-compileJava {
-//    outputs.dir(file("./wlxx-framework/build"))
-//    buildDir(file("./wlxx-framework/build"))
-//    println(buildDir.properties)
-}
-
-// 解决多模块之间依赖，在build时找不到类的问题
-//sourceSets {
-//    main {
-//        java {
-//            srcDirs = ['src/main/java','../wlxx-framework/src/main/java']
-//        }
-//        resources {
-//            srcDirs = ['src/main/resources','../wlxx-framework/src/main/resources']
-//        }
-//    }
-//}
-
-bootJar {
-    enabled(true)
-}
-
-jar {
-    enabled(true)
-}
-
-//processResources {
-//    outputs.dir(file("../wlxx-framework/build"))
-//}
-//
-//classes {
-//    outputs.dir(file("../wlxx-framework/build"))
-//}
-//
-//jar {
-//    outputs.dir(file("../wlxx-framework/build"))
-//}
