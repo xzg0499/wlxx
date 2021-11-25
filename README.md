@@ -7,6 +7,7 @@
 - [ ] 整合nacos作为微服务框架
 - [ ] 考虑选择security或者shiro授权框架
 - [ ] 用单元测试代替测试脚本，来实现业务接口
+- [ ] easyexcel读写excel：`com.alibaba:com.alibaba
 
 ## idae
 ### 待办标记

@@ -189,7 +189,7 @@ configure (subprojects){
 					groupId = project.group     //  当前项目组  com.xxx
 //					artifactId = project.artifacts
 				}
-				print(project.version)
+//				print(project.version)
 				repository(url: localRepositoryPath)
 			}
 		}
