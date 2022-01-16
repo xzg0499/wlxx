@@ -1,0 +1,6 @@
+description = "公共工具、配置"
+
+dependencies {
+    implementation project(':wlxx-common')
+
+}

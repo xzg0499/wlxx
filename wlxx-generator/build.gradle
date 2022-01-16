@@ -1,0 +1,19 @@
+description = "用户模块"
+
+ext {
+    flatlafVersion = "1.6.5"
+    intelijVersion = "7.0.3"
+    velocityVersion = "2.3"
+    freemarkerVersion = "2.3.31"
+    ibeetlVersion = "3.9.0.RELEASE"
+    mybatisPlusGeneratorVersion = "3.5.1"
+}
+
+dependencies {
+    implementation "com.formdev:flatlaf:${flatlafVersion}"
+    implementation group: 'com.intellij', name: 'forms_rt', version: "${intelijVersion}"
+    implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
+    implementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
+    implementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
+    compile group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
+}
