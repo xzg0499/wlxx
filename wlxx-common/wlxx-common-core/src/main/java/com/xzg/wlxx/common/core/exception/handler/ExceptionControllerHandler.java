@@ -1,9 +1,9 @@
 package com.xzg.wlxx.common.core.exception.handler;
 
 import com.xzg.wlxx.common.core.exception.BusinessException;
-import com.xzg.wlxx.common.core.response.ResponseData;
+import com.xzg.wlxx.common.core.response.ResponseResult;
 import com.xzg.wlxx.common.core.enums.ResponseEnum;
-import com.xzg.wlxx.common.core.pojo.entity.BaseController;
+import com.xzg.wlxx.common.core.base.BaseController;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionControllerHandler extends BaseController {
 
     @ExceptionHandler(NullPointerException.class)
-    public ResponseData exception(NullPointerException ex) {
+    public ResponseResult exception(NullPointerException ex) {
         return failure(ResponseEnum.NULL);
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseData exception(BusinessException ex) {
+    public ResponseResult exception(BusinessException ex) {
         return failure(ex);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseData exception(Exception ex){
+    public ResponseResult exception(Exception ex){
         return failure(ex);
     }
 }

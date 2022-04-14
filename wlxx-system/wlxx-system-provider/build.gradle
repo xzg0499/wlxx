@@ -1,5 +1,5 @@
 description = "系统管理"
 
 dependencies {
-    compile project(':wlxx-system:wlxx-system-api')
+    compile project(':wlxx-system:wlxx-system-client')
 }

@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.system.api.entity.TDictItem;
+import com.xzg.wlxx.system.client.entity.TDictItem;
 import com.xzg.wlxx.system.mapper.TDictItemMapper;
 import com.xzg.wlxx.system.service.ITDictItemService;
 import org.springframework.stereotype.Service;

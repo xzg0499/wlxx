@@ -1,10 +1,8 @@
-package com.xzg.wlxx.system.api.entity;
+package com.xzg.wlxx.system.client.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
-import com.xzg.wlxx.common.core.pojo.entity.BaseEntity;
+import com.xzg.wlxx.common.core.base.BasePage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,7 +20,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @TableName("t_dict")
 @ApiModel(value = "Dict对象", description = "")
-public class TDict extends BaseEntity<TDict> {
+public class TDict extends BasePage<TDict> {
 
     private static final long serialVersionUID = 1L;
 

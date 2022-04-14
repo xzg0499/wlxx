@@ -10,19 +10,19 @@ import lombok.Data;
  */
 
 @Data
-public class ResponseData<T> {
+public class ResponseResult<T> {
     private Integer code;
     private String msg;
     private Boolean success;
     private T data;
 
-    public ResponseData(Integer code,String msg,T data){
+    public ResponseResult(Integer code, String msg, T data){
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public ResponseData(ResponseEnum responseEnum){
+    public ResponseResult(ResponseEnum responseEnum){
         this.code = responseEnum.getCode();
         this.msg = responseEnum.getMsg();
     }

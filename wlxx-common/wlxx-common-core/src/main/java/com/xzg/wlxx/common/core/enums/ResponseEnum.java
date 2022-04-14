@@ -11,7 +11,7 @@ import lombok.Getter;
 public enum ResponseEnum {
     SUCCESS(20000,"操作成功"),
     FAILURE(40000,"操作失败"),
-    NULL(40004,"空对象"),
+    NULL(40004,"空指针异常"),
     ;
 
     private Integer code;

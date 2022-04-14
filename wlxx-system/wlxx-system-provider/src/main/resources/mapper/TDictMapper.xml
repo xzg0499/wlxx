@@ -3,7 +3,7 @@
 <mapper namespace="com.xzg.wlxx.system.mapper.TDictMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xzg.wlxx.system.api.entity.TDict">
+    <resultMap id="BaseResultMap" type="com.xzg.wlxx.system.client.entity.TDict">
         <id column="id" property="id" />
         <result column="creator" property="creator" />
         <result column="create_time" property="createTime" />

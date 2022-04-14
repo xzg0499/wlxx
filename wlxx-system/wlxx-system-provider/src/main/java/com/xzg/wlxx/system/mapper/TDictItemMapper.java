@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xzg.wlxx.system.api.entity.TDictItem;
+import com.xzg.wlxx.system.client.entity.TDictItem;
 
 /**
  * <p>

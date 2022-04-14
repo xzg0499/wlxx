@@ -1,4 +1,4 @@
-package com.xzg.wlxx.common.core.pojo.entity;
+package com.xzg.wlxx.common.core.base;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -33,10 +33,5 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
 //    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
-    @TableField(exist = false)
-    @ApiModelProperty("页码")
-    private Integer pageNo;
-    @TableField(exist = false)
-    @ApiModelProperty("一页多少")
-    private Integer pageSize;
+
 }
