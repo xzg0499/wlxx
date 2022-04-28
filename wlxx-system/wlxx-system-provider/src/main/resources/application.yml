@@ -8,6 +8,7 @@ spring:
     password: xiao
 
 mybatis-plus:
+  type-enums-package: com.xzg.wlxx.*.client.enums.*
   type-handlers-package: com.xzg.wlxx.common.core.mybatis.handler
   mapper-locations: classpath*:mapper/*.xml
   global-config:

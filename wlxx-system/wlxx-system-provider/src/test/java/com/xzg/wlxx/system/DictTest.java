@@ -3,6 +3,7 @@ package com.xzg.wlxx.system;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.xzg.wlxx.system.client.entity.TDict;
+import com.xzg.wlxx.system.controller.TDictController;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.core.ApplicationContext;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +43,8 @@ public class DictTest {
     @Autowired
     WebApplicationContext webApplicationContext;
 
+    @Autowired
+    TDictController tDictController;
 
     @BeforeEach
     public void before(){
@@ -51,7 +54,7 @@ public class DictTest {
 
     public MvcResult post(String url,String param) throws Exception {
         MvcResult result = mockMvc.perform(
-                MockMvcRequestBuilders.post("/dict/add")
+                MockMvcRequestBuilders.post(url)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(param)
@@ -69,10 +72,14 @@ public class DictTest {
         System.out.println(response.getContentAsString(StandardCharsets.UTF_8));
     }
 
-
-
     @Test
-    public void demo(){
-        log.info("test running");
+    public void testModifyDict() throws Exception {
+        TDict dict = new TDict();
+        dict.setId("0339dcc107cef4f988b886ed10d0fef8");
+        dict.selectById();
+        dict.setDictCode("修改");
+        tDictController.modify(dict);
     }
+
+
 }

@@ -29,7 +29,7 @@ public class TDictController extends BaseController {
     @ApiOperation("新增")
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody TDict dict) throws Exception{
-        return success(dictService.save(dict));
+        return success(dict.insert());
     }
 
     @ApiOperation("分页查询")
@@ -42,5 +42,11 @@ public class TDictController extends BaseController {
     @GetMapping("/getById/{id}")
     public ResponseResult<TDict> getById(@PathVariable("id") String id) throws Exception{
         return success(dictService.getById(id));
+    }
+
+    @ApiOperation("根据ID修改字典")
+    @PutMapping("/updateById")
+    public ResponseResult<Boolean> modify(@RequestBody TDict dict) throws Exception{
+        return success(dict.updateById());
     }
 }

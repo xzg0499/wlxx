@@ -9,3 +9,5 @@ include(':wlxx-generator')
 include(':wlxx-system')
 include(':wlxx-system:wlxx-system-client')
 include(':wlxx-system:wlxx-system-provider')
+include(':wlxx-poker')
+

@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.time.LocalDateTime;
+
 /**
  * <p>
  * 
@@ -35,4 +37,16 @@ public class TDict extends BasePage<TDict> {
 
     @ApiModelProperty("描述")
     private String description;
+
+    @Override
+    public boolean insert() {
+        setCreateTime(LocalDateTime.now());
+        return super.insert();
+    }
+
+    @Override
+    public boolean updateById() {
+        setUpdateTime(LocalDateTime.now());
+        return super.updateById();
+    }
 }
