@@ -79,3 +79,42 @@ services:
   #     - ${DATA_PATH}/nginx:/etc/nginx
   #   ports:
   #     - "80:80"
+    # frontend
+#    dolores:
+#      container_name: dolores
+#      image: rapteam/rap2-dolores:latest
+#      ports:
+#        #冒号前可以自定义前端端口号，冒号后不要动
+#        - 3000:38081
+#    # backend
+#    delos:
+#      container_name: delos
+#      image: rapteam/rap2-delos:latest
+#      ports:
+#        # 这里的配置不要改哦
+#        - 38080:38080
+#      environment:
+#        - SERVE_PORT=38080
+#        # if you have your own mysql, config it here, and disable the 'mysql' config blow
+#        - MYSQL_URL=mysql # links will maintain /etc/hosts, just use 'container_name'
+#        - MYSQL_PORT=3306
+#        - MYSQL_USERNAME=root
+#        - MYSQL_PASSWD=xiao
+#        - MYSQL_SCHEMA=rap2
+#
+#        # redis config
+#        - REDIS_URL=redis
+#        - REDIS_PORT=6379
+#
+#        # production / development
+#        - NODE_ENV=production
+#      ###### 'sleep 30 && node scripts/init' will drop the tables
+#      ###### RUN ONLY ONCE THEN REMOVE 'sleep 30 && node scripts/init'
+#      command: /bin/sh -c 'node dispatch.js'
+#      # init the databases
+#      # command: sleep 30 && node scripts/init && node dispatch.js
+#      # without init
+#      # command: node dispatch.js
+#      depends_on:
+#        - redis
+#        - mysql
