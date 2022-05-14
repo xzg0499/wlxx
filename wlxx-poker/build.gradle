@@ -1,5 +1,5 @@
 description = "棋牌"
 
 dependencies {
-    compile project(':wlxx-common:wlxx-common-core')
+    compileOnly project(':wlxx-common:wlxx-common-core')
 }

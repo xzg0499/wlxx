@@ -1,5 +1,5 @@
 description = "系统管理"
 
 dependencies {
-    compile project(':wlxx-system')
+    compileOnly project(':wlxx-system')
 }

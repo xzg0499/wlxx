@@ -74,7 +74,7 @@ subprojects {
 		}
 
 		/*mybatis-plus*/
-		compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: "${mybatisPlusVersion}"
+		compileOnly "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
 //		compile group: 'com.baomidou', name: 'mybatis-plus', version: "${mybatisPlusVersion}"
 		implementation group: 'mysql', name: 'mysql-connector-java', version: "${mysqlVersion}"
 
