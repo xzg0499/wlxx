@@ -1,4 +1,6 @@
-use db_config;
+-- CREATE DATABASE db_system DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT ENCRYPTION='N' ;
+
+use db_system;
 
 -- 字典表
 drop table if exists t_dict;

@@ -1,5 +1,0 @@
-description = "用户模块"
-
-dependencies {
-    compileOnly project(':wlxx-common:wlxx-common-core')
-}

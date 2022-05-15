@@ -8,6 +8,8 @@
 - [ ] 考虑选择security或者shiro授权框架
 - [ ] 用单元测试代替测试脚本，来实现业务接口
 - [ ] easyexcel读写excel：`com.alibaba:com.alibaba
+- [ ] gradle多模块依赖问题，待优化解决
+- [ ] gradle跟idea编译输出目录不一致
 
 ## idae
 ### 待办标记
@@ -20,6 +22,8 @@
 
 ## gradle
 ### 打包spring boot使用bootJar指令打包
+### gradle多模块依赖问题，待优化解决
+> 需要各个模块单独依赖到common包，并且provideer又需要单独依赖到client
 
 ## 阿里云服务器（47.110.139.158）配置记录
 ### 分布式微服务

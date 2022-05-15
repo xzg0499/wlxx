@@ -1,5 +1,13 @@
 description = "棋牌"
 
 dependencies {
-    compileOnly project(':wlxx-common:wlxx-common-core')
+    implementation project(':wlxx-common:wlxx-common-core')
+}
+
+bootJarMainClassName{
+    enabled(false)
+}
+
+bootJar{
+    enabled(false)
 }

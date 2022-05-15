@@ -1,5 +1,12 @@
 description = "系统管理"
 
 dependencies {
-    compileOnly project(':wlxx-common:wlxx-common-core')
+
+
+
+}
+
+
+bootJar{
+    enabled(false)
 }

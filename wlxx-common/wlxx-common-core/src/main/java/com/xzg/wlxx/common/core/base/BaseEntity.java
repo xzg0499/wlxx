@@ -36,4 +36,15 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
 //    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
+    @Override
+    public boolean insert() {
+        setCreateTime(LocalDateTime.now());
+        return super.insert();
+    }
+
+    @Override
+    public boolean updateById() {
+        setUpdateTime(LocalDateTime.now());
+        return super.updateById();
+    }
 }

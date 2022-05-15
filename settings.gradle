@@ -1,13 +1,10 @@
 rootProject.name = 'wlxx'
+
 include(':wlxx-common')
 include(':wlxx-common:wlxx-common-core')
 include(':wlxx-common:wlxx-common-util')
-include(':wlxx-user')
-include(':wlxx-user:wlxx-user-client')
-include(':wlxx-user:wlxx-user-provider')
-include(':wlxx-generator')
 include(':wlxx-system')
 include(':wlxx-system:wlxx-system-client')
 include(':wlxx-system:wlxx-system-provider')
-include(':wlxx-poker')
+include(":wlxx-poker")
 
