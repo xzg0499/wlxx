@@ -9,7 +9,8 @@
 - [ ] 用单元测试代替测试脚本，来实现业务接口
 - [ ] easyexcel读写excel：`com.alibaba:com.alibaba
 - [ ] gradle多模块依赖问题，待优化解决
-- [ ] gradle跟idea编译输出目录不一致
+- [x] gradle跟idea编译输出目录不一致
+  - 解决办法：采用bootJar的方式打包，并采用gradle编译，最后把没有sprint boot启动的模块过滤掉
 
 ## idae
 ### 待办标记

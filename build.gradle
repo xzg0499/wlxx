@@ -118,8 +118,9 @@ subprojects {
 
 //	FIXME bootJar 跟多模块build指令不兼容
 //	bootJar{
-//		enabled(false)
+//		enabled(true)
 //	}
+
 
 //	jar{
 //		enabled(true)
