@@ -1,6 +1,7 @@
 package com.xzg.wlxx.system.controller;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -31,7 +32,7 @@ public class TDictItemController extends BaseController {
     @ApiOperation("新增")
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody TDictItem dictItem) throws Exception{
-        return success(dictItemService.save(dictItem));
+        return success(dictItem.insert());
     }
 
     @ApiOperation("分页查询")
@@ -44,5 +45,18 @@ public class TDictItemController extends BaseController {
     @GetMapping("/getById/{id}")
     public ResponseResult<TDictItem> getById(@PathVariable("id") String id) throws Exception{
         return success(dictItemService.getById(id));
+    }
+
+    @ApiOperation("根据ID修改字典项")
+    @PutMapping("/updateById")
+    public ResponseResult<Boolean> updateById(@RequestBody TDictItem dictItem){
+        return success(dictItem.updateById());
+    }
+
+    @ApiOperation("根据code获取字典")
+    @GetMapping("/getByCode/{code}")
+    public ResponseResult<TDictItem> getByCode(@PathVariable("code")String code){
+        TDictItem dictItem = dictItemService.lambdaQuery().eq(StrUtil.isNotBlank(code),TDictItem::getDictCode,code).one();
+        return success(dictItem);
     }
 }

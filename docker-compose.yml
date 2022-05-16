@@ -1,0 +1,13 @@
+version: "3.0"
+services:
+  mysql:
+    container_name: wlxx-system
+    #    nacos正对mysql做了优化，无法直接使用MySQL原版镜像
+    image: wlxx-system-provider:0.0.1-SNAPSHOT
+    # image: nacos/nacos-mysql:8.0.16
+    environment:
+      - DATASOURCE_URL=192.168.100.237
+    privileged: true
+    ports:
+      - "8080:8080"
+    restart: always

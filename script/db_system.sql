@@ -16,7 +16,7 @@ create table t_dict(
     level int comment '字典层级',
     description varchar(300) comment '描述'
 
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 字典表子项
 drop table if exists t_dict_item;
@@ -28,10 +28,13 @@ create table t_dict_item(
     update_time datetime null default null comment '最后一次更新时间',
     dict_id varchar(60) comment '字典表主键：t_dict.id',
 
-    dict_code varchar(100) unique comment '字典项代码',
+    dict_code varchar(100) comment '字典项代码',
     dict_name varchar(100) comment '字典项名称',
-    sort int default 0 comment '排序'
-);
+    sort int default 0 comment '排序',
+    CONSTRAINT dict_item_code_UN UNIQUE KEY (dict_id,dict_code)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 
 -- 配置表
 drop table if exists t_global_config;

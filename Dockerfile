@@ -18,3 +18,7 @@ RUN bash -c 'touch /home/flower-0.0.1-SNAPSHOT.jar'
 # 启动容器时执行
 #为了缩短 Tomcat 的启动时间，添加java.security.egd的系统属性指向/dev/urandom作为 ENTRYPOINT
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/home/flower-0.0.1-SNAPSHOT.jar"]
+# 环境变量配置
+ENV TERM xterm
+ENV abc=hello
+ENV abc=bye def=$abc

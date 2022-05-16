@@ -51,6 +51,26 @@ task mybatisGenerator{
 //    def myBatisGenerator = FastAutoGenerator.create("","","");
 }
 
+// dock镜像打包
+apply plugin: "com.bmuschko.docker-spring-boot-application"
+docker {
+    //如果url不指定的话
+    // Unix系统默认：unix:///var/run/docker.sock
+//    Windows系统默认：tcp://127.0.0.1:2375。
+//    url = 'http://10.3.192.39:2375'
+//    registryCredentials {
+//        url = 'http://10.3.192.39:8777'
+//        username = 'admin'
+//        password = 'Harbor12345'
+//    }
+    springBootApplication {
+        baseImage = 'openjdk:latest'//指定运行镜像
+        ports = [8080]  //暴露的端口
+//        images = ["10.3.192.39:8777/hualongxin/${project.group}/${project.name}:${version}"]
+        images = ["${project.name}:${version}"]
+        jvmArgs = ['-Dspring.profiles.active=$env', '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
+    }
+}
 
 dependencies {
     implementation(project(":wlxx-common:wlxx-common-core"))

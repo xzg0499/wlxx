@@ -1,5 +1,6 @@
 package com.xzg.wlxx.system.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -48,5 +49,12 @@ public class TDictController extends BaseController {
     @PutMapping("/updateById")
     public ResponseResult<Boolean> modify(@RequestBody TDict dict) throws Exception{
         return success(dict.updateById());
+    }
+
+    @ApiOperation("根据code获取字典值")
+    @GetMapping("/getByCode/{code}")
+    public ResponseResult<TDict> getByCode(@PathVariable("code") String code){
+        TDict dict = dictService.lambdaQuery().select().eq(StrUtil.isNotBlank(code),TDict::getDictCode,code).one();
+        return success(dict);
     }
 }
