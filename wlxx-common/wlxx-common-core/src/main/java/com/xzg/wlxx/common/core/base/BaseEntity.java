@@ -22,32 +22,4 @@ import java.time.LocalDateTime;
 @Data
 public class BaseEntity<T extends Model<?>> extends Model<T> {
 
-    @ApiModelProperty("创建者")
-    private String creator;
-    @ApiModelProperty("创建时间")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createTime;
-    @ApiModelProperty("更新人")
-    private String updater;
-    @ApiModelProperty("更新时间")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updateTime;
-
-    @ApiModelProperty("主键")
-//    @TableId(type = IdType.ASSIGN_UUID)
-    private String id;
-
-    @Override
-    public boolean insert() {
-        setCreateTime(LocalDateTime.now());
-        return super.insert();
-    }
-
-    @Override
-    public boolean updateById() {
-        setUpdateTime(LocalDateTime.now());
-        return super.updateById();
-    }
 }
