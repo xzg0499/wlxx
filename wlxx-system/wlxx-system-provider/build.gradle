@@ -68,7 +68,8 @@ docker {
         ports = [8080]  //暴露的端口
 //        images = ["10.3.192.39:8777/hualongxin/${project.group}/${project.name}:${version}"]
         images = ["${project.name}:${version}"]
-        jvmArgs = ['-Dspring.profiles.active=$env', '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
+//        jvmArgs = ['-Dspring.profiles.active=$env', '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
+        jvmArgs = [ '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
     }
 }
 
@@ -76,6 +77,10 @@ dependencies {
     implementation(project(":wlxx-common:wlxx-common-core"))
     implementation(project(":wlxx-system:wlxx-system-client"))
 
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+//    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
 //    implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
 //    implementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
 //    implementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"

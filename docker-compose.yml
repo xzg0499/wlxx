@@ -8,6 +8,7 @@ services:
     environment:
 #      - DATASOURCE_URL=192.168.100.237
       - DATASOURCE_URL=mysql # 同一个网络下，通过实例名称访问
+      - NACOS_ADDR=nacos
     privileged: true
     ports:
       - "8080:8080"
