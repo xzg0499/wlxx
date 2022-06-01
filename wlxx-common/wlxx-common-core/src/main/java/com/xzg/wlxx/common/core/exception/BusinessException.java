@@ -6,4 +6,8 @@ package com.xzg.wlxx.common.core.exception;
  * @since jdk1.8
  */
 public class BusinessException extends Exception{
+
+    public BusinessException(String msg){
+        super(msg);
+    }
 }

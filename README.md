@@ -11,6 +11,7 @@
 - [ ] gradle多模块依赖问题，待优化解决
 - [x] gradle跟idea编译输出目录不一致
   - 解决办法：采用bootJar的方式打包，并采用gradle编译，最后把没有sprint boot启动的模块过滤掉
+- [ ] 采用cglib搭理实现三方接口请求，并做接口补偿
 
 ## idae
 ### 待办标记

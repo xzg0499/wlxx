@@ -1,0 +1,13 @@
+description = "系统管理"
+
+dependencies {
+    implementation(project(":wlxx-common:wlxx-common-core"))
+}
+
+bootJar{
+    enabled(false)
+}
+
+jar{
+    enabled(true)
+}

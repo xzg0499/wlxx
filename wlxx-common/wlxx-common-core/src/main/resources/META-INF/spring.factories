@@ -1,6 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.xzg.wlxx.common.core.config.Knife4jConfiguration,\
-com.xzg.wlxx.common.core.exception.handler.ExceptionControllerHandler,\
+com.xzg.wlxx.common.core.handler.ExceptionControllerHandler,\
 com.xzg.wlxx.common.core.mybatis.MybatisPlusConfig,\
 com.xzg.wlxx.common.core.handler.WlxxMetaObjectHandler
 

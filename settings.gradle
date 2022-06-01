@@ -1,10 +1,17 @@
 rootProject.name = 'wlxx'
 
-include(':wlxx-common')
 include(':wlxx-common:wlxx-common-core')
 include(':wlxx-common:wlxx-common-util')
-include(':wlxx-system')
-include(':wlxx-system:wlxx-system-client')
-include(':wlxx-system:wlxx-system-provider')
+
+include(':wlxx-services:wlxx-system:wlxx-system-client')
+include(':wlxx-services:wlxx-system:wlxx-system-provider')
+
+include(':wlxx-services:wlxx-log:wlxx-log-client')
+include(':wlxx-services:wlxx-log:wlxx-log-provider')
+
+include(':wlxx-services:wlxx-api:wlxx-api-client')
+include(':wlxx-services:wlxx-api:wlxx-api-provider')
+
 include(":wlxx-poker")
+include(":wlxx-gateway")
 
