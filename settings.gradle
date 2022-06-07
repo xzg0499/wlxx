@@ -14,6 +14,9 @@ include(':wlxx-services:wlxx-log:wlxx-log-provider')
 include(':wlxx-services:wlxx-api:wlxx-api-client')
 include(':wlxx-services:wlxx-api:wlxx-api-provider')
 
+include(':wlxx-services:wlxx-user:wlxx-user-client')
+include(':wlxx-services:wlxx-user:wlxx-user-provider')
+
 include(":wlxx-poker")
 include(":wlxx-gateway")
 

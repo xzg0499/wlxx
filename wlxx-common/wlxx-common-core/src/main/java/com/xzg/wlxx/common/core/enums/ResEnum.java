@@ -8,7 +8,7 @@ import lombok.Getter;
  * @since jdk1.8
  */
 @Getter
-public enum ResponseEnum {
+public enum ResEnum {
     SUCCESS(20000,"操作成功"),
     FAILURE(40000,"操作失败"),
     NULL(40004,"空指针异常"),
@@ -16,7 +16,7 @@ public enum ResponseEnum {
 
     private Integer code;
     private String msg;
-    private ResponseEnum(Integer code,String msg){
+    private ResEnum(Integer code, String msg){
         this.code = code;
         this.msg = msg;
     }

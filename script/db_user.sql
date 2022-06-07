@@ -16,8 +16,8 @@ create table t_user(
 );
 
 -- 人员表（员工表）
-drop table if exists t_person;
-create table t_person (
+drop table if exists t_employees;
+create table t_employees (
     id varchar(60) primary key comment '主键',
     creator varchar(60) comment '创建人',
     create_time datetime null default null comment '创建时间',

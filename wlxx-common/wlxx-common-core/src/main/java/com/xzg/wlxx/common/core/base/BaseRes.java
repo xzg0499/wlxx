@@ -1,6 +1,6 @@
 package com.xzg.wlxx.common.core.base;
 
-import com.xzg.wlxx.common.core.enums.ResponseEnum;
+import com.xzg.wlxx.common.core.enums.ResEnum;
 import com.xzg.wlxx.common.core.response.Res;
 
 /**
@@ -33,11 +33,11 @@ public class BaseRes {
      * @return
      */
     public static <T> Res<T> success(T data){
-        return new Res<T>(ResponseEnum.SUCCESS.getCode(),ResponseEnum.SUCCESS.getMsg(), data);
+        return new Res<T>(ResEnum.SUCCESS.getCode(), ResEnum.SUCCESS.getMsg(), data);
     }
 
     public static <T> Res<T> success(){
-        return new Res<T>(ResponseEnum.SUCCESS);
+        return new Res<T>(ResEnum.SUCCESS);
     }
 
     /**
@@ -47,7 +47,7 @@ public class BaseRes {
      * @return
      */
     public static <T> Res<T> failure(String msg){
-        return new Res<T>(ResponseEnum.FAILURE.getCode(),msg,null);
+        return new Res<T>(ResEnum.FAILURE.getCode(),msg,null);
     }
 
     public static <T> Res<T> failure(Integer code, String msg){
@@ -55,7 +55,7 @@ public class BaseRes {
     }
 
     public static <T> Res<T> failure(){
-        return new Res<>(ResponseEnum.FAILURE);
+        return new Res<>(ResEnum.FAILURE);
     }
     /**
      * 异常消息
@@ -64,10 +64,10 @@ public class BaseRes {
      * @return
      */
     public static <T> Res<T> failure(Throwable ex){
-        return new Res<T>(ResponseEnum.FAILURE.getCode(),ex.getMessage(),null);
+        return new Res<T>(ResEnum.FAILURE.getCode(),ex.getMessage(),null);
     }
 
-    public static <T> Res<T> failure(ResponseEnum responseEnum){
-        return new Res<T>(responseEnum.getCode(),responseEnum.getMsg(),null);
+    public static <T> Res<T> failure(ResEnum resEnum){
+        return new Res<T>(resEnum.getCode(), resEnum.getMsg(),null);
     }
 }

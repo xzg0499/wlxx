@@ -1,6 +1,6 @@
 package com.xzg.wlxx.common.core.response;
 
-import com.xzg.wlxx.common.core.enums.ResponseEnum;
+import com.xzg.wlxx.common.core.enums.ResEnum;
 import lombok.Data;
 
 /**
@@ -22,8 +22,8 @@ public class Res<T> {
         this.data = data;
     }
 
-    public Res(ResponseEnum responseEnum){
-        this.code = responseEnum.getCode();
-        this.msg = responseEnum.getMsg();
+    public Res(ResEnum resEnum){
+        this.code = resEnum.getCode();
+        this.msg = resEnum.getMsg();
     }
 }
