@@ -1,5 +1,7 @@
 rootProject.name = 'wlxx'
 
+include(":wlxx-generator")
+
 include(':wlxx-common:wlxx-common-core')
 include(':wlxx-common:wlxx-common-util')
 

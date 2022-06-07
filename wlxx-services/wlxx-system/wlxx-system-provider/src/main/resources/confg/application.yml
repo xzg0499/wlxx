@@ -26,6 +26,9 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+logging:
+  logging-enabled: true
+
 mybatis-plus:
   type-enums-package: com.xzg.wlxx.*.client.enums.*
   type-handlers-package: com.xzg.wlxx.common.core.mybatis.handler

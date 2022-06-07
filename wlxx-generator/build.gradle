@@ -1,0 +1,9 @@
+
+
+
+dependencies {
+    implementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
+    implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
+    implementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
+    implementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
+}

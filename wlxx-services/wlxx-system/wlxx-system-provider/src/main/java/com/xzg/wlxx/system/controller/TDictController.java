@@ -30,7 +30,10 @@ public class TDictController extends BaseController {
     @ApiOperation("新增")
     @PostMapping("/add")
     public Res<Boolean> add(@RequestBody TDict dict) throws Exception{
-        return success(dictService.add(dict));
+        if(dictService.add(dict)){
+            return success();
+        }
+        return failure();
     }
 
     @ApiOperation("分页查询")
@@ -48,7 +51,10 @@ public class TDictController extends BaseController {
     @ApiOperation("根据ID修改字典")
     @PutMapping("/updateById")
     public Res<Boolean> modify(@RequestBody TDict dict) throws Exception{
-        return success(dictService.modify(dict));
+        if(dictService.modify(dict)){
+            return success();
+        }
+        return failure();
     }
 
     @ApiOperation("根据code获取字典值")
@@ -60,6 +66,9 @@ public class TDictController extends BaseController {
     @ApiOperation("删除业务字典")
     @DeleteMapping("/delById/{id}")
     public Res<Boolean> delById(@PathVariable("id") String id) throws Exception{
-        return success(dictService.delById(id));
+        if(dictService.delById(id)){
+            return success();
+        }
+        return failure();
     }
 }

@@ -32,7 +32,10 @@ public class TDictItemController extends BaseController {
     @ApiOperation("新增")
     @PostMapping("/add")
     public Res<Boolean> add(@RequestBody TDictItem dictItem) throws Exception{
-        return success(dictItemService.add(dictItem));
+        if(dictItemService.add(dictItem)){
+            return success();
+        }
+        return failure();
     }
 
     @ApiOperation("分页查询")
@@ -50,7 +53,10 @@ public class TDictItemController extends BaseController {
     @ApiOperation("根据ID修改字典项")
     @PutMapping("/updateById")
     public Res<Boolean> updateById(@RequestBody TDictItem dictItem) throws Exception {
-        return success(dictItemService.modify(dictItem));
+        if(dictItemService.modify(dictItem)){
+            return success();
+        }
+        return failure();
     }
 
     @ApiOperation("根据code获取字典")

@@ -71,6 +71,9 @@ allprojects{
 		implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
 		implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 
+		/*redis*/
+		implementation "org.springframework.boot:spring-boot-starter-data-redis"
+
 		/*lombok*/
 		compileOnly "org.projectlombok:lombok:${lombokVersion}"
 		annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
@@ -97,6 +100,7 @@ allprojects{
 
 		/*jupiter*/
 		testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
+
 
 
 	}

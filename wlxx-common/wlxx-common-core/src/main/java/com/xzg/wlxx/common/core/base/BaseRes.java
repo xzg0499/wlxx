@@ -36,6 +36,10 @@ public class BaseRes {
         return new Res<T>(ResponseEnum.SUCCESS.getCode(),ResponseEnum.SUCCESS.getMsg(), data);
     }
 
+    public static <T> Res<T> success(){
+        return new Res<T>(ResponseEnum.SUCCESS);
+    }
+
     /**
      * 失败消息
      * @param msg
@@ -50,6 +54,9 @@ public class BaseRes {
         return new Res<T>(code,msg,null);
     }
 
+    public static <T> Res<T> failure(){
+        return new Res<>(ResponseEnum.FAILURE);
+    }
     /**
      * 异常消息
      * @param ex
