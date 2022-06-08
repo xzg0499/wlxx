@@ -1,0 +1,44 @@
+#指定日志配置文件路径
+# logging.config=classpath:/logback-spring.xml
+
+# 日志文件存放路径
+#logging.path=/spring/log
+
+
+# 指定日志文件名
+# logging.file=my.log
+
+# 历史日志文件的最大保存量
+# logging.file.max-history=100000
+
+# 指定日志打印级别,可以配置多个
+#logging.level.com.hiberate.orcal_and_hiberate=debug
+##
+### 日志文件最大空间
+##logging.file.max-size=10M
+
+# 日志输出格式：
+# %d表示日期时间，
+# %thread表示线程名，
+# %‐5level：级别从左显示5个字符宽度
+# %logger{50}表示logger名字最长50个字符，否则按照句点分割。
+# %msg：日志消息，
+# %n是换行符
+
+# 日志控制台打印格式
+#logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level%logger{50}-%msg%n
+#
+## 日志输出的时间格式
+#logging.pattern.dateformat=%d{yyyy-MM-dd HH:mm:ss.SSS}
+#
+## 日志输出到文件中的格式
+#logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread]%-5level%logger{50}-%msg%n
+#
+## 在输出日志中添加输出级别
+#logging.pattern.level=%5p
+#
+#logging.exception-conversion-word=%wEx
+
+
+logging:
+  level: debug

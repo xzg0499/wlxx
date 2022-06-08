@@ -1,7 +1,11 @@
 package com.xzg.wlxx.common.core.response;
 
 import com.xzg.wlxx.common.core.enums.ResEnum;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author xzgang0499
@@ -10,7 +14,9 @@ import lombok.Data;
  */
 
 @Data
-public class Res<T> {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Res<T> implements Serializable {
     private Integer code;
     private String msg;
     private Boolean success;

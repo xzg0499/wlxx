@@ -18,16 +18,19 @@ public class ExceptionControllerHandler extends BaseController {
 
     @ExceptionHandler(NullPointerException.class)
     public Res exception(NullPointerException ex) {
+        ex.printStackTrace();
         return failure(ResEnum.NULL);
     }
 
     @ExceptionHandler(BusinessException.class)
     public Res exception(BusinessException ex) {
+        ex.printStackTrace();
         return failure(ex);
     }
 
     @ExceptionHandler(Exception.class)
     public Res exception(Exception ex){
+        ex.printStackTrace();
         return failure(ex);
     }
 }

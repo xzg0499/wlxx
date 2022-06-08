@@ -5,5 +5,7 @@ com.xzg.wlxx.common.core.mybatis.MybatisPlusConfig,\
 com.xzg.wlxx.common.core.handler.WlxxMetaObjectHandler,\
 com.xzg.wlxx.common.core.config.RedisConfig,\
 com.xzg.wlxx.common.core.utils.RedisUtil,\
-com.xzg.wlxx.common.core.config.WlxxDateConvertCustoms
+com.xzg.wlxx.common.core.config.WebMvcConfig,\
+com.xzg.wlxx.common.core.config.FeignGlobalConfig,\
+com.xzg.wlxx.common.core.config.WebContractConfig
 

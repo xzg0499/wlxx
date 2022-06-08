@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.common.core.base.BasePage;
 import com.xzg.wlxx.user.client.enums.SexEnum;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -26,24 +27,28 @@ public class TEmployees extends BasePage<TEmployees> {
     /**
      * 创建人
      */
+    @ApiModelProperty("创建人")
     @TableField(value = "creator")
     private String creator;
 
     /**
      * 创建时间
      */
+    @ApiModelProperty("创建时间")
     @TableField(value = "create_time",fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 最后一次更新人
      */
+    @ApiModelProperty("最后一次更新人")
     @TableField(value = "updater")
     private String updater;
 
     /**
      * 最后一次更新时间
      */
+    @ApiModelProperty("最后一次更新时间")
     @TableField(value = "update_time",fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 

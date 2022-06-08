@@ -23,6 +23,7 @@ ext{
     dockerPassword = "password"
     gitCommitPlugin = "4.9.9"
     springCheckstylePlugin = "0.0.29"
+    feignJsonVersion = "11.8"
 
 //    springCloudVersion = 'Hoxton.SR12'
 //    alibabaCloudVersion = '2.2.8-SNAPSHOT'
