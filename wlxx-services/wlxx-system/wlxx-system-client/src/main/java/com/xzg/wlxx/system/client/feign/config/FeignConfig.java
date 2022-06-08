@@ -4,8 +4,6 @@ import com.xzg.wlxx.system.client.feign.impl.DictFeignImpl;
 import feign.Feign;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
-import feign.jackson.JacksonDecoder;
-import feign.jackson.JacksonEncoder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

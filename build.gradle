@@ -63,9 +63,9 @@ allprojects{
 //		implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-		implementation("io.github.openfeign:feign-jackson")
-		implementation("io.github.openfeign:feign-gson")
-		implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+//		implementation("io.github.openfeign:feign-jackson")
+//		implementation("io.github.openfeign:feign-gson")
+//		implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 		implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
 		testImplementation('org.springframework.boot:spring-boot-starter-test'){
 			exclude group:'org.junit.vintage' ,module:'junit-vintage-engine'

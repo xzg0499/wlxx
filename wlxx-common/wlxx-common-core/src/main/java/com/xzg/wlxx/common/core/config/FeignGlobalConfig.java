@@ -1,23 +1,9 @@
 package com.xzg.wlxx.common.core.config;
 
-import com.google.common.base.Strings;
-import com.google.gson.*;
 import feign.Logger;
-import feign.Request;
-import feign.codec.Decoder;
-import feign.codec.Encoder;
-import feign.gson.GsonDecoder;
-import feign.gson.GsonEncoder;
-import feign.jackson.JacksonDecoder;
-import feign.jackson.JacksonEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 /**
  * @author xzgan
