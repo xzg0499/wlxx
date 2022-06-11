@@ -28,6 +28,9 @@ services:
 
 # 指定使用外部网络
 networks:
+  bridge:
+    external: true
+    driver: bridge
   wlxx-docker_default:
     external: true
     driver: bridge

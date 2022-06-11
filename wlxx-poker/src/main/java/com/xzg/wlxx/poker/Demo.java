@@ -1,6 +1,8 @@
 package com.xzg.wlxx.poker;
 
+import cn.hutool.core.math.MathUtil;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 
 import java.util.*;
@@ -23,17 +25,13 @@ public class Demo {
     private static List<Integer> p3 = new ArrayList<Integer>();
     private static List<Integer> dump = new ArrayList<>();
 
+    private static List<Integer> p1r = new ArrayList<>();
     public static void main(String[] args) {
-        play();
-        List<Integer> pn = new ArrayList<>();
-        do{
-            List<Integer> l1 = Room.scanner(p1);
-            List<Integer> l2 = Room.scanner(p2);
-            List<Integer> l3 = Room.scanner(p3);
-            pn = ArrayUtil.clone(l3);
-            soutP();
-        }while (hasNext());
+        p1r.add(1);
     }
+
+
+
 
     public static Boolean hasNext(){
         if(p1.size() >0 && p2.size() > 0){
@@ -105,6 +103,15 @@ public class Demo {
     public static void play(){
         Init.outOfOrder();
         Init.distributed();
+
+        List<Integer> pn = new ArrayList<>();
+        do{
+            List<Integer> l1 = Room.scanner(p1);
+            List<Integer> l2 = Room.scanner(p2);
+            List<Integer> l3 = Room.scanner(p3);
+            pn = ArrayUtil.clone(l3);
+            soutP();
+        }while (hasNext());
     }
 
     public static class Init{

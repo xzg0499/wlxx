@@ -1,7 +1,40 @@
 description = "棋牌"
 
+configurations {
+    //自定义配置名称
+//    abc {
+//        println 'abc'
+//    }
+    //第二种方式解决冲突
+    configuration {
+        all*.exclude module: 'spring-boot-starter-logging'
+    }
+    //第三种方式解决冲突，强制指定
+//    all {
+//        resolutionStrategy {
+//            force 'androidx.fragment:fragment:1.0.0'
+//        }
+//    }
+}
+
 dependencies {
     implementation project(':wlxx-common:wlxx-common-core')
+    implementation("commons-beanutils:commons-beanutils:1.9.4")
+//    implementation("org.springframework.boot:spring-boot-starter"){
+//        exclude group:'org.springframework.boot' ,module:'spring-boot-starter-logging'
+//    }
+
+    /*deep learn*/
+    implementation("ai.djl:bom:0.17.0")
+    implementation("ai.djl:api:0.17.0")
+    implementation("ai.djl:basicdataset:0.17.0")
+    implementation("ai.djl:model-zoo:0.17.0")
+    implementation("ai.djl.mxnet:mxnet-engine:0.17.0")
+    implementation("ai.djl.mxnet:mxnet-model-zoo:0.17.0")
+    implementation("ai.djl.mxnet:mxnet-native-auto:1.8.0")
+    implementation("ai.djl:examples:0.6.0")
+    implementation("ai.djl.pytorch:pytorch-engine:0.17.0")
+    implementation("ai.djl.opencv:opencv:0.17.0")
 }
 
 bootJarMainClassName{
