@@ -25,6 +25,16 @@ services:
       - "12001:12001"
     networks:
       - wlxx-docker_default
+  wlxx-gateway:
+    container_name: wlxx-gateway
+    image: wlxx-gateway:0.0.1-SNAPSHOT
+    environment:
+      - NACOS_ADDR=nacos
+    privileged: true
+    ports:
+      - "12002:12002"
+    networks:
+      - wlxx-docker_default
 
 # 指定使用外部网络
 networks:
