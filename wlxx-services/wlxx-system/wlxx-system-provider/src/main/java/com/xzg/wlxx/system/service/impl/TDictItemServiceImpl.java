@@ -49,7 +49,7 @@ public class TDictItemServiceImpl extends ServiceImpl<TDictItemMapper, TDictItem
         TDict dict = new TDict();
         dict.setId(dictItem.getDictId());
         dict = dict.selectById();
-        if(StrUtil.isBlank(dict.getDictCode())){
+        if(dict == null || StrUtil.isBlank(dict.getDictCode())){
             throw new BusinessException("上级编码不存在");
         }
 

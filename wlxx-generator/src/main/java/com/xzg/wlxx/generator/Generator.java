@@ -9,14 +9,13 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.fill.Column;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author xzgan
@@ -26,7 +25,7 @@ import java.util.List;
 public class Generator {
 
     public static void main(String[] args) throws IOException {
-        saveConfig();
+        fastExecute();
     }
 
     public static void loadConfig() throws IOException {
@@ -71,16 +70,31 @@ public class Generator {
                     builder.author("xzgang0499").fileOverride()
                             .disableOpenDir()
                             .outputDir(System.getProperty("user.dir")+"\\generator");
-                    System.out.println(JSONUtil.toJsonStr(builder.build()));
                 })
                 // 包配置
                 .packageConfig((scanner, builder) -> builder.parent("com.xzg.wlxx"))
                 // 策略配置
                 .strategyConfig((scanner, builder) -> builder.addInclude("t_dict")
-                        .controllerBuilder().enableRestStyle().enableHyphenStyle()
-                        .entityBuilder().enableLombok().addTableFills(
-                                new Column("create_time", FieldFill.INSERT)
+//                        .addTablePrefix("t_")
+                        .controllerBuilder()
+                        .enableRestStyle().enableHyphenStyle()
+                        .serviceBuilder()
+                        .formatServiceFileName("I%sService")
+                        .formatServiceImplFileName("%sServiceImp")
+                        .entityBuilder()
+                        .enableTableFieldAnnotation()
+                        .enableActiveRecord()
+                        .enableLombok().addTableFills(
+                                new Column("create_time", FieldFill.INSERT),
+                                new Column("update_time", FieldFill.UPDATE)
                         ).build())
+                .injectionConfig(consumer -> {
+                    Map<String, String> customFile = new HashMap<>();
+                    // DTO
+                    customFile.put("DTO.java", "templates/entity.java.ftl");
+                    consumer.customFile(customFile);
+                })
+                .templateEngine(new FreemarkerTemplateEngine())
                 /*
                     模板引擎配置，默认 Velocity 可选模板引擎 Beetl 或 Freemarker
                    .templateEngine(new BeetlTemplateEngine())

@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.xzg.wlxx.common.core.base.BasePage;
+import com.xzg.wlxx.system.client.enums.StatusEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -26,6 +26,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Data
 @TableName("t_dict")
 @ApiModel(value = "TDict对象", description = "")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TDict extends BasePage<TDict> {
 
     private static final long serialVersionUID = 1L;
@@ -68,5 +71,8 @@ public class TDict extends BasePage<TDict> {
     @TableField("description")
     private String description;
 
+    @TableField("status")
+    @ApiModelProperty("是否启用，1-启用，0禁用")
+    private StatusEnum status;
 
 }

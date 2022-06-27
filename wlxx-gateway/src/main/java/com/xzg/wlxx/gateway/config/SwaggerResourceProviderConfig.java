@@ -46,6 +46,9 @@ public class SwaggerResourceProviderConfig implements SwaggerResourcesProvider {
                 .subscribe(route -> routeHosts.add(route.getUri().getHost()));
         // 2. 创建自定义资源
         for (String routeHost : routeHosts) {
+            if("127.0.0.1".equals(routeHost)){
+                continue;
+            }
             String serviceUrl = "/" + routeHost + SWAGGER2_URL; // 后台访问添加服务名前缀
             SwaggerResource swaggerResource = new SwaggerResource(); // 创建Swagger 资源
             swaggerResource.setUrl(serviceUrl); // 设置访问地址

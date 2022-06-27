@@ -39,4 +39,6 @@ ext{
     freemarkerVersion = "2.3.31"
     ibeetlVersion = "3.9.0.RELEASE"
     mybatisPlusGeneratorVersion = "3.5.1"
+    MockitoVersion = "4.6.1"
+    ByteBuddyVersion = "1.12.10"
 }

@@ -1,13 +1,15 @@
 package com.xzg.wlxx.system.client.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xzg.wlxx.common.core.base.BasePage;
+import com.xzg.wlxx.system.client.enums.StatusEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -24,6 +26,9 @@ import java.time.LocalDateTime;
 @Data
 @TableName("t_dict_item")
 @ApiModel(value = "DictItem对象", description = "")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TDictItem extends BasePage<TDictItem> {
 
     private static final long serialVersionUID = 1L;
@@ -38,6 +43,7 @@ public class TDictItem extends BasePage<TDictItem> {
     @ApiModelProperty("创建时间")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     @ApiModelProperty("更新人")
@@ -46,6 +52,7 @@ public class TDictItem extends BasePage<TDictItem> {
     @ApiModelProperty("更新时间")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "update_time",fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
     @ApiModelProperty("字典表主键：t_dict.id")
@@ -59,4 +66,8 @@ public class TDictItem extends BasePage<TDictItem> {
 
     @ApiModelProperty("排序")
     private Integer sort;
+
+    @TableField("status")
+    @ApiModelProperty("是否启用，1-启用，0禁用")
+    private StatusEnum status;
 }

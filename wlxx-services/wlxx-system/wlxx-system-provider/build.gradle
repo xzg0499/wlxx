@@ -81,11 +81,16 @@ dependencies {
     implementation(project(":wlxx-common:wlxx-common-core"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
 
+    /*mockito 测试框架*/
+    implementation("org.mockito:mockito-core:${MockitoVersion}")
+    implementation("net.bytebuddy:byte-buddy:${ByteBuddyVersion}")
+    implementation("net.bytebuddy:byte-buddy-agent:${ByteBuddyVersion}")
+
     /*mybatis-plus-generator*/
-    implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
-    implementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
-    implementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
-    implementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
+//    implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
+//    implementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
+//    implementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
+//    implementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
 //    implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
 //    implementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"

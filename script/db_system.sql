@@ -14,8 +14,8 @@ create table t_dict(
     dict_code varchar(100) unique comment '字典代码',
     dict_name varchar(100) comment '字典名称',
     level int comment '字典层级',
-    description varchar(300) comment '描述'
-
+    description varchar(300) comment '描述',
+    status int default 1 comment '转态'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 字典表子项
@@ -31,6 +31,8 @@ create table t_dict_item(
     dict_code varchar(100) comment '字典项代码',
     dict_name varchar(100) comment '字典项名称',
     sort int default 0 comment '排序',
+    status int default 1 comment '转态'
+
     CONSTRAINT dict_item_code_UN UNIQUE KEY (dict_id,dict_code)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

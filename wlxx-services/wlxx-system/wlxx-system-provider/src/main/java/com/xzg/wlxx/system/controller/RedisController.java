@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 测试Redis
  * @author xzgan
  * @date 2022/6/7
  * @since jdk1.8

@@ -1,7 +1,11 @@
 package com.xzg.wlxx.system;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
 import com.xzg.wlxx.system.client.entity.TDict;
+import com.xzg.wlxx.system.client.enums.StatusEnum;
 import com.xzg.wlxx.system.controller.TDictController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 /**
  * @author xzgang0499
@@ -28,7 +33,7 @@ import java.nio.charset.StandardCharsets;
 @SpringBootTest(classes = SystemApplication.class)
 @Slf4j
 @AutoConfigureMockMvc
-public class DictTest {
+public class TestDict {
 
     @Autowired
     MockMvc mockMvc;
@@ -39,6 +44,8 @@ public class DictTest {
     @Autowired
     TDictController tDictController;
 
+    private static Faker faker = new Faker(Locale.CHINA);
+
     @BeforeEach
     public void before(){
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
@@ -46,6 +53,7 @@ public class DictTest {
     }
 
     public MvcResult post(String url,String param) throws Exception {
+        log.info("param:{}",param);
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.post(url)
                         .accept(MediaType.APPLICATION_JSON)
@@ -60,9 +68,23 @@ public class DictTest {
     @Test
     public void testAddDict() throws Exception {
         JSONObject param = new JSONObject();
-        MvcResult result = post("/dict/add",param.toJSONString());
-        MockHttpServletResponse response = result.getResponse();
-        System.out.println(response.getContentAsString(StandardCharsets.UTF_8));
+
+        Faker faker = new Faker(Locale.CHINA);
+
+        for(int i=0;i<10;i++){
+            Name name = faker.name();
+
+            TDict dict = TDict.builder().description(name.firstName())
+                    .dictName(name.lastName())
+                    .dictCode(name.fullName())
+                    .level(i)
+                    .status(StatusEnum.NO)
+                    .build();
+
+            MvcResult result = post("/dict/add", JSONUtil.toJsonStr(dict));
+            MockHttpServletResponse response = result.getResponse();
+            log.info("result:{}",response.getContentAsString(StandardCharsets.UTF_8));
+        }
     }
 
     @Test
@@ -74,5 +96,8 @@ public class DictTest {
         tDictController.modify(dict);
     }
 
-
+    @Test
+    public void testFaker(){
+        System.out.println(faker.business());
+    }
 }

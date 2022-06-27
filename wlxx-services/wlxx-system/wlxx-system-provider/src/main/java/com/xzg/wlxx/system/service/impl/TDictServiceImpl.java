@@ -65,9 +65,12 @@ public class TDictServiceImpl extends ServiceImpl<TDictMapper, TDict> implements
         return dict;
     }
 
-    /*
-    TODO 级联删除子项
-    TODO Boolean返回再controller无法判断成败与否
+    /**
+     * TODO 级联删除子项
+     * TODO Boolean返回再controller无法判断成败与否
+     * @param id
+     * @return
+     * @throws Exception
      */
     @Override
     public Boolean delById(String id) throws Exception {

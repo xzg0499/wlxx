@@ -62,6 +62,7 @@ allprojects{
 		implementation("org.springframework.boot:spring-boot-starter")
 //		implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.boot:spring-boot-starter-security'
 		implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 //		implementation("io.github.openfeign:feign-jackson")
 //		implementation("io.github.openfeign:feign-gson")
@@ -123,7 +124,22 @@ allprojects{
 		useJUnitPlatform()
 	}
 
-	sourceSets{
-
+	sourceSets {
+		main {
+			java {
+				srcDirs = ['src/main/java', 'src/main/thrift-java']
+			}
+			resources {
+				srcDirs = ['src/main/resources']
+			}
+		}
+		test {
+			java {
+				srcDirs = ['src/test/java', 'src/test/thrift']
+			}
+			resources {
+				srcDirs = ['src/test/resources']
+			}
+		}
 	}
 }

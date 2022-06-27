@@ -139,6 +139,19 @@ public class PyTorchLearn {
         trainer.initialize(encoderInputShape);
         EasyTrain.fit(trainer, epoch, trainingSet, validationSet);
         System.out.println(trainer.getTrainingResult());
+        /*
+        {
+          "epoch": 2,
+          "evaluations": {
+            "validate_Accuracy": 0.6175798,
+            "train_Accuracy": 0.5980856,
+            "train_SoftmaxCrossEntropyLoss": 1.0741292,
+            "validate_SoftmaxCrossEntropyLoss": 1.0012888,
+            "train_loss": 1.0741292,
+            "validate_loss": 1.0012888
+          }
+        }
+         */
 
 
         model.save(Paths.get("build/model"), "amazon-review.param");

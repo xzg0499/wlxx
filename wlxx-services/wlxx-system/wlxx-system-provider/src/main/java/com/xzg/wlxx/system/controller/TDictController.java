@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 业务字典
  * @author xzgang0499
  * @date 2022-01-16
  * @since jdk1.8
