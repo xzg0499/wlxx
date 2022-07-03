@@ -4,6 +4,9 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ejlchina.searcher.MapSearcher;
+import com.ejlchina.searcher.SearchResult;
+import com.ejlchina.searcher.util.MapUtils;
 import com.xzg.wlxx.common.core.base.BaseController;
 import com.xzg.wlxx.common.core.response.Res;
 import com.xzg.wlxx.system.client.entity.TDict;
@@ -12,6 +15,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 业务字典
@@ -27,6 +33,15 @@ public class TDictController extends BaseController {
 
     @Autowired
     ITDictService dictService;
+
+    @Autowired
+    MapSearcher mapSearcher;
+
+    @GetMapping("/index")
+    public SearchResult<Map<String, Object>> index(HttpServletRequest request) {
+        // 一行代码，实现一个用户检索接口（MapUtils.flat 只是收集前端的请求参数）
+        return mapSearcher.search(com.xzg.wlxx.system.controller.TDict.class, MapUtils.flat(request.getParameterMap()));
+    }
 
     @ApiOperation("新增")
     @PostMapping("/add")

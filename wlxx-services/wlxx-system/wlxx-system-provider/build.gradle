@@ -86,6 +86,8 @@ dependencies {
     implementation("net.bytebuddy:byte-buddy:${ByteBuddyVersion}")
     implementation("net.bytebuddy:byte-buddy-agent:${ByteBuddyVersion}")
 
+    // SpringBoot / Grails 项目直接使用以下依赖，更为方便（只添加这一个依赖即可）
+    implementation "com.ejlchina:bean-searcher-boot-starter:${BeanSearcherVersion}"
     /*mybatis-plus-generator*/
 //    implementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
 //    implementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
