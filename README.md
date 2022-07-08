@@ -13,6 +13,7 @@
   - 解决办法：采用bootJar的方式打包，并采用gradle编译，最后把没有sprint boot启动的模块过滤掉
 - [ ] 采用cglib搭理实现三方接口请求，并做接口补偿
 - [ ] gradle不能使用idea自动编译功能
+- [ ] RxJava异步编程
 
 ## idae
 ### 待办标记

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.xzg.wlxx.common.core.base.BasePage;
+import com.xzg.wlxx.common.core.base.BaseEntity;
 import com.xzg.wlxx.system.client.enums.StatusEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TDictItem extends BasePage<TDictItem> {
+public class TDictItem extends BaseEntity<TDictItem> {
 
     private static final long serialVersionUID = 1L;
 

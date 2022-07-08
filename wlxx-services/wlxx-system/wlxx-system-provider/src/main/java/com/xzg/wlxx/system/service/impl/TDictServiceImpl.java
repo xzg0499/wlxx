@@ -56,7 +56,7 @@ public class TDictServiceImpl extends ServiceImpl<TDictMapper, TDict> implements
 
     @Override
     public IPage<TDict> query(TDict dict) throws Exception {
-        return page(new Page<>(dict.getPageNo(),dict.getPageSize()),new LambdaQueryWrapper<>());
+        return page(new Page<>(0,10),new LambdaQueryWrapper<>());
     }
 
     @Override

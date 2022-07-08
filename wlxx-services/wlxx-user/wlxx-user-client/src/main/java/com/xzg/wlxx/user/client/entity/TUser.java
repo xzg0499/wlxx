@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xzg.wlxx.common.core.base.BasePage;
+import com.xzg.wlxx.common.core.base.BaseEntity;
 import lombok.Data;
 
 import java.util.Date;
@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @TableName(value ="t_user")
 @Data
-public class TUser extends BasePage<TUser> {
+public class TUser extends BaseEntity<TUser> {
     /**
      * 主键
      */

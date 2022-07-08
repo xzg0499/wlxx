@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xzg.wlxx.common.core.base.BasePage;
+import com.xzg.wlxx.common.core.base.BaseEntity;
 import com.xzg.wlxx.user.client.enums.SexEnum;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  */
 @TableName(value ="t_employees")
 @Data
-public class TEmployees extends BasePage<TEmployees> {
+public class TEmployees extends BaseEntity<TEmployees> {
     /**
      * 主键
      */

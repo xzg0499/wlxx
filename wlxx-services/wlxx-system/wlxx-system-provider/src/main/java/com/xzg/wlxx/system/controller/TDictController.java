@@ -37,10 +37,10 @@ public class TDictController extends BaseController {
     @Autowired
     MapSearcher mapSearcher;
 
-    @GetMapping("/index")
-    public SearchResult<Map<String, Object>> index(HttpServletRequest request) {
+    @GetMapping("/query")
+    public SearchResult<Map<String, Object>> query(HttpServletRequest request) {
         // 一行代码，实现一个用户检索接口（MapUtils.flat 只是收集前端的请求参数）
-        return mapSearcher.search(com.xzg.wlxx.system.controller.TDict.class, MapUtils.flat(request.getParameterMap()));
+        return mapSearcher.search(TDict.class, MapUtils.flat(request.getParameterMap()));
     }
 
     @ApiOperation("新增")

@@ -50,7 +50,7 @@ public class TEmployeesController extends BaseController {
     @ApiOperation("查询")
     @PostMapping("/queryByPage")
     public Res<IPage<TEmployees>> queryByPage(@RequestBody TEmployees employees) {
-        return success(employeesService.page(new Page<>(employees.getPageNo(),employees.getPageSize()),new LambdaQueryWrapper<>()));
+        return success(employeesService.page(new Page<>(0,10),new LambdaQueryWrapper<>()));
     }
 
     @ApiOperation("根据ID删除")
@@ -69,8 +69,6 @@ public class TEmployeesController extends BaseController {
     @GetMapping("/demo")
     public Res demo() throws Exception {
         TDict dict = new TDict();
-        dict.setPageNo(0);
-        dict.setPageSize(10);
         return dictFeign.queryByPage(dict);
     }
 }

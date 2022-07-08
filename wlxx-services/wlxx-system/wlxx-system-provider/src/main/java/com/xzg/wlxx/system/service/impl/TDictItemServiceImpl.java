@@ -66,7 +66,7 @@ public class TDictItemServiceImpl extends ServiceImpl<TDictItemMapper, TDictItem
 
     @Override
     public IPage<TDictItem> query(TDictItem dictItem) throws Exception {
-        return page(new Page<>(dictItem.getPageNo(),dictItem.getPageSize()),new LambdaQueryWrapper<>());
+        return page(new Page<>(0,10),new LambdaQueryWrapper<>());
     }
 
     @Override
