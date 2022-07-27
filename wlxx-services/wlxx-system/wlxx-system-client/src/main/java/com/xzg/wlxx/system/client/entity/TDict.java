@@ -70,7 +70,7 @@ public class TDict extends BaseEntity<TDict> {
     private String description;
 
     @TableField("status")
-    @ApiModelProperty("是否启用，1-启用，0禁用")
+    @ApiModelProperty("是否启用，1-启用，0-禁用")
     private StatusEnum status;
 
 }

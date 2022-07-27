@@ -14,7 +14,7 @@ import lombok.Getter;
 @Getter
 public enum StatusEnum implements IEnum<Integer> {
     NO(0,"否"),
-    YES(2,"是"),
+    YES(1,"是"),
     ;
 
     @EnumValue

@@ -7,5 +7,6 @@ com.xzg.wlxx.common.core.config.RedisConfig,\
 com.xzg.wlxx.common.core.utils.RedisUtil,\
 com.xzg.wlxx.common.core.config.WebMvcConfig,\
 com.xzg.wlxx.common.core.config.FeignGlobalConfig,\
-com.xzg.wlxx.common.core.config.WebContractConfig
+com.xzg.wlxx.common.core.config.WebContractConfig,\
+com.xzg.wlxx.common.core.config.WebSecurityConfig
 

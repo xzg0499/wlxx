@@ -2,7 +2,7 @@ spring:
   application:
     name: wlxx-system
   datasource:
-    url: jdbc:mysql://${DATASOURCE_URL:localhost}:3306/db_system?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${DATASOURCE_URL:localhost}:3306/${SCHEMA_NAME:db_system}?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: xiao

@@ -15,7 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @since jdk1.8
  */
 @MapperScan("com.xzg.wlxx.system.mapper")
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.xzg.**"})
 public class SystemApplication {

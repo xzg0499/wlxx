@@ -55,6 +55,7 @@ public class TDictController extends BaseController {
     @ApiOperation("分页查询")
     @PostMapping("/queryByPage")
     public Res<IPage<TDict>> queryByPage(@RequestBody TDict dict) throws Exception{
+        // FIXME 查询是，status枚举不能传NIL，可以传null
         return success(dictService.query(dict));
     }
 

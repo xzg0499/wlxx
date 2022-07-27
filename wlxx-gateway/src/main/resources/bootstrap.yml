@@ -17,6 +17,10 @@ spring: # Spring配置项
         file-extension: yml # 配置文件的格式，默认为properties
         namespace: ${NAME_SPACE:public}
         group: ${group-id:DEFAULT_GROUP}
+        shared-configs:
+          - data-id: wlxx-security.yml
+            group: ${group-id:DEFAULT_GROUP}
+            refresh: false
 #        ext-config[0]:
 #          data-id: wlxx-system.yml
 #          group: DEFAULT_GROUP

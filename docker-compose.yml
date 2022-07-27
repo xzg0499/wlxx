@@ -7,6 +7,7 @@ services:
       - DATASOURCE_URL=mysql # 同一个网络下，通过实例名称访问
       - NACOS_ADDR=nacos
       - REDIS_HOST=redis
+      - SCHEMA_NAME=db_system
     privileged: true
     ports:
       - "12000:12000"
@@ -20,6 +21,7 @@ services:
       - DATASOURCE_URL=mysql # 同一个网络下，通过实例名称访问
       - NACOS_ADDR=nacos
       - REDIS_HOST=redis
+      - SCHEMA_NAME=db_user
     privileged: true
     ports:
       - "12001:12001"
