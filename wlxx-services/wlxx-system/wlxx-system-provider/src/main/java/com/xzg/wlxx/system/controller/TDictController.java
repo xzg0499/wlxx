@@ -13,7 +13,9 @@ import com.xzg.wlxx.system.client.entity.TDict;
 import com.xzg.wlxx.system.service.ITDictService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +31,7 @@ import java.util.Map;
 @Api(tags = "业务字典")
 @RestController
 @RequestMapping("/dict")
+@Slf4j
 public class TDictController extends BaseController {
 
     @Autowired
@@ -37,9 +40,13 @@ public class TDictController extends BaseController {
     @Autowired
     MapSearcher mapSearcher;
 
+    // @Value("${spring.datasource.url}")
+    // private String jdbcUrl;
+
     @GetMapping("/query")
     public SearchResult<Map<String, Object>> query(HttpServletRequest request) {
         // 一行代码，实现一个用户检索接口（MapUtils.flat 只是收集前端的请求参数）
+        // log.info("数据库地址：{}",jdbcUrl);
         return mapSearcher.search(TDict.class, MapUtils.flat(request.getParameterMap()));
     }
 

@@ -2,10 +2,10 @@ description = "网关"
 
 configurations {
     compile.exclude module: 'spring-boot-starter-web'
-//    compile.exclude module: 'spring-boot-starter-secruity'
+    compile.exclude module: 'spring-boot-starter-secruity'
 //    compile.exclude module: 'spring-boot-starter-webflux'
     all*.exclude group: "org.springframework.boot", module: "spring-boot-starter-web"
-//    all*.exclude group: "org.springframework.boot", module: "spring-boot-starter-secruity"
+    all*.exclude group: "org.springframework.boot", module: "spring-boot-starter-secruity"
 //    all*.exclude group: "org.springframework.boot", module: "spring-boot-starter-webflux"
 }
 

@@ -30,7 +30,7 @@ public class SwaggerResourceProviderConfig implements SwaggerResourcesProvider {
      * 网关应用名称
      */
     @Value("${spring.application.name}")
-    private String gatewayName;
+    private final String gatewayName;
 
     /**
      * 获取 Swagger 资源

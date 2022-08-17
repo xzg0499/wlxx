@@ -1,8 +1,10 @@
 version: "3.0"
 services:
   wlxx-system:
+    env_file:
+      - docker.env
     container_name: wlxx-system
-    image: wlxx-system-provider:0.0.1-SNAPSHOT
+    image: wlxx-system-provider:$VERSION
     environment:
       - DATASOURCE_URL=mysql # 同一个网络下，通过实例名称访问
       - NACOS_ADDR=nacos
@@ -16,7 +18,7 @@ services:
       - wlxx-docker_default
   wlxx-user:
     container_name: wlxx-user
-    image: wlxx-user-provider:0.0.1-SNAPSHOT
+    image: wlxx-user-provider:$VERSION
     environment:
       - DATASOURCE_URL=mysql # 同一个网络下，通过实例名称访问
       - NACOS_ADDR=nacos
@@ -29,9 +31,9 @@ services:
       - wlxx-docker_default
   wlxx-gateway:
     container_name: wlxx-gateway
-    image: wlxx-gateway:0.0.1-SNAPSHOT
+    image: wlxx-gateway:$VERSION
     environment:
-      - NACOS_ADDR=nacos
+      - NACOS_ADDR=$NACOS_HOST
     privileged: true
     ports:
       - "12002:12002"
@@ -40,9 +42,6 @@ services:
 
 # 指定使用外部网络
 networks:
-  bridge:
-    external: true
-    driver: bridge
   wlxx-docker_default:
     external: true
     driver: bridge

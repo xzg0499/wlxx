@@ -5,7 +5,7 @@ spring: # Spring配置项
 #    active: public
   cloud: # SpringCloud配置项
     nacos: # Nacos注册中心的配置
-      server-addr: ${NACOS_ADDR:localhost:8848} # Nacos地址
+      server-addr: ${NACOS_ADDR:114.115.244.9:8848} # Nacos地址
 #        group: public # 一般建议大写
 #        cluster-name: public # 配置集群名称
       config:
