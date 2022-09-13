@@ -14,6 +14,8 @@
 - [ ] 采用cglib搭理实现三方接口请求，并做接口补偿
 - [ ] gradle不能使用idea自动编译功能
 - [ ] RxJava异步编程
+- [ ] bean-searcher、fluent-mybatis框架选择
+- [ ] 独立parent模块，将所有共用到的外部依赖全部放入此处管理
 
 ## idae
 ### 待办标记
@@ -45,4 +47,7 @@
 
 # 丧心病狂，又开始重构了
 
-# docker-compose.yml文件会自动引入同目录下的`.env`文件
+# docker-compose.yml文件会自动引入同目录下的`.env`文件的变量信息
+
+# 对象关系
+![img.png](/images/img.png)

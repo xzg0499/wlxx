@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzg.wlxx.common.core.base.BaseServiceImpl;
 import com.xzg.wlxx.common.core.exception.BusinessException;
 import com.xzg.wlxx.system.client.entity.TDict;
 import com.xzg.wlxx.system.client.entity.TDictItem;

@@ -1,0 +1,74 @@
+description = "依赖管理"
+
+//引入版本
+apply from: "./version.gradle"
+apply from: "./repositories.gradle"
+
+dependencies {
+    /*spring boot*/
+    implementation("org.springframework.boot:spring-boot-starter")
+//		implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+//		implementation("io.github.openfeign:feign-jackson")
+//		implementation("io.github.openfeign:feign-gson")
+//		implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+    testImplementation('org.springframework.boot:spring-boot-starter-test'){
+        exclude group:'org.junit.vintage' ,module:'junit-vintage-engine'
+    }
+
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+
+    // SpringBoot / Grails 项目直接使用以下依赖，更为方便（只添加这一个依赖即可）
+    implementation "com.ejlchina:bean-searcher-boot-starter:${BeanSearcherVersion}"
+
+    /*redis*/
+    implementation "org.springframework.boot:spring-boot-starter-data-redis"
+
+    /*lombok*/
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    /*mybatis-plus*/
+    implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
+
+    /*mysql*/
+    implementation group: 'mysql', name: 'mysql-connector-java', version: "${mysqlVersion}"
+
+    /*knife4j*/
+    implementation group: 'com.github.xiaoymin', name: 'knife4j-spring-boot-starter', version: "${knife4jVersion}"
+
+    /*hutool*/
+    implementation group: 'cn.hutool', name: 'hutool-all', version: "${hutoolVersion}"
+
+    /*fastjson*/
+    implementation group: 'com.alibaba', name: 'fastjson', version: "${fastjsonVersion}"
+
+    /*faker*/
+    implementation group: 'com.github.javafaker', name: 'javafaker', version: "${javafakerVersion}"
+
+    /*jupiter*/
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
+
+
+    /*mybatis plus generator*/
+    testImplementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
+    testImplementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
+    testImplementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
+    testImplementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
+
+    /*fluent-mybatis*/
+    implementation 'com.github.atool:fluent-mybatis-boot-starter:1.9.8'
+}
+
+
+
+bootJar{
+    enabled(false)
+}

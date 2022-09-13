@@ -1,7 +1,7 @@
 description = "系统管理"
 
 dependencies {
-    implementation(project(":wlxx-common:wlxx-common-core"))
+    implementation(project(":wlxx-framework:wlxx-common-core"))
 }
 
 bootJar{

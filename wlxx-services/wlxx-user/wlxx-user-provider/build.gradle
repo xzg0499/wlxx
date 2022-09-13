@@ -12,7 +12,7 @@ docker {
 }
 
 dependencies {
-    implementation(project(":wlxx-common:wlxx-common-core"))
+    implementation(project(":wlxx-framework:wlxx-common-core"))
     implementation(project(":wlxx-services:wlxx-user:wlxx-user-client"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
 }

@@ -78,7 +78,7 @@ bootJar{
 }
 
 dependencies {
-    implementation(project(":wlxx-common:wlxx-common-core"))
+    implementation(project(":wlxx-framework:wlxx-common-core"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
 
     /*mockito 测试框架*/
@@ -99,6 +99,5 @@ dependencies {
 //    implementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
 
 }
-
 
 

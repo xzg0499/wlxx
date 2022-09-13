@@ -1,9 +1,9 @@
 rootProject.name = 'wlxx'
 
-include(":wlxx-generator")
+//include(":wlxx-generator")
 
-include(':wlxx-common:wlxx-common-core')
-include(':wlxx-common:wlxx-common-util')
+include(':wlxx-framework:wlxx-common-core')
+include(':wlxx-framework:wlxx-common-web')
 
 include(':wlxx-services:wlxx-system:wlxx-system-client')
 include(':wlxx-services:wlxx-system:wlxx-system-provider')
@@ -19,4 +19,6 @@ include(':wlxx-services:wlxx-user:wlxx-user-provider')
 
 //include(":wlxx-poker")
 include(":wlxx-gateway")
+
+include(":wlxx-parent")
 

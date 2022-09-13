@@ -5,6 +5,13 @@ buildscript {
 		classpath('com.bmuschko:gradle-docker-plugin:6.7.0')
 		classpath("io.spring.gradle:dependency-management-plugin")
 	}
+
+//	tasks.each { task ->
+//		if (task.name.contains("test"))
+//		{
+//			task.enabled = false
+//		}
+//	}
 }
 
 plugins{
@@ -14,7 +21,7 @@ plugins{
 }
 
 // 引入外部gradle文件
-apply from: './version.gradle'
+apply from: './wlxx-parent/version.gradle'
 
 
 
@@ -110,7 +117,14 @@ allprojects{
 		testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
 
 
+		/*mybatis plus generator*/
+		testImplementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
+		testImplementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
+		testImplementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
+		testImplementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
 
+		/*fluent-mybatis*/
+//		implementation 'com.github.atool:fluent-mybatis-boot-starter:1.9.8'
 	}
 
 	repositories {
@@ -125,6 +139,7 @@ allprojects{
 
 	test {
 		useJUnitPlatform()
+		enabled(false)
 	}
 
 //	sourceSets {

@@ -1,5 +1,6 @@
 package com.xzg.wlxx.system;
 
+import com.xzg.wlxx.common.core.base.BaseController;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan("com.xzg.wlxx.system.mapper")
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.xzg.**"})
+@EnableFeignClients(basePackages = {"com.xzg.wlxx.system.**"})
 public class SystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(SystemApplication.class,args);

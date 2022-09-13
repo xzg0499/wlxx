@@ -2,6 +2,7 @@ package com.xzg.wlxx.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xzg.wlxx.common.core.base.BaseIService;
 import com.xzg.wlxx.common.core.response.Res;
 import com.xzg.wlxx.system.client.entity.TDict;
 

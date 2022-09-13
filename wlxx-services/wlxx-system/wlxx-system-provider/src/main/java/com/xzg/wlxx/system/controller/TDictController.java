@@ -1,9 +1,6 @@
 package com.xzg.wlxx.system.controller;
 
-import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ejlchina.searcher.MapSearcher;
 import com.ejlchina.searcher.SearchResult;
 import com.ejlchina.searcher.util.MapUtils;
@@ -15,7 +12,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +28,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/dict")
 @Slf4j
-public class TDictController extends BaseController {
-
-    @Autowired
-    ITDictService dictService;
+public class TDictController extends BaseController<ITDictService,TDict> {
 
     @Autowired
     MapSearcher mapSearcher;
+
+    @Autowired
+    ITDictService service;
 
     // @Value("${spring.datasource.url}")
     // private String jdbcUrl;
@@ -53,7 +49,7 @@ public class TDictController extends BaseController {
     @ApiOperation("新增")
     @PostMapping("/add")
     public Res<Boolean> add(@RequestBody TDict dict) throws Exception{
-        if(dictService.add(dict)){
+        if(service.add(dict)){
             return success();
         }
         return failure();
@@ -63,19 +59,21 @@ public class TDictController extends BaseController {
     @PostMapping("/queryByPage")
     public Res<IPage<TDict>> queryByPage(@RequestBody TDict dict) throws Exception{
         // FIXME 查询是，status枚举不能传NIL，可以传null
-        return success(dictService.query(dict));
+        // return success(service.query(dict));
+        return null;
     }
 
     @ApiOperation("根据ID查询字典")
     @GetMapping("/getById/{id}")
     public Res<TDict> getById(@PathVariable("id") String id) throws Exception{
-        return success(dictService.getById(id));
+        return success(service.getById(id));
+        // return null;
     }
 
     @ApiOperation("根据ID修改字典")
     @PutMapping("/updateById")
     public Res<Boolean> modify(@RequestBody TDict dict) throws Exception{
-        if(dictService.modify(dict)){
+        if(service.modify(dict)){
             return success();
         }
         return failure();
@@ -84,13 +82,14 @@ public class TDictController extends BaseController {
     @ApiOperation("根据code获取字典值")
     @GetMapping("/getByCode/{code}")
     public Res<TDict> getByCode(@PathVariable("code") String code) throws Exception {
-        return success(dictService.getByCode(code));
+        return success(service.getByCode(code));
+        // return null;
     }
 
     @ApiOperation("删除业务字典")
     @DeleteMapping("/delById/{id}")
     public Res<Boolean> delById(@PathVariable("id") String id) throws Exception{
-        if(dictService.delById(id)){
+        if(service.delById(id)){
             return success();
         }
         return failure();
