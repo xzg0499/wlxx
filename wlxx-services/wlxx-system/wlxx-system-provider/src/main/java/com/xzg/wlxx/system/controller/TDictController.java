@@ -19,6 +19,7 @@ import java.util.Map;
 
 /**
  * 业务字典
+ *
  * @author xzgang0499
  * @date 2022-01-16
  * @since jdk1.8
@@ -28,7 +29,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/dict")
 @Slf4j
-public class TDictController extends BaseController<ITDictService,TDict> {
+public class TDictController extends BaseController {
 
     @Autowired
     MapSearcher mapSearcher;
@@ -48,8 +49,8 @@ public class TDictController extends BaseController<ITDictService,TDict> {
 
     @ApiOperation("新增")
     @PostMapping("/add")
-    public Res<Boolean> add(@RequestBody TDict dict) throws Exception{
-        if(service.add(dict)){
+    public Res<Boolean> add(@RequestBody TDict dict) throws Exception {
+        if (service.add(dict)) {
             return success();
         }
         return failure();
@@ -57,7 +58,7 @@ public class TDictController extends BaseController<ITDictService,TDict> {
 
     @ApiOperation("分页查询")
     @PostMapping("/queryByPage")
-    public Res<IPage<TDict>> queryByPage(@RequestBody TDict dict) throws Exception{
+    public Res<IPage<TDict>> queryByPage(@RequestBody TDict dict) throws Exception {
         // FIXME 查询是，status枚举不能传NIL，可以传null
         // return success(service.query(dict));
         return null;
@@ -65,15 +66,15 @@ public class TDictController extends BaseController<ITDictService,TDict> {
 
     @ApiOperation("根据ID查询字典")
     @GetMapping("/getById/{id}")
-    public Res<TDict> getById(@PathVariable("id") String id) throws Exception{
+    public Res<TDict> getById(@PathVariable("id") String id) throws Exception {
         return success(service.getById(id));
         // return null;
     }
 
     @ApiOperation("根据ID修改字典")
     @PutMapping("/updateById")
-    public Res<Boolean> modify(@RequestBody TDict dict) throws Exception{
-        if(service.modify(dict)){
+    public Res<Boolean> modify(@RequestBody TDict dict) throws Exception {
+        if (service.modify(dict)) {
             return success();
         }
         return failure();
@@ -88,8 +89,8 @@ public class TDictController extends BaseController<ITDictService,TDict> {
 
     @ApiOperation("删除业务字典")
     @DeleteMapping("/delById/{id}")
-    public Res<Boolean> delById(@PathVariable("id") String id) throws Exception{
-        if(service.delById(id)){
+    public Res<Boolean> delById(@PathVariable("id") String id) throws Exception {
+        if (service.delById(id)) {
             return success();
         }
         return failure();

@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * MBP 映射数据库Json对象属性
+ *
  * @author xzgang0499
  * @date 2021-12-29
  * @since jdk1.8
