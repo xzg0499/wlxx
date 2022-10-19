@@ -1,0 +1,7 @@
+ext {
+    springBootVer = "2.7.4"
+    springCloudVer = "2021.0.4"
+    springCloudAlibabaVer = "2021.0.4.0"
+    mybatisPlusVer = "3.5.2"
+    hutoolVer = "5.8.8"
+}

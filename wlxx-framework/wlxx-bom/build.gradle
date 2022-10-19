@@ -1,0 +1,77 @@
+description('dependencies')
+
+
+buildscript {
+    ext {
+        // https://start.spring.io/actuator/info
+        springBootVersion = "2.7.0"
+    }
+
+    // 仓库配置
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/spring' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://repo.spring.io/release' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply from: './version.gradle'
+apply from: './repositories.gradle'
+//apply plugin: 'maven-publish'
+
+//dependencyManagement
+
+subprojects() {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+//    apply plugin: 'signing'
+    apply plugin: "io.spring.dependency-management"
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVer}"
+        }
+
+        dependencies {
+            // spring
+            dependency("org.springframework.boot:spring-boot-starter:${springBootVer}")
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/spring' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://repo.spring.io/release' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+}
+
+//dependencies {
+//    constraints {
+//        api("org.springframework.boot:spring-boot-starter")
+//    }
+//}
+
+
+//publishing {
+//    publications {
+//        thirdPartPlatform(MavenPublication) {
+//            from components.javaPlatform
+//            artifactId = "wlxx-bom"
+//            version = version
+//        }
+//    }
+//
+//    repositories {
+//        mavenLocal()
+//    }
+//}

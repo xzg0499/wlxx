@@ -18,7 +18,7 @@
 - [ ] bean-searcher、fluent-mybatis框架选择
 - [ ] 独立parent模块，将所有共用到的外部依赖全部放入此处管理
 
-## idae
+## idea
 
 ### 待办标记
 

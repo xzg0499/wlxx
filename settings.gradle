@@ -1,24 +1,16 @@
 rootProject.name = 'wlxx'
 
-//include(":wlxx-generator")
 
-include(':wlxx-framework:wlxx-common-core')
-include(':wlxx-framework:wlxx-common-web')
+include(':wlxx-framework:wlxx-bom')
+include(':wlxx-framework:wlxx-common')
+include(':wlxx-framework:wlxx-core')
+include(':wlxx-framework:wlxx-web')
+include(':wlxx-module')
 
-include(':wlxx-services:wlxx-system:wlxx-system-client')
-include(':wlxx-services:wlxx-system:wlxx-system-provider')
+//FIXME 迭代二级目录，遍历实现自动加载模块
+//file("${rootDir}/wlxx-services").eachDirMatch(~/wlxx-.*/) {
+//    include "wlxx-services:${it.name}"
+//}
 
-include(':wlxx-services:wlxx-log:wlxx-log-client')
-include(':wlxx-services:wlxx-log:wlxx-log-provider')
 
-include(':wlxx-services:wlxx-api:wlxx-api-client')
-include(':wlxx-services:wlxx-api:wlxx-api-provider')
-
-include(':wlxx-services:wlxx-user:wlxx-user-client')
-include(':wlxx-services:wlxx-user:wlxx-user-provider')
-
-//include(":wlxx-poker")
-include(":wlxx-gateway")
-
-include(":wlxx-parent")
 
