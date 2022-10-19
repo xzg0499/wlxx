@@ -4,7 +4,6 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.common.core.base.BaseServiceImpl;
 import com.xzg.wlxx.common.core.exception.BusinessException;
 import com.xzg.wlxx.system.client.entity.TDict;
@@ -14,17 +13,17 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author xzg
  * @since 2022-01-16
  */
 @Service
-public class TDictServiceImpl extends ServiceImpl<TDictMapper, TDict> implements ITDictService {
+public class TDictServiceImpl extends BaseServiceImpl<TDictMapper, TDict> implements ITDictService {
 
     @Override
-    public Boolean add(TDict dict) throws Exception{
+    public Boolean add(TDict dict) throws Exception {
         validate(dict);
 
         return save(dict);
@@ -33,12 +32,13 @@ public class TDictServiceImpl extends ServiceImpl<TDictMapper, TDict> implements
     /**
      * TODO 新增、更新校验？
      * 校验
+     *
      * @param dict
      * @return
      * @throws NullPointerException
      */
-    public Boolean validate(TDict dict) throws BusinessException{
-        if(StrUtil.isBlank(dict.getDictCode())){
+    public Boolean validate(TDict dict) throws BusinessException {
+        if (StrUtil.isBlank(dict.getDictCode())) {
             throw new BusinessException("字典编码必填");
         }
 
@@ -57,18 +57,19 @@ public class TDictServiceImpl extends ServiceImpl<TDictMapper, TDict> implements
 
     @Override
     public IPage<TDict> query(TDict dict) throws Exception {
-        return page(new Page<>(0,10),new LambdaQueryWrapper<>());
+        return page(new Page<>(0, 10), new LambdaQueryWrapper<>());
     }
 
     @Override
     public TDict getByCode(String code) throws Exception {
-        TDict dict = lambdaQuery().select().eq(StrUtil.isNotBlank(code),TDict::getDictCode,code).one();
+        TDict dict = lambdaQuery().select().eq(StrUtil.isNotBlank(code), TDict::getDictCode, code).one();
         return dict;
     }
 
     /**
      * TODO 级联删除子项
      * TODO Boolean返回再controller无法判断成败与否
+     *
      * @param id
      * @return
      * @throws Exception
@@ -78,12 +79,10 @@ public class TDictServiceImpl extends ServiceImpl<TDictMapper, TDict> implements
         TDict dict = getById(id);
 
 
-
         return removeById(id);
     }
 
-    public Boolean isDel(String id) throws Exception{
-
+    public Boolean isDel(String id) throws Exception {
 
 
         return true;

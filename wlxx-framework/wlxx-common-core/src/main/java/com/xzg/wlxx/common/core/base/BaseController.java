@@ -1,37 +1,23 @@
 package com.xzg.wlxx.common.core.base;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ejlchina.searcher.MapSearcher;
-import com.ejlchina.searcher.SearchResult;
-import com.ejlchina.searcher.util.MapUtils;
-import com.xzg.wlxx.common.core.base.BaseIService;
-import com.xzg.wlxx.common.core.base.BaseRes;
-import com.xzg.wlxx.common.core.response.Res;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 /**
  * FIXME controller 中service注册会导致多例
+ *
  * @author xzgang0499
  * @date 2022-01-14
  * @since jdk1.8
  */
-public class BaseController<S extends BaseIService<T>,T> extends BaseRes {
+public class BaseController<S extends BaseIService<T>, T> extends BaseRes {
 
-    // @Autowired
-    // S service;
+    @Autowired
+    protected S service;
 
+
+    // Class<S> clas = (Class<S>) ReflectionKit.getSuperClassGenericType(this.getClass(), BaseController.class, 0);
     // @Autowired
     // MapSearcher mapSearcher;
-
 
 
     // @ApiOperation("新增")

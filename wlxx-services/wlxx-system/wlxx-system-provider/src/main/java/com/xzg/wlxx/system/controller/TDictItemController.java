@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "业务字典项")
 @RestController
 @RequestMapping("/dict-item")
-public class TDictItemController extends BaseController {
+public class TDictItemController extends BaseController<ITDictItemService, TDictItem> {
     @Autowired
     ITDictItemService service;
 
