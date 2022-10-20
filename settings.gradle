@@ -2,23 +2,14 @@ rootProject.name = 'wlxx'
 
 //include(":wlxx-generator")
 
-include(':wlxx-framework:wlxx-common-core')
-include(':wlxx-framework:wlxx-common-web')
+def includeModule(File file, String path) {
+    file.eachDirMatch(~/wlxx-.*/) {
+        if (it.exists() && it.isDirectory()) {
+            includeModule(it, path + ":" + it.getName())
+            include path + ":" + "${it.name}"
+        }
+    }
+}
 
-include(':wlxx-services:wlxx-system:wlxx-system-client')
-include(':wlxx-services:wlxx-system:wlxx-system-provider')
-
-include(':wlxx-services:wlxx-log:wlxx-log-client')
-include(':wlxx-services:wlxx-log:wlxx-log-provider')
-
-include(':wlxx-services:wlxx-api:wlxx-api-client')
-include(':wlxx-services:wlxx-api:wlxx-api-provider')
-
-include(':wlxx-services:wlxx-user:wlxx-user-client')
-include(':wlxx-services:wlxx-user:wlxx-user-provider')
-
-//include(":wlxx-poker")
-include(":wlxx-gateway")
-
-include(":wlxx-parent")
+includeModule(file("${rootDir}"), "")
 
