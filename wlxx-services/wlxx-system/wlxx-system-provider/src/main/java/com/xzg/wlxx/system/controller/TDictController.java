@@ -34,8 +34,8 @@ public class TDictController extends BaseController<ITDictService, TDict> {
     @Autowired
     MapSearcher mapSearcher;
 
-    // @Autowired
-    // ITDictService service;
+    @Autowired
+    ITDictService service;
 
     // @Value("${spring.datasource.url}")
     // private String jdbcUrl;

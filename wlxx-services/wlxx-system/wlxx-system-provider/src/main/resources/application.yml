@@ -28,6 +28,8 @@ spring:
 
 logging:
   logging-enabled: true
+  level:
+    com.alibaba.nacos.client.config.impl: WARN
 
 mybatis-plus:
   type-enums-package: com.xzg.wlxx.*.client.enums.*

@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system;
+package com.xzg.wlxx.system.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

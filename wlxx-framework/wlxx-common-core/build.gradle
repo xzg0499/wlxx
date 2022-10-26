@@ -1,5 +1,21 @@
 description = "公共工具、配置"
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        mavenBom "com.xzg:wlxx-bom:${version}"
+    }
+
+//    dependencies {
+//        dependency("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+//        dependency("com.baomidou:mybatis-plus-core:${mybatisPlusVersion}")
+//        dependency("com.baomidou:mybatis-plus-extension:${mybatisPlusVersion}")
+//    }
+}
+
 dependencies {
 
+//    implementation("org.springframework.boot:spring-boot-starter")
+//    implementation("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+//    implementation("com.baomidou:mybatis-plus-boot-starter")
 }

@@ -1,34 +1,21 @@
-buildscript {
-    dependencies {
-        classpath('com.bmuschko:gradle-docker-plugin:6.7.0')
-        classpath("io.spring.gradle:dependency-management-plugin")
-    }
-
-//	tasks.each { task ->
-//		if (task.name.contains("test"))
-//		{
-//			task.enabled = false
-//		}
-//	}
-}
-
-plugins {
-    id 'org.springframework.boot' version '2.4.7'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
-}
+//buildscript {
+//    dependencies {
+//        classpath('com.bmuschko:gradle-docker-plugin:6.7.0')
+//        classpath("io.spring.gradle:dependency-management-plugin")
+//    }
+//}
+//
+//plugins {
+//    id 'org.springframework.boot' version '2.4.7'
+//    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'java'
+//}
 
 
 // 引入外部gradle文件
-apply from: './version.gradle'
+apply from: '../version.gradle'
 
 allprojects {
-    group = 'com.xzg'
-    version = '0.0.1-SNAPSHOT'
-    // 编译环境 JDK1.8
-    sourceCompatibility = "${javaVersion}"
-    targetCompatibility = "${javaVersion}"
-
     repositories {
         mavenLocal()
         maven { url 'https://maven.aliyun.com/repository/central' }
@@ -41,12 +28,18 @@ allprojects {
     }
 }
 
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
+    group = 'com.xzg'
+    version = '0.0.1-SNAPSHOT'
+// 编译环境 JDK1.8
+    sourceCompatibility = "${javaVersion}"
+    targetCompatibility = "${javaVersion}"
 
 // java编译的时候缺省状态下会因为中文字符而失败
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
@@ -71,18 +64,18 @@ subprojects {
             mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}")
 //			mavenBom('com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.1.2.RELEASE')
         }
+
+        dependencies {
+            dependency("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+        }
     }
 
     dependencies {
         /*spring boot*/
         implementation("org.springframework.boot:spring-boot-starter")
-//		implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-security'
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-//		implementation("io.github.openfeign:feign-jackson")
-//		implementation("io.github.openfeign:feign-gson")
-//		implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
         implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -133,7 +126,7 @@ subprojects {
         testImplementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
 
         /*fluent-mybatis*/
-//		implementation 'com.github.atool:fluent-mybatis-boot-starter:1.9.8'
+//        implementation 'com.github.atool:fluent-mybatis-boot-starter:1.9.8'
 
         testImplementation("org.testng:testng:6.11")
     }

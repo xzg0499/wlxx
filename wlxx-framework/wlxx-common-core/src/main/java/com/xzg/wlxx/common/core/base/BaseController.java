@@ -1,7 +1,5 @@
 package com.xzg.wlxx.common.core.base;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 /**
  * FIXME controller 中service注册会导致多例
  *
@@ -11,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class BaseController<S extends BaseIService<T>, T> extends BaseRes {
 
-    @Autowired
-    protected S service;
+    //@Autowired
+    //protected S service;
 
 
     // Class<S> clas = (Class<S>) ReflectionKit.getSuperClassGenericType(this.getClass(), BaseController.class, 0);

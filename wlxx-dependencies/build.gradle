@@ -1,0 +1,16 @@
+subprojects {
+    apply plugin: 'maven-publish'
+
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId
+                artifactId
+                version
+
+                from components.java
+            }
+        }
+    }
+}
