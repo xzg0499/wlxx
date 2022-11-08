@@ -24,10 +24,10 @@ apply from: './version.gradle'
 
 allprojects {
     group = 'com.xzg'
-    version = '0.0.1-SNAPSHOT'
+    version = '0.0.1'
     // 编译环境 JDK1.8
-    sourceCompatibility = "${javaVersion}"
-    targetCompatibility = "${javaVersion}"
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     repositories {
         mavenLocal()
@@ -69,7 +69,6 @@ subprojects {
             mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
             mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}")
-//			mavenBom('com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.1.2.RELEASE')
         }
     }
 
@@ -133,9 +132,10 @@ subprojects {
         testImplementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
 
         /*fluent-mybatis*/
-//		implementation 'com.github.atool:fluent-mybatis-boot-starter:1.9.8'
+        implementation "com.github.atool:fluent-mybatis-boot-starter:${fluentMybatisVersion}"
 
-        testImplementation("org.testng:testng:6.11")
+        /*testng*/
+        testImplementation("org.testng:testng:${testngVersion}")
     }
 
 

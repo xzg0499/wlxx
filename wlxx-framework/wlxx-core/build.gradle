@@ -1,15 +1,15 @@
-description = "web"
+description = "core"
 
 dependencies {
 
 
 }
 
-jar{
+jar {
     enabled(false)
 }
 
-allprojects{
+allprojects {
     bootJar {
         enabled(false)
     }

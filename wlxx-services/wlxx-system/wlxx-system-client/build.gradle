@@ -1,13 +1,13 @@
 description = "系统管理"
 
 dependencies {
-    implementation(project(":wlxx-framework:wlxx-common-core"))
+    implementation(project(":wlxx-framework:wlxx-web"))
 }
 
-bootJar{
+bootJar {
     enabled(false)
 }
 
-jar{
+jar {
     enabled(true)
 }

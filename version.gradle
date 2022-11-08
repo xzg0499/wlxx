@@ -42,4 +42,6 @@ ext {
     MockitoVersion = "4.6.1"
     ByteBuddyVersion = "1.12.10"
     BeanSearcherVersion = "3.7.1"
+    testngVersion = "6.11"
+    fluentMybatisVersion = "1.9.8"
 }

@@ -7,12 +7,12 @@ docker {
         baseImage = 'openjdk:latest'//指定运行镜像
         ports = [12001]  //暴露的端口
         images = ["${project.name}:${version}"]
-        jvmArgs = [ '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
+        jvmArgs = ['-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
     }
 }
 
 dependencies {
-    implementation(project(":wlxx-framework:wlxx-common-core"))
+    implementation(project(":wlxx-framework:wlxx-web"))
     implementation(project(":wlxx-services:wlxx-user:wlxx-user-client"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
 }

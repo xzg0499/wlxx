@@ -1,8 +1,6 @@
 description = "系统管理"
 
 
-
-
 //buildscript {
 //    ext {
 //        velocityVersion = "2.3"
@@ -31,8 +29,7 @@ description = "系统管理"
 //}
 
 
-
-task mybatisGenerator{
+task mybatisGenerator {
 //    def warnings = new ArrayList<String>()
 //    def overwrite = true
 //    def configurationFile = projectDir.getAbsolutePath() + '/src/main/resources/generatorConfiguration.xml'
@@ -69,16 +66,16 @@ docker {
 //        images = ["10.3.192.39:8777/hualongxin/${project.group}/${project.name}:${version}"]
         images = ["${project.name}:${version}"]
 //        jvmArgs = ['-Dspring.profiles.active=$env', '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
-        jvmArgs = [ '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
+        jvmArgs = ['-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
     }
 }
 
-bootJar{
+bootJar {
     enabled(true)
 }
 
 dependencies {
-    implementation(project(":wlxx-framework:wlxx-common-core"))
+    implementation(project(":wlxx-framework:wlxx-web"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
 
     /*mockito 测试框架*/
