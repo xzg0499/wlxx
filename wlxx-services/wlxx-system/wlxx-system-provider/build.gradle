@@ -70,9 +70,9 @@ docker {
     }
 }
 
-bootJar {
-    enabled(true)
-}
+//bootJar {
+//    enabled(true)
+//}
 
 dependencies {
     implementation(project(":wlxx-framework:wlxx-web"))

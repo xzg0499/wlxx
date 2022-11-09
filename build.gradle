@@ -55,12 +55,24 @@ subprojects {
         options.encoding = "UTF-8"
     }
 
-    bootJar {
-        enabled(false)
+    jar {
+        def dir = projectDir
+        def subDir = dir.list().findAll { f -> f.startsWith("wlxx-") }
+        if (subDir.size() > 0) {
+            enabled(false)
+        } else {
+            enabled(false)
+        }
     }
 
-    jar {
-        enabled(true)
+    bootJar {
+        def dir = projectDir
+        def subDir = dir.list().findAll { f -> f.startsWith("wlxx-") }
+        if (subDir.size() > 0) {
+            enabled(false)
+        } else {
+            enabled(true)
+        }
     }
 
     dependencyManagement {

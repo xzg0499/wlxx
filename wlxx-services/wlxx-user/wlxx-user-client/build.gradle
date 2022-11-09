@@ -4,10 +4,10 @@ dependencies {
     implementation(project(":wlxx-framework:wlxx-web"))
 }
 
-bootJar {
-    enabled(false)
-}
-
-jar {
-    enabled(true)
-}
+//bootJar {
+//    enabled(false)
+//}
+//
+//jar {
+//    enabled(true)
+//}

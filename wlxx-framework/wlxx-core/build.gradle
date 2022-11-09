@@ -4,13 +4,3 @@ dependencies {
 
 
 }
-
-jar {
-    enabled(false)
-}
-
-allprojects {
-    bootJar {
-        enabled(false)
-    }
-}
