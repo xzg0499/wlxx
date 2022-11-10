@@ -4,7 +4,7 @@ services:
     env_file:
       - docker.env
     container_name: wlxx-system
-    image: wlxx-system-provider:$VERSION
+    image: wlxx-system:$VERSION
     environment:
       - DATASOURCE_URL=mysql # 同一个网络下，通过实例名称访问
       - NACOS_ADDR=nacos
@@ -13,12 +13,12 @@ services:
     privileged: true
     ports:
       - "12000:12000"
-#    restart: always
+    #    restart: always
     networks:
       - wlxx-docker_default
   wlxx-user:
     container_name: wlxx-user
-    image: wlxx-user-provider:$VERSION
+    image: wlxx-user:$VERSION
     environment:
       - DATASOURCE_URL=mysql # 同一个网络下，通过实例名称访问
       - NACOS_ADDR=nacos

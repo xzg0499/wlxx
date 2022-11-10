@@ -11,7 +11,7 @@
 - [ ] easyexcel 读写 excel：`com.alibaba:com.alibaba
 - [ ] gradle 多模块依赖问题，待优化解决
 - [x] gradle 跟 idea 编译输出目录不一致
-  - 解决办法：采用 bootJar 的方式打包，并采用 gradle 编译，最后把没有 sprint boot 启动的模块过滤掉
+    - 解决办法：采用 bootJar 的方式打包，并采用 gradle 编译，最后把没有 sprint boot 启动的模块过滤掉
 - [ ] 采用 cglib 搭理实现三方接口请求，并做接口补偿
 - [ ] gradle 不能使用 idea 自动编译功能
 - [ ] RxJava 异步编程
@@ -69,9 +69,12 @@
 # 工具
 
 ```xml
+
 <dependency>
     <groupId>com.google.guava</groupId>
     <artifactId>guava</artifactId>
     <version>21.0</version>
 </dependency>
 ```
+
+# 源码包查询日志配置`additional-spring-configuration-metadata.json`

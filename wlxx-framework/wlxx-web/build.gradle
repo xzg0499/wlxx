@@ -2,7 +2,7 @@ description = "公共工具、配置"
 
 
 dependencies {
-//    implementation("com.xzg:wlxx-core:${version}")
+    implementation(project(":wlxx-framework:wlxx-core"))
 //    implementation("org.springframework.boot:spring-boot-starter")
 //    implementation("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
 //    implementation("com.baomidou:mybatis-plus-boot-starter")

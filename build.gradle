@@ -58,6 +58,10 @@ configure(subprojects) {
         enabled(true)
     }
 
+    build {
+        buildDir("out")
+//        println(buildDir)
+    }
 
     bootJar {
         if (projectDir.getName().endsWith("-provider")) {
@@ -79,11 +83,10 @@ configure(subprojects) {
     dependencies {
         /*spring boot*/
         implementation("org.springframework.boot:spring-boot-starter")
-//		implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-        implementation 'org.springframework.boot:spring-boot-starter-security'
-        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-        implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-security")
+        implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+        implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
@@ -93,16 +96,16 @@ configure(subprojects) {
         implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 
         // SpringBoot / Grails 项目直接使用以下依赖，更为方便（只添加这一个依赖即可）
-        implementation "com.ejlchina:bean-searcher-boot-starter:${BeanSearcherVersion}"
+        implementation("com.ejlchina:bean-searcher-boot-starter:${BeanSearcherVersion}")
 
         /*redis*/
-        implementation "org.springframework.boot:spring-boot-starter-data-redis"
+        implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
         /*lombok*/
-        compileOnly "org.projectlombok:lombok:${lombokVersion}"
-        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
-        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        compileOnly("org.projectlombok:lombok:${lombokVersion}")
+        annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+        testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+        testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 
         /*mybatis-plus*/
         implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
@@ -133,7 +136,7 @@ configure(subprojects) {
         testImplementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
 
         /*fluent-mybatis*/
-        implementation "com.github.atool:fluent-mybatis-boot-starter:${fluentMybatisVersion}"
+//        implementation "com.github.atool:fluent-mybatis-boot-starter:${fluentMybatisVersion}"
 
         /*testng*/
         testImplementation("org.testng:testng:${testngVersion}")
@@ -143,7 +146,8 @@ configure(subprojects) {
     }
 
 
-    test {
-        useJUnitPlatform()
-    }
+//    test {
+//        useJUnitPlatform()
+//        enabeld(false)
+//    }
 }
