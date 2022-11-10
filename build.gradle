@@ -1,77 +1,69 @@
 buildscript {
-    dependencies {
-        classpath('com.bmuschko:gradle-docker-plugin:6.7.0')
-        classpath("io.spring.gradle:dependency-management-plugin")
+    // 引入外部gradle文件
+    apply from: './version.gradle'
+
+    repositories {
+        mavenLocal()
+        maven {
+            name "aliyun"
+            url "https://maven.aliyun.com/repository/public"
+        }
     }
 
-//	tasks.each { task ->
-//		if (task.name.contains("test"))
-//		{
-//			task.enabled = false
-//		}
-//	}
+    dependencies {
+        classpath('com.bmuschko:gradle-docker-plugin:6.7.0')
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:1.1.0")
+    }
 }
 
-plugins {
-    id 'org.springframework.boot' version '2.4.7'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
-}
-
-
-// 引入外部gradle文件
-apply from: './version.gradle'
 
 allprojects {
     group = 'com.xzg'
     version = '0.0.1'
-    // 编译环境 JDK1.8
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
 
     repositories {
         mavenLocal()
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/spring' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        mavenCentral()
-        jcenter()
-        maven { url 'https://repo.spring.io/release' }
-        maven { url 'https://repo.spring.io/milestone' }
+        maven {
+            name "aliyun"
+            url "https://maven.aliyun.com/repository/public"
+        }
     }
 }
 
-subprojects {
+configure(subprojects) {
+    // 定义只打包末级
+    def subList = subprojects.projectDir.asList().findAll(file -> file.getName().startsWith("wlxx-"))
+    if (subList.size() > 0) {
+        return
+    }
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
 
-// java编译的时候缺省状态下会因为中文字符而失败
+    // java编译的时候缺省状态下会因为中文字符而失败
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
     }
 
+    // 编译环境 JDK1.8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
     jar {
-        def dir = projectDir
-        def subDir = dir.list().findAll { f -> f.startsWith("wlxx-") }
-        if (subDir.size() > 0) {
-            enabled(false)
-        } else {
-            enabled(false)
-        }
+        enabled(true)
     }
 
+
     bootJar {
-        def dir = projectDir
-        def subDir = dir.list().findAll { f -> f.startsWith("wlxx-") }
-        if (subDir.size() > 0) {
-            enabled(false)
-        } else {
+        if (projectDir.getName().endsWith("-provider")) {
             enabled(true)
+        } else {
+            enabled(false)
         }
     }
 
@@ -91,9 +83,6 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-security'
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-//		implementation("io.github.openfeign:feign-jackson")
-//		implementation("io.github.openfeign:feign-gson")
-//		implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
         implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -134,7 +123,7 @@ subprojects {
         implementation group: 'com.github.javafaker', name: 'javafaker', version: "${javafakerVersion}"
 
         /*jupiter*/
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
+//        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
 
 
         /*mybatis plus generator*/
@@ -148,30 +137,13 @@ subprojects {
 
         /*testng*/
         testImplementation("org.testng:testng:${testngVersion}")
+
+        /*TODO Could not find snakeyaml-1.30-android.jar*/
+        implementation 'org.yaml:snakeyaml:1.28'
     }
 
 
     test {
         useJUnitPlatform()
-        enabled(false)
     }
-
-//	sourceSets {
-//		main {
-//			java {
-//				srcDirs = ['src/main/java', 'src/main/thrift-java']
-//			}
-//			resources {
-//				srcDirs = ['src/main/resources']
-//			}
-//		}
-//		test {
-//			java {
-//				srcDirs = ['src/test/java', 'src/test/thrift']
-//			}
-//			resources {
-//				srcDirs = ['src/test/resources']
-//			}
-//		}
-//	}
 }

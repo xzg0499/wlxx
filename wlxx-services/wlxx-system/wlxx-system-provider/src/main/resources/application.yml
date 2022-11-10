@@ -27,16 +27,13 @@ spring:
       matching-strategy: ant_path_matcher
 
 logging:
-  logging-enabled: true
   level:
-    com.alibaba.nacos.client.config.impl: WARN
 
 mybatis-plus:
   type-enums-package: com.xzg.wlxx.*.client.enums.*
   type-handlers-package: com.xzg.wlxx.common.core.mybatis.handler
   mapper-locations: classpath*:mapper/*.xml
   global-config:
-    refresh: true
     activeRecord: true # FIXME 这个怎么开启？是否是因为分离式模块导致无法编译到entity？activeRecord模式不支持hikari多数据源？
     db-config:
       id-type: ASSIGN_UUID #主键类型  全局唯一ID，内容为空自动填充（默认配置），对应数字 2

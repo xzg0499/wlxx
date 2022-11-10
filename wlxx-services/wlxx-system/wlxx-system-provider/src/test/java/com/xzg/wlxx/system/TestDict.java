@@ -6,7 +6,6 @@ import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import com.xzg.wlxx.system.client.entity.TDict;
 import com.xzg.wlxx.system.client.enums.StatusEnum;
-import com.xzg.wlxx.system.controller.TDictController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,19 +40,17 @@ public class TestDict {
     @Autowired
     WebApplicationContext webApplicationContext;
 
-    @Autowired
-    TDictController tDictController;
 
     private static Faker faker = new Faker(Locale.CHINA);
 
     @BeforeEach
-    public void before(){
+    public void before() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 //        mockMvc = MockMvcBuilders.standaloneSetup(null).build();
     }
 
-    public MvcResult post(String url,String param) throws Exception {
-        log.info("param:{}",param);
+    public MvcResult post(String url, String param) throws Exception {
+        log.info("param:{}", param);
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.post(url)
                         .accept(MediaType.APPLICATION_JSON)
@@ -71,7 +68,7 @@ public class TestDict {
 
         Faker faker = new Faker(Locale.CHINA);
 
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             Name name = faker.name();
 
             TDict dict = TDict.builder().description(name.firstName())
@@ -83,7 +80,7 @@ public class TestDict {
 
             MvcResult result = post("/dict/add", JSONUtil.toJsonStr(dict));
             MockHttpServletResponse response = result.getResponse();
-            log.info("result:{}",response.getContentAsString(StandardCharsets.UTF_8));
+            log.info("result:{}", response.getContentAsString(StandardCharsets.UTF_8));
         }
     }
 
@@ -93,11 +90,10 @@ public class TestDict {
         dict.setId("0339dcc107cef4f988b886ed10d0fef8");
         dict.selectById();
         dict.setDictCode("修改");
-        tDictController.modify(dict);
     }
 
     @Test
-    public void testFaker(){
+    public void testFaker() {
         System.out.println(faker.business());
     }
 }

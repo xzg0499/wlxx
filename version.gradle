@@ -1,12 +1,14 @@
 ext {
-    springBootVersion = "2.6.7"
-    springCloudVersion = "2021.0.2"
-    springCloudAlibabaVersion = "2021.0.1.0"
+    springBootVersion = "2.7.5"
+    springCloudVersion = "2021.0.5"
+    springCloudAlibabaVersion = "2021.0.4.0"
+    mybatisPlusVersion = "3.5.2"
+    hutoolVersion = "5.8.9"
+
     projectBuildSourceEncoding = "UTF-8"
     mavenCompilerSource = "1.8"
     mavenCompilerTarget = "1.8"
     springBootAdminVersion = "2.6.7"
-    hutoolVersion = "5.8.0"
     dynamicDsVersion = "3.5.1"
     captchaVersion = "2.2.2"
     velocityVersion = "2.3"
@@ -25,10 +27,6 @@ ext {
     springCheckstylePlugin = "0.0.29"
     feignJsonVersion = "11.8"
 
-//    springCloudVersion = 'Hoxton.SR12'
-//    alibabaCloudVersion = '2.2.8-SNAPSHOT'
-    mybatisPlusVersion = "3.5.0"
-    javaVersion = JavaVersion.VERSION_1_8
     mysqlVersion = "8.0.27"
     lombokVersion = "1.18.22"
     knife4jVersion = "3.0.3"
