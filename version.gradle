@@ -39,7 +39,7 @@ ext {
     mybatisPlusGeneratorVersion = "3.5.1"
     MockitoVersion = "4.6.1"
     ByteBuddyVersion = "1.12.10"
-    BeanSearcherVersion = "3.7.1"
+    beanSearcherVersion = "3.8.2"
     testngVersion = "6.11"
     fluentMybatisVersion = "1.9.8"
 }

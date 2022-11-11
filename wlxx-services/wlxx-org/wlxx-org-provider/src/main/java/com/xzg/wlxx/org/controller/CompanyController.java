@@ -1,6 +1,10 @@
 package com.xzg.wlxx.org.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ejlchina.searcher.BeanSearcher;
+import com.ejlchina.searcher.MapSearcher;
+import com.ejlchina.searcher.SearchResult;
+import com.ejlchina.searcher.util.MapUtils;
 import com.xzg.wlxx.core.base.BaseRes;
 import com.xzg.wlxx.core.base.controller.BaseController;
 import com.xzg.wlxx.core.base.response.Result;
@@ -14,6 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author xzgan
@@ -29,6 +36,24 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyController extends BaseController<ICompanyService, CompanyPo> {
 
     private final ICompanyService service;
+
+    private final BeanSearcher beanSearcher;
+
+    private final MapSearcher mapSearcher;
+
+    @ApiOperation("BeanSearcher")
+    @PostMapping("bean-searcher")
+    public SearchResult<CompanyPo> beanSearch(HttpServletRequest request) {
+        SearchResult<CompanyPo> result = beanSearcher.search(CompanyPo.class, MapUtils.flat(request.getParameterMap()));
+        return result;
+    }
+
+    @ApiOperation("MapSearcher")
+    @PostMapping("map-searcher")
+    public SearchResult<Map<String, Object>> mapSearch(HttpServletRequest request) {
+        SearchResult<Map<String, Object>> result = mapSearcher.search(CompanyPo.class, MapUtils.flat(request.getParameterMap()));
+        return result;
+    }
 
     @ApiOperation("新增")
     @PostMapping("add")

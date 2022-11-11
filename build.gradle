@@ -103,7 +103,7 @@ configure(subprojects) {
         implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 
         // SpringBoot / Grails 项目直接使用以下依赖，更为方便（只添加这一个依赖即可）
-        implementation("com.ejlchina:bean-searcher-boot-starter:${BeanSearcherVersion}")
+        implementation("com.ejlchina:bean-searcher-boot-starter:${beanSearcherVersion}")
 
         /*redis*/
         implementation("org.springframework.boot:spring-boot-starter-data-redis")

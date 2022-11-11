@@ -28,6 +28,7 @@ logging:
   level:
     root: info
     com.xzg.wlxx: debug
+    com.ejlchina.searcher: debug
   file:
     # 日志文件名格式
     name: "logs/${spring.application.name}.log"
@@ -45,4 +46,13 @@ logging:
         # 保存存档日志文件的最大天数(默认为7天)
         max-history: 20
 
+bean-searcher:
+  params:
+    pagination:
+      start: 1
+  sql:
+    default-mapping:
+      table-prefix: t_
+      underline-case: true
+      redundant-suffixes: Po
 
