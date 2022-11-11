@@ -2,6 +2,7 @@ description = "用户管理"
 
 // dock镜像打包
 apply plugin: "com.bmuschko.docker-spring-boot-application"
+
 docker {
     springBootApplication {
         baseImage = 'openjdk:latest'//指定运行镜像
@@ -16,6 +17,7 @@ dependencies {
     implementation(project(":wlxx-services:wlxx-user:wlxx-user-client"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
 }
+
 
 
 

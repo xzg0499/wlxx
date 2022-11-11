@@ -1,4 +1,4 @@
-package com.xzg.wlxx.core.enums;
+package com.xzg.wlxx.core.base.enums;
 
 import lombok.Getter;
 
@@ -8,16 +8,16 @@ import lombok.Getter;
  * @since jdk1.8
  */
 @Getter
-public enum ResEnum {
+public enum ResultMsgEnum {
     SUCCESS(20000, "操作成功"),
     FAILURE(40000, "操作失败"),
     NULL(40004, "空指针异常"),
     ;
 
-    private Integer code;
-    private String msg;
+    private final Integer code;
+    private final String msg;
 
-    private ResEnum(Integer code, String msg) {
+    ResultMsgEnum(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }

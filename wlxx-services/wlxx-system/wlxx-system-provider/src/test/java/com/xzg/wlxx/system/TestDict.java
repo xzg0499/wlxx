@@ -1,11 +1,8 @@
 package com.xzg.wlxx.system;
 
-import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
-import com.xzg.wlxx.system.client.entity.TDict;
-import com.xzg.wlxx.system.client.enums.StatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -21,7 +17,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 /**
@@ -71,25 +66,25 @@ public class TestDict {
         for (int i = 0; i < 10; i++) {
             Name name = faker.name();
 
-            TDict dict = TDict.builder().description(name.firstName())
-                    .dictName(name.lastName())
-                    .dictCode(name.fullName())
-                    .level(i)
-                    .status(StatusEnum.NO)
-                    .build();
-
-            MvcResult result = post("/dict/add", JSONUtil.toJsonStr(dict));
-            MockHttpServletResponse response = result.getResponse();
-            log.info("result:{}", response.getContentAsString(StandardCharsets.UTF_8));
+            //TDict dict = TDict.builder().description(name.firstName())
+            //        .dictName(name.lastName())
+            //        .dictCode(name.fullName())
+            //        .level(i)
+            //        .status(StatusEnum.NO)
+            //        .build();
+            //
+            //MvcResult result = post("/dict/add", JSONUtil.toJsonStr(dict));
+            //MockHttpServletResponse response = result.getResponse();
+            //log.info("result:{}", response.getContentAsString(StandardCharsets.UTF_8));
         }
     }
 
     @Test
     public void testModifyDict() throws Exception {
-        TDict dict = new TDict();
-        dict.setId("0339dcc107cef4f988b886ed10d0fef8");
-        dict.selectById();
-        dict.setDictCode("修改");
+        //TDict dict = new TDict();
+        //dict.setId("0339dcc107cef4f988b886ed10d0fef8");
+        //dict.selectById();
+        //dict.setDictCode("修改");
     }
 
     @Test

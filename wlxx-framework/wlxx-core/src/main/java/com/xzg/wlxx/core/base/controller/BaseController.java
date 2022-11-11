@@ -1,4 +1,4 @@
-package com.xzg.wlxx.core.base;
+package com.xzg.wlxx.core.base.controller;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,10 +9,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @date 2022-01-14
  * @since jdk1.8
  */
-public class BaseController<S extends IService<T>, T> extends BaseRes {
+public class BaseController<S extends IService<T>, T> {
 
     //@Autowired
     //protected S service;
+    // TODO 参考 baseMapper 自动注入
 
 
     // Class<S> clas = (Class<S>) ReflectionKit.getSuperClassGenericType(this.getClass(), BaseController.class, 0);

@@ -1,7 +1,7 @@
 package com.xzg.wlxx.core.base;
 
-import com.xzg.wlxx.core.enums.ResEnum;
-import com.xzg.wlxx.core.response.Res;
+import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
+import com.xzg.wlxx.core.base.response.Result;
 
 /**
  * @author xzgan
@@ -19,12 +19,12 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Res<T> msg(Integer code, String msg, T data) {
-        return new Res<T>(code, msg, data);
+    public static <T> Result<T> msg(Integer code, String msg, T data) {
+        return new Result<T>(code, msg, data);
     }
 
-    public static <T> Res<T> msg(Integer code, String msg) {
-        return new Res<T>(code, msg, null);
+    public static <T> Result<T> msg(Integer code, String msg) {
+        return new Result<T>(code, msg, null);
     }
 
     /**
@@ -34,12 +34,12 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Res<T> success(T data) {
-        return new Res<T>(ResEnum.SUCCESS.getCode(), ResEnum.SUCCESS.getMsg(), data);
+    public static <T> Result<T> success(T data) {
+        return new Result<T>(ResultMsgEnum.SUCCESS.getCode(), ResultMsgEnum.SUCCESS.getMsg(), data);
     }
 
-    public static <T> Res<T> success() {
-        return new Res<T>(ResEnum.SUCCESS);
+    public static <T> Result<T> success() {
+        return new Result<T>(ResultMsgEnum.SUCCESS);
     }
 
     /**
@@ -49,16 +49,13 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Res<T> failure(String msg) {
-        return new Res<T>(ResEnum.FAILURE.getCode(), msg, null);
+    public static <T> Result<T> failure(String msg) {
+        return new Result<T>(ResultMsgEnum.FAILURE.getCode(), msg, null);
     }
 
-    public static <T> Res<T> failure(Integer code, String msg) {
-        return new Res<T>(code, msg, null);
-    }
 
-    public static <T> Res<T> failure() {
-        return new Res<>(ResEnum.FAILURE);
+    public static <T> Result<T> failure() {
+        return new Result<>(ResultMsgEnum.FAILURE);
     }
 
     /**
@@ -68,11 +65,11 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Res<T> failure(Throwable ex) {
-        return new Res<T>(ResEnum.FAILURE.getCode(), ex.getMessage(), null);
+    public static <T> Result<T> failure(Throwable ex) {
+        return new Result<T>(ResultMsgEnum.FAILURE.getCode(), ex.getMessage(), null);
     }
 
-    public static <T> Res<T> failure(ResEnum resEnum) {
-        return new Res<T>(resEnum.getCode(), resEnum.getMsg(), null);
+    public static <T> Result<T> failure(ResultMsgEnum resultMsgEnum) {
+        return new Result<T>(resultMsgEnum.getCode(), resultMsgEnum.getMsg(), null);
     }
 }

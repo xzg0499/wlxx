@@ -1,6 +1,6 @@
-package com.xzg.wlxx.core.response;
+package com.xzg.wlxx.core.base.response;
 
-import com.xzg.wlxx.core.enums.ResEnum;
+import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -19,24 +19,18 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel("接口出参")
-public class Res<T> implements Serializable {
+public class Result<T> implements Serializable {
     @ApiModelProperty("响应编码")
     private Integer code;
     @ApiModelProperty("消息")
     private String msg;
-    @ApiModelProperty("接口是否成功")
-    private Boolean success;
-    @ApiModelProperty("出参数据")
+
+    @ApiModelProperty("数据")
     private T data;
 
-    public Res(Integer code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-    }
 
-    public Res(ResEnum resEnum) {
-        this.code = resEnum.getCode();
-        this.msg = resEnum.getMsg();
+    public Result(ResultMsgEnum resultMsgEnum) {
+        this.code = resultMsgEnum.getCode();
+        this.msg = resultMsgEnum.getMsg();
     }
 }

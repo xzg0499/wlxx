@@ -1,15 +1,11 @@
 package com.xzg.wlxx.system;
 
-import com.xzg.wlxx.system.client.entity.TDict;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author xzgan
@@ -26,10 +22,10 @@ public class TestMockito {
 
     @BeforeEach
     public void init() {
-        List<TDict> list = new ArrayList<>();
-        TDict dict = new TDict();
-        dict.setDictCode("XXX");
-        list.add(dict);
+        //List<TDict> list = new ArrayList<>();
+        //TDict dict = new TDict();
+        //dict.setDictCode("XXX");
+        //list.add(dict);
         //Mockito.when(dictMapper.selectList(Mockito.any())).thenReturn(list);
     }
 

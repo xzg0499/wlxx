@@ -1,9 +1,12 @@
 package com.xzg.wlxx.web.handler;
 
-import com.xzg.wlxx.core.base.BaseController;
-import com.xzg.wlxx.core.enums.ResEnum;
+import com.xzg.wlxx.core.base.BaseRes;
+import com.xzg.wlxx.core.base.controller.BaseController;
+import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
+import com.xzg.wlxx.core.base.response.Result;
 import com.xzg.wlxx.core.exception.BusinessException;
-import com.xzg.wlxx.core.response.Res;
+import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -19,20 +22,39 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionControllerHandler extends BaseController {
 
     @ExceptionHandler(NullPointerException.class)
-    public Res exception(NullPointerException ex) {
+    public Result exception(NullPointerException ex) {
         ex.printStackTrace();
-        return failure(ResEnum.NULL);
+        return BaseRes.failure(ResultMsgEnum.NULL);
     }
 
     @ExceptionHandler(BusinessException.class)
-    public Res exception(BusinessException ex) {
+    public Result exception(BusinessException ex) {
         ex.printStackTrace();
-        return failure(ex);
+        return BaseRes.failure(ex);
     }
 
     @ExceptionHandler(Exception.class)
-    public Res exception(Exception ex) {
+    public Result exception(Exception ex) {
         ex.printStackTrace();
-        return failure(ex);
+        return BaseRes.failure(ex);
+    }
+
+    /**
+     * @Validated 校验
+     */
+    @ExceptionHandler(BindException.class)
+    public Result validatedBindException(BindException e) {
+        StringBuffer msg = new StringBuffer();
+        e.getAllErrors().forEach(ex -> {
+            // FIXME 换行处理
+            if (ex instanceof FieldError) {
+                msg.append("【").append(((FieldError) ex).getField()).append("】")
+                        .append(ex.getDefaultMessage());
+            } else {
+                msg.append(ex.getDefaultMessage());
+            }
+            msg.append(" \n ");
+        });
+        return BaseRes.failure(msg.toString());
     }
 }
