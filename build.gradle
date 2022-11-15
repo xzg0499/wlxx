@@ -66,8 +66,9 @@ configure(subprojects) {
 
     build {
         buildDir("out")
-//        println(buildDir)
+//        println(buildDir)`
     }
+
 
     bootJar {
         if (projectDir.getName().endsWith("-provider")) {
@@ -132,9 +133,14 @@ configure(subprojects) {
         /*faker*/
         implementation group: 'com.github.javafaker', name: 'javafaker', version: "${javafakerVersion}"
 
-        /*jupiter*/
-//        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
+        /*jmockdata*/
+        testImplementation("com.github.jsonzou:jmockdata:4.3.0")
 
+        /*pinyin4j*/
+        implementation("com.belerweb:pinyin4j:2.5.1")
+
+        /*jupiter*/
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
 
         /*mybatis plus generator*/
         testImplementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
@@ -153,8 +159,7 @@ configure(subprojects) {
     }
 
 
-//    test {
-//        useJUnitPlatform()
-//        enabeld(false)
-//    }
+    test {
+        useTestNG()
+    }
 }

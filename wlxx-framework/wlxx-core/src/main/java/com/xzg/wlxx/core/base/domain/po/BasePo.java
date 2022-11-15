@@ -45,7 +45,7 @@ public class BasePo<T extends Model<?>> extends Model<T> {
     private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "是否删除")
-    @TableField("is_delete")
+    @TableField(value = "is_delete", fill = FieldFill.INSERT)
     @TableLogic
-    private Boolean isDelete;
+    private Integer isDelete;
 }

@@ -2,6 +2,9 @@ package com.xzg.wlxx.org.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xzg.wlxx.org.entity.po.CompanyPo;
+import com.xzg.wlxx.org.entity.vo.CompanyVo;
+
+import java.util.List;
 
 /**
  * @author xzgan
@@ -10,4 +13,6 @@ import com.xzg.wlxx.org.entity.po.CompanyPo;
  * @date 2022/11/11 15:00
  */
 public interface ICompanyService extends IService<CompanyPo> {
+
+    List<CompanyVo> getAll();
 }

@@ -44,7 +44,7 @@ public class OrganizationPo extends BasePo<OrganizationPo> {
 
     @ApiModelProperty(value = "上级组织名称")
     @TableField("parent_org_id")
-    private Integer parentOrgId;
+    private Long parentOrgId;
 
     @ApiModelProperty(value = "是否启用")
     @TableField("is_enabled")

@@ -41,7 +41,7 @@ mpg {
     }
 
     strategyConfig {
-        include = ["t_organization", "t_company"]
+        include = ["t_department"]
         tablePrefix = ["t_"]
         entityLombokModel = true
         restControllerStyle = true
@@ -52,4 +52,9 @@ mpg {
         controllerMappingHyphenStyle = true
         superControllerClass = "com.xzg.wlxx.core.base.controller.BaseController"
     }
+}
+
+// FIXME testng需要在此处开启平台使用
+test {
+    useTestNG()
 }

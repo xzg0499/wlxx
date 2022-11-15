@@ -21,7 +21,8 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_company")
-@ApiModel(value = "Company对象", description = "组织")
+@ApiModel(value = "Company对象", description = "公司")
+// FIXME @Builder 慎用
 public class CompanyPo extends BasePo<CompanyPo> {
 
     private static final long serialVersionUID = 1L;
@@ -46,7 +47,7 @@ public class CompanyPo extends BasePo<CompanyPo> {
 
     @ApiModelProperty(value = "上级公司")
     @TableField("parent_company_id")
-    private Integer parentCompanyId;
+    private Long parentCompanyId;
 
 
 }

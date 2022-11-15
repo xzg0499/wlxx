@@ -19,6 +19,7 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
         try {
             this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
             this.setFieldValByName("creator", "xzg", metaObject);
+            this.setFieldValByName("isDelete", 0, metaObject);
         } catch (ReflectionException e) {
             // 没有字段映射时处理办法
             throw new RuntimeException(e);

@@ -20,6 +20,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -68,6 +69,13 @@ public class CompanyController extends BaseController<ICompanyService, CompanyPo
     @PostMapping("query-page")
     public Result<IPage<CompanyPo>> queryByPage(@RequestBody CompanyPageParam param) {
         return BaseRes.success(service.page(param.getPage()));
+    }
+
+    @ApiOperation("获取所有公司")
+    @PostMapping("getAll")
+    public Result<List<CompanyPo>> getAll() {
+
+        return BaseRes.success();
     }
 
     @ApiOperation("修改")
