@@ -1,0 +1,30 @@
+description("flowable")
+
+ext {
+    flowableVersion = "6.7.2"
+}
+
+dependencies {
+    implementation(project(":wlxx-framework:wlxx-web"))
+    implementation(project(":wlxx-framework:wlxx-core"))
+    implementation("org.flowable:flowable-spring-boot-starter:${flowableVersion}")
+
+    implementation("org.flowable:flowable-spring-boot-starter-rest:${flowableVersion}")
+
+    implementation("org.flowable:flowable-spring-boot-starter-ui-modeler:${flowableVersion}")
+    implementation("org.flowable:flowable-spring-boot-starter-ui-task:${flowableVersion}")
+    implementation("org.flowable:flowable-spring-boot-starter-ui-idm:${flowableVersion}")
+    implementation("org.flowable:flowable-spring-boot-starter-ui-admin:${flowableVersion}")
+
+//    implementation group: 'org.flowable', name: 'flowable-ui-modeler-conf', version: '6.7.2'
+//    implementation group: 'org.flowable', name: 'flowable-ui-task-conf', version: '6.7.2'
+//    implementation group: 'org.flowable', name: 'flowable-ui-admin-conf', version: '6.7.2'
+//    implementation group: 'org.flowable', name: 'flowable-ui-idm-conf', version: '6.7.2'
+
+//    process-api for the Process Engine
+//    cmmn-api for the CMMN Engine
+//    dmn-api for the DMN Engine
+//    idm-api for the IDM Engine
+//    form-api for the Form Engine
+//    content-api for the Content Engine
+}
