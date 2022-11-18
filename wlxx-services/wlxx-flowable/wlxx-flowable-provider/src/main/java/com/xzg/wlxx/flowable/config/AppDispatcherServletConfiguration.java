@@ -62,5 +62,5 @@ public class AppDispatcherServletConfiguration implements WebMvcRegistrations {
         requestMappingHandlerMapping.setInterceptors(interceptors);
         return requestMappingHandlerMapping;
     }
-
+    
 }

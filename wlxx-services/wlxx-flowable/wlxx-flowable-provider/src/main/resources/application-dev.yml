@@ -25,10 +25,18 @@ spring:
 
 server:
   port: 12003
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /${spring.application.name}
+  compression:
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    enabled: true
+    min-response-size: 4096
 
 logging:
   level:
-    root: debug
+    root: info
     com.xzg.wlxx: debug
     com.ejlchina.searcher: debug
   file:
@@ -59,9 +67,14 @@ bean-searcher:
       redundant-suffixes: Po
 
 flowable:
+  async-executor-activate: false
   labelFontName: 宋体
   activityFontName: 宋体
   annotationFontName: 宋体
+  form-field-validation-enabled: false
+  experimental:
+    debugger:
+      enabled: true
   rest:
     app:
       authentication-mode: verify-privilege
@@ -70,10 +83,11 @@ flowable:
   idm:
     app:
       admin:
-        password: xiao
+        password: test
         user-id: admin
         first-name: admin
         last-name: admin
+        email: test-admin@example-domain.tld
   common:
     app:
       role-prefix:
@@ -92,7 +106,7 @@ flowable:
       server-config:
         app:
           context-root: ${spring.application.name}
-          password: xiao
+          password: test
           server-address: http://localhost
           user-name: admin
           port: ${server.port}
@@ -102,7 +116,7 @@ flowable:
         process:
           context-root: ${spring.application.name}
           server-address: http://localhost
-          password: xiao
+          password: test
           user-name: admin
           rest-root: process-api
           port: ${server.port}
@@ -111,7 +125,7 @@ flowable:
         form:
           context-root: ${spring.application.name}
           server-address: http://localhost
-          password: xiao
+          password: test
           user-name: admin
           port: ${server.port}
           rest-root: form-api
@@ -120,7 +134,7 @@ flowable:
         dmn:
           context-root: ${spring.application.name}
           server-address: http://localhost
-          password: xiao
+          password: test
           user-name: admin
           port: ${server.port}
           rest-root: dmn-api
@@ -128,7 +142,7 @@ flowable:
           description: Flowable DMN REST config
         cmmn:
           context-root: ${spring.application.name}
-          password: xiao
+          password: test
           server-address: http://localhost
           user-name: admin
           port: ${server.port}
@@ -138,7 +152,7 @@ flowable:
         content:
           context-root: ${spring.application.name}
           server-address: http://localhost
-          password: xiao
+          password: test
           user-name: admin
           rest-root: content-api
           port: ${server.port}

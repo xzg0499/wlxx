@@ -5,11 +5,11 @@ ext {
 }
 
 dependencies {
-    implementation(project(":wlxx-framework:wlxx-web"))
-    implementation(project(":wlxx-framework:wlxx-core"))
-    implementation("org.flowable:flowable-spring-boot-starter:${flowableVersion}")
+//    implementation(project(":wlxx-framework:wlxx-web"))
+//    implementation(project(":wlxx-framework:wlxx-core"))
+//    implementation("org.flowable:flowable-spring-boot-starter:${flowableVersion}")
 
-    implementation("org.flowable:flowable-spring-boot-starter-rest:${flowableVersion}")
+//    implementation("org.flowable:flowable-spring-boot-starter-rest:${flowableVersion}")
 
     implementation("org.flowable:flowable-spring-boot-starter-ui-modeler:${flowableVersion}")
     implementation("org.flowable:flowable-spring-boot-starter-ui-task:${flowableVersion}")

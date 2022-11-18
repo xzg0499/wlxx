@@ -6,6 +6,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -19,6 +20,19 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .allowedOriginPatterns("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        WebMvcConfigurer.super.addResourceHandlers(registry);
+        registry.addResourceHandler("/modeler/**")
+                .addResourceLocations("classpath:/static/modeler/");
+        registry.addResourceHandler("/idm/**")
+                .addResourceLocations("classpath:/static/idm/");
+        registry.addResourceHandler("/admin/**")
+                .addResourceLocations("classpath:/static/idm/");
+        registry.addResourceHandler("/task/**")
+                .addResourceLocations("classpath:/static/idm/");
     }
 
     private CorsConfiguration buildConfig() {

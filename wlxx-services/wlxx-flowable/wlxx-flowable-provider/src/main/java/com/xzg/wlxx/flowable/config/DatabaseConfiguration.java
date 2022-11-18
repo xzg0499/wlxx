@@ -23,8 +23,6 @@ import org.flowable.ui.common.service.exception.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -33,8 +31,8 @@ import javax.sql.DataSource;
  * 重写flowable-ui-xxx-conf 中的 DatabaseConfiguration 类,
  * 包括:flowable-ui-modeler-conf和flowable-ui-admin-conf 的DatabaseConfiguration
  */
-@Configuration
-@EnableTransactionManagement
+//@Configuration
+//@EnableTransactionManagement
 public class DatabaseConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseConfiguration.class);
