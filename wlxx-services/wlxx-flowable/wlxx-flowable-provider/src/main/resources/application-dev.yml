@@ -9,8 +9,6 @@ spring:
   aop:
     proxy-target-class: false
     auto: false
-  application:
-    name: wlxx-flowable
   banner:
     location: classpath:/org/flowable/spring/boot/flowable-banner.txt
   security:
