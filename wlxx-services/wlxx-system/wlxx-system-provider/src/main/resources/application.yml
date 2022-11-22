@@ -28,6 +28,7 @@ spring:
 
 logging:
   level:
+    com.zg.wlxx.system: debug
 
 mybatis-plus:
   type-enums-package: com.xzg.wlxx.*.client.enums.*

@@ -3,6 +3,9 @@ server:
   servlet:
     context-path: /${spring.application.name}
 spring:
+  batch:
+    job:
+      enabled: false
   jmx:
     unique-names: true
     default-domain: ${spring.application.name}
@@ -16,7 +19,7 @@ spring:
       dispatcher-types: REQUEST,FORWARD,ASYNC
   datasource:
     driver-class: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/db_flowable?characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/db_flowable?characterEncoding=UTF-8
     username: root
     password: xiao
     hikari:

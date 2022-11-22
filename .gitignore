@@ -37,4 +37,4 @@ out/
 .vscode/
 /wlxx/data/
 /generator/
-/logs/
+logs
