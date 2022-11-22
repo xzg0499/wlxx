@@ -158,7 +158,7 @@ flowable:
           port: ${server.port}
           name: Flowable Content app
           description: Flowable Content REST config
-  database-schema-update: true
+  database-schema-update: false
 management:
   endpoint:
     health:
