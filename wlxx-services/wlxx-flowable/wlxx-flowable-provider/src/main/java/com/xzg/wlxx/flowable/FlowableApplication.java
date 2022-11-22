@@ -1,9 +1,9 @@
 package com.xzg.wlxx.flowable;
 
-import org.springframework.beans.factory.support.DefaultBeanNameGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * @author xzgan
@@ -12,10 +12,14 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2022/11/17 15:37
  */
 @SpringBootApplication
-@ComponentScan(nameGenerator = DefaultBeanNameGenerator.class)
-public class FlowableApplication {
+public class FlowableApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(FlowableApplication.class, args);
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(FlowableApplication.class);
     }
 }

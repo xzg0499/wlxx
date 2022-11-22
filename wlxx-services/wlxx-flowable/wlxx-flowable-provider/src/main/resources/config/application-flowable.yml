@@ -1,8 +1,10 @@
 server:
-  port: 8080
+  port: 12003
   servlet:
-    context-path: /${spring.application.name}
+    context-path: /wlxx-flowable
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jmx:
     unique-names: true
     default-domain: ${spring.application.name}
@@ -17,8 +19,8 @@ spring:
     filter:
       dispatcher-types: REQUEST,FORWARD,ASYNC
   datasource:
-    driver-class: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/db_flowable?characterEncoding=UTF-8
+    url: jdbc:mysql://${DATASOURCE_URL:localhost}:3306/${SCHEMA_NAME:db_flowable}?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: xiao
     hikari:
@@ -50,10 +52,12 @@ management:
     health:
       show-details: when_authorized
       roles: access-admin
+
 flowable:
+  database-schema-update: false
   common:
     app:
-      role-prefix: ''
+      role-prefix:
       idm-admin:
         user: admin
         password: test
@@ -74,7 +78,7 @@ flowable:
       create-root: true
   experimental:
     debugger:
-      enabled: false
+      enabled: true
   task:
     app:
       rest-enabled: true
