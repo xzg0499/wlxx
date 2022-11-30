@@ -1,5 +1,0 @@
-description = "用户管理"
-
-dependencies {
-    implementation(project(":wlxx-framework:wlxx-web"))
-}

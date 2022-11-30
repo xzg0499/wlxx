@@ -1,5 +1,6 @@
 description = "系统管理"
 
 dependencies {
+    implementation(project(":wlxx-framework:wlxx-core"))
     implementation(project(":wlxx-framework:wlxx-web"))
 }

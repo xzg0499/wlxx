@@ -1,11 +1,9 @@
 package com.xzg.wlxx.system;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import com.baomidou.mybatisplus.generator.fill.Column;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,9 +16,9 @@ import java.util.List;
 public class SystemGenerator {
 
     @Test
-    public void generator(){
+    public void generator() {
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/db_system?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true"
-                        ,"root","xiao")
+                        , "root", "xiao")
                 .globalConfig(builder -> {
                     builder.author("baomidou") // 设置作者
                             .enableSwagger() // 开启 swagger 模式

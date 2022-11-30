@@ -1,6 +1,0 @@
-description("org-client")
-
-dependencies {
-    implementation(project(":wlxx-framework:wlxx-web"))
-    implementation(project(":wlxx-framework:wlxx-core"))
-}
