@@ -7,7 +7,6 @@ import com.xzg.wlxx.core.base.response.Result;
 import com.xzg.wlxx.core.exception.BusinessException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -19,21 +18,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 @RestControllerAdvice
-public class ExceptionControllerHandler extends BaseController {
+public class ExceptionHandler extends BaseController {
 
-    @ExceptionHandler(NullPointerException.class)
+    @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)
     public Result exception(NullPointerException ex) {
         ex.printStackTrace();
         return BaseRes.failure(ResultMsgEnum.NULL);
     }
 
-    @ExceptionHandler(BusinessException.class)
+    @org.springframework.web.bind.annotation.ExceptionHandler(BusinessException.class)
     public Result exception(BusinessException ex) {
         ex.printStackTrace();
         return BaseRes.failure(ex);
     }
 
-    @ExceptionHandler(Exception.class)
+    @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
     public Result exception(Exception ex) {
         ex.printStackTrace();
         return BaseRes.failure(ex);
@@ -42,7 +41,7 @@ public class ExceptionControllerHandler extends BaseController {
     /**
      * @Validated 校验
      */
-    @ExceptionHandler(BindException.class)
+    @org.springframework.web.bind.annotation.ExceptionHandler(BindException.class)
     public Result validatedBindException(BindException e) {
         StringBuffer msg = new StringBuffer();
         e.getAllErrors().forEach(ex -> {

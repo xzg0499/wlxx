@@ -27,7 +27,7 @@ import java.util.Locale;
 @SpringBootTest(classes = SystemApplication.class)
 @Slf4j
 @AutoConfigureMockMvc
-public class TestDict {
+public class TestDictPo {
 
     @Autowired
     MockMvc mockMvc;

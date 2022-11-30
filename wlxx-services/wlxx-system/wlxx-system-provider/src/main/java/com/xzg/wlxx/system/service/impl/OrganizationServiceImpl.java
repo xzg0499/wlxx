@@ -1,10 +1,18 @@
 package com.xzg.wlxx.system.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
+import com.xzg.wlxx.system.client.entity.vo.OrganizationVo;
 import com.xzg.wlxx.system.mapper.OrganizationMapper;
 import com.xzg.wlxx.system.service.IOrganizationService;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -17,4 +25,60 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, OrganizationPo> implements IOrganizationService {
 
+
+    @Override
+    public boolean add(OrganizationPo po) {
+
+        return save(po);
+    }
+
+    @Override
+    public boolean edit(OrganizationPo po) {
+        return updateById(po);
+    }
+
+
+    @Override
+    public List<OrganizationVo> get(Long id) {
+        List<OrganizationPo> list = lambdaQuery()
+                .orderByDesc(OrganizationPo::getLevel).list();
+        List<OrganizationVo> vos = new ArrayList<>();
+        list.stream().filter(e -> {
+                    if (Objects.isNull(id)) {
+                        return Objects.deepEquals(OrganizationPo.ROOT, e.getLevel());
+                    } else {
+                        return id.equals(e.getId());
+                    }
+                })
+                .forEach(e -> {
+                    OrganizationVo vo = new OrganizationVo();
+                    BeanUtil.copyProperties(e, vo);
+                    vos.add(vo);
+                });
+        assembleCompany(list, vos);
+        return vos;
+    }
+
+    /**
+     * 迭代组装Company
+     */
+    public List<OrganizationVo> assembleCompany(List<OrganizationPo> pos, List<OrganizationVo> vos) {
+        vos.forEach(e -> {
+            List<OrganizationVo> list = pos.stream().filter(p ->
+                            Objects.deepEquals(e.getId(), p.getParentOrgId())
+                                    && p.getLevel().compareTo(e.getLevel()) >= 0)
+                    .map(p -> {
+                        OrganizationVo vo = new OrganizationVo();
+                        BeanUtil.copyProperties(p, vo);
+                        return vo;
+                    })
+                    .collect(Collectors.toList());
+            e.setChildren(list);
+            if (!CollectionUtil.isEmpty(list)) {
+                assembleCompany(pos, list);
+            }
+        });
+
+        return vos;
+    }
 }

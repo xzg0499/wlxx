@@ -1,7 +1,5 @@
 package com.xzg.wlxx.core.base.controller;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-
 /**
  * FIXME controller 中service注册会导致多例
  *
@@ -9,11 +7,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @date 2022-01-14
  * @since jdk1.8
  */
-public class BaseController<S extends IService<T>, T> {
+public class BaseController {
 
+    //// TODO 参考 baseMapper 自动注入
     //@Autowired
     //protected S service;
-    // TODO 参考 baseMapper 自动注入
 
 
     // Class<S> clas = (Class<S>) ReflectionKit.getSuperClassGenericType(this.getClass(), BaseController.class, 0);

@@ -10,17 +10,17 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 部门
+ * 员工
  * </p>
  *
  * @author xzgan
- * @since 2022-11-12
+ * @since 2022-11-30
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("t_department")
-@ApiModel(value = "Department对象", description = "部门")
-public class DepartmentPo extends BasePo {
+@TableName("t_employee")
+@ApiModel(value = "Employee对象", description = "员工")
+public class EmployeePo extends BasePo<EmployeePo> {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,21 +28,13 @@ public class DepartmentPo extends BasePo {
     @TableField("is_enabled")
     private Boolean isEnabled;
 
-    @ApiModelProperty(value = "部门编码")
-    @TableField("dept_code")
-    private String deptCode;
+    @ApiModelProperty(value = "员工编号")
+    @TableField("emp_code")
+    private String empCode;
 
-    @ApiModelProperty(value = "部门名称")
-    @TableField("dept_name")
-    private String deptName;
-
-    @ApiModelProperty(value = "级别")
-    @TableField("level")
-    private Integer level;
-
-    @ApiModelProperty(value = "上级部门")
-    @TableField("parent_dept_id")
-    private Long parentDeptId;
+    @ApiModelProperty(value = "姓名")
+    @TableField("emp_name")
+    private String empName;
 
 
 }

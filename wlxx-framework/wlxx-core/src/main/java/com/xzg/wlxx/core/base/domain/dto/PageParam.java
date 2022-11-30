@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 @Api(value = "分页参数", tags = "分页参数")
-public class BasePageParam<T> {
+public class PageParam<T> {
 
     @ApiModelProperty("当前页")
     private Integer current = 0;

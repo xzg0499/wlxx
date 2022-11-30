@@ -24,6 +24,10 @@ dependencies {
     implementation("org.mockito:mockito-core:${MockitoVersion}")
     implementation("net.bytebuddy:byte-buddy:${ByteBuddyVersion}")
     implementation("net.bytebuddy:byte-buddy-agent:${ByteBuddyVersion}")
+
+    /*fluent-mybatis*/
+//    implementation "com.github.atool:fluent-mybatis-boot-starter:${fluentMybatisVersion}"
+//    testImplementation("com.github.atool:fluent-mybatis-generator:1.3.1")
 }
 
 
@@ -49,7 +53,7 @@ mpg {
     }
 
     packageConfig {
-        parent = "com.xzg.wlxx.org.demo"
+        parent = "com.xzg.wlxx.system.demo"
         entity = "entity"
         mapper = "mapper"
     }
@@ -60,7 +64,7 @@ mpg {
     }
 
     strategyConfig {
-        include = ["t_department"]
+        include = ["t_dict"]
         tablePrefix = ["t_"]
         entityLombokModel = true
         restControllerStyle = true
