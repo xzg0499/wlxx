@@ -1,6 +1,8 @@
 package com.xzg.wlxx.system.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xzg.wlxx.system.client.entity.param.DictParam;
 import com.xzg.wlxx.system.client.entity.po.DictPo;
 
 /**
@@ -12,5 +14,11 @@ import com.xzg.wlxx.system.client.entity.po.DictPo;
  * @since 2022-11-30
  */
 public interface IDictService extends IService<DictPo> {
+
+    boolean add(DictPo po);
+
+    boolean edit(DictPo po);
+
+    IPage<DictPo> search(DictParam param);
 
 }

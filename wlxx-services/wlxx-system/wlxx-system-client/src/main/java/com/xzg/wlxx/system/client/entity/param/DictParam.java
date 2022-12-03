@@ -1,19 +1,19 @@
 package com.xzg.wlxx.system.client.entity.param;
 
 import com.xzg.wlxx.core.base.domain.dto.PageParam;
-import com.xzg.wlxx.system.client.entity.po.UserPo;
+import com.xzg.wlxx.system.client.entity.po.DictPo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户分页查询参数
+ * 数据字典分页查询参数
  *
  * @author xzgan
  * @project wlxx
  * @package com.xzg.wlxx.system.client.entity.param
- * @date 2022/11/30 22:52
+ * @date 2022/12/3 14:56
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserParam extends PageParam<UserPo> {
+public class DictParam extends PageParam<DictPo> {
 }

@@ -20,5 +20,5 @@ public interface IUserService extends IService<UserPo> {
      */
     boolean add(UserPo po);
 
-    IPage<UserPo> queryPage(UserParam param);
+    IPage<UserPo> search(UserParam param);
 }

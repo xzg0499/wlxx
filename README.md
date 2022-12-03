@@ -17,6 +17,7 @@
 - [ ] RxJava 异步编程
 - [ ] bean-searcher、fluent-mybatis 框架选择
 - [ ] 独立 parent 模块，将所有共用到的外部依赖全部放入此处管理
+- [ ] 集成kafka消息队列，是否需要集成Zookeeper配置管理？
 
 ## idae
 

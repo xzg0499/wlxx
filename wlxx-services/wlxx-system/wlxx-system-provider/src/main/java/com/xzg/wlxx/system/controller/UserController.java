@@ -45,6 +45,6 @@ public class UserController extends BaseController {
     @ApiOperation("分页查询")
     @PostMapping("search-page")
     public RestResult searchPage(@RequestBody UserParam param) {
-        return BaseRes.success(service.queryPage(param));
+        return BaseRes.success(service.search(param));
     }
 }

@@ -25,7 +25,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPo> implements 
     }
 
     @Override
-    public IPage<UserPo> queryPage(UserParam param) {
+    public IPage<UserPo> search(UserParam param) {
         return page(param.getPage());
     }
 }

@@ -8,5 +8,6 @@ com.xzg.wlxx.web.util.RedisUtil,\
 com.xzg.wlxx.web.config.WebMvcConfig,\
 com.xzg.wlxx.web.config.FeignGlobalConfig,\
 com.xzg.wlxx.web.config.WebSecurityConfig,\
-com.xzg.wlxx.web.config.JsonHttpMessageConvertor
+com.xzg.wlxx.web.config.JsonHttpMessageConvertor,\
+com.xzg.wlxx.web.apo.LogAop
 
