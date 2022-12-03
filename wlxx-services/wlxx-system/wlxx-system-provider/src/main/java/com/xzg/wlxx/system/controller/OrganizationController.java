@@ -3,7 +3,7 @@ package com.xzg.wlxx.system.controller;
 
 import com.xzg.wlxx.core.base.BaseRes;
 import com.xzg.wlxx.core.base.controller.BaseController;
-import com.xzg.wlxx.core.base.response.Result;
+import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
 import com.xzg.wlxx.system.client.entity.vo.OrganizationVo;
 import com.xzg.wlxx.system.service.IOrganizationService;
@@ -36,7 +36,7 @@ public class OrganizationController extends BaseController {
 
     @ApiOperation("新增")
     @PostMapping("add")
-    public Result add(@RequestBody @Validated OrganizationPo po) {
+    public RestResult add(@RequestBody @Validated OrganizationPo po) {
         if (service.add(po)) {
             return BaseRes.success();
         }
@@ -45,7 +45,7 @@ public class OrganizationController extends BaseController {
 
     @ApiOperation("修改")
     @PostMapping("edit")
-    public Result edit(@RequestBody OrganizationPo po) {
+    public RestResult edit(@RequestBody OrganizationPo po) {
         if (service.edit(po)) {
             return BaseRes.success();
         }
@@ -57,13 +57,13 @@ public class OrganizationController extends BaseController {
      */
     @ApiOperation("获取组织结构")
     @GetMapping("get-all")
-    public Result<List<OrganizationVo>> getAll() {
+    public RestResult<List<OrganizationVo>> getAll() {
         return BaseRes.success(service.get(null));
     }
 
     @ApiOperation("获取组织结构")
     @GetMapping("get/{id}")
-    public Result<List<OrganizationVo>> get(@PathVariable(value = "id", required = false) Long id) {
+    public RestResult<List<OrganizationVo>> get(@PathVariable(value = "id", required = false) Long id) {
         return BaseRes.success(service.get(id));
     }
 }

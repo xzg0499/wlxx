@@ -3,7 +3,7 @@ package com.xzg.wlxx.system.controller;
 
 import com.xzg.wlxx.core.base.BaseRes;
 import com.xzg.wlxx.core.base.controller.BaseController;
-import com.xzg.wlxx.core.base.response.Result;
+import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.system.client.entity.param.UserParam;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.service.IUserService;
@@ -35,7 +35,7 @@ public class UserController extends BaseController {
 
     @ApiOperation("添加用户")
     @PostMapping("add")
-    public Result add(@RequestBody @Validated UserPo po) {
+    public RestResult add(@RequestBody @Validated UserPo po) {
         if (service.add(po)) {
             return BaseRes.success();
         }
@@ -44,7 +44,7 @@ public class UserController extends BaseController {
 
     @ApiOperation("分页查询")
     @PostMapping("search-page")
-    public Result searchPage(@RequestBody UserParam param) {
+    public RestResult searchPage(@RequestBody UserParam param) {
         return BaseRes.success(service.queryPage(param));
     }
 }

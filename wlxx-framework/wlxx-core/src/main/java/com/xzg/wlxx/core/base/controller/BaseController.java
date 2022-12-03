@@ -9,7 +9,7 @@ package com.xzg.wlxx.core.base.controller;
  */
 public class BaseController {
 
-    //// TODO 参考 baseMapper 自动注入
+    // TODO 参考 baseMapper 自动注入，由于baseMapper不为spring托管，service无法通过Autowired注入
     //@Autowired
     //protected S service;
 

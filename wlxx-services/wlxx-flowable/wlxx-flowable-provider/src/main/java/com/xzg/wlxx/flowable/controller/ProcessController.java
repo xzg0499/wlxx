@@ -2,7 +2,7 @@ package com.xzg.wlxx.flowable.controller;
 
 import com.xzg.wlxx.core.base.BaseRes;
 import com.xzg.wlxx.core.base.controller.BaseController;
-import com.xzg.wlxx.core.base.response.Result;
+import com.xzg.wlxx.core.base.response.RestResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.RuntimeService;
@@ -27,7 +27,7 @@ public class ProcessController extends BaseController {
     private final TaskService taskService;
 
     @PostMapping("test")
-    public Result test() {
+    public RestResult test() {
         log.info("test");
         //ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         //RuntimeService runtimeService = processEngine.getRuntimeService();

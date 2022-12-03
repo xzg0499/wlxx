@@ -1,7 +1,7 @@
 package com.xzg.wlxx.core.base;
 
 import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
-import com.xzg.wlxx.core.base.response.Result;
+import com.xzg.wlxx.core.base.response.RestResult;
 
 /**
  * @author xzgan
@@ -19,12 +19,12 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Result<T> msg(Integer code, String msg, T data) {
-        return new Result<T>(code, msg, data);
+    public static <T> RestResult<T> msg(Integer code, String msg, T data) {
+        return new RestResult<T>(code, msg, data);
     }
 
-    public static <T> Result<T> msg(Integer code, String msg) {
-        return new Result<T>(code, msg, null);
+    public static <T> RestResult<T> msg(Integer code, String msg) {
+        return new RestResult<T>(code, msg, null);
     }
 
     /**
@@ -34,12 +34,12 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Result<T> success(T data) {
-        return new Result<T>(ResultMsgEnum.SUCCESS.getCode(), ResultMsgEnum.SUCCESS.getMsg(), data);
+    public static <T> RestResult<T> success(T data) {
+        return new RestResult<T>(ResultMsgEnum.SUCCESS.getCode(), ResultMsgEnum.SUCCESS.getMsg(), data);
     }
 
-    public static <T> Result<T> success() {
-        return new Result<T>(ResultMsgEnum.SUCCESS);
+    public static <T> RestResult<T> success() {
+        return new RestResult<T>(ResultMsgEnum.SUCCESS);
     }
 
     /**
@@ -49,13 +49,13 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Result<T> failure(String msg) {
-        return new Result<T>(ResultMsgEnum.FAILURE.getCode(), msg, null);
+    public static <T> RestResult<T> failure(String msg) {
+        return new RestResult<T>(ResultMsgEnum.FAILURE.getCode(), msg, null);
     }
 
 
-    public static <T> Result<T> failure() {
-        return new Result<>(ResultMsgEnum.FAILURE);
+    public static <T> RestResult<T> failure() {
+        return new RestResult<>(ResultMsgEnum.FAILURE);
     }
 
     /**
@@ -65,11 +65,11 @@ public class BaseRes {
      * @param <T>
      * @return
      */
-    public static <T> Result<T> failure(Throwable ex) {
-        return new Result<T>(ResultMsgEnum.FAILURE.getCode(), ex.getMessage(), null);
+    public static <T> RestResult<T> failure(Throwable ex) {
+        return new RestResult<T>(ResultMsgEnum.FAILURE.getCode(), ex.getMessage(), null);
     }
 
-    public static <T> Result<T> failure(ResultMsgEnum resultMsgEnum) {
-        return new Result<T>(resultMsgEnum.getCode(), resultMsgEnum.getMsg(), null);
+    public static <T> RestResult<T> failure(ResultMsgEnum resultMsgEnum) {
+        return new RestResult<T>(resultMsgEnum.getCode(), resultMsgEnum.getMsg(), null);
     }
 }

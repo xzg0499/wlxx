@@ -1,12 +1,12 @@
 package com.xzg.wlxx.web.handler;
 
 import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.controller.BaseController;
 import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
-import com.xzg.wlxx.core.base.response.Result;
+import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.core.exception.BusinessException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -18,22 +18,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 @RestControllerAdvice
-public class ExceptionHandler extends BaseController {
+public class GlobalExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)
-    public Result exception(NullPointerException ex) {
+    @ExceptionHandler(NullPointerException.class)
+    public RestResult nullPointerException(NullPointerException ex) {
         ex.printStackTrace();
         return BaseRes.failure(ResultMsgEnum.NULL);
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(BusinessException.class)
-    public Result exception(BusinessException ex) {
+    @ExceptionHandler(BusinessException.class)
+    public RestResult businessException(BusinessException ex) {
         ex.printStackTrace();
         return BaseRes.failure(ex);
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
-    public Result exception(Exception ex) {
+    @ExceptionHandler(Throwable.class)
+    public RestResult throwable(Throwable ex) {
         ex.printStackTrace();
         return BaseRes.failure(ex);
     }
@@ -41,8 +41,8 @@ public class ExceptionHandler extends BaseController {
     /**
      * @Validated 校验
      */
-    @org.springframework.web.bind.annotation.ExceptionHandler(BindException.class)
-    public Result validatedBindException(BindException e) {
+    @ExceptionHandler(BindException.class)
+    public RestResult bindException(BindException e) {
         StringBuffer msg = new StringBuffer();
         e.getAllErrors().forEach(ex -> {
             // FIXME 换行处理
