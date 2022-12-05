@@ -20,11 +20,18 @@ public class BaseRes {
      * @return
      */
     public static <T> RestResult<T> msg(Integer code, String msg, T data) {
-        return new RestResult<T>(code, msg, data);
+        return RestResult.<T>builder()
+                .code(code)
+                .msg(msg)
+                .data(data)
+                .build();
     }
 
     public static <T> RestResult<T> msg(Integer code, String msg) {
-        return new RestResult<T>(code, msg, null);
+        return RestResult.<T>builder()
+                .code(code)
+                .msg(msg)
+                .build();
     }
 
     /**
@@ -35,11 +42,18 @@ public class BaseRes {
      * @return
      */
     public static <T> RestResult<T> success(T data) {
-        return new RestResult<T>(ResultMsgEnum.SUCCESS.getCode(), ResultMsgEnum.SUCCESS.getMsg(), data);
+        return RestResult.<T>builder()
+                .code(ResultMsgEnum.SUCCESS.getCode())
+                .msg(ResultMsgEnum.SUCCESS.getMsg())
+                .data(data)
+                .build();
     }
 
     public static <T> RestResult<T> success() {
-        return new RestResult<T>(ResultMsgEnum.SUCCESS);
+        return RestResult.<T>builder()
+                .code(ResultMsgEnum.SUCCESS.getCode())
+                .msg(ResultMsgEnum.SUCCESS.getMsg())
+                .build();
     }
 
     /**
@@ -50,12 +64,18 @@ public class BaseRes {
      * @return
      */
     public static <T> RestResult<T> failure(String msg) {
-        return new RestResult<T>(ResultMsgEnum.FAILURE.getCode(), msg, null);
+        return RestResult.<T>builder()
+                .code(ResultMsgEnum.FAILURE.getCode())
+                .msg(msg)
+                .build();
     }
 
 
     public static <T> RestResult<T> failure() {
-        return new RestResult<>(ResultMsgEnum.FAILURE);
+        return RestResult.<T>builder()
+                .code(ResultMsgEnum.FAILURE.getCode())
+                .msg(ResultMsgEnum.FAILURE.getMsg())
+                .build();
     }
 
     /**
@@ -66,10 +86,16 @@ public class BaseRes {
      * @return
      */
     public static <T> RestResult<T> failure(Throwable ex) {
-        return new RestResult<T>(ResultMsgEnum.FAILURE.getCode(), ex.getMessage(), null);
+        return RestResult.<T>builder()
+                .code(ResultMsgEnum.FAILURE.getCode())
+                .msg(ex.getMessage())
+                .build();
     }
 
     public static <T> RestResult<T> failure(ResultMsgEnum resultMsgEnum) {
-        return new RestResult<T>(resultMsgEnum.getCode(), resultMsgEnum.getMsg(), null);
+        return RestResult.<T>builder()
+                .code(resultMsgEnum.getCode())
+                .msg(resultMsgEnum.getMsg())
+                .build();
     }
 }
