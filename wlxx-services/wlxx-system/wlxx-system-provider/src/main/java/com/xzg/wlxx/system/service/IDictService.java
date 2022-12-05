@@ -15,11 +15,25 @@ import com.xzg.wlxx.system.client.entity.po.DictPo;
  */
 public interface IDictService extends IService<DictPo> {
 
+    /**
+     * 添加
+     */
     boolean add(DictPo po);
 
+    /**
+     * 编辑
+     */
     boolean edit(DictPo po);
 
+    /**
+     * 分页查询
+     * @param param
+     * @return
+     */
     IPage<DictPo> search(DictParam param);
 
+    /**
+     * 启用/禁用
+     */
     boolean enabled(Long id, boolean enabled);
 }
