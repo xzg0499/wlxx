@@ -8,6 +8,8 @@ import com.xzg.wlxx.system.mapper.UserMapper;
 import com.xzg.wlxx.system.service.IUserService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户 服务实现类
@@ -28,4 +30,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPo> implements 
     public IPage<UserPo> search(UserParam param) {
         return page(param.getPage());
     }
+
+    @Override
+    public boolean enabled(Long id, boolean enabled) {
+        boolean result = lambdaUpdate().set(UserPo::getIsEnabled,enabled)
+                .eq(UserPo::getId,id)
+                .update();
+        return result;
+    }
+
 }

@@ -21,4 +21,5 @@ public interface IDictService extends IService<DictPo> {
 
     IPage<DictPo> search(DictParam param);
 
+    boolean enabled(Long id, boolean enabled);
 }

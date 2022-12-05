@@ -12,10 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -27,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("user")
-@Api(tags = "用户", value = "用户")
+@Api(tags = "用户管理", value = "用户管理")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController extends BaseController {
 
@@ -46,5 +43,32 @@ public class UserController extends BaseController {
     @PostMapping("search-page")
     public RestResult searchPage(@RequestBody UserParam param) {
         return BaseRes.success(service.search(param));
+    }
+
+    @ApiOperation("启用")
+    @PutMapping("enabled/{id}")
+    public RestResult enabled(@PathVariable(name = "id")Long id){
+        if(service.enabled(id,true)){
+            return BaseRes.success();
+        }
+        return BaseRes.failure();
+    }
+
+    @ApiOperation("启用")
+    @PutMapping("disabled/{id}")
+    public RestResult disabled(@PathVariable(name = "id")Long id){
+        if(service.enabled(id,false)){
+            return BaseRes.success();
+        }
+        return BaseRes.failure();
+    }
+
+    @ApiOperation("删除")
+    @DeleteMapping("del/{id}")
+    public RestResult del(@PathVariable Long id){
+        if(service.removeById(id)){
+            return BaseRes.success();
+        }
+        return BaseRes.failure();
     }
 }

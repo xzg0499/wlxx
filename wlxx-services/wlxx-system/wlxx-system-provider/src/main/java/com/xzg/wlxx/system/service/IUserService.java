@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.xzg.wlxx.system.client.entity.param.UserParam;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户 服务类
@@ -20,5 +22,14 @@ public interface IUserService extends IService<UserPo> {
      */
     boolean add(UserPo po);
 
+    /**
+     * 分页查询
+     */
     IPage<UserPo> search(UserParam param);
+
+    /**
+     * 启用/禁用
+     */
+    boolean enabled(Long id, boolean enabled);
+
 }

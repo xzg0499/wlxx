@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("employee")
-@Api(tags = "员工", value = "员工")
+@Api(tags = "员工管理", value = "员工管理")
 public class EmployeeController extends BaseController {
 
 }

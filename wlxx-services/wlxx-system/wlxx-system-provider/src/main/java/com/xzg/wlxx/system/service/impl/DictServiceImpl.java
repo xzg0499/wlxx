@@ -34,4 +34,11 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, DictPo> implements 
     public IPage<DictPo> search(DictParam param) {
         return page(param.getPage());
     }
+
+    @Override
+    public boolean enabled(Long id, boolean enabled) {
+        boolean result = lambdaUpdate().set(DictPo::getIsEnabled, enabled)
+                .eq(DictPo::getId, id).update();
+        return result;
+    }
 }

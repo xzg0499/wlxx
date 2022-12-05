@@ -26,7 +26,7 @@ import java.util.List;
  * @since 2022-11-11
  */
 @RestController
-@Api(tags = "组织结构", value = "组织结构")
+@Api(tags = "组织结构管理", value = "组织结构管理")
 @RequestMapping("org")
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
