@@ -1,6 +1,5 @@
 package com.xzg.wlxx.core.base.response;
 
-import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -29,10 +28,4 @@ public class RestResult<T> implements Serializable {
 
     @ApiModelProperty("数据")
     private T data;
-
-
-    public RestResult(ResultMsgEnum resultMsgEnum) {
-        this.code = resultMsgEnum.getCode();
-        this.msg = resultMsgEnum.getMsg();
-    }
 }
