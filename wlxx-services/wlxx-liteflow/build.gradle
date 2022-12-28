@@ -1,0 +1,7 @@
+description("测试liteflow")
+
+dependencies {
+    implementation(project(":wlxx-framework:wlxx-core"))
+    implementation(project(":wlxx-framework:wlxx-web"))
+    implementation('com.yomahub:liteflow-spring-boot-starter:2.9.6')
+}
