@@ -8,7 +8,8 @@ docker {
         baseImage = 'openjdk:latest'//指定运行镜像
         ports = [12000]  //暴露的端口
 //        images = ["10.3.192.39:8777/hualongxin/${project.group}/${project.name}:${version}"]
-        images = ["${project.name}:${version}"]
+//        images = ["${project.name}:${version}"]
+        images = ["wlxx.xzg.today:8080/library/REPOSITORY[:TAG]"]
 //        jvmArgs = ['-Dspring.profiles.active=$env', '-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
         jvmArgs = ['-Xmx2048m', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8084']
     }

@@ -17,6 +17,7 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         try {
+            // 没有字段也不会报错
             this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
             this.setFieldValByName("creator", "xzg", metaObject);
             this.setFieldValByName("isDelete", 0, metaObject);

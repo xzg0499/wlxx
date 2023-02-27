@@ -4,20 +4,24 @@
 
 - [ ] 微服务分布式，怎么处理事务？
 - [ ] framework 模块怎么打包？
-- [ ] 引入 flowable 流程引擎
+- [x] 引入 flowable 流程引擎
 - [ ] 整合 nacos 作为微服务框架
 - [ ] 考虑选择 security 或者 shiro 授权框架
 - [ ] 用单元测试代替测试脚本，来实现业务接口
 - [ ] easyexcel 读写 excel：`com.alibaba:com.alibaba
-- [ ] gradle 多模块依赖问题，待优化解决
+- [x] gradle 多模块依赖问题，待优化解决
 - [x] gradle 跟 idea 编译输出目录不一致
     - 解决办法：采用 bootJar 的方式打包，并采用 gradle 编译，最后把没有 sprint boot 启动的模块过滤掉
 - [ ] 采用 cglib 搭理实现三方接口请求，并做接口补偿
-- [ ] gradle 不能使用 idea 自动编译功能
+- [x] gradle 不能使用 idea 自动编译功能
 - [ ] RxJava 异步编程
-- [ ] bean-searcher、fluent-mybatis 框架选择
-- [ ] 独立 parent 模块，将所有共用到的外部依赖全部放入此处管理
+- [x] bean-searcher、fluent-mybatis 框架选择
+- [x] 独立 parent 模块，将所有共用到的外部依赖全部放入此处管理
 - [ ] 集成kafka消息队列，是否需要集成Zookeeper配置管理？
+- [ ] 利用Either类，来处理传递异常信息
+- [ ] PowerJob 分布式任务调度
+- [ ] sleuth 分布式日志组件
+- [ ] 数据库id类型int8导致前段JS接收数据超出17位时截断
 
 ## idae
 

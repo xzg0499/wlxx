@@ -3,6 +3,7 @@ package com.xzg.wlxx.system;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.xzg.wlxx.core.base.domain.po.BasePo;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -22,17 +23,31 @@ public class SystemGenerator {
                 .globalConfig(builder -> {
                     builder.author("baomidou") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
+                            .disableOpenDir()
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir("D://"); // 指定输出目录
+                            .outputDir("E:\\Project\\wlxx\\wlxx-services\\wlxx-system\\wlxx-system-client\\src\\main\\java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.xzg.wlxx.system") // 设置父包名
-                            .moduleName("demo") // 设置父包模块名
+                    builder.parent("com.xzg.wlxx.system.client") // 设置父包名
+                            .moduleName("") // 设置父包模块名
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D://")); // 设置mapperXml生成路径
+                })
+                .templateConfig(builder -> {
+                    //禁用生产 controller、service、mapper层
+                    builder.controller(null)
+                            .service(null)
+                            .serviceImpl(null)
+                            .mapper(null)
+                            .mapperXml(null);
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("t_dict") // 设置需要生成的表名
-                            .addTablePrefix("t_", "c_"); // 设置过滤表前缀
+                            .addTablePrefix("t_", "c_")// 设置过滤表前缀
+                            .entityBuilder()
+                            .superClass(BasePo.class)
+                            .enableTableFieldAnnotation()
+                            .enableLombok()
+                    ;
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();

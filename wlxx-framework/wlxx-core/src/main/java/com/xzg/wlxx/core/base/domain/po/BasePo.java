@@ -24,9 +24,10 @@ public class BasePo<T extends Model<?>> extends Model<T> {
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
+    // TODO 独立日志记录
     @ApiModelProperty("创建者")
     @TableField(value = "creator", fill = FieldFill.INSERT)
-    private String creator;
+    private Long creator;
 
     @ApiModelProperty("创建时间")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
@@ -36,7 +37,7 @@ public class BasePo<T extends Model<?>> extends Model<T> {
 
     @ApiModelProperty("更新人")
     @TableField(value = "updater", fill = FieldFill.UPDATE)
-    private String updater;
+    private Long updater;
 
     @ApiModelProperty("更新时间")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")

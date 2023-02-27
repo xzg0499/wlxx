@@ -21,7 +21,6 @@ import lombok.EqualsAndHashCode;
 @ApiModel(value = "Dict对象", description = "数据字典")
 public class DictPo extends BasePo<DictPo> {
 
-    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "是否启用")
     private Boolean isEnabled;
