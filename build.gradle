@@ -56,7 +56,7 @@ configure(subprojects) {
         options.encoding = "UTF-8"
     }
 
-    // 编译环境 JDK1.8
+    // 编译环境 JDK17
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
