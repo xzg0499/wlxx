@@ -5,8 +5,9 @@ rootProject.name = 'wlxx'
 def includeModule(File file, String path) {
     file.eachDirMatch(~/wlxx-.*/) {
         if (it.exists() && it.isDirectory()) {
+            println(path + ":" + "${it.name}")
+            include(path + ":" + "${it.name}")
             includeModule(it, path + ":" + it.getName())
-            include path + ":" + "${it.name}"
         }
     }
 }

@@ -1,0 +1,43 @@
+mpg {
+    enable = projectDir.getName().endsWith("-provider")
+
+    globalConfig {
+        outputDir = projectDir.path + "/src/main/java"
+        author = "xzgan"
+        open = false
+
+        baseResultMap = true
+        swagger2 = true
+    }
+
+    dataSourceConfig {
+        driverName = "com.mysql.cj.jdbc.Driver"
+        url = "jdbc:mysql://localhost:3306/db_system?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true"
+        username = "root"
+        password = "xiao"
+    }
+
+    packageConfig {
+        parent = "com.xzg.wlxx.system.demo"
+        entity = "entity"
+        mapper = "mapper"
+    }
+
+    xmlMapperConfig {
+        enable = false
+        path = projectDir.path + "/src/main/resources/mapper/"
+    }
+
+    strategyConfig {
+        include = ["t_dict"]
+        tablePrefix = ["t_"]
+        entityLombokModel = true
+        restControllerStyle = true
+        superEntityClass = "com.xzg.wlxx.core.base.entity.po.BasePo"
+        logicDeleteFieldName = "is_delete"
+        superEntityColumns = ["id", "creator", "create_time", "updater", "update_time", "is_delete"]
+        entityTableFieldAnnotationEnable(true)
+        controllerMappingHyphenStyle = true
+        superControllerClass = "com.xzg.wlxx.core.base.controller.BaseController"
+    }
+}

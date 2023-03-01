@@ -1,6 +1,6 @@
 buildscript {
     // 引入外部gradle文件
-    apply from: './version.gradle'
+    apply from: './gradle/version.gradle'
 
     repositories {
         mavenLocal()
@@ -40,6 +40,7 @@ allprojects {
 configure(subprojects) {
     // 定义只打包末级
     def subList = subprojects.projectDir.asList().findAll(file -> file.getName().startsWith("wlxx-"))
+    def isProvider = projectDir.name.endsWith("-provider")
     if (subList.size() > 0) {
         return
     }
@@ -117,10 +118,11 @@ configure(subprojects) {
         testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 
         /*mybatis-plus*/
+        implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.3.1'
         implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
 
         /*mysql*/
-        implementation group: 'mysql', name: 'mysql-connector-java', version: "${mysqlVersion}"
+        implementation("mysql:mysql-connector-java:${mysqlVersion}")
 
         /*knife4j*/
         implementation group: 'com.github.xiaoymin', name: 'knife4j-spring-boot-starter', version: "${knife4jVersion}"

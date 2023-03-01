@@ -18,13 +18,22 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ApiLogTraceAspect {
 
-    @Pointcut("@annotation(com.xzg.wlxx.web.apo.Log)")
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.PostMapping)" +
+            "||" +
+            "@annotation(org.springframework.web.bind.annotation.GetMapping)" +
+            "||" +
+            "@annotation(org.springframework.web.bind.annotation.PutMapping)" +
+            "||" +
+            "@annotation(org.springframework.web.bind.annotation.DeleteMapping)" +
+            "||" +
+            "@annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void logPoint() {
     }
 
     @Before("logPoint()")
     public void doBefore(JoinPoint joinPoint) {
-        log.info("doBefore");
+        Object[] args = joinPoint.getArgs();
+        log.info("doBefore:{}", JSONUtil.toJsonStr(args));
     }
 
     @After("logPoint()")
@@ -34,7 +43,7 @@ public class ApiLogTraceAspect {
 
     @AfterReturning(returning = "obj", pointcut = "logPoint()")
     public void doReturning(Object obj) {
-        log.info("doReturning");
+        log.info("doReturning:{}", JSONUtil.toJsonStr(obj));
     }
 
     @AfterThrowing(pointcut = "logPoint()")
@@ -45,7 +54,7 @@ public class ApiLogTraceAspect {
     @Around("logPoint()")
     public Object doAround(ProceedingJoinPoint point) throws Throwable {
         Object[] args = point.getArgs();
-        log.info("doAround：{}", JSONUtil.toJsonStr(args));
-        return point.proceed();
+//        log.info("doAround：{}", JSONUtil.toJsonStr(args));
+        return point.proceed(args);
     }
 }
