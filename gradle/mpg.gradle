@@ -1,3 +1,26 @@
+//def scanTableName5GUI() {
+//    def read = JOptionPane.&showInputDialog
+//    def tableName = read 'tableName'
+//    println(tableName)
+//    return tableName
+//}
+
+def scanTableName5Console() {
+    if (!projectDir.getName().endsWith("-provider")) {
+        return
+    }
+    println("tbale name :")
+    System.in.newReader().readLine()
+}
+
+tasks.register("wlxxMPG") {
+    if (!projectDir.getName().endsWith("-provider")) {
+        return
+    }
+    println("execute " + it.name)
+}
+
+
 mpg {
     enable = projectDir.getName().endsWith("-provider")
 
@@ -29,7 +52,8 @@ mpg {
     }
 
     strategyConfig {
-        include = ["t_dict"]
+        def tableName = ""//scanTableName5Console()
+        include = [tableName]
         tablePrefix = ["t_"]
         entityLombokModel = true
         restControllerStyle = true
@@ -40,4 +64,13 @@ mpg {
         controllerMappingHyphenStyle = true
         superControllerClass = "com.xzg.wlxx.core.base.controller.BaseController"
     }
+
+
+    //def readln(question){
+    //    println("What is your name?")
+    //    System.in.newReader().readLine()
+    //}
+    //task trytest{
+    //    println 'is'+readln('What is your name?')
+    //}
 }
