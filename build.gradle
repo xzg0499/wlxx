@@ -44,12 +44,21 @@ configure(subprojects) {
     if (subList.size() > 0) {
         return
     }
+
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     apply(plugin: "cn.mycommons.mpg")
     apply(from: rootDir.path + "/gradle/mpg.gradle")
+
+    if (projectDir.name == "wlxx-core"
+            || projectDir.name == "wlxx-web"
+            || projectDir.name.endsWith("wlxx-test")
+            || projectDir.name.endsWith("-client")
+    ) {
+        apply(plugin: 'java-library')
+    }
 
 
     // java编译的时候缺省状态下会因为中文字符而失败
@@ -69,7 +78,6 @@ configure(subprojects) {
 
     build {
         buildDir("out")
-//        println(buildDir)`
     }
 
 
@@ -91,82 +99,8 @@ configure(subprojects) {
     }
 
     dependencies {
-        /*spring boot*/
-        implementation("org.springframework.boot:spring-boot-starter")
-        implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("org.springframework.boot:spring-boot-starter-security")
-        implementation("org.springframework.boot:spring-boot-starter-validation")
-        implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-        implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
-        implementation("org.springframework.boot:spring-boot-devtools")
-
-        implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
-        implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
-        implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
-
-        // SpringBoot / Grails 项目直接使用以下依赖，更为方便（只添加这一个依赖即可）
-        implementation("com.ejlchina:bean-searcher-boot-starter:${beanSearcherVersion}")
-
-        /*redis*/
-        implementation("org.springframework.boot:spring-boot-starter-data-redis")
-
-        /*lombok*/
-        compileOnly("org.projectlombok:lombok:${lombokVersion}")
         annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-        testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
         testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-
-        /*mybatis-plus*/
-        implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.3.1'
-        implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
-
-        /*mysql*/
-        implementation("mysql:mysql-connector-java:${mysqlVersion}")
-
-        /*knife4j*/
-        implementation group: 'com.github.xiaoymin', name: 'knife4j-spring-boot-starter', version: "${knife4jVersion}"
-
-        /*hutool*/
-        implementation group: 'cn.hutool', name: 'hutool-all', version: "${hutoolVersion}"
-
-        /*fastjson*/
-        implementation group: 'com.alibaba', name: 'fastjson', version: "${fastjsonVersion}"
-
-        /*faker*/
-        implementation group: 'com.github.javafaker', name: 'javafaker', version: "${javafakerVersion}"
-
-        /*jmockdata*/
-        testImplementation("com.github.jsonzou:jmockdata:4.3.0")
-
-        /*pinyin4j*/
-        implementation("com.belerweb:pinyin4j:2.5.1")
-
-        /*jupiter*/
-//        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
-
-        /*mybatis plus generator*/
-        testImplementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
-        testImplementation group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
-        testImplementation group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
-        testImplementation group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
-
-
-        /*testng*/
-        testImplementation("org.testng:testng:${testngVersion}")
-
-        /*TODO Could not find snakeyaml-1.30-android.jar*/
-        implementation 'org.yaml:snakeyaml:1.28'
-
-        /*redis-om*/
-//        implementation 'com.redis.om:redis-om-spring:0.6.3'
-
     }
 
-
-    test {
-        useTestNG()
-    }
 }

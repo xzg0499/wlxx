@@ -10,7 +10,7 @@ configurations {
 
 dependencies {
     implementation(project(":wlxx-framework:wlxx-web"))
-    implementation(project(":wlxx-framework:wlxx-core"))
+    implementation(project(":wlxx-framework:wlxx-test"))
 //    implementation("org.flowable:flowable-spring-boot-starter:${flowableVersion}")
 
 //    implementation("org.flowable:flowable-spring-boot-starter-rest:${flowableVersion}")

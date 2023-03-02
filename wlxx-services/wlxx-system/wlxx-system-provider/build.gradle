@@ -17,14 +17,15 @@ docker {
 
 
 dependencies {
-    implementation(project(":wlxx-framework:wlxx-core"))
-    implementation(project(":wlxx-framework:wlxx-web"))
+    //implementation(project(":wlxx-framework:wlxx-core"))
+    //api(project(":wlxx-framework:wlxx-web"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
+    testImplementation(project(":wlxx-framework:wlxx-test"))
 
     /*mockito 测试框架*/
-    implementation("org.mockito:mockito-core:${MockitoVersion}")
-    implementation("net.bytebuddy:byte-buddy:${ByteBuddyVersion}")
-    implementation("net.bytebuddy:byte-buddy-agent:${ByteBuddyVersion}")
+    //implementation("org.mockito:mockito-core:${MockitoVersion}")
+    //implementation("net.bytebuddy:byte-buddy:${ByteBuddyVersion}")
+    //implementation("net.bytebuddy:byte-buddy-agent:${ByteBuddyVersion}")
 
     /*fluent-mybatis*/
 //    implementation "com.github.atool:fluent-mybatis-boot-starter:${fluentMybatisVersion}"

@@ -1,2 +1,63 @@
 description = "core"
 
+
+dependencies {
+    api("org.springframework.boot:spring-boot-starter")
+    api("org.projectlombok:lombok:${lombokVersion}")
+    api("org.springframework.boot:spring-boot-starter-validation")
+
+    /*spring boot*/
+
+    api("org.springframework.boot:spring-boot-starter-security")
+    api("org.springframework.boot:spring-boot-starter-validation")
+    api("org.springframework.cloud:spring-cloud-starter-openfeign")
+    api("org.springframework.cloud:spring-cloud-starter-loadbalancer")
+
+    api("org.springframework.boot:spring-boot-devtools")
+
+    api("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
+    api("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
+    api("org.springframework.cloud:spring-cloud-starter-bootstrap")
+
+    // SpringBoot / Grails 项目直接使用以下依赖，更为方便（只添加这一个依赖即可）
+    api("com.ejlchina:bean-searcher-boot-starter:${beanSearcherVersion}")
+
+    /*redis*/
+    api("org.springframework.boot:spring-boot-starter-data-redis")
+
+    /*lombok*/
+    //compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    //annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    //testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+    //testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+    /*mybatis-plus*/
+    api "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
+
+    /*mysql*/
+    api("mysql:mysql-connector-java:${mysqlVersion}")
+
+    /*knife4j*/
+    api group: 'com.github.xiaoymin', name: 'knife4j-spring-boot-starter', version: "${knife4jVersion}"
+
+    /*hutool*/
+    api group: 'cn.hutool', name: 'hutool-all', version: "${hutoolVersion}"
+
+    /*fastjson*/
+    api group: 'com.alibaba', name: 'fastjson', version: "${fastjsonVersion}"
+
+
+    /*pinyin4j*/
+    api("com.belerweb:pinyin4j:2.5.1")
+
+    /*jupiter*/
+    //testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
+
+
+    /*TODO Could not find snakeyaml-1.30-android.jar*/
+    /*跟jfaker 冲突*/
+    //api 'org.yaml:snakeyaml:1.28'
+
+    /*redis-om*/
+    //implementation 'com.redis.om:redis-om-spring:0.6.3'
+}

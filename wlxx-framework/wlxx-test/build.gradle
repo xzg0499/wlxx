@@ -1,0 +1,24 @@
+dependencies {
+    api("org.projectlombok:lombok:${lombokVersion}")
+
+    api('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    api("com.github.jsonzou:jmockdata:4.3.0")
+
+    api group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
+    api group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"
+    api group: 'org.freemarker', name: 'freemarker', version: "${freemarkerVersion}"
+    api group: 'com.ibeetl', name: 'beetl', version: "${ibeetlVersion}"
+
+    api("org.testng:testng:${testngVersion}")
+
+    api(group: 'com.github.javafaker', name: 'javafaker', version: "${javafakerVersion}") {
+        exclude(module: "snakeyaml")
+    }
+}
+
+test {
+    useTestNG()
+}
