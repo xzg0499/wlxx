@@ -9,5 +9,5 @@ com.xzg.wlxx.web.config.WebMvcConfig,\
 com.xzg.wlxx.web.config.FeignGlobalConfig,\
 com.xzg.wlxx.web.config.WebSecurityConfig,\
 com.xzg.wlxx.web.config.JsonHttpMessageConvertor,\
-com.xzg.wlxx.web.apo.ApiLogTraceAspect
+com.xzg.wlxx.web.aspect.ApiLogTraceAspect
 

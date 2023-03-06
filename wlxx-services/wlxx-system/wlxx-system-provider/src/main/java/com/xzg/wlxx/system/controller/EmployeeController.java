@@ -1,7 +1,6 @@
 package com.xzg.wlxx.system.controller;
 
 
-import com.xzg.wlxx.core.base.controller.BaseController;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("employee")
 @Api(tags = "员工管理", value = "员工管理")
-public class EmployeeController extends BaseController {
+public class EmployeeController {
 
 }

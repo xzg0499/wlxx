@@ -19,7 +19,7 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
         try {
             // 没有字段也不会报错
             this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
-            this.setFieldValByName("creator", "xzg", metaObject);
+            this.setFieldValByName("creator", 0L, metaObject);
             this.setFieldValByName("isDelete", 0, metaObject);
         } catch (ReflectionException e) {
             // 没有字段映射时处理办法
@@ -31,7 +31,7 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         try {
             this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
-            this.setFieldValByName("updater", "xzg", metaObject);
+            this.setFieldValByName("updater", 0L, metaObject);
         } catch (ReflectionException e) {
             // 没有字段映射时处理办法
             throw new RuntimeException(e);

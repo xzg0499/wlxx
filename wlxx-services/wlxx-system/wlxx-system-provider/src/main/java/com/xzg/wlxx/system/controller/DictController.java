@@ -3,12 +3,10 @@ package com.xzg.wlxx.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.controller.BaseController;
 import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.system.client.entity.param.DictParam;
 import com.xzg.wlxx.system.client.entity.po.DictPo;
 import com.xzg.wlxx.system.service.IDictService;
-import com.xzg.wlxx.web.apo.ApiLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -29,14 +27,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/dict")
 @Api(tags = "数据字典管理", value = "数据字典管理")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class DictController extends BaseController {
+public class DictController {
 
     private final IDictService service;
 
 
     @ApiOperation("新增")
     @PostMapping("add")
-    @ApiLog
     public RestResult add(@RequestBody DictPo po) {
         if (service.add(po)) {
             return BaseRes.success();
@@ -46,7 +43,6 @@ public class DictController extends BaseController {
 
     @ApiOperation("编辑")
     @PutMapping("edit")
-    @ApiLog
     public RestResult edit(@RequestBody DictPo po) {
         if (service.edit(po)) {
             return BaseRes.success();
@@ -56,7 +52,6 @@ public class DictController extends BaseController {
 
     @ApiOperation("分页查询")
     @PostMapping("search")
-    @ApiLog
     public RestResult<IPage<DictPo>> search(@RequestBody DictParam param) {
         return BaseRes.success(service.search(param));
     }

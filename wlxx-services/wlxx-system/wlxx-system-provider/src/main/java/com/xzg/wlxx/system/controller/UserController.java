@@ -2,7 +2,6 @@ package com.xzg.wlxx.system.controller;
 
 
 import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.controller.BaseController;
 import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.system.client.entity.param.UserParam;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
@@ -26,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("user")
 @Api(tags = "用户管理", value = "用户管理")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserController extends BaseController {
+public class UserController {
 
     private final IUserService service;
 
@@ -47,8 +46,8 @@ public class UserController extends BaseController {
 
     @ApiOperation("启用")
     @PutMapping("enabled/{id}")
-    public RestResult enabled(@PathVariable(name = "id")Long id){
-        if(service.enabled(id,true)){
+    public RestResult enabled(@PathVariable(name = "id") Long id) {
+        if (service.enabled(id, true)) {
             return BaseRes.success();
         }
         return BaseRes.failure();
@@ -56,8 +55,8 @@ public class UserController extends BaseController {
 
     @ApiOperation("启用")
     @PutMapping("disabled/{id}")
-    public RestResult disabled(@PathVariable(name = "id")Long id){
-        if(service.enabled(id,false)){
+    public RestResult disabled(@PathVariable(name = "id") Long id) {
+        if (service.enabled(id, false)) {
             return BaseRes.success();
         }
         return BaseRes.failure();
@@ -65,8 +64,8 @@ public class UserController extends BaseController {
 
     @ApiOperation("删除")
     @DeleteMapping("del/{id}")
-    public RestResult del(@PathVariable Long id){
-        if(service.removeById(id)){
+    public RestResult del(@PathVariable Long id) {
+        if (service.removeById(id)) {
             return BaseRes.success();
         }
         return BaseRes.failure();

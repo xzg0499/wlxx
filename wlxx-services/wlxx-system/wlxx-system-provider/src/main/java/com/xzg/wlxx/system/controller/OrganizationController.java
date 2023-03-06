@@ -2,7 +2,6 @@ package com.xzg.wlxx.system.controller;
 
 
 import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.controller.BaseController;
 import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
 import com.xzg.wlxx.system.client.entity.vo.OrganizationVo;
@@ -30,7 +29,7 @@ import java.util.List;
 @RequestMapping("org")
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class OrganizationController extends BaseController {
+public class OrganizationController {
 
     private final IOrganizationService service;
 
