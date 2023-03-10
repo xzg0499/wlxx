@@ -1,8 +1,10 @@
 ext {
-    springBootVersion = "2.7.5"
-    springCloudVersion = "2021.0.5"
-    springCloudAlibabaVersion = "2021.0.4.0"
-    mybatisPlusVersion = "3.5.2"
+    springBootVersion = "3.0.3"
+    springCloudVersion = "2022.0.1"
+    //springCloudAlibabaVersion = "2021.0.4.0"
+    springCloudAlibabaVersion = "2022.0.0.0-RC1"
+    //mybatisPlusVersion = "3.5.2"
+    mybatisPlusVersion = "3.5.3.1"
     hutoolVersion = "5.8.9"
 
     projectBuildSourceEncoding = "UTF-8"

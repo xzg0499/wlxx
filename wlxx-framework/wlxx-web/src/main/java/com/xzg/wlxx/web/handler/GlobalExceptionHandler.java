@@ -4,6 +4,7 @@ import com.xzg.wlxx.core.base.BaseRes;
 import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
 import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.core.exception.BusinessException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,24 +19,39 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NullPointerException.class)
-    public RestResult nullPointerException(NullPointerException ex) {
-        ex.printStackTrace();
-        return BaseRes.failure(ResultMsgEnum.NULL);
-    }
+    //@ExceptionHandler(NullPointerException.class)
+    //public RestResult nullPointerException(NullPointerException ex) {
+    //    ex.printStackTrace();
+    //    return BaseRes.failure(ResultMsgEnum.NULL);
+    //}
+    //
+    //@ExceptionHandler(BusinessException.class)
+    //public RestResult businessException(BusinessException ex) {
+    //    ex.printStackTrace();
+    //    return BaseRes.failure(ex);
+    //}
 
-    @ExceptionHandler(BusinessException.class)
-    public RestResult businessException(BusinessException ex) {
-        ex.printStackTrace();
-        return BaseRes.failure(ex);
-    }
+    // TODO 不能直接对Exception捕获
+    //@ExceptionHandler(Throwable.class)
+    //public RestResult throwable(Throwable ex) {
+    //    ex.printStackTrace();
+    //    return BaseRes.failure(ex);
+    //}
 
-    @ExceptionHandler(Throwable.class)
-    public RestResult throwable(Throwable ex) {
+    @ExceptionHandler(Exception.class)
+    public RestResult businessException(Exception ex) {
         ex.printStackTrace();
-        return BaseRes.failure(ex);
+        // 默认失败返回
+        RestResult result = BaseRes.failure();
+        if (ex instanceof BusinessException) {
+            result = BaseRes.failure(ex.getMessage());
+        } else if (ex instanceof NullPointerException) {
+            result = BaseRes.failure(ResultMsgEnum.NULL);
+        }
+        return result;
     }
 
     /**
@@ -52,8 +68,14 @@ public class GlobalExceptionHandler {
             } else {
                 msg.append(ex.getDefaultMessage());
             }
-            msg.append(" \n ");
+            msg.append("\r\n");
         });
         return BaseRes.failure(msg.toString());
     }
+
+    //@NotNull
+    //@Override
+    //protected ResponseEntity<Object> handleExceptionInternal(@NotNull Exception ex, Object body, @NotNull HttpHeaders headers, @NotNull HttpStatus status, @NotNull WebRequest request) {
+    //    return super.handleExceptionInternal(ex, BaseRes.failure(ResultMsgEnum.NOT_FOUND), headers, status, request);
+    //}
 }

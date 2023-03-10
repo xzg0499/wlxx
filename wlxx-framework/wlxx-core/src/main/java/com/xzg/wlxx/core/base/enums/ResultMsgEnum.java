@@ -3,6 +3,8 @@ package com.xzg.wlxx.core.base.enums;
 import lombok.Getter;
 
 /**
+ * API响应枚举
+ *
  * @author xzgang0499
  * @date 2022-01-14
  * @since jdk1.8
@@ -12,6 +14,7 @@ public enum ResultMsgEnum {
     SUCCESS(20000, "操作成功"),
     FAILURE(40000, "操作失败"),
     NULL(40004, "空指针异常"),
+    NOT_FOUND(40004, "地址找不到"),
     ;
 
     private final Integer code;

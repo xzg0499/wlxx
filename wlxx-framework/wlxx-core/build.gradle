@@ -13,7 +13,7 @@ dependencies {
     api("org.springframework.cloud:spring-cloud-starter-openfeign")
     api("org.springframework.cloud:spring-cloud-starter-loadbalancer")
 
-    api("org.springframework.boot:spring-boot-devtools")
+    //api("org.springframework.boot:spring-boot-devtools")
 
     api("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
     api("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")

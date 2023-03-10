@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,10 @@ import org.springframework.context.annotation.Configuration;
  * @since jdk1.8
  */
 @Configuration
-@MapperScan(basePackages = "com.xzg.wlxx.**.mapper")
+//@MapperScan(basePackages = "com.xzg.wlxx.**.mapper")
+@MapperScans(
+        @MapperScan(basePackages = {"com.xzg.wlxx.system.mapper"}, sqlSessionFactoryRef = "sqlSessionFactory")
+)
 public class MybatisPlusConfig {
 
     /**

@@ -20,8 +20,9 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  resources:
+    add-mappings: false
 
-# FIXME 不能放配置中心，无法找到路径
 logging:
   level:
     root: info
@@ -45,6 +46,7 @@ logging:
 
 server:
   port: 12002
-
+#  error:
+#    path: /wlxx/error
 
 
