@@ -3,8 +3,7 @@ package com.xzg.wlxx.system.client.entity.po;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.core.base.domain.po.BasePo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,20 +18,20 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_employee")
-@ApiModel(value = "Employee对象", description = "员工")
+@Schema(description = "Employee对象")
 public class EmployeePo extends BasePo<EmployeePo> {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "是否启用")
+    @Schema(description = "是否启用")
     @TableField("is_enabled")
     private Boolean isEnabled;
 
-    @ApiModelProperty(value = "员工编号")
+    @Schema(description = "员工编号")
     @TableField("emp_code")
     private String empCode;
 
-    @ApiModelProperty(value = "姓名")
+    @Schema(description = "姓名")
     @TableField("emp_name")
     private String empName;
 

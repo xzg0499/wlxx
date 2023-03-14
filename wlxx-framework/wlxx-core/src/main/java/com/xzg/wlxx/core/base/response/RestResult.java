@@ -1,7 +1,6 @@
 package com.xzg.wlxx.core.base.response;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,13 +18,13 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel("接口出参")
+@Schema(description = "接口出参")
 public class RestResult<T> implements Serializable {
-    @ApiModelProperty("响应编码")
+    @Schema(description = "响应编码")
     private Integer code;
-    @ApiModelProperty("消息")
+    @Schema(description = "消息")
     private String msg;
 
-    @ApiModelProperty("数据")
+    @Schema(description = "数据")
     private T data;
 }

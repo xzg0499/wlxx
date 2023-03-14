@@ -7,10 +7,11 @@ import com.xzg.wlxx.core.base.response.RestResult;
 import com.xzg.wlxx.system.client.entity.param.DictParam;
 import com.xzg.wlxx.system.client.entity.po.DictPo;
 import com.xzg.wlxx.system.service.IDictService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +26,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/dict")
-@Api(tags = "数据字典管理", value = "数据字典管理")
+@Tag(name = "数据字典管理")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DictController {
 
     private final IDictService service;
 
 
-    @ApiOperation("新增")
+    @Operation(summary = "新增")
     @PostMapping("add")
     public RestResult add(@RequestBody DictPo po) {
         if (service.add(po)) {
@@ -41,7 +42,7 @@ public class DictController {
         return BaseRes.failure();
     }
 
-    @ApiOperation("编辑")
+    @Operation(summary = "编辑")
     @PutMapping("edit")
     public RestResult edit(@RequestBody DictPo po) {
         if (service.edit(po)) {
@@ -50,13 +51,13 @@ public class DictController {
         return BaseRes.failure();
     }
 
-    @ApiOperation("分页查询")
+    @Operation(summary = "分页查询")
     @PostMapping("search")
     public RestResult<IPage<DictPo>> search(@RequestBody DictParam param) {
         return BaseRes.success(service.search(param));
     }
 
-    @ApiOperation("启用")
+    @Operation(summary = "启用")
     @PutMapping("enabled/{id}")
     public RestResult enabled(@PathVariable Long id) {
         if (service.enabled(id, true)) {
@@ -65,7 +66,7 @@ public class DictController {
         return BaseRes.failure();
     }
 
-    @ApiOperation("禁用")
+    @Operation(summary = "禁用")
     @PutMapping("disabled/{id}")
     public RestResult disabled(@PathVariable Long id) {
         if (service.enabled(id, false)) {
@@ -74,10 +75,10 @@ public class DictController {
         return BaseRes.failure();
     }
 
-    @ApiOperation("删除")
-    @ApiImplicitParams(
-            @ApiImplicitParam(name = "id", value = "主键", dataTypeClass = Long.class)
-    )
+    @Operation(summary = "删除")
+    @Parameters({
+            @Parameter(name = "id", description = "主键", required = true, in = ParameterIn.PATH)
+    })
     @DeleteMapping("del/{id}")
     public RestResult del(@PathVariable Long id) {
         if (service.removeById(id)) {

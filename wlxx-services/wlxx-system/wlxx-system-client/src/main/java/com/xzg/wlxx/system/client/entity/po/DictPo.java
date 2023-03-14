@@ -2,8 +2,7 @@ package com.xzg.wlxx.system.client.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.core.base.domain.po.BasePo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,23 +17,23 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_dict")
-@ApiModel(value = "Dict对象", description = "数据字典")
+@Schema(description = "Dict对象")
 public class DictPo extends BasePo<DictPo> {
 
 
-    @ApiModelProperty(value = "是否启用")
+    @Schema(description = "是否启用")
     private Boolean isEnabled;
 
-    @ApiModelProperty(value = "字典编码")
+    @Schema(description = "字典编码")
     private String dictCode;
 
-    @ApiModelProperty(value = "字典值")
+    @Schema(description = "字典值")
     private String dictValue;
 
-    @ApiModelProperty("级别")
+    @Schema(description = "级别")
     private Integer level;
 
-    @ApiModelProperty("备注")
+    @Schema(description = "备注")
     private String remark;
 
 

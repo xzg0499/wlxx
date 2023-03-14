@@ -22,7 +22,6 @@ dependencies {
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
     testImplementation(project(":wlxx-framework:wlxx-test"))
 
-    implementation("org.springframework.boot:spring-boot-starter-security")
     /*mockito 测试框架*/
     //implementation("org.mockito:mockito-core:${MockitoVersion}")
     //implementation("net.bytebuddy:byte-buddy:${ByteBuddyVersion}")

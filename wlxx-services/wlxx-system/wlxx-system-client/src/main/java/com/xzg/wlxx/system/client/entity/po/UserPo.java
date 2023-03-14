@@ -2,8 +2,7 @@ package com.xzg.wlxx.system.client.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.core.base.domain.po.BasePo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,23 +17,23 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_user")
-@ApiModel(value = "User对象", description = "用户")
+@Schema(description = "User对象")
 public class UserPo extends BasePo<UserPo> {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "是否启用")
+    @Schema(description = "是否启用")
     private Boolean isEnabled;
 
-    @ApiModelProperty(value = "用户名称")
+    @Schema(description = "用户名称")
     private String userName;
 
-    @ApiModelProperty(value = "用户姓名")
+    @Schema(description = "用户姓名")
     private String userRealName;
 
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
     private String password;
 
-    @ApiModelProperty("员工ID")
+    @Schema(description = "员工ID")
     private Long empId;
 }

@@ -3,15 +3,13 @@ package com.xzg.wlxx.system.client.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.core.base.domain.po.BasePo;
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author baomidou
@@ -20,28 +18,28 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("t_dict")
-@ApiModel(value = "Dict对象", description = "")
+@Schema(description = "Dict对象")
 public class Dict extends BasePo {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("字典代码")
+    @Schema(description = "字典代码")
     @TableField("dict_code")
     private String dictCode;
 
-    @ApiModelProperty("字典名称")
+    @Schema(description = "字典名称")
     @TableField("dict_name")
     private String dictName;
 
-    @ApiModelProperty("字典层级")
+    @Schema(description = "字典层级")
     @TableField("level")
     private Integer level;
 
-    @ApiModelProperty("描述")
+    @Schema(description = "描述")
     @TableField("description")
     private String description;
 
-    @ApiModelProperty("壮态")
+    @Schema(description = "壮态")
     @TableField("status")
     private Integer status;
 

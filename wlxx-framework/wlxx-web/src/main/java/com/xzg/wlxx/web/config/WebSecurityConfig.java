@@ -95,7 +95,15 @@ public class WebSecurityConfig {
         // 此处使用lambda实现WebSecurityCustomizer接口，web变量的类型WebSecurity，箭头后面可以对其进行操作
         // 使用requestMatchers()代替antMatchers()
         return (web) -> web.ignoring()
-                .requestMatchers("**");
+                .requestMatchers("/doc.html", "/doc.html/**", "/webjars/**", "/v2/**"
+                        , "/swagger-resources"
+                        , "/v2/api-docs"
+                        , "/v3/api-docs"
+                        , "/api-docs"
+                        , "/v2/api-docs-ext"
+                        , "/swagger-resources/**", "/swagger-ui.html", "/swagger-ui.html/**"
+                        , "/api/*/auth/**", "/test/**"
+                        , "**");
     }
 
     @Bean

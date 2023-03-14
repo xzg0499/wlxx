@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -18,9 +17,9 @@ import java.util.Objects;
  * @package com.xzg.wlxx.web.apo
  * @date 2022/12/3 15:27
  */
-@Component
+//@Component
 @Slf4j
-@Aspect
+//@Aspect
 public class ApiLogTraceAspect {
 
     @Pointcut("@annotation(org.springframework.web.bind.annotation.PostMapping)" +

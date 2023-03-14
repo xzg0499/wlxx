@@ -1,7 +1,6 @@
 package com.xzg.wlxx.web.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
  * @author xzgan
@@ -9,11 +8,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  */
 //@ControllerAdvice
 @Slf4j
-public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestResponseEntityExceptionHandler {
 
     public RestResponseEntityExceptionHandler() {
         super();
     }
+
+    //@Override
+    //protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
+    //    return super.handleExceptionInternal(ex, body, headers, statusCode, request);
+    //}
 
     //@Override
     //protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
