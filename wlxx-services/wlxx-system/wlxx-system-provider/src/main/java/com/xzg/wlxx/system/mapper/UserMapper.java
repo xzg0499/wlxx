@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xzg.wlxx.system.client.entity.po.UserPo;
+import com.xzg.wlxx.system.client.entity.po.User;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.xzg.wlxx.system.client.entity.po.UserPo;
  * @author xzgan
  * @since 2022-11-30
  */
-public interface UserMapper extends BaseMapper<UserPo> {
+public interface UserMapper extends BaseMapper<User> {
 
 }

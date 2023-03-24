@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.system.client.entity.po.EmployeePo;
+import com.xzg.wlxx.system.client.entity.po.Employee;
 import com.xzg.wlxx.system.mapper.EmployeeMapper;
 import com.xzg.wlxx.system.service.IEmployeeService;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-11-30
  */
 @Service
-public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePo> implements IEmployeeService {
+public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements IEmployeeService {
 
 }

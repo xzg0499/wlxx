@@ -3,7 +3,7 @@ package com.xzg.wlxx.system.controller;
 
 import com.xzg.wlxx.core.base.ApiResult;
 import com.xzg.wlxx.core.base.response.RestApiResult;
-import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
+import com.xzg.wlxx.system.client.entity.po.Organization;
 import com.xzg.wlxx.system.client.entity.vo.OrganizationVo;
 import com.xzg.wlxx.system.service.IOrganizationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,7 +35,7 @@ public class OrganizationController {
 
     @Operation(summary = "新增")
     @PostMapping("add")
-    public RestApiResult add(@RequestBody @Validated OrganizationPo po) {
+    public RestApiResult add(@RequestBody @Validated Organization po) {
         if (service.add(po)) {
             return ApiResult.success();
         }
@@ -44,7 +44,7 @@ public class OrganizationController {
 
     @Operation(summary = "修改")
     @PostMapping("edit")
-    public RestApiResult edit(@RequestBody OrganizationPo po) {
+    public RestApiResult edit(@RequestBody Organization po) {
         if (service.edit(po)) {
             return ApiResult.success();
         }

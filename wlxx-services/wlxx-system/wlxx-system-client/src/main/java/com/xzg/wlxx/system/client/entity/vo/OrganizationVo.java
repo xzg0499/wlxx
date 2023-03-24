@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system.client.entity.vo;
 
-import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
+import com.xzg.wlxx.system.client.entity.po.Organization;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class OrganizationVo extends OrganizationPo {
+public class OrganizationVo extends Organization {
 
     @Schema(description = "子级组织")
     private List<OrganizationVo> children;

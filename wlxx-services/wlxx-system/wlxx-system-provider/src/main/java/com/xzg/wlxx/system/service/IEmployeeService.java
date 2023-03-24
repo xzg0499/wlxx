@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xzg.wlxx.system.client.entity.po.EmployeePo;
+import com.xzg.wlxx.system.client.entity.po.Employee;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.xzg.wlxx.system.client.entity.po.EmployeePo;
  * @author xzgan
  * @since 2022-11-30
  */
-public interface IEmployeeService extends IService<EmployeePo> {
+public interface IEmployeeService extends IService<Employee> {
 
 }

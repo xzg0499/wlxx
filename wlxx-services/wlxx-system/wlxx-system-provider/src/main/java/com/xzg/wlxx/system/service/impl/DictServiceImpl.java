@@ -3,7 +3,7 @@ package com.xzg.wlxx.system.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.system.client.entity.param.DictParam;
-import com.xzg.wlxx.system.client.entity.po.DictPo;
+import com.xzg.wlxx.system.client.entity.po.Dict;
 import com.xzg.wlxx.system.mapper.DictMapper;
 import com.xzg.wlxx.system.service.IDictService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,27 +19,27 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class DictServiceImpl extends ServiceImpl<DictMapper, DictPo> implements IDictService {
+public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
 
 
     @Override
-    public boolean add(DictPo po) {
+    public boolean add(Dict po) {
         return save(po);
     }
 
     @Override
-    public boolean edit(DictPo po) {
+    public boolean edit(Dict po) {
         return updateById(po);
     }
 
     @Override
-    public IPage<DictPo> search(DictParam param) {
+    public IPage<Dict> search(DictParam param) {
         return page(param.getPage());
     }
 
     @Override
     public boolean enabled(Long id, boolean enabled) {
-        return lambdaUpdate().set(DictPo::getEnabled, enabled)
-                .eq(DictPo::getId, id).update();
+        return lambdaUpdate().set(Dict::getEnabled, enabled)
+                .eq(Dict::getId, id).update();
     }
 }

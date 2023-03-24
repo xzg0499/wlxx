@@ -3,6 +3,7 @@ package com.xzg.wlxx.system.client.entity.po;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.core.base.domain.po.BasePo;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,8 +18,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_dict_item")
-@Schema(description = "DictItem对象", defaultValue = "字典明细")
-public class DictItemPo extends BasePo<DictItemPo> {
+@Schema(description = "DictItem对象", defaultValue = "字典项")
+public class DictItem extends BasePo<DictItem> {
 
 
     @Schema(description = "字典编码")
@@ -30,10 +31,11 @@ public class DictItemPo extends BasePo<DictItemPo> {
     @Schema(description = "是否启用")
     private Boolean enabled;
 
-    @Schema(description = "描述")
-    private String desc;
-
     @Schema(description = "字典表ID")
+    @NotNull(message = "字典ID不能为空")
     private Long dictId;
+
+    @Schema(description = "排序")
+    private Integer sort;
 
 }

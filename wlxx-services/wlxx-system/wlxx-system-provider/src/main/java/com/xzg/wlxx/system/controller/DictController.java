@@ -6,7 +6,7 @@ import com.xzg.wlxx.core.base.ApiResult;
 import com.xzg.wlxx.core.base.response.RestApiResult;
 import com.xzg.wlxx.system.client.entity.param.DictParam;
 import com.xzg.wlxx.system.client.entity.param.EnabledParam;
-import com.xzg.wlxx.system.client.entity.po.DictPo;
+import com.xzg.wlxx.system.client.entity.po.Dict;
 import com.xzg.wlxx.system.service.IDictService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -36,19 +36,19 @@ public class DictController {
 
     @Operation(summary = "新增")
     @PostMapping("add")
-    public RestApiResult add(@RequestBody DictPo po) {
+    public RestApiResult add(@RequestBody Dict po) {
         return ApiResult.msg(service.add(po));
     }
 
     @Operation(summary = "编辑")
     @PutMapping("edit")
-    public RestApiResult edit(@RequestBody DictPo po) {
+    public RestApiResult edit(@RequestBody Dict po) {
         return ApiResult.msg(service.edit(po));
     }
 
     @Operation(summary = "分页查询")
     @PostMapping("search")
-    public RestApiResult<IPage<DictPo>> search(@RequestBody DictParam param) {
+    public RestApiResult<IPage<Dict>> search(@RequestBody DictParam param) {
         return ApiResult.success(service.search(param));
     }
 

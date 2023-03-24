@@ -21,6 +21,7 @@ public class PageParam<T> {
     @Schema(description = "每页条数")
     private Integer size = 10;
 
+    @Schema(hidden = true)
     public IPage<T> getPage() {
         IPage<T> page = new Page<T>(this.current, this.size);
         return page;

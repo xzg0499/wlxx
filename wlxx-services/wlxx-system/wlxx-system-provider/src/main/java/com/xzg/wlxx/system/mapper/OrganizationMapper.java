@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
+import com.xzg.wlxx.system.client.entity.po.Organization;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
  * @author xzgang0499
  * @since 2022-11-11
  */
-public interface OrganizationMapper extends BaseMapper<OrganizationPo> {
+public interface OrganizationMapper extends BaseMapper<Organization> {
 
 }

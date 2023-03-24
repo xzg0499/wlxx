@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xzg.wlxx.system.client.entity.po.DictPo;
+import com.xzg.wlxx.system.client.entity.po.Dict;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.xzg.wlxx.system.client.entity.po.DictPo;
  * @author xzgan
  * @since 2022-11-30
  */
-public interface DictMapper extends BaseMapper<DictPo> {
+public interface DictMapper extends BaseMapper<Dict> {
 
 }

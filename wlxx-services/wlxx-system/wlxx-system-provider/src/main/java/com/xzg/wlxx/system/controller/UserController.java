@@ -4,7 +4,7 @@ package com.xzg.wlxx.system.controller;
 import com.xzg.wlxx.core.base.ApiResult;
 import com.xzg.wlxx.core.base.response.RestApiResult;
 import com.xzg.wlxx.system.client.entity.param.UserParam;
-import com.xzg.wlxx.system.client.entity.po.UserPo;
+import com.xzg.wlxx.system.client.entity.po.User;
 import com.xzg.wlxx.system.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,7 +31,7 @@ public class UserController {
 
     @Operation(summary = "添加用户")
     @PostMapping("add")
-    public RestApiResult add(@RequestBody @Validated UserPo po) {
+    public RestApiResult add(@RequestBody @Validated User po) {
         if (service.add(po)) {
             return ApiResult.success();
         }

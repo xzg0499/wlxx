@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.client.entity.param;
 
 import com.xzg.wlxx.core.base.domain.dto.PageParam;
-import com.xzg.wlxx.system.client.entity.po.DictPo;
+import com.xzg.wlxx.system.client.entity.po.Dict;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,5 +15,5 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class DictParam extends PageParam<DictPo> {
+public class DictParam extends PageParam<Dict> {
 }

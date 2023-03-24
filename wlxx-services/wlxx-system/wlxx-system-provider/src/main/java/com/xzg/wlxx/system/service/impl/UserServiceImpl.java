@@ -3,12 +3,10 @@ package com.xzg.wlxx.system.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.system.client.entity.param.UserParam;
-import com.xzg.wlxx.system.client.entity.po.UserPo;
+import com.xzg.wlxx.system.client.entity.po.User;
 import com.xzg.wlxx.system.mapper.UserMapper;
 import com.xzg.wlxx.system.service.IUserService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * <p>
@@ -19,22 +17,22 @@ import java.util.List;
  * @since 2022-11-30
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, UserPo> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
-    public boolean add(UserPo po) {
+    public boolean add(User po) {
         return save(po);
     }
 
     @Override
-    public IPage<UserPo> search(UserParam param) {
+    public IPage<User> search(UserParam param) {
         return page(param.getPage());
     }
 
     @Override
     public boolean enabled(Long id, boolean enabled) {
-        boolean result = lambdaUpdate().set(UserPo::getIsEnabled,enabled)
-                .eq(UserPo::getId,id)
+        boolean result = lambdaUpdate().set(User::getIsEnabled, enabled)
+                .eq(User::getId, id)
                 .update();
         return result;
     }

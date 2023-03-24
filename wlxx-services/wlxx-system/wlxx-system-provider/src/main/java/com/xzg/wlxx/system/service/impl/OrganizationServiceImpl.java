@@ -3,7 +3,7 @@ package com.xzg.wlxx.system.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
+import com.xzg.wlxx.system.client.entity.po.Organization;
 import com.xzg.wlxx.system.client.entity.vo.OrganizationVo;
 import com.xzg.wlxx.system.mapper.OrganizationMapper;
 import com.xzg.wlxx.system.service.IOrganizationService;
@@ -23,29 +23,29 @@ import java.util.stream.Collectors;
  * @since 2022-11-11
  */
 @Service
-public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, OrganizationPo> implements IOrganizationService {
+public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Organization> implements IOrganizationService {
 
 
     @Override
-    public boolean add(OrganizationPo po) {
+    public boolean add(Organization po) {
 
         return save(po);
     }
 
     @Override
-    public boolean edit(OrganizationPo po) {
+    public boolean edit(Organization po) {
         return updateById(po);
     }
 
 
     @Override
     public List<OrganizationVo> get(Long id) {
-        List<OrganizationPo> list = lambdaQuery()
-                .orderByDesc(OrganizationPo::getLevel).list();
+        List<Organization> list = lambdaQuery()
+                .orderByDesc(Organization::getLevel).list();
         List<OrganizationVo> vos = new ArrayList<>();
         list.stream().filter(e -> {
                     if (Objects.isNull(id)) {
-                        return Objects.deepEquals(OrganizationPo.ROOT, e.getLevel());
+                        return Objects.deepEquals(Organization.ROOT, e.getLevel());
                     } else {
                         return id.equals(e.getId());
                     }
@@ -62,7 +62,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     /**
      * 迭代组装Company
      */
-    public List<OrganizationVo> assembleCompany(List<OrganizationPo> pos, List<OrganizationVo> vos) {
+    public List<OrganizationVo> assembleCompany(List<Organization> pos, List<OrganizationVo> vos) {
         vos.forEach(e -> {
             List<OrganizationVo> list = pos.stream().filter(p ->
                             Objects.deepEquals(e.getId(), p.getParentOrgId())
