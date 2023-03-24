@@ -12,7 +12,7 @@ import java.util.Locale;
  * @author xzgan
  * @date 2023/3/24
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest
 @Slf4j
 public class TestDict extends AbstractTestNGSpringContextTests {
 

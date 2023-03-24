@@ -81,5 +81,5 @@ dependencies {
 
 // FIXME testng需要在此处开启平台使用
 test {
-    useTestNG()
+    useJUnitPlatform()
 }
