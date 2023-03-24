@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/dict")
-@Tag(name = "数据字典管理", description = "数据字典管理")
+@Tag(name = "数据字典管理-字典管理", description = "数据字典管理")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DictController {
 

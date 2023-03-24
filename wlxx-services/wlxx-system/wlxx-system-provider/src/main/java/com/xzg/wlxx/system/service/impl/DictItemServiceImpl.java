@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +45,7 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
                 .filter(e -> StrUtil.equals(e.getDictCode(), po.getDictCode()))
                 .toList();
         if (code.size() > 0) {
-            throw new BusinessException("字典编码{}已存在", po.getDictCode());
+            throw new BusinessException("字典编码【{}】已存在", po.getDictCode());
         }
         int max = dictItemList.stream().mapToInt(DictItem::getSort)
                 .max().stream().findFirst().orElse(0);
@@ -52,9 +53,35 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
         return save(po);
     }
 
+    /**
+     * 校验
+     */
     public void validate4Add(DictItem po) {
         if (Objects.isNull(po.getDictId())) {
             throw new BusinessException("字典ID不能为空");
         }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean enabled(Long id, Boolean enabled) {
+        return lambdaUpdate()
+                .set(DictItem::getEnabled, enabled)
+                .set(DictItem::getSort, 0)
+                .eq(DictItem::getId, id)
+                .update();
+    }
+
+    /**
+     * 字典排序
+     */
+    public void sort(Long id) {
+        DictItem dictItem = getById(id);
+        List<DictItem> dictItemList = lambdaQuery()
+                .eq(DictItem::getDictId, dictItem.getDictId())
+                .ne(DictItem::getSort, 0)
+                .select(DictItem::getId, DictItem::getSort)
+                .list();
+        //TODO
     }
 }

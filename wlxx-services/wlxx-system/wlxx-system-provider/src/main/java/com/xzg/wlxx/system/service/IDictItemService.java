@@ -18,4 +18,8 @@ public interface IDictItemService extends IService<DictItem> {
      */
     boolean add(DictItem po);
 
+    /**
+     * 启用禁用
+     */
+    boolean enabled(Long id, Boolean enabled);
 }
