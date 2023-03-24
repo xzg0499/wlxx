@@ -80,6 +80,20 @@ dependencies {
 //}
 
 // FIXME testng需要在此处开启平台使用
-test {
-    useJUnitPlatform()
-}
+//test {
+//    reports.html.enabled(true)
+//    useJUnitPlatform()
+//    //useJUnitPlatform {
+//    //    includeEngines 'junit-vintage'
+//    //    // excludeEngines 'junit-jupiter'
+//    //}
+//    //useTestNG {
+//    //    preserveOrder true
+//    //}
+//}
+
+//task testReport(type: TestReport) {
+//    destinationDir = file("$buildDir/reports/allTests")
+//    // Include the results from the `test` task in all subprojects
+//    reportOn subprojects*.test
+//}

@@ -89,14 +89,19 @@ configure(subprojects) {
         }
     }
 
+    //extra["testcontainersVersion"] = "1.17.6"
+    ext {
+        set('testcontainersVersion', "1.17.6")
+    }
+
     dependencyManagement {
         // 引入依赖管理工具
         imports {
             mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
             mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}")
-            mavenBom "org.testcontainers:testcontainers-bom:1.17.6"
-            //mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+            //mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
+            mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
         }
     }
 
@@ -107,4 +112,8 @@ configure(subprojects) {
         testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     }
 
+    test {
+        reports.html.enabled(true)
+        useJUnitPlatform()
+    }
 }
