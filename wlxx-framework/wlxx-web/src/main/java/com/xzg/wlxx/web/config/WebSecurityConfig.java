@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -89,22 +88,22 @@ public class WebSecurityConfig {
 //        }
 //    }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        // WebSecurityCustomizer是一个类似于Consumer<WebSecurity>的接口，函数接受一个WebSecurity类型的变量，无返回值
-        // 此处使用lambda实现WebSecurityCustomizer接口，web变量的类型WebSecurity，箭头后面可以对其进行操作
-        // 使用requestMatchers()代替antMatchers()
-        return (web) -> web.ignoring()
-                .requestMatchers("/doc.html", "/doc.html/**", "/webjars/**", "/v2/**"
-                        , "/swagger-resources"
-                        , "/v2/api-docs"
-                        , "/v3/api-docs"
-                        , "/api-docs"
-                        , "/v2/api-docs-ext"
-                        , "/swagger-resources/**", "/swagger-ui.html", "/swagger-ui.html/**"
-                        , "/api/*/auth/**", "/test/**"
-                        , "**");
-    }
+    //@Bean
+    //public WebSecurityCustomizer webSecurityCustomizer() {
+    //    // WebSecurityCustomizer是一个类似于Consumer<WebSecurity>的接口，函数接受一个WebSecurity类型的变量，无返回值
+    //    // 此处使用lambda实现WebSecurityCustomizer接口，web变量的类型WebSecurity，箭头后面可以对其进行操作
+    //    // 使用requestMatchers()代替antMatchers()
+    //    return (web) -> web.ignoring()
+    //            .requestMatchers("/doc.html", "/doc.html/**", "/webjars/**", "/v2/**"
+    //                                , "/swagger-resources"
+    //                                , "/v2/api-docs"
+    //                                , "/v3/api-docs"
+    //                                , "/api-docs"
+    //                                , "/v2/api-docs-ext"
+    //                                , "/swagger-resources/**", "/swagger-ui.html", "/swagger-ui.html/**"
+    //                                , "/api/*/auth/**", "/test/**"
+    //                                , "/**");
+    //}
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -112,9 +111,21 @@ public class WebSecurityConfig {
                 //使用authorizeHttpRequests()代替authorizeRequests()
                 .authorizeHttpRequests((authz) -> authz
                         //这种写法被称为Lambda DSL，代替原来的and()链式操作
+                        .requestMatchers("/doc.html", "/doc.html/**", "/webjars/**", "/v2/**"
+                                , "/swagger-resources"
+                                , "/v2/api-docs"
+                                , "/v3/api-docs"
+                                , "/api-docs"
+                                , "/v2/api-docs-ext"
+                                , "/swagger-resources/**", "/swagger-ui.html", "/swagger-ui.html/**"
+                                , "/api/*/auth/**", "/test/**"
+                                , "/**")
+                        .permitAll()
                         .anyRequest().authenticated()
                 )
-                .httpBasic(withDefaults());
+                .httpBasic(withDefaults())
+                // 允许跨域
+                .csrf().disable();
         // 需要进行build()，返回SecurityFilterChain
         return http.build();
     }

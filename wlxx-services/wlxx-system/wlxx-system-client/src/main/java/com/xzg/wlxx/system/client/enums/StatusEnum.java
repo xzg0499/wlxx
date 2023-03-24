@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 /**
+ * 是/否
+ *
  * @author xzgang0499
  * @date 2022-04-22
  * @since jdk1.8
@@ -13,8 +15,8 @@ import lombok.Getter;
 
 @Getter
 public enum StatusEnum implements IEnum<Integer> {
-    NO(0,"否"),
-    YES(1,"是"),
+    NO(0, "否"),
+    YES(1, "是"),
     ;
 
     @EnumValue
@@ -22,7 +24,7 @@ public enum StatusEnum implements IEnum<Integer> {
     @JsonValue
     private String desc;
 
-    StatusEnum(Integer code, String sex){
+    StatusEnum(Integer code, String sex) {
         this.value = code;
         this.desc = sex;
     }

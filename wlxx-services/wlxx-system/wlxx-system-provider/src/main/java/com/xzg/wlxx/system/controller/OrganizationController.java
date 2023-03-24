@@ -36,19 +36,13 @@ public class OrganizationController {
     @Operation(summary = "新增")
     @PostMapping("add")
     public RestApiResult add(@RequestBody @Validated Organization po) {
-        if (service.add(po)) {
-            return ApiResult.success();
-        }
-        return ApiResult.failure();
+        return ApiResult.msg(service.add(po));
     }
 
     @Operation(summary = "修改")
     @PostMapping("edit")
     public RestApiResult edit(@RequestBody Organization po) {
-        if (service.edit(po)) {
-            return ApiResult.success();
-        }
-        return ApiResult.failure();
+        return ApiResult.msg(service.edit(po));
     }
 
     /**
