@@ -20,21 +20,18 @@ import lombok.EqualsAndHashCode;
 @Schema(description = "Dict对象")
 public class DictPo extends BasePo<DictPo> {
 
-
-    @Schema(description = "是否启用")
-    private Boolean isEnabled;
-
     @Schema(description = "字典编码")
     private String dictCode;
 
-    @Schema(description = "字典值")
-    private String dictValue;
+    @Schema(description = "字典名称")
+    private String dictName;
 
-    @Schema(description = "级别")
-    private Integer level;
+    @Schema(description = "是否启用")
+    private Boolean enabled;
 
-    @Schema(description = "备注")
+    @Schema(description = "描述")
     private String remark;
 
-
+    @Schema(description = "层级")
+    private Integer levels;
 }

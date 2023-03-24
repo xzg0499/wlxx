@@ -6,8 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
-import springfox.documentation.spring.web.plugins.WebFluxRequestHandlerProvider;
-import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -28,9 +26,9 @@ public class WebConfig {
         return new BeanPostProcessor() {
             @Override
             public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-                if (bean instanceof WebMvcRequestHandlerProvider || bean instanceof WebFluxRequestHandlerProvider) {
-                    customizeSpringfoxHandlerMappings(getHandlerMappings(bean));
-                }
+                //if (bean instanceof WebMvcRequestHandlerProvider || bean instanceof WebFluxRequestHandlerProvider) {
+                //    customizeSpringfoxHandlerMappings(getHandlerMappings(bean));
+                //}
                 return bean;
             }
 

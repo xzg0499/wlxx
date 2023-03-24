@@ -41,8 +41,8 @@ public class BasePo<T extends Model<?>> extends Model<T> {
     //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd HH:mm:ss")
     private Long updateTime;
 
-    @Schema(description = "是否删除")
-    @TableField(value = "is_delete", fill = FieldFill.INSERT)
+    @Schema(description = "是否已删除")
+    @TableField(value = "deleted", fill = FieldFill.INSERT)
     @TableLogic
-    private Integer isDelete;
+    private Integer deleted;
 }

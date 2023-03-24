@@ -1,8 +1,8 @@
 package com.xzg.wlxx.system.controller;
 
 
-import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.response.RestResult;
+import com.xzg.wlxx.core.base.ApiResult;
+import com.xzg.wlxx.core.base.response.RestApiResult;
 import com.xzg.wlxx.system.client.entity.param.UserParam;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.service.IUserService;
@@ -31,43 +31,43 @@ public class UserController {
 
     @Operation(summary = "添加用户")
     @PostMapping("add")
-    public RestResult add(@RequestBody @Validated UserPo po) {
+    public RestApiResult add(@RequestBody @Validated UserPo po) {
         if (service.add(po)) {
-            return BaseRes.success();
+            return ApiResult.success();
         }
-        return BaseRes.failure();
+        return ApiResult.failure();
     }
 
     @Operation(summary = "分页查询")
     @PostMapping("search-page")
-    public RestResult searchPage(@RequestBody UserParam param) {
-        return BaseRes.success(service.search(param));
+    public RestApiResult searchPage(@RequestBody UserParam param) {
+        return ApiResult.success(service.search(param));
     }
 
     @Operation(summary = "启用")
     @PutMapping("enabled/{id}")
-    public RestResult enabled(@PathVariable(name = "id") Long id) {
+    public RestApiResult enabled(@PathVariable(name = "id") Long id) {
         if (service.enabled(id, true)) {
-            return BaseRes.success();
+            return ApiResult.success();
         }
-        return BaseRes.failure();
+        return ApiResult.failure();
     }
 
     @Operation(summary = "启用")
     @PutMapping("disabled/{id}")
-    public RestResult disabled(@PathVariable(name = "id") Long id) {
+    public RestApiResult disabled(@PathVariable(name = "id") Long id) {
         if (service.enabled(id, false)) {
-            return BaseRes.success();
+            return ApiResult.success();
         }
-        return BaseRes.failure();
+        return ApiResult.failure();
     }
 
     @Operation(summary = "删除")
     @DeleteMapping("del/{id}")
-    public RestResult del(@PathVariable Long id) {
+    public RestApiResult del(@PathVariable Long id) {
         if (service.removeById(id)) {
-            return BaseRes.success();
+            return ApiResult.success();
         }
-        return BaseRes.failure();
+        return ApiResult.failure();
     }
 }

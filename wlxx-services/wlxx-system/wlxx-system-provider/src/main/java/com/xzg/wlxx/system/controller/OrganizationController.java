@@ -1,8 +1,8 @@
 package com.xzg.wlxx.system.controller;
 
 
-import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.response.RestResult;
+import com.xzg.wlxx.core.base.ApiResult;
+import com.xzg.wlxx.core.base.response.RestApiResult;
 import com.xzg.wlxx.system.client.entity.po.OrganizationPo;
 import com.xzg.wlxx.system.client.entity.vo.OrganizationVo;
 import com.xzg.wlxx.system.service.IOrganizationService;
@@ -35,20 +35,20 @@ public class OrganizationController {
 
     @Operation(summary = "新增")
     @PostMapping("add")
-    public RestResult add(@RequestBody @Validated OrganizationPo po) {
+    public RestApiResult add(@RequestBody @Validated OrganizationPo po) {
         if (service.add(po)) {
-            return BaseRes.success();
+            return ApiResult.success();
         }
-        return BaseRes.failure();
+        return ApiResult.failure();
     }
 
     @Operation(summary = "修改")
     @PostMapping("edit")
-    public RestResult edit(@RequestBody OrganizationPo po) {
+    public RestApiResult edit(@RequestBody OrganizationPo po) {
         if (service.edit(po)) {
-            return BaseRes.success();
+            return ApiResult.success();
         }
-        return BaseRes.failure();
+        return ApiResult.failure();
     }
 
     /**
@@ -56,13 +56,13 @@ public class OrganizationController {
      */
     @Operation(summary = "获取组织结构")
     @GetMapping("get-all")
-    public RestResult<List<OrganizationVo>> getAll() {
-        return BaseRes.success(service.get(null));
+    public RestApiResult<List<OrganizationVo>> getAll() {
+        return ApiResult.success(service.get(null));
     }
 
     @Operation(summary = "获取组织结构")
     @GetMapping("get/{id}")
-    public RestResult<List<OrganizationVo>> get(@PathVariable(value = "id", required = false) Long id) {
-        return BaseRes.success(service.get(id));
+    public RestApiResult<List<OrganizationVo>> get(@PathVariable(value = "id", required = false) Long id) {
+        return ApiResult.success(service.get(id));
     }
 }

@@ -5,8 +5,6 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.ReflectionException;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 /**
  * @author xzgan
  * @datetime 2022/5/17 14:35
@@ -18,9 +16,9 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         try {
             // 没有字段也不会报错
-            this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
+            this.setFieldValByName("createTime", System.currentTimeMillis(), metaObject);
             this.setFieldValByName("creator", 0L, metaObject);
-            this.setFieldValByName("isDelete", 0, metaObject);
+            this.setFieldValByName("deleted", 0, metaObject);
         } catch (ReflectionException e) {
             // 没有字段映射时处理办法
             throw new RuntimeException(e);
@@ -30,7 +28,7 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         try {
-            this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+            this.setFieldValByName("updateTime", System.currentTimeMillis(), metaObject);
             this.setFieldValByName("updater", 0L, metaObject);
         } catch (ReflectionException e) {
             // 没有字段映射时处理办法

@@ -1,6 +1,7 @@
 package com.xzg.wlxx.web.config;
 
 import cn.hutool.core.util.RandomUtil;
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @since jdk1.8
  */
 @Configuration
-
+@EnableKnife4j
 //@EnableSwagger2
 public class Knife4jConfiguration {
 
@@ -45,10 +46,10 @@ public class Knife4jConfiguration {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("XXX用户系统API")
+                        .title("WLXX")
                         .version("1.0")
 
-                        .description("Knife4j集成springdoc-openapi示例")
+                        .description("WLXX")
                         .termsOfService("http://doc.xiaominfo.com")
                         .license(new License().name("Apache 2.0")
                                 .url("http://doc.xiaominfo.com")));

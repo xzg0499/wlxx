@@ -10,7 +10,7 @@ configurations {
 
 dependencies {
     implementation(project(":wlxx-framework:wlxx-web"))
-    implementation(project(":wlxx-framework:wlxx-test"))
+    testImplementation(project(":wlxx-framework:wlxx-test"))
 //    implementation("org.flowable:flowable-spring-boot-starter:${flowableVersion}")
 
 //    implementation("org.flowable:flowable-spring-boot-starter-rest:${flowableVersion}")
@@ -25,7 +25,7 @@ dependencies {
 //    implementation group: 'org.flowable', name: 'flowable-ui-admin-conf', version: '6.7.2'
 //    implementation group: 'org.flowable', name: 'flowable-ui-idm-conf', version: '6.7.2'
 
-    implementation("org.springframework.boot:spring-boot-starter-activemq:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-activemq:2.7.9")
     implementation("org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}")
     implementation("org.springframework.kafka:spring-kafka:2.9.2")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client:${springBootVersion}")

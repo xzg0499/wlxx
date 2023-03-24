@@ -5,7 +5,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
-    api("com.github.jsonzou:jmockdata:4.3.0")
+    //api("com.github.jsonzou:jmockdata:4.3.0")
 
     api group: 'com.baomidou', name: 'mybatis-plus-generator', version: "${mybatisPlusGeneratorVersion}"
     api group: 'org.apache.velocity', name: 'velocity-engine-core', version: "${velocityVersion}"

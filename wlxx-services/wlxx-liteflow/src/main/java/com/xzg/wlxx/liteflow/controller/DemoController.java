@@ -1,8 +1,8 @@
 package com.xzg.wlxx.liteflow.controller;
 
 import cn.hutool.json.JSONUtil;
-import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.response.RestResult;
+import com.xzg.wlxx.core.base.ApiResult;
+import com.xzg.wlxx.core.base.response.RestApiResult;
 import com.yomahub.liteflow.core.FlowExecutor;
 import com.yomahub.liteflow.flow.LiteflowResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ public class DemoController {
     FlowExecutor flowExecutor;
 
     @GetMapping("test")
-    public RestResult test() {
+    public RestApiResult test() {
         LiteflowResponse resp = flowExecutor.execute2Resp("chain2", "arg");
-        return BaseRes.success(JSONUtil.toJsonStr(resp));
+        return ApiResult.success(JSONUtil.toJsonStr(resp));
     }
 }

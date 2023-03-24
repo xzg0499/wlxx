@@ -1,10 +1,11 @@
 package com.xzg.wlxx.web.handler;
 
-import com.xzg.wlxx.core.base.BaseRes;
+import com.xzg.wlxx.core.base.ApiResult;
 import com.xzg.wlxx.core.base.enums.ResultMsgEnum;
-import com.xzg.wlxx.core.base.response.RestResult;
+import com.xzg.wlxx.core.base.response.RestApiResult;
 import com.xzg.wlxx.core.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -42,14 +43,16 @@ public class GlobalExceptionHandler {
     //}
 
     @ExceptionHandler(Exception.class)
-    public RestResult businessException(Exception ex) {
+    public RestApiResult businessException(Exception ex) {
         ex.printStackTrace();
         // 默认失败返回
-        RestResult result = BaseRes.failure();
+        RestApiResult result = ApiResult.failure();
         if (ex instanceof BusinessException) {
-            result = BaseRes.failure(ex.getMessage());
+            result = ApiResult.failure(ex.getMessage());
         } else if (ex instanceof NullPointerException) {
-            result = BaseRes.failure(ResultMsgEnum.NULL);
+            result = ApiResult.failure(ResultMsgEnum.NULL);
+        } else if (ex instanceof DuplicateKeyException) {
+            result = ApiResult.failure(ResultMsgEnum.DB_DUPLICATE_KEY);
         }
         return result;
     }
@@ -58,7 +61,7 @@ public class GlobalExceptionHandler {
      * @Validated 校验
      */
     @ExceptionHandler(BindException.class)
-    public RestResult bindException(BindException e) {
+    public RestApiResult bindException(BindException e) {
         StringBuffer msg = new StringBuffer();
         e.getAllErrors().forEach(ex -> {
             // FIXME 换行处理
@@ -70,7 +73,7 @@ public class GlobalExceptionHandler {
             }
             msg.append("\r\n");
         });
-        return BaseRes.failure(msg.toString());
+        return ApiResult.failure(msg.toString());
     }
 
     //@NotNull

@@ -1,6 +1,5 @@
 package com.xzg.wlxx.system.service.impl;
 
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.system.client.entity.param.DictParam;
@@ -25,7 +24,6 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, DictPo> implements 
 
     @Override
     public boolean add(DictPo po) {
-        log.info("添加：{}", JSONUtil.toJsonStr(po));
         return save(po);
     }
 
@@ -41,8 +39,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, DictPo> implements 
 
     @Override
     public boolean enabled(Long id, boolean enabled) {
-        boolean result = lambdaUpdate().set(DictPo::getIsEnabled, enabled)
+        return lambdaUpdate().set(DictPo::getEnabled, enabled)
                 .eq(DictPo::getId, id).update();
-        return result;
     }
 }

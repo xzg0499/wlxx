@@ -1,7 +1,7 @@
 package com.xzg.wlxx.flowable.controller;
 
-import com.xzg.wlxx.core.base.BaseRes;
-import com.xzg.wlxx.core.base.response.RestResult;
+import com.xzg.wlxx.core.base.ApiResult;
+import com.xzg.wlxx.core.base.response.RestApiResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.RuntimeService;
@@ -26,7 +26,7 @@ public class ProcessController {
     private final TaskService taskService;
 
     @PostMapping("test")
-    public RestResult test() {
+    public RestApiResult test() {
         log.info("test");
         //ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         //RuntimeService runtimeService = processEngine.getRuntimeService();
@@ -37,7 +37,7 @@ public class ProcessController {
         //HistoryService historyService = processEngine.getHistoryService();
         //FormService formService = processEngine.getFormService();
         //DynamicBpmnService dynamicBpmnService = processEngine.getDynamicBpmnService();
-        return BaseRes.failure();
+        return ApiResult.failure();
     }
 
 }
