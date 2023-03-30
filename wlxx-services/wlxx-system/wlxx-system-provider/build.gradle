@@ -1,6 +1,8 @@
 description = "系统管理"
 
 
+//apply plugin: "com.xzg"
+
 // dock镜像打包
 apply plugin: "com.bmuschko.docker-spring-boot-application"
 docker {
@@ -20,6 +22,7 @@ dependencies {
     //implementation(project(":wlxx-framework:wlxx-core"))
     //api(project(":wlxx-framework:wlxx-web"))
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
+    //implementation(project(":wlxx-framework:wlxx-lombok"))
     testImplementation(project(":wlxx-framework:wlxx-test"))
 
     /*mockito 测试框架*/

@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.core.base.domain.po.BasePo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 /**
  * <p>
@@ -19,6 +18,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_dict_item")
 @Schema(description = "DictItem对象", defaultValue = "字典项")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DictItem extends BasePo<DictItem> {
 
 

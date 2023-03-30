@@ -22,4 +22,6 @@ public interface IDictItemService extends IService<DictItem> {
      * 启用禁用
      */
     boolean enabled(Long id, Boolean enabled);
+
+    void sort(Long id);
 }

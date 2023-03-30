@@ -1,5 +1,28 @@
 rootProject.name = 'wlxx'
 
+buildscript {
+    pluginManagement {
+        println "aliyun pluginManagement"
+        repositories {
+            mavenLocal()
+            maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+            maven { url "https://maven.aliyun.com/repository/spring-plugin" }
+            gradlePluginPortal()
+        }
+        // Resolution strategy for plugins without Plugin Marker Artifact
+        resolutionStrategy {
+            eachPlugin {
+                print(requested.id.id)
+                if (requested.id.id == 'com.xzg') {
+                    useModule("com.xzg:wlxx-lombok:0.0.1")
+                }
+            }
+        }
+        //includeBuild("wlxx-framework/wlxx-lombok")
+    }
+}
+
+
 //include(":wlxx-generator")
 
 def includeModule(File file, String path) {

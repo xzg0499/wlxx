@@ -1,10 +1,12 @@
 package com.xzg.wlxx.system.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.core.exception.BusinessException;
 import com.xzg.wlxx.system.client.entity.po.Dict;
 import com.xzg.wlxx.system.client.entity.po.DictItem;
+import com.xzg.wlxx.system.client.entity.vo.DictSeqVo;
 import com.xzg.wlxx.system.mapper.DictItemMapper;
 import com.xzg.wlxx.system.service.IDictItemService;
 import com.xzg.wlxx.system.service.IDictService;
@@ -76,12 +78,15 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
      * 字典排序
      */
     public void sort(Long id) {
-        DictItem dictItem = getById(id);
-        List<DictItem> dictItemList = lambdaQuery()
-                .eq(DictItem::getDictId, dictItem.getDictId())
-                .ne(DictItem::getSort, 0)
-                .select(DictItem::getId, DictItem::getSort)
-                .list();
+        List<DictSeqVo> lis = baseMapper.selectHasSeq();
+        log.info(JSONUtil.toJsonStr(lis));
+        //DictItem dictItem = getById(id);
+        //List<DictItem> dictItemList = lambdaQuery()
+        //        .eq(DictItem::getDictId, dictItem.getDictId())
+        //        .ne(DictItem::getSort, 0)
+        //        .select(DictItem::getId, DictItem::getSort)
+        //        .list();
         //TODO
+        // SELECT (@rownum := @rownum + 1) AS rownum,td.* from t_dict td,(SELECT @rownum := 0)  rn
     }
 }
