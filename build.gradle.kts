@@ -143,12 +143,15 @@ configure(subprojects) {
             mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
         }
     }
+    configurations {
+        
+    }
 
     dependencies {
-        //compileOnly("org.projectlombok:lombok:${lombokVersion}")
-        //annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-        //testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
-        //testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+        "compileOnly"("org.projectlombok:lombok:${property("lombokVersion")}")
+        "annotationProcessor"("org.projectlombok:lombok:${property("lombokVersion")}")
+        "testCompileOnly"("org.projectlombok:lombok:${property("lombokVersion")}")
+        "testAnnotationProcessor"("org.projectlombok:lombok:${property("lombokVersion")}")
     }
     //configurations.all {
     //    dependencies {
@@ -156,7 +159,7 @@ configure(subprojects) {
     //        annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     //    }
     //}
-    
+
 
     tasks.withType<Test> {
         reports {

@@ -9,5 +9,5 @@ dependencies {
 //    implementation("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
 //    implementation("com.baomidou:mybatis-plus-boot-starter")
 
-    annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
+    //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
 }

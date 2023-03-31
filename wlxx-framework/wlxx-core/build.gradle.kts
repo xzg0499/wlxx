@@ -51,8 +51,8 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-data-redis")
 
     /*lombok*/
-    api("org.projectlombok:lombok:${property("lombokVersion")}")
-    annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
+    //api("org.projectlombok:lombok:${property("lombokVersion")}")
+    //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     //compileOnly("org.projectlombok:lombok:${property("lombokVersion")}")
     //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     //testCompileOnly("org.projectlombok:lombok:${property("lombokVersion")}")
