@@ -24,7 +24,8 @@ dependencies {
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
     //implementation(project(":wlxx-framework:wlxx-lombok"))
     testImplementation(project(":wlxx-framework:wlxx-test"))
-
+    // TODO annotationProcessor怎么配置副项目依赖中
+    annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     /*mockito 测试框架*/
     //implementation("org.mockito:mockito-core:${MockitoVersion}")
     //implementation("net.bytebuddy:byte-buddy:${ByteBuddyVersion}")
