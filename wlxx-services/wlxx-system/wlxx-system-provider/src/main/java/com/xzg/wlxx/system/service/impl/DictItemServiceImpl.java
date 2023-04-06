@@ -1,8 +1,11 @@
 package com.xzg.wlxx.system.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzg.wlxx.core.base.enums.EnabledEnum;
 import com.xzg.wlxx.core.exception.BusinessException;
 import com.xzg.wlxx.system.client.entity.po.Dict;
 import com.xzg.wlxx.system.client.entity.po.DictItem;
@@ -16,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -74,19 +78,22 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
                 .update();
     }
 
-    /**
-     * 字典排序
-     */
+    @Override
     public void sort(Long id) {
-        List<DictSeqVo> lis = baseMapper.selectHasSeq();
-        log.info(JSONUtil.toJsonStr(lis));
-        //DictItem dictItem = getById(id);
-        //List<DictItem> dictItemList = lambdaQuery()
-        //        .eq(DictItem::getDictId, dictItem.getDictId())
-        //        .ne(DictItem::getSort, 0)
-        //        .select(DictItem::getId, DictItem::getSort)
-        //        .list();
-        //TODO
-        // SELECT (@rownum := @rownum + 1) AS rownum,td.* from t_dict td,(SELECT @rownum := 0)  rn
+        List<DictSeqVo> list = baseMapper.selectHasSeq(id);
+        log.info(JSONUtil.toJsonStr(list));
+        List<DictItem> updateList = new ArrayList<>();
+        list.forEach(e -> {
+            e.setSort(e.getRownum());
+            DictItem dictItem = new DictItem();
+            BeanUtil.copyProperties(e, dictItem);
+            updateList.add(dictItem);
+        });
+        updateBatchById(updateList);
+        update(Wrappers.<DictItem>lambdaUpdate()
+                .set(DictItem::getSort, 9999)
+                .eq(DictItem::getDictId, id)
+                .eq(DictItem::getEnabled, EnabledEnum.DISABLED.getCode())
+        );
     }
 }

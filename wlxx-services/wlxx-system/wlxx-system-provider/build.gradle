@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
     //implementation(project(":wlxx-framework:wlxx-lombok"))
     testImplementation(project(":wlxx-framework:wlxx-test"))
+    implementation("com.xuxueli:xxl-job-core:2.4.0")
     //// TODO annotationProcessor怎么配置副项目依赖中
     //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     /*mockito 测试框架*/

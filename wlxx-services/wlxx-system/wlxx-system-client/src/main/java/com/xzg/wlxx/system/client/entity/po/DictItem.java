@@ -40,4 +40,13 @@ public class DictItem extends BasePo<DictItem> {
     @Schema(description = "排序")
     private Integer sort;
 
+    //@Builder
+    //private DictItem(Long id, Long creator, Long createTime, Long updater, Long updateTime, Integer deleted, String dictCode, String dictValue, Boolean enabled, Long dictId, Integer sort) {
+    //    super(id, creator, createTime, updater, updateTime, deleted);
+    //    this.dictCode = dictCode;
+    //    this.dictValue = dictValue;
+    //    this.enabled = enabled;
+    //    this.dictId = dictId;
+    //    this.sort = sort;
+    //}
 }

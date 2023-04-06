@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface DictItemMapper extends BaseMapper<DictItem> {
 
-    @Select("SELECT (@rownum := @rownum + 1) AS rownum,td.* from t_dict td,(SELECT @rownum := 0)  rn")
-    List<DictSeqVo> selectHasSeq();
+    @Select("SELECT (@rownum := @rownum + 1) AS rownum,td.* from t_dict_item td,(SELECT @rownum := 0)  rn\n" +
+            "where td.dict_id=#{param1} and td.enabled=1 and td.deleted=0")
+    List<DictSeqVo> selectHasSeq(Long dictId);
 }

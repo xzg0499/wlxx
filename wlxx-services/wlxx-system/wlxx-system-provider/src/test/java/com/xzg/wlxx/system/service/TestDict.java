@@ -46,7 +46,6 @@ public class TestDict extends AbstractTestNGSpringContextTests {
     public void mockDictItem() {
         IntStream.range(0, 100).forEach(i -> {
             DictItem dictItem = DictItem.builder()
-
                     .build();
             dictItemService.add(dictItem);
         });
@@ -55,6 +54,6 @@ public class TestDict extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testSelectSeq() {
-        dictItemService.sort(null);
+        dictItemService.sort(1639155107939356674L);
     }
 }

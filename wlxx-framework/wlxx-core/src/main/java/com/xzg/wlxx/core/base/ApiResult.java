@@ -12,12 +12,6 @@ public class ApiResult {
 
     /**
      * 消息模板
-     *
-     * @param code
-     * @param msg
-     * @param data
-     * @param <T>
-     * @return
      */
     public static <T> RestApiResult<T> msg(Integer code, String msg, T data) {
         return RestApiResult.<T>builder()
@@ -39,6 +33,17 @@ public class ApiResult {
             return success();
         }
         return failure();
+    }
+
+    public static <T> RestApiResult<T> msg(boolean code, String success, String failure) {
+        if (code) {
+            return RestApiResult.<T>builder()
+                    .code(ResultMsgEnum.SUCCESS.getCode())
+                    .msg(success)
+                    .data(null)
+                    .build();
+        }
+        return failure(failure);
     }
 
     /**
