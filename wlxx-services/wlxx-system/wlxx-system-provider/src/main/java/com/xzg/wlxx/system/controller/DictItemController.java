@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 字典项管理
  *
@@ -35,5 +37,11 @@ public class DictItemController {
     @PutMapping("enabled")
     public RestApiResult enabled(@RequestBody EnabledParam param) {
         return ApiResult.msg(service.enabled(param.getId(), param.getEnabled()));
+    }
+
+    @Operation(summary = "批量删除")
+    @DeleteMapping("batch-del")
+    public RestApiResult batchDel(@RequestBody List<Long> ids) {
+        return ApiResult.msg(service.batchDel(ids));
     }
 }

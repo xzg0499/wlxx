@@ -3,6 +3,8 @@ package com.xzg.wlxx.system.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xzg.wlxx.system.client.entity.po.DictItem;
 
+import java.util.List;
+
 /**
  * <p>
  * 数据字典 服务类
@@ -27,4 +29,9 @@ public interface IDictItemService extends IService<DictItem> {
      * 字典项重新排序
      */
     void sort(Long id);
+
+    /**
+     * 批量删除字典项
+     */
+    boolean batchDel(List<Long> ids);
 }

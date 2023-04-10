@@ -12,7 +12,7 @@ import lombok.Getter;
  */
 @Getter
 public enum DeletedEnum {
-    DELETED(1, "删除"),
+    DELETED(1, "已删除"),
     UNDELETED(0, "未删除"),
     ;
 
@@ -20,7 +20,7 @@ public enum DeletedEnum {
     @EnumValue
     @JsonValue
     private final Integer code;
-    
+
     private final String desc;
 
     DeletedEnum(Integer code, String desc) {

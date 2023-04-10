@@ -86,4 +86,10 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
                 .eq(DictItem::getEnabled, EnabledEnum.DISABLED.getCode())
         );
     }
+
+    @Override
+    public boolean batchDel(List<Long> ids) {
+        Assert.notEmpty(ids, "请传入ID");
+        return removeBatchByIds(ids);
+    }
 }
