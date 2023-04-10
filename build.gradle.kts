@@ -144,14 +144,14 @@ configure(subprojects) {
         }
     }
     configurations {
-        
+
     }
 
     dependencies {
-        "compileOnly"("org.projectlombok:lombok:${property("lombokVersion")}")
-        "annotationProcessor"("org.projectlombok:lombok:${property("lombokVersion")}")
-        "testCompileOnly"("org.projectlombok:lombok:${property("lombokVersion")}")
-        "testAnnotationProcessor"("org.projectlombok:lombok:${property("lombokVersion")}")
+        "compileOnly"("org.projectlombok:lombok")
+        "annotationProcessor"("org.projectlombok:lombok")
+        "testCompileOnly"("org.projectlombok:lombok")
+        "testAnnotationProcessor"("org.projectlombok:lombok")
     }
     //configurations.all {
     //    dependencies {
@@ -166,10 +166,7 @@ configure(subprojects) {
             html
             enabled
         }
-        //reports.html {
-        //    enabled = true
-        //}
-        useJUnitPlatform()
+        useJUnitPlatform() { }
     }
 
 

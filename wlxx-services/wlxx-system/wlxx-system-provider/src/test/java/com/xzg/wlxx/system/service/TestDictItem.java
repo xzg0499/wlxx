@@ -1,7 +1,8 @@
-package com.xzg.wlxx.system;
+package com.xzg.wlxx.system.service;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
+import com.xzg.wlxx.system.client.entity.po.DictItem;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Locale;
+import java.util.stream.IntStream;
 
 @SpringBootTest
 @Slf4j
@@ -18,6 +20,9 @@ public class TestDictItem {
 
     @Autowired
     MockMvc mockMvc;
+
+    @Autowired
+    IDictItemService dictItemService;
 
     @Test
     public void testAddDictItem() throws Exception {
@@ -40,4 +45,25 @@ public class TestDictItem {
             //).andDo(MockMvcResultHandlers.log()).andReturn();
         }
     }
+
+    @Test
+    public void mockDictItem() {
+        IntStream.range(0, 100).forEach(i -> {
+            DictItem dictItem = DictItem.builder()
+                    .build();
+            dictItemService.add(dictItem);
+        });
+    }
+
+
+    @Test
+    public void testSelectSeq() {
+        dictItemService.sort(1639155107939356674L);
+    }
+
+    @Test
+    public void testAddAssert() {
+        dictItemService.add(new DictItem());
+    }
+
 }

@@ -1,8 +1,8 @@
 package com.xzg.wlxx.flowable;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
-import org.testng.annotations.Test;
 
 /**
  * 以端口方式启动运行测试

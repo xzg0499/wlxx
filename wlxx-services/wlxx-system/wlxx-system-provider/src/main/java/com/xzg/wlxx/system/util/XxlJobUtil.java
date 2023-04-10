@@ -23,10 +23,10 @@ import java.util.Map;
 @Component
 public class XxlJobUtil {
 
-    @Value("${xxl.job.admin.addresses}")
+    @Value("${xxl.job.admin.addresses:http://localhost:8080/xxl-job-admin}")
     private String adminAddresses;
 
-    @Value("${xxl.job.executor.appname}")
+    @Value("${xxl.job.executor.appname:wlxx-system}")
     private String appname;
 
     private RestTemplate restTemplate = new RestTemplate();

@@ -2,7 +2,6 @@ rootProject.name = "wlxx"
 
 buildscript {
     pluginManagement {
-        println("aliyun pluginManagement")
         repositories {
             mavenLocal()
             maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }

@@ -1,6 +1,7 @@
 package com.xzg.wlxx.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -21,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 字典明细项
@@ -38,12 +38,10 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
 
     @Override
     public boolean add(DictItem po) {
-        validate4Add(po);
+        Assert.notNull(po.getDictId(), "字典ID不能为空");
         // 验证字典是否存在
         Dict dict = dictService.getById(po.getDictId());
-        if (dict == null) {
-            throw new BusinessException("字典不存在");
-        }
+        Assert.notNull(dict, "字典不存在");
         List<DictItem> dictItemList = lambdaQuery()
                 .eq(DictItem::getDictId, po.getDictId())
                 .list();
@@ -59,14 +57,6 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
         return save(po);
     }
 
-    /**
-     * 校验
-     */
-    public void validate4Add(DictItem po) {
-        if (Objects.isNull(po.getDictId())) {
-            throw new BusinessException("字典ID不能为空");
-        }
-    }
 
     @Transactional(rollbackFor = Exception.class)
     @Override

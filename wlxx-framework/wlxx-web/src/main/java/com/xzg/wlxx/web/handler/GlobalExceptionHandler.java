@@ -53,6 +53,8 @@ public class GlobalExceptionHandler {
             result = ApiResult.failure(ResultMsgEnum.NULL);
         } else if (ex instanceof DuplicateKeyException) {
             result = ApiResult.failure(ResultMsgEnum.DB_DUPLICATE_KEY);
+        } else if (ex instanceof IllegalArgumentException) {
+            result = ApiResult.failure(ex.getMessage());
         }
         return result;
     }
