@@ -3,10 +3,7 @@ package com.xzg.wlxx.system.client.entity.po;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.core.base.domain.po.BasePo;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * <p>
@@ -21,6 +18,8 @@ import lombok.NoArgsConstructor;
 @TableName("t_dict")
 @Schema(description = "Dict对象")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Dict extends BasePo<Dict> {
 
     @Schema(description = "字典编码")
@@ -37,14 +36,4 @@ public class Dict extends BasePo<Dict> {
 
     @Schema(description = "层级")
     private Integer levels;
-
-    @Builder
-    private Dict(Long id, Long creator, Long createTime, Long updater, Long updateTime, Integer deleted, String dictCode, String dictName, Boolean enabled, String remark, Integer levels) {
-        super(id, creator, createTime, updater, updateTime, deleted);
-        this.dictCode = dictCode;
-        this.dictName = dictName;
-        this.enabled = enabled;
-        this.remark = remark;
-        this.levels = levels;
-    }
 }
