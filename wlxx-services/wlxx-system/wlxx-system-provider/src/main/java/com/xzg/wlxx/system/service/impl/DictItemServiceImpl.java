@@ -1,6 +1,7 @@
 package com.xzg.wlxx.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
@@ -13,7 +14,6 @@ import com.xzg.wlxx.system.client.entity.po.DictItem;
 import com.xzg.wlxx.system.client.entity.vo.DictSeqVo;
 import com.xzg.wlxx.system.mapper.DictItemMapper;
 import com.xzg.wlxx.system.service.IDictItemService;
-import com.xzg.wlxx.system.service.IDictService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +34,12 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> implements IDictItemService {
 
-    private final IDictService dictService;
 
     @Override
     public boolean add(DictItem po) {
         Assert.notNull(po.getDictId(), "字典ID不能为空");
         // 验证字典是否存在
-        Dict dict = dictService.getById(po.getDictId());
+        Dict dict = CollectionUtil.getFirst(baseMapper.selectDictById(po.getDictId()));
         Assert.notNull(dict, "字典不存在");
         List<DictItem> dictItemList = lambdaQuery()
                 .eq(DictItem::getDictId, po.getDictId())

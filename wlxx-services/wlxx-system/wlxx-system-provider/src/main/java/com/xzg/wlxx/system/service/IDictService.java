@@ -20,6 +20,7 @@ public interface IDictService extends IService<Dict> {
      */
     boolean add(Dict po);
 
+
     /**
      * 编辑
      */
@@ -37,4 +38,6 @@ public interface IDictService extends IService<Dict> {
      * 启用/禁用
      */
     boolean enabled(Long id, boolean enabled);
+
+
 }
