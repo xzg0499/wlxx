@@ -4,7 +4,7 @@ description = "系统管理"
 //apply plugin: "com.xzg"
 
 // dock镜像打包
-apply plugin: "com.bmuschko.docker-spring-boot-application"
+apply(plugin: "com.bmuschko.docker-spring-boot-application")
 docker {
     springBootApplication {
         baseImage = 'openjdk:latest'//指定运行镜像
@@ -25,6 +25,7 @@ dependencies {
     //implementation(project(":wlxx-framework:wlxx-lombok"))
     testImplementation(project(":wlxx-framework:wlxx-test"))
     implementation("com.xuxueli:xxl-job-core:2.4.0")
+    implementation("com.googlecode.aviator:aviator:5.3.3")
     //// TODO annotationProcessor怎么配置副项目依赖中
     //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     /*mockito 测试框架*/

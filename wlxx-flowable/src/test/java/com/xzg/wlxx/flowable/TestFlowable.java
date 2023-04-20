@@ -1,11 +1,13 @@
 package com.xzg.wlxx.flowable;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.annotations.Test;
 
 /**
  * 以端口方式启动运行测试
+ * <p>
+ * FIXME testng在gradle中无法执行，但是此处可以编译
  *
  * @author xzgan
  * @project wlxx

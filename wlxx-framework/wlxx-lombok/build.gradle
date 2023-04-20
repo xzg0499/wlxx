@@ -21,6 +21,11 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
+
+compileJava.options.encoding = 'UTF-8'
+compileJava.sourceCompatibility = "17"
+compileJava.targetCompatibility = "17"
+
 // 打包javadocJar任务
 //task javadocJar(type: Jar, dependsOn: javadoc) {
 //    //classifier = 'source'
@@ -30,38 +35,38 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 //    from javadoc.destinationDir
 //}
 
-gradlePlugin {
-    plugins {
-        lombokPlugin {
-            id = "com.xzg"
-            version(version)
-            displayName = 'wlxx-lombok'
-            description = 'A gradle plugin that simplifies the usage of the Lombok annotation processor.'
-            implementationClass = 'com.xzg.wlxx.lombok.LombokPlugin'
-        }
-    }
-    //mavenCoordinates {
-    //    artifactId = archivesBaseName
-    //}
-}
+//gradlePlugin {
+//    plugins {
+//        lombokPlugin {
+//            id = "com.xzg"
+//            version(version)
+//            displayName = 'wlxx-lombok'
+//            description = 'A gradle plugin that simplifies the usage of the Lombok annotation processor.'
+//            implementationClass = 'com.xzg.wlxx.lombok.LombokPlugin'
+//        }
+//    }
+//    //mavenCoordinates {
+//    //    artifactId = archivesBaseName
+//    //}
+//}
 
 
-pluginBundle {
-    //website = 'https://github.com/franzbecker/gradle-lombok'
-    //vcsUrl = 'https://github.com/franzbecker/gradle-lombok.git'
-    tags = ['gradle', 'lombok']
-
-    //plugins {
-    //    lombokPlugin {
-    //        id = 'com.xzg.wlxx.lombok'
-    //    }
-    //}
-
-    //mavenCoordinates {
-    //    groupId = 'com.xzg.wlxx'
-    //    artifactId = 'wlxx-lombok'
-    //}
-}
+//pluginBundle {
+//    //website = 'https://github.com/franzbecker/gradle-lombok'
+//    //vcsUrl = 'https://github.com/franzbecker/gradle-lombok.git'
+//    tags = ['gradle', 'lombok']
+//
+//    //plugins {
+//    //    lombokPlugin {
+//    //        id = 'com.xzg.wlxx.lombok'
+//    //    }
+//    //}
+//
+//    //mavenCoordinates {
+//    //    groupId = 'com.xzg.wlxx'
+//    //    artifactId = 'wlxx-lombok'
+//    //}
+//}
 
 //tasks.compileJava {
 //    dependsOn("")

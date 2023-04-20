@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <p>
- * 数据字典 服务类
+ * 字典项 服务类
  * </p>
  *
  * @author xzgan

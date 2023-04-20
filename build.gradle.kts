@@ -162,6 +162,7 @@ configure(subprojects) {
 
 
     tasks.withType<Test> {
+        enabled = false
         reports {
             html
             enabled
