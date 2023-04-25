@@ -2,6 +2,10 @@ description = "系统管理"
 
 dependencies {
     api(project(":wlxx-framework:wlxx-web"))
+    //implementation(project(":wlxx-framework:wlxx-lombok:wlxx-apt"))
+    //annotationProcessor(project(":wlxx-framework:wlxx-lombok:wlxx-apt"))
+    implementation(project(":wlxx-framework:wlxx-lombok:wlxx-annotation"))
+    annotationProcessor(project(":wlxx-framework:wlxx-lombok:wlxx-annotation"))
     //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
 }
 

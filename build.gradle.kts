@@ -96,6 +96,9 @@ configure(subprojects) {
         options.encoding = "UTF-8"
         sourceCompatibility = "17"
         targetCompatibility = "17"
+        // mapstruct 配置
+        //options.compilerArgs.add("-Amapstruct.suppressGeneratorTimestamp=true")
+        //options.compilerArgs.add("-Amapstruct.suppressGeneratorVersionInfoComment=true")
     }
 
     // 编译环境 JDK17
@@ -148,10 +151,15 @@ configure(subprojects) {
     }
 
     dependencies {
+        /*lombok*/
         "compileOnly"("org.projectlombok:lombok")
         "annotationProcessor"("org.projectlombok:lombok")
         "testCompileOnly"("org.projectlombok:lombok")
         "testAnnotationProcessor"("org.projectlombok:lombok")
+        "implementation"("com.squareup:javapoet:1.13.0")
+        /*mapstruct*/
+        //"implementation"("org.mapstruct:mapstruct:1.5.3.Final")
+        //"annotationProcessor"("org.mapstruct:mapstruct-processor:1.5.4.Final")
     }
     //configurations.all {
     //    dependencies {

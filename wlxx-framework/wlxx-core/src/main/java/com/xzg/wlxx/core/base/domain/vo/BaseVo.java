@@ -11,4 +11,6 @@ import lombok.Data;
 @Data
 public class BaseVo {
 
+    private Long id;
+    private Integer rn;
 }
