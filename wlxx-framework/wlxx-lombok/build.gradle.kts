@@ -2,29 +2,54 @@ plugins {
     //id("io.freefair.lombok") version "8.0.1"
     //id("org.ow2.asm") version "9.4"
     //id("java-library")
-    id 'java-gradle-plugin'
-    id 'com.gradle.plugin-publish' version '1.0.0'
-    id 'maven-publish'
-    //kotlin("jvm") version "1.7.22"
+    //java
+    //id 'java-gradle-plugin'
+    //id 'com.gradle.plugin-publish' version '1.0.0'
+    //id 'maven-publish'
+    //kotlin("jvm") version "1.8.20"
+    //kotlin("plugin.spring") version "1.7.22"
+    //id("kotlin")
 }
 
 //apply plugin: "LombokPlugin"
 
 dependencies {
+    //println(System.getProperty("java.home").toString())
+    //implementation(file(System.getProperty("java.home").toString() + "/lib/tools.jar"))
+    //extra["home"] = System.properties['java.home']
+    //compileOnly(files("${property("home")}/lib/tools.jar"))
+
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.20")
+    //println(Jvm.current().toolsJar)
+    //implementation(files(Jvm.current().toolsJar))
+
     implementation(project(":wlxx-framework:wlxx-core"))
+    implementation("com.google.auto.service:auto-service:1.0.1")
+    annotationProcessor("com.google.auto.service:auto-service:1.0.1")
 }
 
+
+//tasks.withType<JavaCompile> {
+//    options.encoding = "UTF-8"
+//    sourceCompatibility = "17"
+//    targetCompatibility = "17"
+//    //options.compilerArgs = listOf("--add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
+//    //options.compilerArgs = listOf(
+//    //    "--add-opens java.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+//    //    "--add-opens java.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+//    //)
+//}
 
 // 打包sourcesJar任务
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier 'source'
-    from sourceSets.main.allSource
-}
+//task sourcesJar(type: Jar, dependsOn: classes) {
+//    classifier 'source'
+//    from sourceSets.main.allSource
+//}
 
 
-compileJava.options.encoding = 'UTF-8'
-compileJava.sourceCompatibility = "17"
-compileJava.targetCompatibility = "17"
+//compileJava.options.encoding = 'UTF-8'
+//compileJava.sourceCompatibility = "17"
+//compileJava.targetCompatibility = "17"
 
 // 打包javadocJar任务
 //task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -72,29 +97,29 @@ compileJava.targetCompatibility = "17"
 //    dependsOn("")
 //}
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId project.group
-            artifactId project.name
-            version project.version
-            // components.java jar包
-            // components.web war包
-            from components.java
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            groupId project.group
+//            artifactId project.name
+//            version project.version
+//            // components.java jar包
+//            // components.web war包
+//            from components.java
+//
+//            // 增加 sourcesJar、javadocJar 任务
+//            //artifact sourcesJar
+//            //artifact javadocJar
+//        }
+//    }
+//    repositories {
+//        mavenLocal()
+//    }
+//}
 
-            // 增加 sourcesJar、javadocJar 任务
-            //artifact sourcesJar
-            //artifact javadocJar
-        }
-    }
-    repositories {
-        mavenLocal()
-    }
-}
-
-artifacts {
-    archives sourcesJar
-}
+//artifacts {
+//    archives sourcesJar
+//}
 
 //build {
 //    buildDir = "./out"
@@ -149,30 +174,30 @@ artifacts {
 
 
 afterEvaluate {
-    println "${name}:配置完成"
+    println("${name}:配置完成")
 }
 
-gradle.addBuildListener(new BuildListener() {
-
-    void buildStarted(Gradle var1) {
-        println 'buildStarted()->开始构建'
-    }
-
-    void settingsEvaluated(Settings var1) {
-        println 'settingsEvaluated()->settings评估完成（settins.gradle中代码执行完毕）'
-        // var1.gradle.rootProject 这里访问Project对象时会报错，还未完成Project的初始化
-    }
-
-    void projectsLoaded(Gradle var1) {
-        println 'projectsLoaded()->项目结构加载完成（初始化阶段结束）'
-        println 'projectsLoaded()->初始化结束，可访问根项目：' + var1.gradle.rootProject
-    }
-
-    void projectsEvaluated(Gradle var1) {
-        println 'projectsEvaluated()->所有项目评估完成（配置阶段结束）'
-    }
-
-    void buildFinished(BuildResult var1) {
-        println 'buildFinished()->构建结束 '
-    }
-})
+//gradle.addBuildListener( new BuildListener() {
+//
+//    void buildStarted(Gradle var1) {
+//        println 'buildStarted()->开始构建'
+//    }
+//
+//    void settingsEvaluated(Settings var1) {
+//        println 'settingsEvaluated()->settings评估完成（settins.gradle中代码执行完毕）'
+//        // var1.gradle.rootProject 这里访问Project对象时会报错，还未完成Project的初始化
+//    }
+//
+//    void projectsLoaded(Gradle var1) {
+//        println 'projectsLoaded()->项目结构加载完成（初始化阶段结束）'
+//        println 'projectsLoaded()->初始化结束，可访问根项目：' + var1.gradle.rootProject
+//    }
+//
+//    void projectsEvaluated(Gradle var1) {
+//        println 'projectsEvaluated()->所有项目评估完成（配置阶段结束）'
+//    }
+//
+//    void buildFinished(BuildResult var1) {
+//        println 'buildFinished()->构建结束 '
+//    }
+//})
