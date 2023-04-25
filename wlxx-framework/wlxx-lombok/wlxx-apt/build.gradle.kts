@@ -10,6 +10,7 @@ plugins {
     kotlin("jvm") version "1.8.20"
     //kotlin("plugin.spring") version "1.7.22"
     //id("kotlin")
+    kotlin("kapt") version "1.4.20"
 }
 
 //apply plugin: "LombokPlugin"
@@ -26,7 +27,7 @@ dependencies {
     api(project(":wlxx-framework:wlxx-lombok:wlxx-annotation"))
     implementation(project(":wlxx-framework:wlxx-core"))
     implementation("com.google.auto.service:auto-service:1.0.1")
-    annotationProcessor("com.google.auto.service:auto-service:1.0.1")
+    kapt("com.google.auto.service:auto-service:1.0.1")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

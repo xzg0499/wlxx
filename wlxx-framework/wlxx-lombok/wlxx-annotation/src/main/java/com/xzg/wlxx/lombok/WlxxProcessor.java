@@ -1,12 +1,14 @@
 package com.xzg.wlxx.lombok;
 
-import com.google.auto.service.AutoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.javapoet.JavaFile;
 import org.springframework.javapoet.MethodSpec;
 import org.springframework.javapoet.TypeSpec;
 
-import javax.annotation.processing.*;
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Filer;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
@@ -19,7 +21,7 @@ import java.util.Set;
  * @author xzgan
  * @date 2023/4/21
  */
-@AutoService(Processor.class)
+//@AutoService(Processor.class)
 @Slf4j
 public class WlxxProcessor extends AbstractProcessor {
     public static final String ROOT_INIT = RouterManager.INIT_PACKAGE;
