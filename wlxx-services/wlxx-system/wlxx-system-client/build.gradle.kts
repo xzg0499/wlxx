@@ -9,3 +9,15 @@ dependencies {
     //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
 }
 
+tasks.withType<JavaCompile> {
+    options.compilerArgs = listOf(
+        "--add-exports",
+        "java.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
+        "-XDignore.symbol.file",
+        "-Xdoclint:none",
+        "-Xlint:none",
+        "-nowarn"
+    )
+    options.isFork = true
+    options.forkOptions.executable = "javac"
+}

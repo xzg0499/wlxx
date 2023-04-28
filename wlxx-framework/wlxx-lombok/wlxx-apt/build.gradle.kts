@@ -1,4 +1,5 @@
-import org.gradle.internal.jvm.Jvm
+import org.jetbrains.kotlin.backend.jvm.jvmPhases
+import org.jetbrains.kotlin.fir.expressions.builder.buildArgumentList
 
 plugins {
     //id("io.freefair.lombok") version "8.0.1"
@@ -21,39 +22,91 @@ dependencies {
     //extra["home"] = System.properties['java.home']
     //compileOnly(files("${property("home")}/lib/tools.jar"))
 
-    implementation(files(Jvm.current().toolsJar))
+
+    //implementation(files(Jvm.current().toolsJar))
     //implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.20")
 
     api(project(":wlxx-framework:wlxx-lombok:wlxx-annotation"))
     implementation(project(":wlxx-framework:wlxx-core"))
     implementation("com.google.auto.service:auto-service:1.0.1")
     kapt("com.google.auto.service:auto-service:1.0.1")
+    //implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf(
-            "-Xjsr305=strict"/*, "-Xno-new-java-annotation-targets"*/
+            "-Xjsr305=strict",
+            "-Xno-new-java-annotation-targets",
+            "-include-runtime",
+            //"-Xexport-kdoc",
+            //"--add-exports java.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+            //, "-verbose"
+            //, "--add-exports java.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
         )
         jvmTarget = "17"
         //javaexec {
-        //    args = listOf("--add-opens java.base/java.lang=ALL-UNNAMED")
+        //    args = listOf("--add-exports java.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
         //}
+        noJdk = false
     }
+    compilerOptions {
+        //freeCompilerArgs.add("-Xexport-kdoc")
+        //freeCompilerArgs.add("--add-exports java.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
+        //val arg = createCompilerArgs();
+        //arg.javacArguments = arrayOf(
+        //    "--add-exports", "java.compiler/com.sun.tools.javac.code=ALL-UNNAMED"
+        //);
+        //setupCompilerArgs(arg);
+    }
+
 }
 
 sourceSets["main"].java.srcDir("src/main/java")
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    sourceCompatibility = "17"
-    targetCompatibility = "17"
-    //options.compilerArgs = listOf("--add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
-    options.compilerArgs = listOf(
-        "--add-opens java.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
-        "--add-opens java.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
-    )
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of("17"))
+    }
+    jvmPhases.run {
+        buildArgumentList {
+            //"--add-exports java.compiler/com.sun.tools.javac.code=ALL-UNNAMED"
+        }
+    }
 }
+
+tasks.withType<JavaCompile> {
+    options.compilerArgs = listOf(
+        "--add-exports",
+        "java.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
+        "-XDignore.symbol.file",
+        "-Xdoclint:none",
+        "-Xlint:none",
+        "-nowarn"
+    )
+    options.isFork = true
+    options.forkOptions.executable = "javac"
+}
+
+//tasks.withType<JavaCompile> {
+//    options.encoding = "UTF-8"
+//    sourceCompatibility = "17"
+//    targetCompatibility = "17"
+//    //options.compilerArgs = listOf("--add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
+//    options.compilerArgs = listOf(
+//        "--add-opens java.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+//        "--add-exports java.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+//    )
+//}
+
+//kotlin {
+//    kotlinDaemonJvmArgs = listOf(
+//        "--add-opens java.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+//    )
+//    //jvm {
+//    //    withJava()
+//    //}
+//}
 
 // 打包sourcesJar任务
 //task sourcesJar(type: Jar, dependsOn: classes) {
