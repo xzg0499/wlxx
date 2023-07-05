@@ -1,9 +1,14 @@
 package com.xzg.wlxx.flowable.config;
 
+import org.flowable.ui.idm.properties.FlowableIdmAppProperties;
+import org.flowable.ui.modeler.properties.FlowableModelerAppProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 
@@ -20,6 +25,22 @@ import java.util.stream.Collectors;
  * @date 2022/11/21 10:54
  */
 @Configuration
+@EnableConfigurationProperties({FlowableIdmAppProperties.class, FlowableModelerAppProperties.class})
+@ComponentScan(basePackages = {
+        "org.flowable.ui.idm.conf",
+//        "org.flowable.ui.idm.security",
+        "org.flowable.ui.idm.service",
+        "org.flowable.ui.modeler.repository",
+        "org.flowable.ui.modeler.service",
+//        "org.flowable.ui.common.filter",
+        "org.flowable.ui.common.service",
+        "org.flowable.ui.common.repository",
+//        "org.flowable.ui.common.security",
+        "org.flowable.ui.common.tenant",
+        "org.flowable.form"
+}, excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = org.flowable.ui.idm.conf.ApplicationConfiguration.class)
+})
 public class WebConfig {
     @Bean
     public BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {

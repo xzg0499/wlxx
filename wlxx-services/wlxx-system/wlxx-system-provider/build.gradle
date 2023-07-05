@@ -26,6 +26,7 @@ dependencies {
     testImplementation(project(":wlxx-framework:wlxx-test"))
     implementation("com.xuxueli:xxl-job-core:2.4.0")
     implementation("com.googlecode.aviator:aviator:5.3.3")
+    implementation("com.github.davidfantasy:mybatis-plus-generator-ui:2.0.1")
     //// TODO annotationProcessor怎么配置副项目依赖中
     //annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     /*mockito 测试框架*/

@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author xzgan
@@ -12,6 +13,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @date 2022/11/17 15:37
  */
 @SpringBootApplication
+@ComponentScan(basePackages = {"org.flowable.engine"})
 public class FlowableApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

@@ -1,7 +1,9 @@
 description("flowable")
 
 ext {
-    flowableVersion = "6.7.2"
+    //flowableVersion = "6.7.2"
+    flowableVersion = "6.8.0"
+    //flowableVersion = "7.0.0.M1"
 }
 
 configurations {
@@ -24,6 +26,8 @@ dependencies {
 //    implementation group: 'org.flowable', name: 'flowable-ui-task-conf', version: '6.7.2'
 //    implementation group: 'org.flowable', name: 'flowable-ui-admin-conf', version: '6.7.2'
 //    implementation group: 'org.flowable', name: 'flowable-ui-idm-conf', version: '6.7.2'
+
+    implementation("org.flowable:flowable-spring-boot-starter:${flowableVersion}")
 
     implementation("org.springframework.boot:spring-boot-starter-activemq:2.7.9")
     implementation("org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}")

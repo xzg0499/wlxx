@@ -22,6 +22,8 @@ spring:
       connection-test-query: SELECT 1
   main:
     allow-bean-definition-overriding: true
+  resources:
+    static-locations: classpath:/static/idm/
 
 server:
   port: 12003
@@ -87,7 +89,7 @@ flowable:
         user-id: admin
         first-name: admin
         last-name: admin
-        email: test-admin@example-domain.tld
+        email: xzgang0499@qq.com
   common:
     app:
       role-prefix:
