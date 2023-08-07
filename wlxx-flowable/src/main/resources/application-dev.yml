@@ -20,11 +20,8 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-  main:
-    allow-bean-definition-overriding: true
-  resources:
-    static-locations: classpath:/static/idm/
 
+# server 配置
 server:
   port: 12003
   tomcat:
@@ -36,47 +33,8 @@ server:
     enabled: true
     min-response-size: 4096
 
-logging:
-  level:
-    root: info
-    com.xzg.wlxx: debug
-    com.ejlchina.searcher: debug
-  file:
-    # 日志文件名格式
-    name: "logs/${spring.application.name}.log"
-    pattern:
-      # 日志记录格式[组件名称] [时间戳] [日志级别] [类名.方法名] [消息文本]
-      file: "${spring.application.name} %d{yyyy-MM-dd HH:mm:ss.SSS} %p %C.%M %m %n"
-    logback:
-      rollingpolicy:
-        # 根据文件大小归档，超过2KB自动归档，次日启动服务时也会自动归档
-        file-name-pattern: "%d{yyyyMMdd}/${spring.application.name}.out.log.%d{yyyy-MM-dd}.%i.gz"
-        # 最大日志文件大小(默认为10MB，这里为了测试归档，暂时设置为2KB)
-        max-file-size: 2KB
-        # 要保留的日志备份的总大小(默认为0B)
-        total-size-cap: 1GB
-        # 保存存档日志文件的最大天数(默认为7天)
-        max-history: 20
-
-bean-searcher:
-  params:
-    pagination:
-      start: 1
-  sql:
-    default-mapping:
-      table-prefix: t_
-      underline-case: true
-      redundant-suffixes: Po
-
+# Flowable 配置
 flowable:
-  async-executor-activate: false
-  labelFontName: 宋体
-  activityFontName: 宋体
-  annotationFontName: 宋体
-  form-field-validation-enabled: false
-  experimental:
-    debugger:
-      enabled: true
   rest:
     app:
       authentication-mode: verify-privilege
@@ -89,16 +47,19 @@ flowable:
         user-id: admin
         first-name: admin
         last-name: admin
-        email: xzgang0499@qq.com
+  labelFontName: 宋体
   common:
     app:
       role-prefix:
       idm-url: http://localhost:${server.port}/${spring.application.name}/idm
   xml:
     encoding: UTF-8
+  activityFontName: 宋体
   modeler:
     app:
       rest-enabled: true
+      deployment-api-url: http://localhost:${server.port}/${spring.application.name}/app-api
+  rest-api-enabled: true
   admin:
     app:
       security:
@@ -160,25 +121,5 @@ flowable:
           port: ${server.port}
           name: Flowable Content app
           description: Flowable Content REST config
-  database-schema-update: false
-management:
-  endpoint:
-    health:
-      roles: access-admin
-      show-details: when_authorized
-  endpoints:
-    #    jmx:
-    #      unique-names: true
-    web:
-      exposure:
-        include: "*"
-# MyBatis配置比较重要，手动去扫描Flowable默认的Mapper.xml，以及设置字段类型
-mybatis:
-  mapper-locations:
-    - classpath:/META-INF/admin-mybatis-mappings/*.xml
-    - classpath:/META-INF/modeler-mybatis-mappings/*.xml
-  configuration-properties:
-    prefix:
-    boolValue: TRUE
-    blobType: BLOB
-
+  database-schema-update: true
+  annotationFontName: 宋体
