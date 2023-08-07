@@ -1,3 +1,0 @@
-# Auto Configuration Import Filters
-org.springframework.boot.autoconfigure.AutoConfigurationImportFilter=\
-com.xzg.wlxx.flowable.config.FlowableUiAppEventRegistryCondition
