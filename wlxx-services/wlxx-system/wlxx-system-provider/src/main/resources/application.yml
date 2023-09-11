@@ -1,9 +1,0 @@
-spring:
-  profiles:
-    active: dev
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-    throw-exception-if-no-handler-found: true
-
-
