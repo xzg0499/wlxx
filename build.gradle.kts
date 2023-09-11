@@ -67,6 +67,15 @@ tasks.withType<BootJar>{
 //	}
 //}
 
+extra["springCloudVersion"] = "2022.0.4"
+
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+	}
+}
+
+
 
 
 
@@ -77,8 +86,9 @@ dependencies {
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.mysql:mysql-connector-j")
-	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("com.baomidou:mybatis-plus-boot-starter:3.5.3.2")
+	implementation("com.github.xiaoymin:knife4j-spring-boot-starter:3.0.3")
 }
 
 tasks.withType<KotlinCompile> {
