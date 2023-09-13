@@ -16,11 +16,11 @@ dependencies {
 
 extra["springCloudVersion"] = "2022.0.4"
 
-//configure<io.spring.gradle.dependencymanagement.internal.dsl.StandardDependencyManagementExtension> {
-//    imports {
-//        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
-////            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
-////            mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibabaVersion")}")
-////            mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
-//    }
-//}
+configure<io.spring.gradle.dependencymanagement.internal.dsl.StandardDependencyManagementExtension> {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+//            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+//            mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibabaVersion")}")
+//            mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
+    }
+}
