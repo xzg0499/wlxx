@@ -21,6 +21,7 @@ buildscript {
     }
 }
 
+// 全局加载插件，以便处理subproject的插件
 //apply("script/dependencies.gradle.kts")
 //plugins {
 //    id("java")
@@ -48,14 +49,24 @@ configure(allprojects) {
     apply("$rootDir/gradle/repository.gradle.kts")
 }
 
-configure<Project>(subprojects) {
+configure(subprojects) {
 
     val subList = subprojects.filter { f -> f.name.startsWith("wlxx-") }
     if (subList.isNotEmpty()) {
         return@configure
     }
 
-    apply<JavaPlugin>()
+//    apply {
+//        plugin("org.springframework.boot")
+//        plugin("io.spring.dependency-management")
+//        plugin("org.jetbrains.kotlin.jvm")
+//        plugin("org.jetbrains.kotlin.plugin.spring")
+//    }
+
+//    kotlin {
+//        apply<KotlinPluginWrapper>()
+//        apply<SpringGradleSubplugin>()
+//    }
     apply<SpringBootPlugin>()//org.springframework.boot
     apply<DependencyManagementPlugin>()//io.spring.dependency-management
     apply<KotlinPluginWrapper>()//jvm
@@ -72,30 +83,30 @@ configure<Project>(subprojects) {
 
 //    apply("$rootDir/gradle/dependencies.gradle.kts")
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        compileOnly("org.projectlombok:lombok")
-        developmentOnly("org.springframework.boot:spring-boot-devtools")
-        runtimeOnly("com.mysql:mysql-connector-j")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
-        implementation("com.baomidou:mybatis-plus-boot-starter:3.5.3.2")
-        implementation("com.github.xiaoymin:knife4j-spring-boot-starter:3.0.3")
-    }
-
-    java {
-        sourceCompatibility = JavaVersion.VERSION_17
-    }
-
-    configurations {
-        compileOnly {
-            extendsFrom(configurations.annotationProcessor.get())
-        }
+        "implementation"("org.springframework.boot:spring-boot-starter-web")
+        "implementation"("com.fasterxml.jackson.module:jackson-module-kotlin")
+        "implementation"("org.jetbrains.kotlin:kotlin-reflect")
+        "compileOnly"("org.projectlombok:lombok")
+        "developmentOnly"("org.springframework.boot:spring-boot-devtools")
+        "runtimeOnly"("com.mysql:mysql-connector-j")
+        "testImplementation"("org.springframework.boot:spring-boot-starter-test")
+        "implementation"("com.baomidou:mybatis-plus-boot-starter:3.5.3.2")
+        "implementation"("com.github.xiaoymin:knife4j-spring-boot-starter:3.0.3")
     }
 
     tasks.withType<JavaCompile> {
+        sourceCompatibility = "17"
         options.encoding = "UTF-8"
     }
+
+    configurations {
+
+    }
+//    configurations {
+//        compileOnly {
+//            extendsFrom(configurations.annotationProcessor.get())
+//        }
+//    }
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {

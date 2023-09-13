@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class WlxxApplication
 
 fun main(args: Array<String>) {
-	runApplication<WlxxApplication>(*args)
+    runApplication<WlxxApplication>(*args)
 }
