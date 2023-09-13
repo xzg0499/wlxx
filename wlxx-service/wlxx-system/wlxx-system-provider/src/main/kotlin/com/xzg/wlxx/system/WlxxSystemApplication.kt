@@ -1,4 +1,4 @@
-package com.xzg.wlxx
+package com.xzg.wlxx.system
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,0 +1,48 @@
+# springdoc-openapi
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.xzg.wlxx
+# knife4j
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+spring.datasource:
+  url: jdbc:mysql://127.0.0.1:3306/demo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  username: root
+  password:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 12000
+
+logging:
+  level:
+    com.xzg: info
+    com.chz.mapper: debug
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+  mapper-locations: classpath:/mapper/*Mapper.xml
+
+#mybatis-mate:
+#  cert:
+#    # 请添加微信wx153666购买授权，不白嫖从我做起！ 测试证书会失效，请勿正式环境使用
+#    grant: thisIsTestLicense
+#    license: GPbNAhq+4Y+mHxpEw0UmAp43k8iCgO0p//zEDAHaQdv7NCJCgAxdl5TYlwkQGKF9nCfXEfuN7a2Yls8xIEzfcTUmMQ8PrlLsF3BNRmwOLrET+rYAXvRN6gmYgsPgyB1vYkZctdz1H43BkAI/M0FLRJ9NQ7wuZsmo3dOgWXMTsbSx7UgpBZObc2UUdcNaQp1Vha76PKnX8L4Y6LDacS8SqqVepKgN5IR/Wr7nDD0+ux2Q2Q+0QMT/H1mQiNw64h1AHSoKQlMl8OSojPk1AV8vBUXvvRD8zbrgqXBhHN2m5Bn9ap6CDlR0GGls2oU8Qxxqyfs2rck3yc2z3xdEmWg6jQ==
+#  encryptor:
+#    # 对称算法密钥，随机字符串作为密钥即可（有些算法长度有要求，注意）
+#    password: qmh9MK4KsZY8FnqkJYk8tzgc0H
+#    # 非对称加密 RSA 公钥私钥
+#    publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCEOCMScPeNaJ0DP9N9vd/fXwPGUVnuxeGPpRePXfWuX/X/Yk5IMhwEfYLXictxQk/oAqGnqtDuS/PCL/7mqL+8wFSYnWWErCSkDdT6LjyD07l9dWv+Xj1UTEjP24sEgYA92f4AZyvhsw8I/Bj6a9a30r+kVOGoEZgGMf2c2xK4CQIDAQAB
+#    privateKey: MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAIQ4IxJw941onQM/0329399fA8ZRWe7F4Y+lF49d9a5f9f9iTkgyHAR9gteJy3FCT+gCoaeq0O5L88Iv/uaov7zAVJidZYSsJKQN1PouPIPTuX11a/5ePVRMSM/biwSBgD3Z/gBnK+GzDwj8GPpr1rfSv6RU4agRmAYx/ZzbErgJAgMBAAECgYBAlFK9DSQ8k14tWh1oizcvmO71DIMKluhHCvHo+pGnLAOxS0jFBoScxNkFga42kZcJ0U8337zQx5Q1ws+TxdRwHxQO889ZGQH3kOFB0ErUMTgFrTOakZhV0dMWzebkYitNcduSKZ1yfgM5ekF9k3owPIQhUNy8eXjagiLLb9/woQJBALwofOx+fuanQLC1yotFqYAx0XED9EpVPhS/G8mc4dZSNWZ548bIyq3ozP0CoHqriQo/X3NVzIJOU3rhn92fwj0CQQCz5FaeHzSqe1H4bTxzwgR5BUHttxrAPtktwfgCRgaSrZByjFldtP/dGaJmjR2Vzp848WcusJZlSlaLTfndm6W9AkEAoSxlZgctGNKn3Ta7mvU/Lmp+J7rlZU8DcK4LVXYnFXkx+OfsLvkMdE/4V7oKUUnih36lepxCJFSHubjPQf55WQJBAIUa8yxUkreCQAi9avmMGZsiVMH7tgOBfVjqKQQlpD9rxXG8f3Nitd93VD7lM3rhQ9byaBKX/vA7rQWuUK+0t1ECQDTGhLRJFZK4J7UGklTX94pknM/5rO3N/JPkFJcGilbgzkqy0s13D1K+8cR0qTn2DPW8vPoLQpVGuaATTTmMdvg=

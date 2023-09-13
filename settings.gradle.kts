@@ -1,13 +1,16 @@
 rootProject.name = "wlxx"
 
-//buildscript {
-//    dependencies {
-//        classpath("org.springframework.boot:spring-boot-gradle-plugin:3.1.3")
-//        classpath("io.spring.gradle:dependency-management-plugin:1.1.3")
-//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
-//        classpath("org.jetbrains.kotlin:kotlin-allopen:1.8.22")
-//    }
-//}
+fun loadModule(file: File) {
+    file.walkTopDown()
+        .filter { f -> f.isDirectory }
+        .filter { f -> !f.path.replace(file.path, "").startsWith("\\.") }
+        .filter { f -> f.name.startsWith("wlxx-") }
+        .forEach { f ->
+            val module = f.path.replace(file.path, "")
+                .replace(File.separator, ":")
+            include(module)
+        }
+}
+loadModule(File("$rootDir"))
 
-apply("gradle/load-module.gradle.kts")
 

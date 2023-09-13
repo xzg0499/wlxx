@@ -1,4 +1,4 @@
-package com.xzg.base
+package com.xzg.wlxx.system.base
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
