@@ -3,6 +3,11 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
+    maven {
+        name = "aliyun-gradle-plugin"
+        url = uri("https://maven.aliyun.com/repository/gradle-plugin")
+    }
     gradlePluginPortal()
 }
 
