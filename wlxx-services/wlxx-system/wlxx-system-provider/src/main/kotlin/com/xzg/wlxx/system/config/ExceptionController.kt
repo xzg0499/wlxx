@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system.config
 
-import com.xzg.wlxx.system.base.ApiResult
+import com.xzg.wlxx.common.base.ApiResult
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 

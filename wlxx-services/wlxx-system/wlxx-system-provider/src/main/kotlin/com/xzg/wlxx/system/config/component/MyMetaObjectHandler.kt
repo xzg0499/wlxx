@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.config.component
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler
-import com.xzg.wlxx.system.base.Slf4j.Companion.logger
+import com.xzg.wlxx.common.annotations.Slf4j.Companion.logger
 import org.apache.ibatis.reflection.MetaObject
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime

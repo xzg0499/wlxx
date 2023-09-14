@@ -2,7 +2,7 @@ package com.xzg.wlxx.system.entity.po
 
 import com.baomidou.mybatisplus.annotation.TableField
 import com.baomidou.mybatisplus.annotation.TableName
-import com.xzg.wlxx.system.base.BasePo
+import com.xzg.wlxx.common.base.BasePo
 
 @TableName("org")
 data class Org(

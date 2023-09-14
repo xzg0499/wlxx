@@ -8,7 +8,7 @@ plugins {
 tasks.withType<BootJar> {
     manifest {
         attributes["Main-Class"] = "org.springframework.boot.loader.JarLauncher"
-        attributes["Start-Class"] = "com.xzg.wlxx.system.WlxxSystemApplicationKt"
+        attributes["Start-Class"] = "com.xzg.wlxx.system.SystemApplicationKt"
     }
 }
 
@@ -16,6 +16,7 @@ dependencies {
     implementation("com.github.jsonzou:jmockdata:4.1.2")
     implementation("cn.hutool:hutool-all:5.8.21")
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
+    implementation(project(":wlxx-common"))
 }
 
 tasks.withType<BootBuildImage> {

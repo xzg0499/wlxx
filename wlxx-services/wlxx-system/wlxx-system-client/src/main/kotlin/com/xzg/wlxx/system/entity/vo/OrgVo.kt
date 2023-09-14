@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system.entity.vo
 
-import com.xzg.wlxx.system.base.BasePo
+import com.xzg.wlxx.common.base.BasePo
 import com.xzg.wlxx.system.entity.po.Org
 
 data class OrgVo(

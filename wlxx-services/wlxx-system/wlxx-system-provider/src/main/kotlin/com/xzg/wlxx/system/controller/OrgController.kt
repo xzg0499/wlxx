@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system.controller
 
-import com.xzg.wlxx.system.base.BaseController
+import com.xzg.wlxx.common.base.BaseController
 import com.xzg.wlxx.system.entity.po.Org
 import com.xzg.wlxx.system.service.OrgService
 import io.swagger.v3.oas.annotations.Operation

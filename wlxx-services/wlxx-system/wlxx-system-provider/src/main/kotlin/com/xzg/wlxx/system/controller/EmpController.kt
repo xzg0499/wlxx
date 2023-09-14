@@ -1,8 +1,8 @@
 package com.xzg.wlxx.system.controller
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page
-import com.xzg.wlxx.system.base.ApiResult
-import com.xzg.wlxx.system.base.BaseController
+import com.xzg.wlxx.common.base.ApiResult
+import com.xzg.wlxx.common.base.BaseController
 import com.xzg.wlxx.system.entity.po.Emp
 import com.xzg.wlxx.system.service.EmpService
 import io.swagger.v3.oas.annotations.Operation
