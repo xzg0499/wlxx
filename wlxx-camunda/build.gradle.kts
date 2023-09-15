@@ -27,7 +27,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("com.sun.xml.bind:jaxb-impl:2.3.6")
-    implementation("com.h2database:h2")
+    implementation("org.camunda.bpm:camunda-engine-rest-openapi:7.19.0")
+    implementation("com.github.xiaoymin:knife4j-openapi3-spring-boot-starter:4.3.0")
 
 }
 

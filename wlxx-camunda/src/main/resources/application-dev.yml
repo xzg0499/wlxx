@@ -30,8 +30,9 @@ camunda.bpm:
 logging:
   level:
     com.xzg.wlxx.camunda: debug
+#    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: trace
 
-# springdoc-openapi
+# springdoc-openapi项目配置
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -42,4 +43,12 @@ springdoc:
   group-configs:
     - group: 'default'
       paths-to-match: '/**'
-      packages-to-scan: com.xzg.wlxx.camunda
+      packages-to-scan: com.xiaominfo.knife4j.demo.web
+    - group: 'camunda'
+      paths-to-match: '/**'
+      packages-to-scan: org.camunda.bpm
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
