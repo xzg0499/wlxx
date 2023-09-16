@@ -12,6 +12,10 @@ fun unZip(path: String, dest: String) {
     val file = File(path)
     val zip = ZipInputStream(file.inputStream())
     var zipEntry = zip.nextEntry
+    val destFile = File(dest)
+    if (!destFile.exists()) {
+        destFile.mkdirs();
+    }
     while (zipEntry != null) {
         val entryPath = dest + File.separator + zipEntry.name
         val entryFile = File(entryPath)
@@ -28,7 +32,7 @@ fun unZip(path: String, dest: String) {
 
 fun main() {
     println("Hello World!")
-    val path = "E:\\ITL\\demo\\gradle.zip"
-    val dest = "E:\\ITL\\demo\\gradlezip"
+    val path = "E:\\ITL\\WindTerm_2.5.0_Windows_Portable_x86_64.zip"
+    val dest = "E:\\ITL\\WindTerm_2.5.0_Windows_Portable_x86_64"
     unZip(path, dest)
 }

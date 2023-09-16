@@ -1,12 +1,11 @@
 plugins {
-    id("wlxx.kotlin-camunda")
+    id("wlxx.kotlin-application")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("org.camunda.bpm:camunda-bom:7.19.0")
-        mavenBom("org.springframework.boot:spring-boot-dependencies:2.7.9")
-//        mavenBom("org.camunda.bpm:camunda-bom:7.20.0-alpha5")
+        mavenBom("org.camunda.bpm:camunda-bom:7.20.0-alpha5")
+//        mavenBom("org.springframework.boot:spring-boot-dependencies:3.1.3")
     }
 }
 
@@ -27,8 +26,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("com.sun.xml.bind:jaxb-impl:2.3.6")
-    implementation("org.camunda.bpm:camunda-engine-rest-openapi:7.19.0")
-    implementation("com.github.xiaoymin:knife4j-openapi3-spring-boot-starter:4.3.0")
+    implementation("org.camunda.bpm:camunda-engine-rest-openapi:7.20.0-alpha5")
+    implementation("com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:4.3.0")
+    compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
 
 }
 

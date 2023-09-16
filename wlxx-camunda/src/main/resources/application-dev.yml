@@ -4,10 +4,10 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
-  security:
-    user:
-      name: demo
-      password: demo
+#  security:
+#    user:
+#      name: demo
+#      password: demo
 #spring.datasource.url: jdbc:h2:file:./camunda-h2-database
 
 camunda.bpm:
@@ -30,6 +30,7 @@ camunda.bpm:
 logging:
   level:
     com.xzg.wlxx.camunda: debug
+    org.camunda.bpm.webapp: debug
 #    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: trace
 
 # springdoc-openapi项目配置
