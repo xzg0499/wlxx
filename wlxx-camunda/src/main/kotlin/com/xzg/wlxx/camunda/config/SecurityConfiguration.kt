@@ -24,8 +24,8 @@ class SecurityConfiguration {
     @Bean
     fun webSecurityCustomizer(): WebSecurityCustomizer {
         return WebSecurityCustomizer() { web: WebSecurity? ->
-            val ant = AntPathRequestMatcher.antMatcher("/**")
-            web?.ignoring()?.requestMatchers(ant)
+            val ant = arrayOf(AntPathRequestMatcher.antMatcher("/**"))
+            web?.ignoring()?.requestMatchers(*ant)
         }
     }
 
