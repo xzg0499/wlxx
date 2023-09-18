@@ -11,8 +11,8 @@ import java.util.zip.ZipInputStream;
 public class ZipUtils {
 
     public static void main(String[] args) throws IOException {
-        String src = "";
-        String dest = "";
+        String src = "E:\\ITL\\nacos-server-2.2.3.zip";
+        String dest = "E:\\ITL\\nacos-server-2.2.3";
         unzip(src, dest);
     }
 

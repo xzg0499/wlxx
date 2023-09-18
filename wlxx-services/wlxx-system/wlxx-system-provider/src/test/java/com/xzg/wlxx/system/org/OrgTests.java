@@ -10,6 +10,7 @@ public class OrgTests {
     @Test
     void test() {
         Org org = new Org();
+        org.setId(31L);
         org.setOrgCode("test");
         org.setOrgName("test");
         org.insertOrUpdate();
