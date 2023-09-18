@@ -1,0 +1,107 @@
+{
+  "components": [
+    {
+      "label": "Number",
+      "type": "number",
+      "layout": {
+        "row": "Row_1qdbwx2",
+        "columns": null
+      },
+      "id": "Field_0ol29g8",
+      "key": "field_03dbwr0"
+    },
+    {
+      "label": "Text field",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_08ja5p8",
+        "columns": null
+      },
+      "id": "Field_09m0hur",
+      "key": "field_0xwdzo5"
+    },
+    {
+      "label": "Checkbox",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1hev7a7",
+        "columns": null
+      },
+      "id": "Field_0u6774m",
+      "key": "field_1l4ymvj"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Checklist",
+      "type": "checklist",
+      "layout": {
+        "row": "Row_13n2wuk",
+        "columns": null
+      },
+      "id": "Field_1ubhwlq",
+      "key": "field_1r4l73m"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Radio",
+      "type": "radio",
+      "layout": {
+        "row": "Row_137rs7u",
+        "columns": null
+      },
+      "id": "Field_0o6zxsm",
+      "key": "field_0n5iraw"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Select",
+      "type": "select",
+      "layout": {
+        "row": "Row_0oxgw71",
+        "columns": null
+      },
+      "id": "Field_0jgb881",
+      "key": "field_097snju"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Tag list",
+      "type": "taglist",
+      "layout": {
+        "row": "Row_110bmqy",
+        "columns": null
+      },
+      "id": "Field_1h9tr1o",
+      "key": "field_1f1qrnn"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0mxy3aa",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 10
+}
