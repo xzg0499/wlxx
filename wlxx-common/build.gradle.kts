@@ -1,5 +1,5 @@
 plugins {
-    id("wlxx.kotlin-application")
+    id("wlxx.application")
 }
 
 

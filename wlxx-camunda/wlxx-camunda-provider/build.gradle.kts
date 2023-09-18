@@ -1,5 +1,5 @@
 plugins {
-    id("wlxx.kotlin-application")
+    id("wlxx.application")
 }
 
 extra["camundaVersion"] = "7.20.0-alpha5"
@@ -29,10 +29,6 @@ dependencies {
 
 }
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
-}
+
 
 

@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("wlxx.kotlin-application")
+    id("wlxx.application")
 }
 
 tasks.withType<BootJar> {
