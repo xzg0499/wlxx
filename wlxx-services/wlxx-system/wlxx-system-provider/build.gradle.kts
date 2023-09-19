@@ -15,6 +15,7 @@ tasks.withType<BootJar> {
     }
 }
 
+
 //dependencyManagement {
 //    imports {
 //        mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibabaVersion")}")
@@ -29,6 +30,10 @@ dependencies {
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
     implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2022.0.0.0")
+//    {
+//        exclude("org.springframework.cloud", "spring-cloud-starter-netflix-ribbon")
+//        isTransitive = false
+//    }
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2022.0.0.0")
     implementation("org.springframework.cloud:spring-cloud-starter")
 
