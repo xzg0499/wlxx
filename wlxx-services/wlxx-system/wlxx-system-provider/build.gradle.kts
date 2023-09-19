@@ -6,7 +6,7 @@ plugins {
 }
 
 //ext["springCloudAlibabaVersion"] = "2022.0.0.0-RC2"
-//ext["springCloudAlibabaVersion"] = "2022.0.0.0*"
+ext["springCloudAlibabaVersion"] = "2022.0.0.0"
 
 tasks.withType<BootJar> {
     manifest {
@@ -28,6 +28,10 @@ dependencies {
     implementation(project(":wlxx-common"))
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2022.0.0.0")
+//    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2022.0.0.0")
+    implementation("org.springframework.cloud:spring-cloud-starter")
+
 }
 
 tasks.withType<BootBuildImage> {
