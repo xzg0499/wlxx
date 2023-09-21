@@ -12,6 +12,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("com.baomidou:mybatis-plus-boot-starter:3.5.3.1")
     implementation("com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:4.3.0")
+    implementation("cn.hutool:hutool-all:5.8.21")
 }
 
 extra["springCloudVersion"] = "2022.0.4"

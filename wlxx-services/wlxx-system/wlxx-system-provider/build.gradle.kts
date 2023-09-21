@@ -24,7 +24,6 @@ tasks.withType<BootJar> {
 
 dependencies {
     implementation("com.github.jsonzou:jmockdata:4.1.2")
-    implementation("cn.hutool:hutool-all:5.8.21")
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
     implementation(project(":wlxx-common"))
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
