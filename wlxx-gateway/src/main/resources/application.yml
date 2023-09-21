@@ -1,5 +1,5 @@
 spring:
   profiles:
-    active: dev,nacos
+    active: dev
   application:
     name: wlxx-gateway
