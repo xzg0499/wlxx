@@ -8,10 +8,10 @@ spring: # Spring配置项
         file-extension: yml # 配置文件的格式，默认为properties
         namespace: ${NAMESPACE:public}
         group: ${group-id:DEFAULT_GROUP}
-        shared-configs:
-        #          - data-id: wlxx-database.yml # 配置文件名-Data Id
-        #            group: ${group-id:DEFAULT_GROUP}   # 默认为DEFAULT_GROUP
-        #            refresh: false   # 是否动态刷新，默认为false
+  #        shared-configs:
+  #          - data-id: wlxx-routes.json # 配置文件名-Data Id
+  #            group: ${group-id:DEFAULT_GROUP}   # 默认为DEFAULT_GROUP
+  #            refresh: false   # 是否动态刷新，默认为false
   #          - data-id: wlxx-mybatis.yml
   #            group: ${group-id:DEFAULT_GROUP}
   #            refresh: false

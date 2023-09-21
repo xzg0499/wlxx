@@ -1,17 +1,21 @@
 spring:
+  #  config:
+  #    import: nacos:wlxx-gateway
   main:
     web-application-type: reactive
   cloud:
     gateway:
       default-filters:
         - AddRequestHeader=gateway-env, springcloud-gateway
+      # 路由可用
       routes:
         - id: "wlxx-system"
-          uri: "http://127.0.0.1:12000/"
+          uri: lb://wlxx-system
           predicates:
             - Path=/wlxx-system/**
           filters:
             - StripPrefix=1
+
 
 logging:
   level:
