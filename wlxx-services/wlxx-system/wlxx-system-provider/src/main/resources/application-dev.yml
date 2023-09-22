@@ -64,3 +64,11 @@ feign:
 #          - com.example.BarRequestInterceptor
 #        encoder: com.example.SimpleEncoder
 #        decoder: com.example.SimpleDecoder
+
+application:
+  security:
+    jwt:
+      secret-key: VUhJT0pJT0hVWUlHRFVGVFdPSVJISVVHWUZHVkRVR0RISVVIREJZI1VJSEZTVUdZR0ZTVVk=
+      expiration: 86400000 # 1天
+      refresh-token:
+        expiration: 604800000 # 7 天

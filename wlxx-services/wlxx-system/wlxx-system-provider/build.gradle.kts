@@ -23,9 +23,11 @@ tasks.withType<BootJar> {
 //}
 
 dependencies {
-    implementation("com.github.jsonzou:jmockdata:4.1.2")
+    testImplementation("com.github.jsonzou:jmockdata:4.1.2")
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
     implementation(project(":wlxx-common"))
+    testCompileOnly("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
     implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2022.0.0.0")
@@ -37,6 +39,12 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
 }
 

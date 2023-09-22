@@ -18,4 +18,5 @@ public class Org extends BasePo<Org> {
     private String orgName;
     private Integer orgLevel;
     private Long orgId;
+    private Integer orgType;
 }

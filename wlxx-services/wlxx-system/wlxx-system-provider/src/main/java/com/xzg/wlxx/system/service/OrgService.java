@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface OrgService extends IService<Org> {
 
-    Boolean insertOrUpdate(Org org);
+    Boolean add(Org org);
 
-    List<OrgVo> list4Tree();
+    List<OrgVo> list4Tree(Long rootId);
 }
