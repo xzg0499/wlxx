@@ -28,19 +28,19 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @Operation(summary = "注册")
-    public ApiResult register(@RequestBody UserDto dto) {
+    public ApiResult<?> register(@RequestBody UserDto dto) {
         return authenticationService.register(dto);
     }
 
     @PostMapping("/authentication")
     @Operation(summary = "认证")
-    public ApiResult authenticate(@RequestBody UserDto dto) {
+    public ApiResult<?> authenticate(@RequestBody UserDto dto) {
         return authenticationService.authenticate(dto);
     }
 
     @PostMapping("/refresh")
     @Operation(summary = "刷新 Token")
-    public ApiResult refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ApiResult<?> refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         return authenticationService.refreshToken(request, response);
     }
 }

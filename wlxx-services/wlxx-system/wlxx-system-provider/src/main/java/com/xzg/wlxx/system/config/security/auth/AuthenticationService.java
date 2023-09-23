@@ -35,8 +35,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
 
-    public ApiResult register(UserDto request) {
-        Supplier supplier = () -> {
+    public ApiResult<?> register(UserDto request) {
+        Supplier<BusinessException> supplier = () -> {
             throw new BusinessException("参数不能为空！");
         };
         Assert.notBlank(request.getUsername(), supplier);
@@ -59,7 +59,7 @@ public class AuthenticationService {
         return ApiResult.failure("用户已存在！");
     }
 
-    public ApiResult authenticate(UserDto dto) {
+    public ApiResult<?> authenticate(UserDto dto) {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getUsername());
 
@@ -89,8 +89,8 @@ public class AuthenticationService {
 
     }
 
-    public ApiResult refreshToken(HttpServletRequest request,
-                                  HttpServletResponse response) throws IOException {
+    public ApiResult<?> refreshToken(HttpServletRequest request,
+                                     HttpServletResponse response) throws IOException {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String refreshToken;
         final String username;
