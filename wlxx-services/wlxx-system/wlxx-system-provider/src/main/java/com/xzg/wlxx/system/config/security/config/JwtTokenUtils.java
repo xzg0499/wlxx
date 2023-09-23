@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system.auth.security.config;
+package com.xzg.wlxx.system.config.security.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -7,7 +7,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-@Service
-public class JwtService {
+@Component
+public class JwtTokenUtils {
 
     @Value("${application.security.jwt.secret-key}")
     private String secretKey;

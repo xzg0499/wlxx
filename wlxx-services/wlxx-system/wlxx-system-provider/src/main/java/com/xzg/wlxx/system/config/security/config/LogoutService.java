@@ -1,6 +1,7 @@
-package com.xzg.wlxx.system.auth.security.config;
+package com.xzg.wlxx.system.config.security.config;
 
 
+import cn.hutool.http.Header;
 import com.xzg.wlxx.system.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,7 +21,7 @@ public class LogoutService implements LogoutHandler {
     public void logout(HttpServletRequest request,
                        HttpServletResponse response,
                        Authentication authentication) {
-        final String authHeader = request.getHeader("Authorization");
+        final String authHeader = request.getHeader(Header.AUTHORIZATION.getValue());
         final String jwt;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return;

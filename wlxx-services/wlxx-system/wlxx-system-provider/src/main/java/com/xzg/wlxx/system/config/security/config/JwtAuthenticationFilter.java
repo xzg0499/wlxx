@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system.auth.security.config;
+package com.xzg.wlxx.system.config.security.config;
 
 import cn.hutool.core.util.StrUtil;
 import com.xzg.wlxx.system.service.UserService;
@@ -24,7 +24,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
+    private final JwtTokenUtils jwtService;
     private final UserDetailsService userDetailsService;
     private final UserService tokenService;
 
@@ -32,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
-        if (request.getServletPath().contains("/api/v1/auth")) {
+        if (request.getServletPath().contains("/auth")) {
             filterChain.doFilter(request, response);
             return;
         }

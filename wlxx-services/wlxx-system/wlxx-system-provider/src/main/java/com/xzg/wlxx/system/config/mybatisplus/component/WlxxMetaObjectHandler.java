@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system.config.component;
+package com.xzg.wlxx.system.config.mybatisplus.component;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;

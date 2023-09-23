@@ -1,14 +1,16 @@
-package com.xzg.wlxx.system.auth.security.auth;
+package com.xzg.wlxx.system.config.security.auth;
 
+import cn.hutool.core.lang.Assert;
 import com.xzg.wlxx.common.base.ApiResult;
-import com.xzg.wlxx.system.auth.security.config.JwtService;
+import com.xzg.wlxx.system.client.entity.dto.UserDto;
 import com.xzg.wlxx.system.client.entity.po.User;
+import com.xzg.wlxx.system.client.exception.BusinessException;
+import com.xzg.wlxx.system.config.security.config.JwtTokenUtils;
 import com.xzg.wlxx.system.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.function.Supplier;
 
 @Slf4j
 @Service
@@ -28,45 +31,44 @@ import java.io.IOException;
 public class AuthenticationService {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final JwtTokenUtils jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
 
-    public ApiResult register(RegisterRequest request) {
-        if (StringUtils.isNoneBlank(request.getUsername()) &&
-                StringUtils.isNoneBlank(request.getRealName()) &&
-                StringUtils.isNoneBlank(request.getPassword()) &&
-                StringUtils.isNoneBlank(request.getRole())) {
+    public ApiResult register(UserDto request) {
+        Supplier supplier = () -> {
+            throw new BusinessException("参数不能为空！");
+        };
+        Assert.notBlank(request.getUsername(), supplier);
+        Assert.notBlank(request.getPassword(), supplier);
 
-            var oldUser = userService.findByRealName(request.getRealName());
-            // DONE 判断用户是否存在
-            if (oldUser == null) {
-                var user = User.builder()
-                        .password(passwordEncoder.encode(request.getPassword()))
-                        .build();
-                // mybatis-plus 保存用户信息后自动返回递增的主键id
-                userService.save(user);
-                return ApiResult.success("注册成功！");
-
-            }
-            // 用户存在，提示用户登录
-            return ApiResult.failure("用户已存在！");
-
+        var oldUser = userService.lambdaQuery()
+                .eq(User::getUsername, request.getUsername())
+                .exists();
+        // DONE 判断用户是否存在
+        if (!oldUser) {
+            var user = User.builder()
+                    .username(request.getUsername())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .build();
+            // mybatis-plus 保存用户信息后自动返回递增的主键id
+            userService.save(user);
+            return ApiResult.message("注册成功！");
         }
-        return ApiResult.failure("参数不能为空！");
-
+        // 用户存在，提示用户登录
+        return ApiResult.failure("用户已存在！");
     }
 
-    public ApiResult authenticate(AuthenticationRequest request) {
+    public ApiResult authenticate(UserDto dto) {
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getUsername());
 
-        if (userDetails == null || !passwordEncoder.matches(request.getPassword(), userDetails.getPassword())) {
+        if (userDetails == null || !passwordEncoder.matches(dto.getPassword(), userDetails.getPassword())) {
             return ApiResult.failure("用户名或密码不正确！");
         }
 
         Authentication authenticate = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword())
         );
         // TODO 考虑不从数据库中查数据
 

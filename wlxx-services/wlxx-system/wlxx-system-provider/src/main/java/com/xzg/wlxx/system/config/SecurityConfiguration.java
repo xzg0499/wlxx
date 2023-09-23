@@ -1,5 +1,8 @@
-package com.xzg.wlxx.system.auth.security.config;
+package com.xzg.wlxx.system.config;
 
+import com.xzg.wlxx.system.config.security.config.JwtAuthenticationFilter;
+import com.xzg.wlxx.system.config.security.config.RestAuthorizationEntryPoint;
+import com.xzg.wlxx.system.config.security.config.RestfulAccessDeniedHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,8 +33,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/v1/auth/**",
-                            "/api/v1/test/**",
+                    auth.requestMatchers("/auth/**",
                             "/v2/api-docs",
                             "/v3/api-docs",
                             "/v3/api-docs/**",
@@ -54,7 +56,7 @@ public class SecurityConfiguration {
                 //添加jwt 登录授权过滤器
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(handler -> {
-                    handler.logoutUrl("/api/v1/auth/logout")
+                    handler.logoutUrl("/auth/logout")
                             .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
                 })
         ;

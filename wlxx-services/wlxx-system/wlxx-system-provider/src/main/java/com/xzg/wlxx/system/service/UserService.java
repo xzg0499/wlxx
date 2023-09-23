@@ -1,8 +1,8 @@
 package com.xzg.wlxx.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xzg.wlxx.system.auth.security.auth.SystemUserDetails;
 import com.xzg.wlxx.system.client.entity.po.User;
+import com.xzg.wlxx.system.config.security.auth.SystemUserDetails;
 
 import java.util.Optional;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public interface UserService extends IService<User> {
 
-    SystemUserDetails findByRealName(String email);
+    SystemUserDetails findnByUsername(String username);
 
     Optional<User> findValidTokenByUserId(Long userId);
 

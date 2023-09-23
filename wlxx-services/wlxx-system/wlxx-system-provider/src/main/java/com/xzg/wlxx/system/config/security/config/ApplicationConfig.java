@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system.auth.security.config;
+package com.xzg.wlxx.system.config.security.config;
 
 import com.xzg.wlxx.system.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         // return username -> userService.findByEmail(username);
-        return userService::findByRealName;
+        return userService::findnByUsername;
     }
 
     @Bean

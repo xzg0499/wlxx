@@ -31,7 +31,7 @@ public class OrgTests {
     void test(int i) {
         log.info("==========={}", i);
         Org org = MockUtils.mock(Org.class);
-        MockUtils.request(mockMvc, org);
+        MockUtils.postRequest(mockMvc, "/org/add", org);
     }
 
     @Test

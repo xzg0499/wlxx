@@ -1,4 +1,5 @@
-package com.xzg.wlxx.system.auth.security.auth;
+package com.xzg.wlxx.system.config.security.auth;
+
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -10,11 +11,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class RegisterRequest {
 
+    @Schema(description = "昵称")
+    private String username;
     @Schema(description = "邮箱")
-    private String email;
-    // String password;
+    private String realName;
     @Schema(description = "密码")
     private String password;
+    @Schema(description = "角色，可选值: CHASER, SUPERVISOR, ADMIN")
+    private String role;
 }

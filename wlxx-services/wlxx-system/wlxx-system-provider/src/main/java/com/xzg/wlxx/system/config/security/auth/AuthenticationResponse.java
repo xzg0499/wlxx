@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system.auth.security.auth;
+package com.xzg.wlxx.system.config.security.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
