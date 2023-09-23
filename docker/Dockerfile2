@@ -1,0 +1,14 @@
+FROM openjdk:17-jdk-alpine
+# jar包基于jdk ,war包基于tomcat
+WORKDIR /app
+ADD demo-0.0.1-SNAPSHOT.jar app.jar
+# 将上下文中 jar包复制到 /app目录下，并且重命名为app.jar
+EXPOSE 8081
+# 暴露端口
+ENTRYPOINT[ "java" , "-jar" ]
+# 启动应用固定命令
+CMD["app.jar"]
+# 动态传递jar包名
+# 解决时差问题
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
