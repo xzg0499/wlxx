@@ -2,6 +2,8 @@ package com.xzg.wlxx.system.config.security.config;
 
 
 import cn.hutool.http.Header;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.system.client.entity.po.TokenPo;
 import com.xzg.wlxx.system.service.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,11 +14,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {
 
     private final TokenService tokenService;
+
 
     @Override
     public void logout(HttpServletRequest request,
@@ -29,13 +34,29 @@ public class LogoutService implements LogoutHandler {
         }
         jwt = authHeader.substring(7);
         var storedToken = tokenService.lambdaQuery()
-                .eq(TokenPo::getToken, jwt).oneOpt()
+                .eq(TokenPo::getToken, jwt)
+                .eq(TokenPo::getExpired, false)
+                .eq(TokenPo::getRevoked, false)
+                .oneOpt()
                 .orElse(null);
         if (storedToken != null) {
             storedToken.setExpired(true);
             storedToken.setRevoked(true);
             tokenService.saveOrUpdate(storedToken);
             SecurityContextHolder.clearContext();
+            var result = ApiResult.success("登出成功");
+            try {
+                new ObjectMapper().writeValue(response.getOutputStream(), result);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            var result = ApiResult.failure("access_token 错误");
+            try {
+                new ObjectMapper().writeValue(response.getOutputStream(), result);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
