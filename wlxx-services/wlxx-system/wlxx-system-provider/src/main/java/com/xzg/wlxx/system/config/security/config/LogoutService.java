@@ -9,6 +9,7 @@ import com.xzg.wlxx.system.service.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
@@ -45,19 +46,19 @@ public class LogoutService implements LogoutHandler {
             storedToken.setRevoked(true);
             tokenService.saveOrUpdate(storedToken);
             SecurityContextHolder.clearContext();
-            var result = ApiResult.success("登出成功");
-            try {
-                objectMapper.writeValue(response.getOutputStream(), result);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            handleResult(response, "登出成功");
         } else {
-            var result = ApiResult.failure("access_token 错误");
-            try {
-                objectMapper.writeValue(response.getOutputStream(), result);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            handleResult(response, "access_token 错误");
+        }
+    }
+
+    public void handleResult(HttpServletResponse response, String msg) {
+        var result = ApiResult.message(msg);
+        try {
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            objectMapper.writeValue(response.getOutputStream(), result);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
