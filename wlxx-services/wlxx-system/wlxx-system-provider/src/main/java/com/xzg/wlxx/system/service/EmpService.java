@@ -1,11 +1,11 @@
 package com.xzg.wlxx.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xzg.wlxx.system.client.entity.po.Emp;
+import com.xzg.wlxx.system.client.entity.po.EmpPo;
 
 import java.util.List;
 
-public interface EmpService extends IService<Emp> {
+public interface EmpService extends IService<EmpPo> {
 
-    List<Emp> listByOrg(Long orgId);
+    List<EmpPo> listByOrg(Long orgId);
 }

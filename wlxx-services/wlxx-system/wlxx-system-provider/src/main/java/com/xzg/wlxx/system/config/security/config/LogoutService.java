@@ -2,7 +2,8 @@ package com.xzg.wlxx.system.config.security.config;
 
 
 import cn.hutool.http.Header;
-import com.xzg.wlxx.system.service.UserService;
+import com.xzg.wlxx.system.client.entity.po.TokenPo;
+import com.xzg.wlxx.system.service.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {
 
-    private final UserService tokenService;
+    private final TokenService tokenService;
 
     @Override
     public void logout(HttpServletRequest request,
@@ -27,11 +28,13 @@ public class LogoutService implements LogoutHandler {
             return;
         }
         jwt = authHeader.substring(7);
-        var storedToken = tokenService.findByToken(jwt).orElse(null);
+        var storedToken = tokenService.lambdaQuery()
+                .eq(TokenPo::getToken, jwt).oneOpt()
+                .orElse(null);
         if (storedToken != null) {
-//            storedToken.setExpired(true);
-//            storedToken.setRevoked(true);
-            tokenService.save(storedToken);
+            storedToken.setExpired(true);
+            storedToken.setRevoked(true);
+            tokenService.saveOrUpdate(storedToken);
             SecurityContextHolder.clearContext();
         }
     }

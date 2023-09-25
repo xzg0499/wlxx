@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system;
 
 import cn.hutool.json.JSONUtil;
-import com.xzg.wlxx.system.client.entity.po.Org;
+import com.xzg.wlxx.system.client.entity.po.OrgPo;
 import com.xzg.wlxx.system.client.entity.vo.OrgVo;
 import com.xzg.wlxx.system.service.OrgService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class OrgTests {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
     void test(int i) {
         log.info("==========={}", i);
-        Org org = MockUtils.mock(Org.class);
+        OrgPo org = MockUtils.mock(OrgPo.class);
         MockUtils.postRequest(mockMvc, "/org/add", org);
     }
 

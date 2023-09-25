@@ -1,22 +1,22 @@
 package com.xzg.wlxx.system.client.entity.po;
 
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.common.base.BasePo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@TableName("org")
+@TableName("emp")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Org extends BasePo<Org> {
+public class EmpPo extends BasePo<EmpPo> {
 
-    @TableField("org_code")
-    private String orgCode;
+    @TableField("emp_code")
+    private String empCode;
 
-    @TableField("org_name")
-    private String orgName;
-    private Integer orgLevel;
+    @TableField("emp_name")
+    private String empName;
+
     private Long orgId;
-    private Integer orgType;
 }

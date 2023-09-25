@@ -1,8 +1,6 @@
 package com.xzg.wlxx.system.config.security.auth;
 
-import com.xzg.wlxx.system.client.entity.po.User;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,12 +9,24 @@ import java.util.Collection;
 /**
  * @author XiaoZG
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class SystemUserDetails extends User implements UserDetails {
+public class SystemUserDetails implements UserDetails {
+    private String username;
+    private String password;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
     }
 
     @Override

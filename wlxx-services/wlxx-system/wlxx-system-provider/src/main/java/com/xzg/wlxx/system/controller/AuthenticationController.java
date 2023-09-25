@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.controller;
 
 import com.xzg.wlxx.common.base.ApiResult;
-import com.xzg.wlxx.system.client.entity.dto.UserDto;
+import com.xzg.wlxx.system.config.security.auth.AuthenticationDto;
 import com.xzg.wlxx.system.config.security.auth.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,13 +28,13 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @Operation(summary = "注册")
-    public ApiResult<?> register(@RequestBody UserDto dto) {
+    public ApiResult<?> register(@RequestBody AuthenticationDto dto) {
         return authenticationService.register(dto);
     }
 
-    @PostMapping("/authentication")
+    @PostMapping("/authenticate")
     @Operation(summary = "认证")
-    public ApiResult<?> authenticate(@RequestBody UserDto dto) {
+    public ApiResult<?> authenticate(@RequestBody AuthenticationDto dto) {
         return authenticationService.authenticate(dto);
     }
 

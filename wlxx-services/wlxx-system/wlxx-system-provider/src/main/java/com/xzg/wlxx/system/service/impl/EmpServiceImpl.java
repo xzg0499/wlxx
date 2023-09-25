@@ -1,7 +1,7 @@
 package com.xzg.wlxx.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.system.client.entity.po.Emp;
+import com.xzg.wlxx.system.client.entity.po.EmpPo;
 import com.xzg.wlxx.system.mapper.EmpMapper;
 import com.xzg.wlxx.system.service.EmpService;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +14,12 @@ import java.util.Objects;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class EmpServiceImpl extends ServiceImpl<EmpMapper, Emp> implements EmpService {
+public class EmpServiceImpl extends ServiceImpl<EmpMapper, EmpPo> implements EmpService {
 
     @Override
-    public List<Emp> listByOrg(Long orgId) {
+    public List<EmpPo> listByOrg(Long orgId) {
         return lambdaQuery()
-                .eq(Objects.nonNull(orgId), Emp::getOrgId, orgId)
+                .eq(Objects.nonNull(orgId), EmpPo::getOrgId, orgId)
                 .list();
     }
 }

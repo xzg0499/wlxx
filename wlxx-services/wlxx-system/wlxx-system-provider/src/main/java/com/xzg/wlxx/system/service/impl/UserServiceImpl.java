@@ -1,35 +1,29 @@
 package com.xzg.wlxx.system.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.system.client.entity.po.User;
+import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.config.security.auth.SystemUserDetails;
 import com.xzg.wlxx.system.mapper.UserMapper;
 import com.xzg.wlxx.system.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 /**
  * @author XiaoZG
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+@RequiredArgsConstructor
+public class UserServiceImpl extends ServiceImpl<UserMapper, UserPo> implements UserService {
+
+
     @Override
     public SystemUserDetails findnByUsername(String username) {
-        User user = lambdaQuery().eq(User::getUsername, username).one();
+        UserPo user = lambdaQuery().eq(UserPo::getUsername, username).oneOpt().orElse(new UserPo());
         SystemUserDetails userDetails = new SystemUserDetails();
-        BeanUtil.copyProperties(user, userDetails);
+        userDetails.setUsername(user.getUsername());
+        userDetails.setPassword(user.getPassword());
         return userDetails;
     }
 
-    @Override
-    public Optional<User> findValidTokenByUserId(Long userId) {
-        return Optional.ofNullable(getById(userId));
-    }
 
-    @Override
-    public Optional<User> findByToken(String token) {
-        return Optional.ofNullable(lambdaQuery().eq(User::getToken, token).one());
-    }
 }

@@ -37,9 +37,21 @@ create table user(
     username varchar(100) default null,
     real_name varchar(100) default null,
     password varchar(100) default null,
+    emp_id bigint default null
+);
+
+drop table if exists token;
+create table token(
+    id bigint not null AUTO_INCREMENT primary key,
+    create_date datetime default null,
+    create_by varchar(100) default null,
+    update_date datetime default null,
+    update_by varchar(100) default null,
+
     token varchar(200) default null,
     expired tinyint(1) default 0,
-    emp_id bigint default null
+    revoked tinyint(1) default 0,
+    user_id bigint default null
 );
 
 

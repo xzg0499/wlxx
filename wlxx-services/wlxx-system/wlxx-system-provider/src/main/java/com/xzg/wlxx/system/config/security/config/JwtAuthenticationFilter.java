@@ -1,6 +1,7 @@
 package com.xzg.wlxx.system.config.security.config;
 
-import cn.hutool.core.util.StrUtil;
+import com.xzg.wlxx.system.client.entity.po.TokenPo;
+import com.xzg.wlxx.system.service.TokenService;
 import com.xzg.wlxx.system.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -26,7 +27,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtTokenUtils jwtService;
     private final UserDetailsService userDetailsService;
-    private final UserService tokenService;
+    private final UserService userService;
+    private final TokenService tokenService;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
@@ -50,8 +52,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
-            var isTokenValid = tokenService.findByToken(jwt)
-                    .map(t -> /*!t.getExpired() && !t.getRevoked()*/StrUtil.equals(t.getUsername(), "xzg"))
+            var isTokenValid = tokenService.lambdaQuery()
+                    .eq(TokenPo::getToken, jwt).oneOpt()
+                    .map(t -> !t.getExpired() && !t.getRevoked())
                     .orElse(false);
             if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
                 UsernamePasswordAuthenticationToken authToken =

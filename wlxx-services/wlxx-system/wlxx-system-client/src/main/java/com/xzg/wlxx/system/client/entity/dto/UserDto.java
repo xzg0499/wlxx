@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system.client.entity.dto;
 
-import com.xzg.wlxx.system.client.entity.po.User;
+import com.xzg.wlxx.system.client.entity.po.UserPo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,5 +9,5 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserDto extends User {
+public class UserDto extends UserPo {
 }

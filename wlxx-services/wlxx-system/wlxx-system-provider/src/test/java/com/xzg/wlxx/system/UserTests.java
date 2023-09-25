@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system;
 
-import com.xzg.wlxx.system.client.entity.po.User;
+import com.xzg.wlxx.system.client.entity.po.UserPo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,7 +24,7 @@ public class UserTests {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
     void test(int i) {
         log.info("==========={}", i);
-        User user = MockUtils.mock(User.class);
+        UserPo user = MockUtils.mock(UserPo.class);
         user.insert();
     }
 }

@@ -2,7 +2,7 @@ package com.xzg.wlxx.system;
 
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.xzg.wlxx.system.client.entity.po.Emp;
+import com.xzg.wlxx.system.client.entity.po.EmpPo;
 import com.xzg.wlxx.system.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -31,15 +31,15 @@ public class EmpTests {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
     void test(int i) {
         log.info("==========={}", i);
-        Emp emp = MockUtils.mock(Emp.class);
+        EmpPo emp = MockUtils.mock(EmpPo.class);
         emp.setOrgId(RandomUtil.randomLong(12, 20));
         emp.insert();
     }
 
     @Test
     void testUpdate() {
-        Emp emp = empService.getById(13);
+        EmpPo emp = empService.getById(13);
         emp.setEmpName("xx");
-        empService.update(emp, Wrappers.<Emp>lambdaUpdate().eq(Emp::getId, emp.getId()));
+        empService.update(emp, Wrappers.<EmpPo>lambdaUpdate().eq(EmpPo::getId, emp.getId()));
     }
 }

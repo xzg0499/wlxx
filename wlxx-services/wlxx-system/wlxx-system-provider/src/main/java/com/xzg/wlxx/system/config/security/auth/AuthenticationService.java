@@ -2,10 +2,11 @@ package com.xzg.wlxx.system.config.security.auth;
 
 import cn.hutool.core.lang.Assert;
 import com.xzg.wlxx.common.base.ApiResult;
-import com.xzg.wlxx.system.client.entity.dto.UserDto;
-import com.xzg.wlxx.system.client.entity.po.User;
+import com.xzg.wlxx.system.client.entity.po.TokenPo;
+import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.client.exception.BusinessException;
 import com.xzg.wlxx.system.config.security.config.JwtTokenUtils;
+import com.xzg.wlxx.system.service.TokenService;
 import com.xzg.wlxx.system.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,13 +30,14 @@ import java.util.function.Supplier;
 @Transactional
 @RequiredArgsConstructor
 public class AuthenticationService {
+    private final TokenService tokenService;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtils jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
 
-    public ApiResult<?> register(UserDto request) {
+    public ApiResult<?> register(AuthenticationDto request) {
         Supplier<BusinessException> supplier = () -> {
             throw new BusinessException("参数不能为空！");
         };
@@ -43,11 +45,11 @@ public class AuthenticationService {
         Assert.notBlank(request.getPassword(), supplier);
 
         var oldUser = userService.lambdaQuery()
-                .eq(User::getUsername, request.getUsername())
+                .eq(UserPo::getUsername, request.getUsername())
                 .exists();
         // DONE 判断用户是否存在
         if (!oldUser) {
-            var user = User.builder()
+            var user = UserPo.builder()
                     .username(request.getUsername())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .build();
@@ -59,7 +61,7 @@ public class AuthenticationService {
         return ApiResult.failure("用户已存在！");
     }
 
-    public ApiResult<?> authenticate(UserDto dto) {
+    public ApiResult<?> authenticate(AuthenticationDto dto) {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getUsername());
 
@@ -72,20 +74,24 @@ public class AuthenticationService {
         );
         // TODO 考虑不从数据库中查数据
 
-        var user = (SystemUserDetails) authenticate.getPrincipal();
+        userDetails = (SystemUserDetails) authenticate.getPrincipal();
+        var user = userService.lambdaQuery()
+                .eq(UserPo::getUsername, userDetails.getUsername())
+                .list().stream().findFirst()
+                .orElseThrow(() -> new BusinessException("用户不存在"));
         // var user = userService.findByEmail(request.getEmail());
         // var user = userDetailsService.loadUserByUsername(request.getEmail());
 
 
-        var jwtToken = jwtService.generateToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
+        var jwtToken = jwtService.generateToken(userDetails);
+        var refreshToken = jwtService.generateRefreshToken(userDetails);
         revokeUserToken(user.getId());
         saveUserToken(user.getId(), jwtToken);
-        AuthenticationResponse response = AuthenticationResponse.builder()
+        AuthenticationVo authenticationVo = AuthenticationVo.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
-        return ApiResult.success("认证成功！", response);
+        return ApiResult.success("认证成功！", authenticationVo);
 
     }
 
@@ -103,9 +109,13 @@ public class AuthenticationService {
             // log.info("username: {}",username);
             // TODO 考虑不从数据库获取用户数据
             // var user = userService.findByEmail(username);
-            var user = (SystemUserDetails) userDetailsService.loadUserByUsername(username);
-            if (jwtService.isTokenValid(refreshToken, user)) {
-                var accessToken = jwtService.generateToken(user);
+            var userDetails = (SystemUserDetails) userDetailsService.loadUserByUsername(username);
+            var user = userService.lambdaQuery()
+                    .eq(UserPo::getUsername, userDetails.getUsername())
+                    .list().stream().findFirst()
+                    .orElseThrow(() -> new BusinessException("用户不存在"));
+            if (jwtService.isTokenValid(refreshToken, userDetails)) {
+                var accessToken = jwtService.generateToken(userDetails);
                 log.info("accessToken: {}", accessToken);
                 revokeUserToken(user.getId());
                 saveUserToken(user.getId(), accessToken);
@@ -129,12 +139,14 @@ public class AuthenticationService {
      * @param jwtToken
      */
     private void saveUserToken(Long userId, String jwtToken) {
-        var token = User.builder()
+        var token = TokenPo.builder()
                 .token(jwtToken)
                 .expired(false)
+                .revoked(false)
+                .userId(userId)
                 .build();
         token.setId(userId);
-        userService.saveOrUpdate(token);
+        tokenService.saveOrUpdate(token);
     }
 
 
@@ -146,12 +158,16 @@ public class AuthenticationService {
      * @param userId
      */
     private void revokeUserToken(Long userId) {
-        var validUserToken = userService.findValidTokenByUserId(userId);
+        var validUserToken = tokenService.lambdaQuery()
+                .eq(TokenPo::getUserId, userId)
+                .eq(TokenPo::getExpired, true)
+                .eq(TokenPo::getRevoked, true)
+                .oneOpt();
         if (validUserToken.isEmpty())
             return;
         validUserToken.ifPresent(token -> {
             token.setExpired(true);
-            userService.updateById(token);
+            tokenService.updateById(token);
         });
 
     }

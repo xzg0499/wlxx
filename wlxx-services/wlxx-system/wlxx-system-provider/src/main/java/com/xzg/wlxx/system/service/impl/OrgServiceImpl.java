@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.system.client.entity.po.Org;
+import com.xzg.wlxx.system.client.entity.po.OrgPo;
 import com.xzg.wlxx.system.client.entity.vo.OrgVo;
 import com.xzg.wlxx.system.client.exception.BusinessException;
 import com.xzg.wlxx.system.mapper.OrgMapper;
@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class OrgServiceImpl extends ServiceImpl<OrgMapper, Org> implements OrgService {
+public class OrgServiceImpl extends ServiceImpl<OrgMapper, OrgPo> implements OrgService {
     @Override
-    public Boolean add(Org org) {
-        boolean isRepeat = baseMapper.exists(Wrappers.<Org>lambdaQuery()
-                .eq(Org::getOrgCode, org.getOrgCode()));
+    public Boolean add(OrgPo org) {
+        boolean isRepeat = baseMapper.exists(Wrappers.<OrgPo>lambdaQuery()
+                .eq(OrgPo::getOrgCode, org.getOrgCode()));
         if (isRepeat) {
             throw new BusinessException("orgCode is repeat");
         }
@@ -33,8 +33,8 @@ public class OrgServiceImpl extends ServiceImpl<OrgMapper, Org> implements OrgSe
 
     @Override
     public List<OrgVo> list4Tree(Long rootId) {
-        List<Org> list = baseMapper.selectList(Wrappers.<Org>lambdaQuery()
-                .orderByAsc(Org::getOrgLevel));
+        List<OrgPo> list = baseMapper.selectList(Wrappers.<OrgPo>lambdaQuery()
+                .orderByAsc(OrgPo::getOrgLevel));
         Integer rootLevel = list.stream().findFirst().get().getOrgLevel();
         List<OrgVo> result = list.stream()
                 .filter(e ->
@@ -52,7 +52,7 @@ public class OrgServiceImpl extends ServiceImpl<OrgMapper, Org> implements OrgSe
         return result;
     }
 
-    public void iterator(List<Org> list, List<OrgVo> result) {
+    public void iterator(List<OrgPo> list, List<OrgVo> result) {
         result.forEach(e -> {
             List<OrgVo> children = list.stream()
                     .filter(sub -> Objects.equals(e.getId(), sub.getOrgId()))
