@@ -1,5 +1,6 @@
 plugins {
     id("wlxx.plugin")
+    id("wlxx.version")
 }
 
 dependencies {
@@ -10,12 +11,12 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("com.baomidou:mybatis-plus-boot-starter:3.5.3.1")
-    implementation("com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:4.3.0")
-    implementation("cn.hutool:hutool-all:5.8.21")
+    implementation("com.baomidou:mybatis-plus-boot-starter:${property("mybatisPlusVersion")}")
+    implementation("com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:${property("knife4jVersion")}")
+    implementation("cn.hutool:hutool-all:${property("hutoolVersion")}")
 }
 
-extra["springCloudVersion"] = "2022.0.4"
+
 
 configure<io.spring.gradle.dependencymanagement.internal.dsl.StandardDependencyManagementExtension> {
     imports {
