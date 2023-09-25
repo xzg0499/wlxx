@@ -22,6 +22,7 @@ public class LogoutService implements LogoutHandler {
 
     private final TokenService tokenService;
 
+    private final ObjectMapper objectMapper;
 
     @Override
     public void logout(HttpServletRequest request,
@@ -46,14 +47,14 @@ public class LogoutService implements LogoutHandler {
             SecurityContextHolder.clearContext();
             var result = ApiResult.success("登出成功");
             try {
-                new ObjectMapper().writeValue(response.getOutputStream(), result);
+                objectMapper.writeValue(response.getOutputStream(), result);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } else {
             var result = ApiResult.failure("access_token 错误");
             try {
-                new ObjectMapper().writeValue(response.getOutputStream(), result);
+                objectMapper.writeValue(response.getOutputStream(), result);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
