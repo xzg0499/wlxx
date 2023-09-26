@@ -40,6 +40,7 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")

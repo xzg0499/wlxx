@@ -97,3 +97,12 @@
 ```
 
 # 源码包查询日志配置`additional-spring-configuration-metadata.json`
+
+# 架构
+
+```mermaid
+graph LR
+    A --> B
+    B -.-> C
+    C --> D
+```
