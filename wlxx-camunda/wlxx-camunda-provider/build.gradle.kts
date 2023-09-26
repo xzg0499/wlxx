@@ -12,7 +12,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation(project(":wlxx-common"))
+    implementation(project(":wlxx-framework:wlxx-common"))
 
 //    implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter")
     implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp")

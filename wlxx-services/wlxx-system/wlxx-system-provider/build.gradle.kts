@@ -7,6 +7,7 @@ plugins {
 
 //ext["springCloudAlibabaVersion"] = "2022.0.0.0-RC2"
 ext["springCloudAlibabaVersion"] = "2022.0.0.0"
+extra["jwtWebTokenVersion"] = "0.11.5"
 
 tasks.withType<BootJar> {
     manifest {
@@ -25,12 +26,12 @@ tasks.withType<BootJar> {
 dependencies {
     testImplementation("com.github.jsonzou:jmockdata:4.1.2")
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
-    implementation(project(":wlxx-common"))
+    implementation(project(":wlxx-framework:wlxx-common"))
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
-    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2022.0.0.0")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${property("springCloudAlibabaVersion")}")
 //    {
 //        exclude("org.springframework.cloud", "spring-cloud-starter-netflix-ribbon")
 //        isTransitive = false
@@ -43,9 +44,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-aop")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
-    implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
-    implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-api:${property("jwtWebTokenVersion")}")
+    implementation("io.jsonwebtoken:jjwt-impl:${property("jwtWebTokenVersion")}")
+    implementation("io.jsonwebtoken:jjwt-jackson:${property("jwtWebTokenVersion")}")
 
 //    implementation("org.springframework.boot:spring-boot-starter-websocket")
 }
