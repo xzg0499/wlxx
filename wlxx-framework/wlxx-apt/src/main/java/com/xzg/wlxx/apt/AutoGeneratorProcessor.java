@@ -12,6 +12,8 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
+import javax.tools.Diagnostic;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.Map;
@@ -28,6 +30,7 @@ public class AutoGeneratorProcessor extends AbstractProcessor {
     private Filer filer;
     private Elements elementUtils;
     private Messager messager;
+    private Types typeUtils;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -35,6 +38,7 @@ public class AutoGeneratorProcessor extends AbstractProcessor {
         filer = processingEnv.getFiler();
         elementUtils = processingEnv.getElementUtils();
         messager = processingEnv.getMessager();
+        typeUtils = processingEnv.getTypeUtils();
     }
 
     @Override
@@ -61,6 +65,7 @@ public class AutoGeneratorProcessor extends AbstractProcessor {
             ClassName elementClass = ClassName.get(packageName, className);
             mapperProcess(element, packageName, className, elementClass);
         }
+        messager.printMessage(Diagnostic.Kind.NOTE, "code generate completed");
     }
 
     private void mapperProcess(Element element, String packageName, String className, ClassName elementClass) {
