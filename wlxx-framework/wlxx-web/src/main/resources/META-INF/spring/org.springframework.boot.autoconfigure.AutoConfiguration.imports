@@ -1,0 +1,5 @@
+com.xzg.wlxx.web.config.MybatisPlusConfiguration
+com.xzg.wlxx.web.config.Knife4jConfiguration
+com.xzg.wlxx.web.config.ExceptionController
+com.xzg.wlxx.web.config.mybatisplus.component.WlxxMetaObjectHandler
+com.xzg.wlxx.web.config.FeignConfiguration

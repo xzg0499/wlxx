@@ -1,8 +1,9 @@
 package com.xzg.wlxx.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzg.wlxx.system.client.entity.dto.RegisterUserDto;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
-import com.xzg.wlxx.system.config.security.auth.SystemUserDetails;
+import com.xzg.wlxx.system.client.exception.BusinessException;
 import com.xzg.wlxx.system.mapper.UserMapper;
 import com.xzg.wlxx.system.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +18,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPo> implements 
 
 
     @Override
-    public SystemUserDetails findnByUsername(String username) {
-        UserPo user = lambdaQuery().eq(UserPo::getUsername, username).oneOpt().orElse(new UserPo());
-        SystemUserDetails userDetails = new SystemUserDetails();
-        userDetails.setUsername(user.getUsername());
-        userDetails.setPassword(user.getPassword());
-        return userDetails;
+    public UserPo findByUsername(String username) {
+        return lambdaQuery().eq(UserPo::getUsername, username).oneOpt().orElse(new UserPo());
     }
 
-
+    @Override
+    public boolean register(RegisterUserDto dto) {
+        boolean exists = lambdaQuery().eq(UserPo::getUsername, dto.getUsername())
+                .exists();
+        if (exists) {
+            throw new BusinessException("用户已存在");
+        }
+        var user = UserPo.builder()
+                .username(dto.getUsername())
+                .password(dto.getPassword())
+                .build();
+        return save(user);
+    }
 }
