@@ -17,6 +17,10 @@ tasks.withType<BootJar> {
 }
 
 
+tasks.withType<JavaCompile> {
+//    options.compilerArgs = listOf("-Xlint:unchecked", "-verbose", "-XprintRounds", "-Xmaxerrs", "100000", "-Akey=name")
+}
+
 //dependencyManagement {
 //    imports {
 //        mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibabaVersion")}")
@@ -27,7 +31,7 @@ dependencies {
     testImplementation("com.github.jsonzou:jmockdata:4.1.2")
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
     implementation(project(":wlxx-framework:wlxx-common"))
-    annotationProcessor(project(":wlxx-framework:wlxx-apt"))
+//    annotationProcessor(project(":wlxx-framework:wlxx-apt"))
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")

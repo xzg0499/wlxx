@@ -39,6 +39,14 @@ public class AutoGeneratorProcessor extends AbstractProcessor {
         elementUtils = processingEnv.getElementUtils();
         messager = processingEnv.getMessager();
         typeUtils = processingEnv.getTypeUtils();
+//        note(processingEnv.getOptions().get("name"));
+    }
+
+    private void note(String message) {
+        if (message == null) {
+            return;
+        }
+        messager.printMessage(Diagnostic.Kind.NOTE, message);
     }
 
     @Override
@@ -65,7 +73,7 @@ public class AutoGeneratorProcessor extends AbstractProcessor {
             ClassName elementClass = ClassName.get(packageName, className);
             mapperProcess(element, packageName, className, elementClass);
         }
-        messager.printMessage(Diagnostic.Kind.NOTE, "code generate completed");
+        note("code generate completed");
     }
 
     private void mapperProcess(Element element, String packageName, String className, ClassName elementClass) {

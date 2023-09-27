@@ -1,6 +1,5 @@
 package com.xzg.wlxx.system.controller;
 
-import com.xzg.wlxx.apt.AutoFeign;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.common.base.BaseController;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
@@ -21,7 +20,6 @@ public class OrgController extends BaseController {
     private final OrgService service;
 
     @PostMapping("add")
-    @AutoFeign(name = "Demo")
     public ApiResult<Boolean> add(@RequestBody OrgPo org) {
         return success(service.add(org));
     }
