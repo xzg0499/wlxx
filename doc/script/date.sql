@@ -48,3 +48,10 @@ declare date_count int;
     end while;
 end
 
+
+with recursive t as(
+select 0 as n
+union all
+select n+1 from t where n<365
+)
+select DATE_FORMAT(date_add(STR_TO_DATE(concat('2023','-01-01'),'%Y-%m-%d %H:%i:%s'),interval n day),'%Y-%m-%d')  from t
