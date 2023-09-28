@@ -1,0 +1,33 @@
+package com.xzg.wlxx.system.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
+import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.WebRequest;
+
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * @author XiaoZG
+ */
+@Component
+@Slf4j
+public class WlxxErrorAttributes extends DefaultErrorAttributes {
+
+    @Override
+    public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
+        Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, options);
+
+
+        Set<String> strings = errorAttributes.keySet();
+        for (String it : strings) {
+            Object o = errorAttributes.get(it);
+            log.info("key : {} value: {}", it, o);
+        }
+
+        return errorAttributes;
+    }
+}
+
