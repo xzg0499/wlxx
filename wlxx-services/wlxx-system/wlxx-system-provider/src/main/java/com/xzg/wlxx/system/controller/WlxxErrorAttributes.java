@@ -1,5 +1,8 @@
 package com.xzg.wlxx.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.map.MapUtil;
+import com.xzg.wlxx.common.base.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
@@ -26,8 +29,15 @@ public class WlxxErrorAttributes extends DefaultErrorAttributes {
             Object o = errorAttributes.get(it);
             log.info("key : {} value: {}", it, o);
         }
+        var result = ApiResult.builder()
+                .code(MapUtil.getInt(errorAttributes, "status"))
+                .msg(MapUtil.getStr(errorAttributes, "message", "")
+                        + " " + MapUtil.getStr(errorAttributes, "error", "")
+                        + " " + MapUtil.getStr(errorAttributes, "path", "")
+                )
+                .build();
 
-        return errorAttributes;
+        return BeanUtil.beanToMap(result);
     }
 }
 
