@@ -4,10 +4,8 @@ import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -17,9 +15,9 @@ import java.util.Objects;
 /**
  * @author XiaoZG
  */
-@Component
+//@Component
 @Slf4j
-@Aspect
+//@Aspect
 public class LogAspect {
 
     @Pointcut("""

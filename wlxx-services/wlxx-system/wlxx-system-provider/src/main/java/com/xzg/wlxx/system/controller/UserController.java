@@ -28,7 +28,7 @@ public class UserController extends BaseController {
     }
 
     @PostMapping("register")
-    public ApiResult<Boolean> register(@Validated @RequestBody RegisterUserDto dto) {
+    public ApiResult<Boolean> register(@RequestBody @Validated RegisterUserDto dto) {
         return ApiResult.success(service.register(dto));
     }
 }

@@ -14,6 +14,7 @@ dependencies {
     implementation("com.baomidou:mybatis-plus-boot-starter:${property("mybatisPlusVersion")}")
     implementation("com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:${property("knife4jVersion")}")
     implementation("cn.hutool:hutool-all:${property("hutoolVersion")}")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 }
 
 
