@@ -86,3 +86,12 @@ application:
       expiration: 86400000 # 1天
       refresh-token:
         expiration: 604800000 # 7 天
+
+
+bean-searcher:
+  sql:
+    default-mapping:
+      redundant-suffixes: Po
+  params:
+    pagination:
+      default-size: 10

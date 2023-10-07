@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system.controller;
+package com.xzg.wlxx.system.config;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.map.MapUtil;

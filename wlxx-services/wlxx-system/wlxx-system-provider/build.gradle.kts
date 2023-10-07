@@ -53,6 +53,8 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-jackson:${property("jwtWebTokenVersion")}")
 
 //    implementation("org.springframework.boot:spring-boot-starter-websocket")
+
+    implementation("cn.zhxu:bean-searcher-boot-starter:4.1.2")
 }
 
 tasks.withType<BootBuildImage> {
