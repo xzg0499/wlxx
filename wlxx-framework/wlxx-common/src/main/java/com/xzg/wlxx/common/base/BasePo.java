@@ -1,9 +1,6 @@
 package com.xzg.wlxx.common.base;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -25,4 +22,8 @@ public class BasePo<T extends BasePo<T>> extends Model<T> {
     private LocalDateTime updateDate;
     @TableField(value = "update_by", fill = FieldFill.UPDATE)
     private String updateBy;
+
+    @TableLogic
+    @TableField("del")
+    private Boolean del;
 }

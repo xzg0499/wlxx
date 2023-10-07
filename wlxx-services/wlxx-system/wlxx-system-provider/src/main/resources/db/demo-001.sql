@@ -1,58 +1,70 @@
-drop table if exists org;
-create table org(
-    id bigint not null AUTO_INCREMENT primary key,
-    create_date datetime default null,
-    create_by varchar(100) default null,
-    update_date datetime default null,
-    update_by varchar(100) default null,
-
-    org_code varchar(100) default null,
-    org_name varchar(100) default null,
-    org_id bigint default null,
-    org_type int default null,
-    org_level int default null
-);
-
+-- db_system.emp definition
 drop table if exists emp;
-create table emp(
-    id bigint not null AUTO_INCREMENT primary key,
-    create_date datetime default null,
-    create_by varchar(100) default null,
-    update_date datetime default null,
-    update_by varchar(100) default null,
+CREATE TABLE `emp` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
 
-    emp_name varchar(100) default null,
-    emp_code varchar(100) default null,
-    org_id bigint default null
-);
+  `emp_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `emp_code` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `org_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-drop table if exists user;
-create table user(
-    id bigint not null AUTO_INCREMENT primary key,
-    create_date datetime default null,
-    create_by varchar(100) default null,
-    update_date datetime default null,
-    update_by varchar(100) default null,
-    
-    username varchar(100) default null,
-    real_name varchar(100) default null,
-    password varchar(100) default null,
-    emp_id bigint default null
-);
 
+-- db_system.org definition
+drop table if exists org;
+CREATE TABLE `org` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
+
+  `org_code` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `org_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `org_id` bigint DEFAULT NULL,
+  `org_type` int DEFAULT NULL,
+  `org_level` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- db_system.token definition
 drop table if exists token;
-create table token(
-    id bigint not null AUTO_INCREMENT primary key,
-    create_date datetime default null,
-    create_by varchar(100) default null,
-    update_date datetime default null,
-    update_by varchar(100) default null,
+CREATE TABLE `token` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
 
-    token varchar(200) default null,
-    expired tinyint(1) default 0,
-    revoked tinyint(1) default 0,
-    user_id bigint default null
-);
+  `token` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `expired` tinyint(1) DEFAULT '0',
+  `revoked` tinyint(1) DEFAULT '0',
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+-- db_system.`user` definition
+drop table if exists user;
+CREATE TABLE `user` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
 
+  `username` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `real_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `emp_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

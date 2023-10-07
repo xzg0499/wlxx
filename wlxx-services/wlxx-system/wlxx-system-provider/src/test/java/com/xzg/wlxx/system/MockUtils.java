@@ -19,7 +19,7 @@ import java.net.URI;
 public class MockUtils {
 
     private static final MockConfig DEFAULT_MOCK_CONFIG = MockConfig.newInstance().excludes("id"
-            , "createDate", "createBy", "updateDate", "updateBy");
+            , "createDate", "createBy", "updateDate", "updateBy", "del");
 
     public static <T> T mock(Class<T> clazz) {
         return JMockData.mock(clazz, DEFAULT_MOCK_CONFIG);

@@ -1,9 +1,6 @@
 package com.xzg.wlxx.web;
 
-import com.xzg.wlxx.web.config.ExceptionController;
-import com.xzg.wlxx.web.config.FeignConfiguration;
-import com.xzg.wlxx.web.config.Knife4jConfiguration;
-import com.xzg.wlxx.web.config.MybatisPlusConfiguration;
+import com.xzg.wlxx.web.config.*;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ImportAutoConfiguration({MybatisPlusConfiguration.class
         , Knife4jConfiguration.class
         , ExceptionController.class
+        , WlxxErrorAttributes.class
         , FeignConfiguration.class})
 public class WlxxAutoConfiguration {
 }
