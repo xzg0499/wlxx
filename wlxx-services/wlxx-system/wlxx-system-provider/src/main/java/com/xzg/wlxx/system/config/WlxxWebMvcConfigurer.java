@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class WlxxWebMvcConfigurer implements WebMvcConfigurer {
 //        WebMvcConfigurer.super.configureMessageConverters(converters);
         FastJsonConfig config = new FastJsonConfig();
         config.setDateFormat(dateFormat);
+        config.setCharset(Charset.defaultCharset());
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         converter.setFastJsonConfig(config);
         converters.add(0, converter);
