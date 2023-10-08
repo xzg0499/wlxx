@@ -1,9 +1,30 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
+//buildscript {
+//    dependencies {
+//        // TODO 解决data final class问题
+//        classpath("org.jetbrains.kotlin:kotlin-noarg:1.8.22")
+//        classpath("org.jetbrains.kotlin:kotlin-allopen:1.8.22")
+//    }
+//}
+
 plugins {
     id("wlxx.application")
+    kotlin("plugin.noarg")
+//    kotlin("plugin.lombok")
 }
+
+noArg {
+    annotation("lombok.NoArgsConstructor")
+}
+allOpen {
+    annotation("lombok.NoArgsConstructor")
+}
+
+//kotlinLombok {
+//    lombokConfigurationFile(file("lombok.config"))
+//}
 
 //ext["springCloudAlibabaVersion"] = "2022.0.0.0-RC2"
 
