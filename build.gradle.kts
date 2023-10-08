@@ -4,19 +4,19 @@ configure(allprojects) {
 }
 
 tasks.register<DefaultTask>("cleanEmptyFolder") {
-    val file = rootDir
+    val file = projectDir
     val list = mutableListOf<File>();
     file.walkTopDown()
         .filter { f -> f.isDirectory }
         .filter { f -> !f.path.replace(file.path, "").startsWith("\\.") }
         .filter { it.name.startsWith("wlxx-") }
         .forEach { f ->
-            var isEmpty = false;
+            var isEmpty = true;
             f.walkTopDown()
-                .filter { !it.path.contains("build") }
-                .forEach {
-                    isEmpty = it.listFiles()?.isEmpty() == true
-                }
+                .filter { it.path.contains("build") && it.name == "build" }
+                .forEach { it.deleteRecursively() }
+            f.walkTopDown()
+                .forEach { isEmpty = it.listFiles()?.isEmpty() ?: false && isEmpty }
             if (isEmpty) {
                 list.add(f)
             }

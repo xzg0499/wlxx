@@ -1,7 +1,7 @@
 rootProject.name = "buildSrc"
 
 pluginManagement {
-    println("aliyun pluginManagement")
+    println("aliyun pluginManagement buildSrc")
     repositories {
         mavenLocal()
         maven {

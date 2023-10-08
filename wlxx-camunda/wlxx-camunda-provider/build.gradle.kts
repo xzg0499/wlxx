@@ -1,5 +1,5 @@
 plugins {
-    id("wlxx.kotlin-application")
+    id("wlxx.application")
 }
 
 extra["camundaVersion"] = "7.20.0-alpha5"
@@ -12,7 +12,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation(project(":wlxx-common"))
+    implementation(project(":wlxx-framework:wlxx-common"))
 
 //    implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter")
     implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp")
@@ -29,10 +29,6 @@ dependencies {
 
 }
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
-}
+
 
 
