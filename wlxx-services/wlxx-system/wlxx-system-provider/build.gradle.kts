@@ -11,16 +11,16 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("wlxx.application")
-    kotlin("plugin.noarg")
+//    kotlin("plugin.noarg")
 //    kotlin("plugin.lombok")
 }
 
-noArg {
-    annotation("lombok.NoArgsConstructor")
-}
-allOpen {
-    annotation("lombok.NoArgsConstructor")
-}
+//noArg {
+//    annotation("lombok.NoArgsConstructor")
+//}
+//allOpen {
+//    annotation("lombok.NoArgsConstructor")
+//}
 
 //kotlinLombok {
 //    lombokConfigurationFile(file("lombok.config"))
