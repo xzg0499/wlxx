@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
         , Knife4jConfiguration.class
         , ExceptionController.class
         , WlxxErrorAttributes.class
+        , JsonHttpMessageConvertor.class
         , FeignConfiguration.class})
 public class WlxxAutoConfiguration {
 }
