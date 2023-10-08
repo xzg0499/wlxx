@@ -1,0 +1,5 @@
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient
+import org.springframework.boot.SpringApplication

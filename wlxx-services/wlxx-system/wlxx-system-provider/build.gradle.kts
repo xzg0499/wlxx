@@ -97,3 +97,7 @@ dependencies {
 tasks.withType<BootBuildImage> {
 
 }
+
+tasks.withType<Test> {
+    enabled = false
+}

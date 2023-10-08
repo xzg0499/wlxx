@@ -7,6 +7,7 @@ import org.springframework.boot.runApplication
 /**
  * @author XiaoZG
  */
+
 @SpringBootApplication
 class SystemApplication
 
