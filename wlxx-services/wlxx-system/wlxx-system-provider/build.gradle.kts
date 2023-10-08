@@ -67,6 +67,10 @@ dependencies {
     // https://mvnrepository.com/artifact/com.alibaba/easyexcel
     implementation("com.alibaba:easyexcel:3.3.2")
 
+    implementation(kotlin("reflect"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+//    implementation(kotlin("coroutines"))
+
 }
 
 tasks.withType<BootBuildImage> {
