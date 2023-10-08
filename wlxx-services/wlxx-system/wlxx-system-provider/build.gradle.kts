@@ -64,6 +64,8 @@ dependencies {
     implementation("com.alibaba.fastjson2:fastjson2-extension:2.0.41")
     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2-extension-spring6
     implementation("com.alibaba.fastjson2:fastjson2-extension-spring6:2.0.41")
+    // https://mvnrepository.com/artifact/com.alibaba/easyexcel
+    implementation("com.alibaba:easyexcel:3.3.2")
 
 }
 

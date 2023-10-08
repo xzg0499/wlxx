@@ -3,6 +3,7 @@ package com.xzg.wlxx.system.controller;
 import cn.zhxu.bs.BeanSearcher;
 import cn.zhxu.bs.SearchResult;
 import cn.zhxu.bs.util.MapUtils;
+import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.common.base.BaseController;
@@ -10,8 +11,12 @@ import com.xzg.wlxx.system.client.entity.po.OrgPo;
 import com.xzg.wlxx.system.service.OrgService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.net.URLEncoder;
 
 
 @RestController
@@ -36,5 +41,18 @@ public class OrgController extends BaseController {
     @PostMapping("search")
     public ApiResult<Page<OrgPo>> search(@RequestBody OrgPo po) {
         return ApiResult.success(service.page(new Page<OrgPo>(0, 10), null));
+    }
+
+    @PostMapping("export")
+    public ApiResult<Boolean> export(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");
+        // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+        String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        EasyExcel.write(response.getOutputStream(), OrgPo.class)
+                .sheet("模板").doWrite(service.list());
+        return ApiResult.success();
     }
 }
