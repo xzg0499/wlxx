@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     id("wlxx.application")
     id("java-library")
@@ -10,3 +12,10 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 }
 
+tasks.withType<Jar> {
+    enabled = true
+}
+
+tasks.withType<BootJar> {
+    enabled = false
+}
