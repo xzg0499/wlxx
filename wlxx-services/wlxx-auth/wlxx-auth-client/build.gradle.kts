@@ -1,14 +1,4 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
 plugins {
-    id("wlxx.application")
-    id("java-library")
+    id("wlxx.client")
 }
 
-tasks.withType<Jar> {
-    enabled = true
-}
-
-tasks.withType<BootJar> {
-    enabled = false
-}
