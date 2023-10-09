@@ -8,4 +8,6 @@ import org.springframework.context.annotation.Lazy;
 @EnableKnife4j
 @Lazy
 public class Knife4jConfiguration {
+
+
 }

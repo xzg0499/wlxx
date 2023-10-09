@@ -1,9 +1,9 @@
 package com.xzg.wlxx.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzg.wlxx.common.exception.BusinessException;
 import com.xzg.wlxx.system.client.entity.dto.RegisterUserDto;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
-import com.xzg.wlxx.system.client.exception.BusinessException;
 import com.xzg.wlxx.system.mapper.UserMapper;
 import com.xzg.wlxx.system.service.UserService;
 import lombok.RequiredArgsConstructor;

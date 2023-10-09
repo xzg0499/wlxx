@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system.client.exception;
+package com.xzg.wlxx.common.exception;
 
 public class BusinessException extends RuntimeException {
 

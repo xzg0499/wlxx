@@ -28,6 +28,6 @@ public class TokenController {
 
     @PostMapping("saveOrUpdate")
     public ApiResult<Boolean> saveOrUpdate(@RequestBody TokenPo po) {
-        return ApiResult.success(service.save(po));
+        return ApiResult.success(service.saveOrUpdate(po));
     }
 }

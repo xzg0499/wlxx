@@ -77,8 +77,6 @@
 > 修改`.idea\workspace.xml`目录文件
 > 在`<component name=“PropertiesComponent”>`中添加`<property name="dynamic.classpath" value="true"/>`
 
-# 丧心病狂，又开始重构了
-
 # docker-compose.yml 文件会自动引入同目录下的`.env`文件的变量信息
 
 # 对象关系

@@ -3,6 +3,7 @@ package com.xzg.wlxx.auth.config;
 import com.xzg.wlxx.auth.config.security.config.JwtAuthenticationFilter;
 import com.xzg.wlxx.auth.config.security.config.RestAuthorizationEntryPoint;
 import com.xzg.wlxx.auth.config.security.config.RestfulAccessDeniedHandler;
+import com.xzg.wlxx.web.config.WlxxInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,28 +30,12 @@ public class SecurityConfiguration {
     private final RestAuthorizationEntryPoint restAuthorizationEntryPoint;
     private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
 
-    private static final String[] WHITE_LIST = {
-            "/auth/**",
-            "/**",
-            "/v2/api-docs",
-            "/v3/api-docs",
-            "/v3/api-docs/**",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui/**",
-            "/doc.html",
-            "/webjars/**",
-            "/swagger-ui.html",
-            "/favicon.ico"
-    };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(WHITE_LIST).permitAll()
+                    auth.requestMatchers(WlxxInterceptor.WHITE_LIST).permitAll()
                             .requestMatchers("/org/**").authenticated()
                             .requestMatchers("/user/**").authenticated();
                 })

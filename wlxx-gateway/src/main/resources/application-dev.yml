@@ -25,10 +25,16 @@ spring:
 
 logging:
   level:
+    com.xzg: debug
     org.springframework.cloud.gateway: DEBUG
     reactor.netty.http.client: DEBUG
 
 knife4j:
+  enabled: true
+  basic:
+    enable: true
+    username: xzg
+    password: xiao
   gateway:
     enabled: true
     # 指定服务发现的模式聚合微服务文档，并且是默认`default`分组
