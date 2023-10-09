@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
         , ExceptionController.class
         , WlxxErrorAttributes.class
         , JsonHttpMessageConvertor.class
+        , WlxxWebMvcConfigurer.class
         , FeignConfiguration.class})
 public class WlxxAutoConfiguration {
 }

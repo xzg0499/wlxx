@@ -26,9 +26,6 @@ tasks.withType<JavaCompile> {
 //    }
 //}
 
-configurations.all {
-    exclude(group = "org.springframework.boot", module = "spring-boot-starter-json")
-}
 
 dependencies {
     testImplementation("com.github.jsonzou:jmockdata:4.1.2")
@@ -59,11 +56,7 @@ dependencies {
 //    implementation("org.springframework.boot:spring-boot-starter-websocket")
 
     implementation("cn.zhxu:bean-searcher-boot-starter:4.1.2")
-    // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
-    implementation("com.alibaba.fastjson2:fastjson2:2.0.41")
-    implementation("com.alibaba.fastjson2:fastjson2-extension:2.0.41")
-    // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2-extension-spring6
-    implementation("com.alibaba.fastjson2:fastjson2-extension-spring6:2.0.41")
+
     // https://mvnrepository.com/artifact/com.alibaba/easyexcel
     implementation("com.alibaba:easyexcel:3.3.2")
 

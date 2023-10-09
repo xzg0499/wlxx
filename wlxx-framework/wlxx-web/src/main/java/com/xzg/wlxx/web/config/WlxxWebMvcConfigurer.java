@@ -1,5 +1,7 @@
-package com.xzg.wlxx.system.config;
+package com.xzg.wlxx.web.config;
 
+import com.alibaba.fastjson2.JSONReader;
+import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.support.config.FastJsonConfig;
 import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +31,13 @@ public class WlxxWebMvcConfigurer implements WebMvcConfigurer {
         FastJsonConfig config = new FastJsonConfig();
         config.setDateFormat(dateFormat);
         config.setCharset(Charset.defaultCharset());
+        // 序列化
+        config.setWriterFeatures(JSONWriter.Feature.PrettyFormat);
+        // 反序列化
+        config.setReaderFeatures(
+                JSONReader.Feature.FieldBased,
+                JSONReader.Feature.SupportArrayToBean
+        );
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         converter.setFastJsonConfig(config);
         converters.add(0, converter);
@@ -48,7 +57,7 @@ public class WlxxWebMvcConfigurer implements WebMvcConfigurer {
 //        JavaTimeModule timeModule = new JavaTimeModule();
 //        timeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
 //        objectMapper.registerModule(timeModule);
-//        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"));
+//        objectMapper.setDateFormat(new SimpleDateFormat(dateFormat));
 //        converters.add(0, converter);
 //    }
 }
