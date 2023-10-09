@@ -15,14 +15,15 @@ tasks.withType<BootJar> {
 }
 
 dependencies {
+    implementation(project(":wlxx-framework:wlxx-web"))
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("com.github.xiaoymin:knife4j-gateway-spring-boot-starter:4.3.0")
-    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2022.0.0.0")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${property("springCloudAlibabaVersion")}")
     {
         exclude("org.springframework.cloud", "spring-cloud-starter-netflix-ribbon")
         isTransitive = false
     }
-    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2022.0.0.0")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${property("springCloudAlibabaVersion")}")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 

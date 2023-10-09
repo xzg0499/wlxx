@@ -7,6 +7,8 @@ import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageC
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.charset.Charset;
@@ -43,7 +45,24 @@ public class WlxxWebMvcConfigurer implements WebMvcConfigurer {
         converters.add(0, converter);
     }
 
-//    @Override
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        WlxxInterceptor interceptor = new WlxxInterceptor();
+        registry.addInterceptor(interceptor);
+        WebMvcConfigurer.super.addInterceptors(registry);
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOriginPatterns("*")
+                .allowedMethods("*")
+                .allowedHeaders("*");
+        WebMvcConfigurer.super.addCorsMappings(registry);
+    }
+
+
+    //    @Override
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
 //        WebMvcConfigurer.super.addResourceHandlers(registry);
