@@ -43,8 +43,13 @@ public class WlxxWebMvcConfigurer implements WebMvcConfigurer {
         converters.add(0, converter);
     }
 
-
 //    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
+//        WebMvcConfigurer.super.addResourceHandlers(registry);
+//    }
+
+    //    @Override
 //    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 //        MappingJackson2XmlHttpMessageConverter converter = new MappingJackson2XmlHttpMessageConverter();
 //        ObjectMapper objectMapper = converter.getObjectMapper();

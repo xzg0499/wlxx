@@ -28,6 +28,15 @@ spring:
     username: root
     password: xiao
     driver-class-name: com.mysql.cj.jdbc.Driver
+  resources:
+    static-location: classpath:/static/
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
 
 server:
   port: 12001
