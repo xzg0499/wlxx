@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -29,8 +30,8 @@ public class OrgController extends BaseController {
     private final BeanSearcher beanSearcher;
 
     @PostMapping("add")
-    public ApiResult<Boolean> add(@RequestBody OrgPo org) {
-        return ApiResult.success(service.save(org));
+    public ApiResult<Boolean> add(@Validated @RequestBody OrgPo org) {
+        return ApiResult.success(service.add(org));
     }
 
     @GetMapping("search")

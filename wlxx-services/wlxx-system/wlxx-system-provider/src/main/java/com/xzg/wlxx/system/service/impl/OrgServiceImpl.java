@@ -23,8 +23,9 @@ import java.util.stream.Collectors;
 public class OrgServiceImpl extends ServiceImpl<OrgMapper, OrgPo> implements OrgService {
     @Override
     public Boolean add(OrgPo org) {
-        boolean isRepeat = baseMapper.exists(Wrappers.<OrgPo>lambdaQuery()
-                .eq(OrgPo::getOrgCode, org.getOrgCode()));
+        boolean isRepeat = lambdaQuery()
+                .eq(OrgPo::getOrgCode, org.getOrgCode())
+                .exists();
         if (isRepeat) {
             throw new BusinessException("orgCode is repeat");
         }
