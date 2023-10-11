@@ -1,13 +1,12 @@
 package com.xzg.wlxx.system.controller;
 
-import cn.zhxu.bs.BeanSearcher;
 import cn.zhxu.bs.SearchResult;
-import cn.zhxu.bs.util.MapUtils;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.common.base.BaseController;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
+import com.xzg.wlxx.system.service.BeanSearcherService;
 import com.xzg.wlxx.system.service.OrgService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ import java.net.URLEncoder;
 public class OrgController extends BaseController {
 
     private final OrgService service;
-    private final BeanSearcher beanSearcher;
+    private final BeanSearcherService beanSearcherService;
 
     @PostMapping("add")
     public ApiResult<Boolean> add(@Validated @RequestBody OrgPo org) {
@@ -36,7 +35,7 @@ public class OrgController extends BaseController {
 
     @GetMapping("search")
     public ApiResult<SearchResult<OrgPo>> search(HttpServletRequest request) {
-        return ApiResult.success(beanSearcher.search(OrgPo.class, MapUtils.flat(request.getParameterMap())));
+        return ApiResult.success(beanSearcherService.search(OrgPo.class, request));
     }
 
     @PostMapping("search")
