@@ -60,6 +60,11 @@ dependencies {
     // https://mvnrepository.com/artifact/com.alibaba/easyexcel
     implementation("com.alibaba:easyexcel:3.3.2")
 
+    // pinyin 三选一
+    implementation("com.github.promeg:tinypinyin:2.0.3")
+//    implementation("com.belerweb:pinyin4j:2.5.1")
+//    implementation("com.github.stuxuhai:jpinyin:1.1.8")
+
 }
 
 tasks.withType<BootBuildImage> {
