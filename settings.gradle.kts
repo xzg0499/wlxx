@@ -1,7 +1,6 @@
 rootProject.name = "wlxx"
 
 pluginManagement {
-    println("aliyun pluginManagement wlxx")
     repositories {
         mavenLocal()
         maven {

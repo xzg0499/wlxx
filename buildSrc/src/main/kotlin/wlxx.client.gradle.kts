@@ -4,6 +4,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("wlxx.configuration")
+    id("java-library")
 }
 
 tasks.withType<Jar> {
