@@ -16,6 +16,7 @@ tasks.withType<BootJar> {
 
 dependencies {
     implementation(project(":wlxx-framework:wlxx-web"))
+    implementation(project(":wlxx-framework:wlxx-common"))
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("com.github.xiaoymin:knife4j-gateway-spring-boot-starter:4.3.0")
     implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${property("springCloudAlibabaVersion")}")

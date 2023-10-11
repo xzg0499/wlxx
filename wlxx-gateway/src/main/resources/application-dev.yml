@@ -32,7 +32,7 @@ logging:
 knife4j:
   enabled: true
   basic:
-    enable: true
+    enable: false
     username: xzg
     password: xiao
   gateway:

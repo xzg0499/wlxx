@@ -38,7 +38,7 @@ knife4j:
     enable-group: true
     cors: true
   basic:
-    enable: true
+    enable: false
     username: xzg
     password: xiao
 
