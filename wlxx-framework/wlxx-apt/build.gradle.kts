@@ -3,6 +3,21 @@ plugins {
 }
 
 
+tasks.withType<JavaCompile> {
+    options.compilerArgs =
+        listOf(
+            "--add-exports",
+            "jdk.compiler/com.sun.tools.javac.api=wlxx.apt",
+            "--add-exports",
+            "jdk.compiler/com.sun.tools.javac.tree=wlxx.apt",
+            "--add-exports",
+            "jdk.compiler/com.sun.tools.javac.util=wlxx.apt",
+            "--add-exports",
+            "jdk.compiler/com.sun.tools.javac.processing=wlxx.apt",
+            "--add-exports",
+            "jdk.compiler/com.sun.tools.javac.code=wlxx.apt"
+        )
+}
 
 
 dependencies {
