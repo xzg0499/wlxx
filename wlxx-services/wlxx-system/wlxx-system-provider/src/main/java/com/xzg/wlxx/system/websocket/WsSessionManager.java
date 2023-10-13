@@ -16,12 +16,10 @@ public class WsSessionManager {
     /**
      * 保存连接 session 的地方
      */
-    private static ConcurrentHashMap<String, WebSocketSession> SESSION_POOL = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, WebSocketSession> SESSION_POOL = new ConcurrentHashMap<>();
 
     /**
      * 添加 session
-     *
-     * @param key
      */
     public static void add(String key, WebSocketSession session) {
         // 添加 session
@@ -30,9 +28,6 @@ public class WsSessionManager {
 
     /**
      * 删除 session,会返回删除的 session
-     *
-     * @param key
-     * @return
      */
     public static WebSocketSession remove(String key) {
         // 删除 session
@@ -41,8 +36,6 @@ public class WsSessionManager {
 
     /**
      * 删除并同步关闭连接
-     *
-     * @param key
      */
     public static void removeAndClose(String key) {
         WebSocketSession session = remove(key);
@@ -59,9 +52,6 @@ public class WsSessionManager {
 
     /**
      * 获得 session
-     *
-     * @param key
-     * @return
      */
     public static WebSocketSession get(String key) {
         // 获得 session
