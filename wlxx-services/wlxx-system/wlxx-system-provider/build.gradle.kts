@@ -66,7 +66,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-impl:${property("jwtWebTokenVersion")}")
     implementation("io.jsonwebtoken:jjwt-jackson:${property("jwtWebTokenVersion")}")
 
-//    implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
 
     implementation("cn.zhxu:bean-searcher-boot-starter:4.1.2")
 
