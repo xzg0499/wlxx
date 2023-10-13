@@ -1,0 +1,4 @@
+plugins {
+    id("wlxx.client")
+}
+

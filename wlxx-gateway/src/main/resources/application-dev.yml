@@ -1,0 +1,50 @@
+spring:
+  #  config:
+  #    import: nacos:wlxx-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      default-filters:
+        - AddRequestHeader=gateway-env, springcloud-gateway
+      # 路由可用
+      routes:
+        - id: "wlxx-system"
+          uri: lb://wlxx-system
+          predicates:
+            - Path=/wlxx-system/**
+          filters:
+            - StripPrefix=1
+        - id: "wlxx-auth"
+          uri: lb://wlxx-auth
+          predicates:
+            - Path=/wlxx-auth/**
+          filters:
+            - StripPrefix=1
+
+
+logging:
+  level:
+    com.xzg: debug
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+
+knife4j:
+  enabled: true
+  basic:
+    enable: false
+    username: xzg
+    password: xiao
+  gateway:
+    enabled: true
+    # 指定服务发现的模式聚合微服务文档，并且是默认`default`分组
+    strategy: discover
+    discover:
+      enabled: true
+      # 指定版本号(Swagger2|OpenAPI3)
+      version: openapi3
+      # 需要排除的微服务(eg:网关服务)
+      excluded-services:
+        - wlxx-gateway
+
+
