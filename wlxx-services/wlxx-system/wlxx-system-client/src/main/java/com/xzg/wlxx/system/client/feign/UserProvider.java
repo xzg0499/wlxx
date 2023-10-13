@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system.client.feign;
 
-import com.xzg.wlxx.system.client.entity.dto.RegisterUserDto;
+import com.xzg.wlxx.system.client.entity.dto.UserDto;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.client.feign.failback.UserFallback;
 import com.xzg.wlxx.web.config.FeignConfiguration;
@@ -18,5 +18,5 @@ public interface UserProvider {
     UserPo findByUsername(@PathVariable(value = "username") String username);
 
     @PostMapping("/user/register")
-    boolean register(@RequestBody RegisterUserDto dto);
+    boolean register(@RequestBody UserDto dto);
 }

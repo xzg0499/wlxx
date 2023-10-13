@@ -2,7 +2,7 @@ package com.xzg.wlxx.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.common.exception.BusinessException;
-import com.xzg.wlxx.system.client.entity.dto.RegisterUserDto;
+import com.xzg.wlxx.system.client.entity.dto.UserDto;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.mapper.UserMapper;
 import com.xzg.wlxx.system.service.UserService;
@@ -23,7 +23,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPo> implements 
     }
 
     @Override
-    public boolean register(RegisterUserDto dto) {
+    public boolean register(UserDto dto) {
         boolean exists = lambdaQuery().eq(UserPo::getUsername, dto.getUsername())
                 .exists();
         if (exists) {

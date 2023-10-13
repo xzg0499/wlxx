@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.Assert;
 import com.xzg.wlxx.auth.config.security.config.JwtTokenUtils;
 import com.xzg.wlxx.common.base.ApiResult;
-import com.xzg.wlxx.system.client.entity.dto.RegisterUserDto;
+import com.xzg.wlxx.system.client.entity.dto.UserDto;
 import com.xzg.wlxx.system.client.entity.po.TokenPo;
 import com.xzg.wlxx.system.client.feign.TokenProvider;
 import com.xzg.wlxx.system.client.feign.UserProvider;
@@ -40,10 +40,9 @@ public class AuthenticationService {
         Assert.notBlank(request.getUsername(), "参数不能为空！");
         Assert.notBlank(request.getPassword(), "参数不能为空");
 
-        var user = RegisterUserDto.builder()
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .build();
+        var user = new UserDto();
+        user.setUsername(request.getUsername());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         return ApiResult.success(userService.register(user));
     }
 

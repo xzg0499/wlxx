@@ -2,7 +2,7 @@ package com.xzg.wlxx.system.controller;
 
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.common.base.BaseController;
-import com.xzg.wlxx.system.client.entity.dto.RegisterUserDto;
+import com.xzg.wlxx.system.client.entity.dto.UserDto;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,7 +28,7 @@ public class UserController extends BaseController {
     }
 
     @PostMapping("register")
-    public ApiResult<Boolean> register(@RequestBody @Validated RegisterUserDto dto) {
+    public ApiResult<Boolean> register(@RequestBody @Validated UserDto dto) {
         return ApiResult.success(service.register(dto));
     }
 }

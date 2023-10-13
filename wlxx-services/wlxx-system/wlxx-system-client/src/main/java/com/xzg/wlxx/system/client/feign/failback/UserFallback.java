@@ -1,6 +1,6 @@
 package com.xzg.wlxx.system.client.feign.failback;
 
-import com.xzg.wlxx.system.client.entity.dto.RegisterUserDto;
+import com.xzg.wlxx.system.client.entity.dto.UserDto;
 import com.xzg.wlxx.system.client.entity.po.UserPo;
 import com.xzg.wlxx.system.client.feign.UserProvider;
 
@@ -12,7 +12,7 @@ public class UserFallback implements UserProvider {
     }
 
     @Override
-    public boolean register(RegisterUserDto dto) {
+    public boolean register(UserDto dto) {
         return false;
     }
 }
