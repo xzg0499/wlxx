@@ -1,0 +1,30 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    time-zone: GMT+8
+    defaultPropertyInclusion: non_null   #非空属性才序列化
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false #未定义的key不序列化
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/db_system?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: xiao
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  resources:
+    static-location: classpath:/static/
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+
+server:
+  port: 12002
+
+logging:
+  level:
+    com.xzg: debug
+    com.chz.mapper: debug
+
