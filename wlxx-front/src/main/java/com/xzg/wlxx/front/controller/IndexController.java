@@ -13,4 +13,9 @@ public class IndexController {
     public String index() {
         return "/page/index";
     }
+
+    @GetMapping("quasar")
+    public String quasar() {
+        return "/page/quasar";
+    }
 }
