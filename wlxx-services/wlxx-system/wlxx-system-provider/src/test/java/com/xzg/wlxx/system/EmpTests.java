@@ -11,12 +11,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpMethod;
 import org.springframework.test.web.servlet.MockMvc;
 
 /**
  * @author XiaoZG
  */
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
 @Slf4j
 public class EmpTests {
@@ -33,7 +34,7 @@ public class EmpTests {
         log.info("==========={}", i);
         EmpPo emp = MockUtils.mock(EmpPo.class);
         emp.setOrgId(RandomUtil.randomLong(12, 20));
-        emp.insert();
+        MockUtils.request(mockMvc, HttpMethod.POST, "/emp/save", emp);
     }
 
     @Test
