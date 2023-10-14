@@ -62,9 +62,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-aop")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-    implementation("io.jsonwebtoken:jjwt-api:${property("jwtWebTokenVersion")}")
-    implementation("io.jsonwebtoken:jjwt-impl:${property("jwtWebTokenVersion")}")
-    implementation("io.jsonwebtoken:jjwt-jackson:${property("jwtWebTokenVersion")}")
+//    implementation("io.jsonwebtoken:jjwt-api:${property("jwtWebTokenVersion")}")
+//    implementation("io.jsonwebtoken:jjwt-impl:${property("jwtWebTokenVersion")}")
+//    implementation("io.jsonwebtoken:jjwt-jackson:${property("jwtWebTokenVersion")}")
 
     implementation("org.springframework.boot:spring-boot-starter-websocket")
 
