@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  WARNING! Make sure that you match all Quasar related
+  tags to the same version! (Below it's "@2.10.1")
+-->
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"
+          type="text/css">
+    <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@^4.0.0/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/quasar.rtl.prod.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+</script>
+<!-- example of injection point where you write your app template -->
+<div id="q-app">
+    <q-form
+            @submit="onSubmit"
+            @reset="onReset"
+            class="q-gutter-md"
+    >
+        <q-input
+                filled
+                v-model="name"
+                label="Your name *"
+                hint="Name and surname"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+        ></q-input>
+
+        <q-input
+                filled
+                type="number"
+                v-model="age"
+                label="Your age *"
+                lazy-rules
+                :rules="[
+          val => val !== null && val !== '' || 'Please type your age',
+          val => val > 0 && val < 100 || 'Please type a real age'
+        ]"
+        ></q-input>
+
+        <q-toggle v-model="accept" label="I accept the license and terms"></q-toggle>
+
+        <div>
+            <q-btn label="Submit" type="submit" color="primary"></q-btn>
+            <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"></q-btn>
+        </div>
+    </q-form>
+</div>
+
+<!-- Add the following at the end of your body tag -->
+<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/quasar.umd.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/lang/zh-CN.umd.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/icon-set/fontawesome-v6.umd.prod.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script type="module">
+    import { createApp, ref } from 'vue'
+    import MainComponent from './js/main-component.js'
+
+    /*
+      Example kicking off the UI. Obviously, adapt this to your specific needs.
+      Assumes you have a <div id="q-app"></div> in your <body> above
+     */
+    const app = Vue.createApp(MainComponent)
+
+    app.use(Quasar, {
+      config: {
+        /*
+        brand: {
+          // primary: '#e46262',
+          // ... or all other brand colors
+        },
+        notify: {...}, // default set of options for Notify Quasar plugin
+        loading: {...}, // default set of options for Loading Quasar plugin
+        loadingBar: { ... }, // settings for LoadingBar Quasar plugin
+        // ..and many more (check Installation card on each Quasar component/directive/plugin)
+        */
+      }
+    })
+    Quasar.lang.set(Quasar.lang.zhCN)
+    Quasar.iconSet.set(Quasar.iconSet.fontawesomeV6)
+    const instance = axios.create({
+      baseURL: 'https://some-domain.com/api/',
+      timeout: 1000,
+      headers: {'X-Custom-Header': 'foobar'}
+    });
+    app.mount('#q-app')
+    app.config.globalProperties.$axios = instance
+    const $q= app.config.globalProperties.$q
+    const $axios = app.config.globalProperties.$axios
+
+</script>
+</body>
+</html>

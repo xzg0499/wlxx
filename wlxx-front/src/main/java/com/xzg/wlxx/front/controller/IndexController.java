@@ -18,4 +18,9 @@ public class IndexController {
     public String quasar() {
         return "/page/quasar";
     }
+
+    @GetMapping("main")
+    public String mainPage() {
+        return "/page/main";
+    }
 }

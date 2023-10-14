@@ -23,4 +23,13 @@ app.use(Quasar, {
   }
 })
 Quasar.lang.set(Quasar.lang.zhCN)
+Quasar.iconSet.set(Quasar.iconSet.fontawesomeV6)
+const instance = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
 app.mount('#q-app')
+app.config.globalProperties.$axios = instance
+const $q= app.config.globalProperties.$q
+const $axios = app.config.globalProperties.$axios
