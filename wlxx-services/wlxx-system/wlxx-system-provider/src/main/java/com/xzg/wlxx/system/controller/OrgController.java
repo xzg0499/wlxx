@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.common.base.BaseController;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
-import com.xzg.wlxx.system.service.BeanSearcherService;
 import com.xzg.wlxx.system.service.OrgService;
+import com.xzg.wlxx.system.service.impl.SearcherService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ import java.net.URLEncoder;
 public class OrgController extends BaseController {
 
     private final OrgService service;
-    private final BeanSearcherService beanSearcherService;
+    private final SearcherService searcherService;
 
     @PostMapping("add")
     public ApiResult<Boolean> add(@Validated @RequestBody OrgPo org) {
@@ -35,7 +35,7 @@ public class OrgController extends BaseController {
 
     @GetMapping("search")
     public ApiResult<SearchResult<OrgPo>> search(HttpServletRequest request) {
-        return ApiResult.success(beanSearcherService.search(OrgPo.class, request));
+        return ApiResult.success(searcherService.search(OrgPo.class, request));
     }
 
     @PostMapping("search")
