@@ -32,7 +32,7 @@ public class CategoryTests {
 
     @Test
     public void testAdd() {
-        IntStream.range(1, 50).forEach(i -> {
+        IntStream.range(0, 50).forEach(i -> {
             var po = MockUtils.mock(CategoryPo.class);
             po.insert();
         });

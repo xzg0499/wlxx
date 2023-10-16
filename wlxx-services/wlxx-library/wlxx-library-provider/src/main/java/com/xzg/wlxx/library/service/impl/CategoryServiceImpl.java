@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.common.util.PojoConvertor;
-import com.xzg.wlxx.library.a.CategoryListener;
+import com.xzg.wlxx.library.listener.CategoryListener;
 import com.xzg.wlxx.library.mapper.CategoryMapper;
 import com.xzg.wlxx.library.pojo.dto.CategoryDto;
 import com.xzg.wlxx.library.pojo.po.CategoryPo;
@@ -52,7 +52,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, CategoryPo>
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");
         // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-        String fileName = URLEncoder.encode("测试", StandardCharsets.UTF_8)
+        String fileName = URLEncoder.encode("图书分类", StandardCharsets.UTF_8)
                 .replaceAll("\\+", "%20");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
         var list = list();

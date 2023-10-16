@@ -17,21 +17,7 @@ tasks.withType<BootJar> {
 
 
 tasks.withType<JavaCompile> {
-//    options.compilerArgs = listOf("-Xlint:unchecked", "-verbose", "-XprintRounds", "-Xmaxerrs", "100000", "-Akey=name")
-//    options.compilerArgs =
-//        listOf(
-////            "-Djps.track.ap.dependencies=false",
-//            "--add-exports",
-//            "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
-//            "--add-exports",
-//            "jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
-//            "--add-exports",
-//            "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
-//            "--add-exports",
-//            "jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED",
-//            "--add-exports",
-//            "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"
-//        )
+    
 }
 
 //dependencyManagement {
