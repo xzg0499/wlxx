@@ -26,7 +26,7 @@ CREATE TABLE `books` (
 
   category bigint default null,
   books_name varchar(100) default null,
-  boots_site varchar(100) default null,
+  books_site varchar(100) default null,
   cover_img varchar(100) default null,
   description varchar(200) default null,
   author varchar(100) default null,

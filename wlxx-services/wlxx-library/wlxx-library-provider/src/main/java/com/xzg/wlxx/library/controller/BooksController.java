@@ -2,9 +2,9 @@ package com.xzg.wlxx.library.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xzg.wlxx.common.base.ApiResult;
-import com.xzg.wlxx.library.pojo.dto.CategoryDto;
-import com.xzg.wlxx.library.pojo.po.CategoryPo;
-import com.xzg.wlxx.library.service.CategoryService;
+import com.xzg.wlxx.library.pojo.dto.BooksDto;
+import com.xzg.wlxx.library.pojo.po.BooksPo;
+import com.xzg.wlxx.library.service.BooksService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,20 +18,26 @@ import java.util.List;
  * @author XiaoZG
  */
 @RestController
-@Tag(name = "category")
-@RequestMapping("category")
+@Tag(name = "books")
+@RequestMapping("books")
 @RequiredArgsConstructor
-public class CategoryController {
+public class BooksController {
 
-    private final CategoryService service;
+    private final BooksService service;
+
+    @PostMapping("add")
+    public ApiResult<Boolean> add(@RequestBody BooksDto dto) {
+        return ApiResult.message(service.batchAdd(List.of(dto)));
+    }
 
     @PostMapping("batchAdd")
-    public ApiResult<Boolean> batchAdd(@RequestBody List<CategoryDto> list) {
+    public ApiResult<Boolean> batchAdd(@RequestBody List<BooksDto> list) {
         return ApiResult.message(service.batchAdd(list));
     }
 
-    @PostMapping("page")
-    public ApiResult<IPage<CategoryPo>> page(@RequestBody CategoryDto dto) {
+    @PostMapping("search")
+    public ApiResult<IPage<BooksPo>> search(@RequestBody BooksDto dto) {
         return ApiResult.success(service.search(dto));
     }
+
 }
