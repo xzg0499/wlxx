@@ -15,7 +15,6 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
         log.info("auto insert");
         this.strictInsertFill(metaObject, "createDate", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "createBy", String.class, "xzg");
-        // FIXME activeRecord模式无法自动插入数据
         this.strictInsertFill(metaObject, "del", Boolean.class, false);
     }
 

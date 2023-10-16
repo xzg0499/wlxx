@@ -6,6 +6,7 @@ import com.xzg.wlxx.library.pojo.dto.CategoryDto;
 import com.xzg.wlxx.library.pojo.po.CategoryPo;
 import com.xzg.wlxx.library.service.CategoryService;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,7 @@ public class CategoryController {
     }
 
     @PostMapping("import")
-    @Parameter(name = "file")
+    @Parameter(name = "file", schema = @Schema(type = "string", format = "binary"))
     public ApiResult<Boolean> importExcel(@RequestParam("file") MultipartFile file) throws IOException {
         return ApiResult.success(service.importExcel(file));
     }
