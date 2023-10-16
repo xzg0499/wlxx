@@ -35,7 +35,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, CategoryPo>
     @Override
     public boolean batchAdd(List<CategoryDto> list) {
         var pos = PojoConvertor.toPo(CategoryPo.class, list);
-        return saveBatch(pos);
+        return saveOrUpdateBatch(pos);
     }
 
     @Override
