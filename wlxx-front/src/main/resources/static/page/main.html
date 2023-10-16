@@ -6,11 +6,12 @@
 -->
 
 <head>
+    <title>wlxx-front</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"
           type="text/css">
     <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/animate.css@^4.0.0/animate.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/quasar.rtl.prod.css" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/animate.css@4.0.0/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/quasar@2.10.1/dist/quasar.rtl.prod.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -23,46 +24,14 @@
 </script>
 <!-- example of injection point where you write your app template -->
 <div id="q-app">
-    <q-form
-            @submit="onSubmit"
-            @reset="onReset"
-            class="q-gutter-md"
-    >
-        <q-input
-                filled
-                v-model="name"
-                label="Your name *"
-                hint="Name and surname"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-        ></q-input>
-
-        <q-input
-                filled
-                type="number"
-                v-model="age"
-                label="Your age *"
-                lazy-rules
-                :rules="[
-          val => val !== null && val !== '' || 'Please type your age',
-          val => val > 0 && val < 100 || 'Please type a real age'
-        ]"
-        ></q-input>
-
-        <q-toggle v-model="accept" label="I accept the license and terms"></q-toggle>
-
-        <div>
-            <q-btn label="Submit" type="submit" color="primary"></q-btn>
-            <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"></q-btn>
-        </div>
-    </q-form>
+    
 </div>
 
 <!-- Add the following at the end of your body tag -->
-<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/quasar.umd.prod.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/lang/zh-CN.umd.prod.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/quasar@2.10.1/dist/icon-set/fontawesome-v6.umd.prod.js"></script>
+<script src="https://unpkg.com/vue@3.3.4/dist/vue.global.prod.js"></script>
+<script src="https://unpkg.com/quasar@2.10.1/dist/quasar.umd.prod.js"></script>
+<script src="https://unpkg.com/quasar@2.10.1/dist/lang/zh-CN.umd.prod.js"></script>
+<script src="https://unpkg.com/quasar@2.10.1/dist/icon-set/fontawesome-v6.umd.prod.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
