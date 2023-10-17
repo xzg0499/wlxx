@@ -1,4 +1,4 @@
-package com.xzg.wlxx.library;
+package com.xzg.wlxx.common.util;
 
 import cn.hutool.core.util.StrUtil;
 
@@ -16,7 +16,7 @@ public class CheckPort {
 
     public static boolean checkPort(String ip, int... ports) {
         IntStream.of(ports).forEach(p -> {
-            try (var server = new Socket(ip, p)) {
+            try (var ignored = new Socket(ip, p)) {
                 System.out.println(StrUtil.format("{} address {} is Open", ip, p));
             } catch (IOException e) {
                 System.out.println(StrUtil.format("{} address {} is Closed", ip, p));
