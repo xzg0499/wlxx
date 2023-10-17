@@ -8,8 +8,14 @@ module wlxx.apt {
     requires com.squareup.javapoet;
     requires com.google.auto.service;
     requires jdk.compiler;
+    requires cn.hutool;
+    requires lombok;
 
     exports com.xzg.wlxx.apt;
+
+    opens com.xzg.wlxx.apt;
+
+    uses EnumInnerConstantProcessor;
 
     provides javax.annotation.processing.Processor with
             EnumInnerConstantProcessor;

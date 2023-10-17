@@ -4,11 +4,9 @@ package com.xzg.wlxx.apt;
  * @author XiaoZG
  */
 
-import com.google.auto.service.AutoService;
 import com.squareup.javapoet.*;
 
 import javax.annotation.processing.*;
-import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
@@ -20,11 +18,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-@SupportedAnnotationTypes({
-        "com.xzg.wlxx.apt.AutoFeign" // 指定我们这个注解处理器能够处理的注解，写我们想要处理的注解
-})
-@SupportedSourceVersion(value = SourceVersion.RELEASE_17)
-@AutoService(Processor.class)
+//@SupportedAnnotationTypes({
+//        "com.xzg.wlxx.apt.AutoFeign" // 指定我们这个注解处理器能够处理的注解，写我们想要处理的注解
+//})
+//@SupportedSourceVersion(value = SourceVersion.RELEASE_17)
+//@AutoService(Processor.class)
 public class AutoGeneratorProcessor extends AbstractProcessor {
 
     private Filer filer;
