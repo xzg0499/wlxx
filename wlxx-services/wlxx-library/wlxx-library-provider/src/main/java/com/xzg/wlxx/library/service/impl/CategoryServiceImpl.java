@@ -6,11 +6,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.common.util.PojoConvertor;
-import com.xzg.wlxx.library.listener.CategoryListener;
 import com.xzg.wlxx.library.mapper.CategoryMapper;
 import com.xzg.wlxx.library.pojo.dto.CategoryDto;
 import com.xzg.wlxx.library.pojo.po.CategoryPo;
 import com.xzg.wlxx.library.service.CategoryService;
+import com.xzg.wlxx.library.util.ExcelUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +62,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, CategoryPo>
 
     @Override
     public boolean importExcel(MultipartFile file) throws IOException {
-        EasyExcel.read(file.getInputStream(), CategoryPo.class, new CategoryListener()).doReadAll();
+        ExcelUtils.doRead(file, CategoryPo.class);
         return true;
     }
 }

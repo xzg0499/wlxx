@@ -34,3 +34,15 @@ CREATE TABLE `books` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+drop table if exists books_records;
+CREATE TABLE `books_records` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
+
+  status bigint default null comment '1、添加，2、借出、3、归还',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

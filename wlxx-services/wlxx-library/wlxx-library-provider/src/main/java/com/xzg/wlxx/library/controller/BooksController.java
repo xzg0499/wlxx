@@ -5,13 +5,14 @@ import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.library.pojo.dto.BooksDto;
 import com.xzg.wlxx.library.pojo.po.BooksPo;
 import com.xzg.wlxx.library.service.BooksService;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -40,4 +41,9 @@ public class BooksController {
         return ApiResult.success(service.search(dto));
     }
 
+    @PostMapping("import")
+    @Parameter(name = "file", schema = @Schema(type = "string", format = "binary"))
+    public ApiResult<Boolean> importExcel(@RequestParam("file") MultipartFile file) throws IOException {
+        return ApiResult.success();
+    }
 }
