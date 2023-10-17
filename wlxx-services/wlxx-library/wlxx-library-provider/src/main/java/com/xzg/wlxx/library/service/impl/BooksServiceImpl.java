@@ -9,10 +9,12 @@ import com.xzg.wlxx.library.mapper.BooksMapper;
 import com.xzg.wlxx.library.pojo.dto.BooksDto;
 import com.xzg.wlxx.library.pojo.po.BooksPo;
 import com.xzg.wlxx.library.service.BooksService;
+import com.xzg.wlxx.library.util.ExcelUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -36,5 +38,10 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, BooksPo> implemen
         return page(new Page<>(dto.getPage(), dto.getSize())
                 , Wrappers.<BooksPo>lambdaQuery().orderByDesc(BooksPo::getUpdateDate)
         );
+    }
+
+    @Override
+    public boolean importExcel(MultipartFile file) {
+        return ExcelUtils.doRead(file, BooksPo.class);
     }
 }

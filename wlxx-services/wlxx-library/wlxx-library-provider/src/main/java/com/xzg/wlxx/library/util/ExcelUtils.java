@@ -13,13 +13,14 @@ import java.io.IOException;
 public class ExcelUtils {
 
 
-    public static <T extends BasePo<T>> void doRead(MultipartFile file, Class<T> cls) {
+    public static <T extends BasePo<T>> boolean doRead(MultipartFile file, Class<T> cls) {
         try {
             EasyExcel.read(file.getInputStream(), cls, new ExcelSimpleListener<>(cls))
                     .doReadAll();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return true;
     }
 
 }
