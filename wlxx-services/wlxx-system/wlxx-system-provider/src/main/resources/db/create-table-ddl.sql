@@ -97,3 +97,24 @@ CREATE TABLE `dict` (
   dict_name varchar(100) default null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+drop table if exists menu;
+CREATE TABLE `menu` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
+
+  code varchar(100) default null,
+  name varchar(100) default null,
+  icon varchar(100) default null,
+  path varchar(200) default null,
+  is_open tinyint(1) default 0,
+  item_label varchar(100) default 0,
+  menu_level int default 0,
+  menu_id bigint default null,
+  sort int default 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

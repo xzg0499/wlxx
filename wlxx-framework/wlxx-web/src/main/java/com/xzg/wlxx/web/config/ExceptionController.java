@@ -34,6 +34,12 @@ public class ExceptionController {
         return ApiResult.message(500, msg.toString(), null, null);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ApiResult<NoHandlerFoundException> illegalArg(IllegalArgumentException ex) {
+        return ApiResult.message(500, ex.getMessage(), null, null);
+    }
+
+
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiResult<NoHandlerFoundException> notHandler(NoHandlerFoundException ex) {

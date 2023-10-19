@@ -32,4 +32,16 @@ public class PojoConvertor {
         });
         return destBean;
     }
+
+    public static <T> T toVo(Class<T> cls, BasePo<?> po) {
+        T obj = null;
+        try {
+            obj = cls.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+        BeanUtil.copyProperties(po, obj);
+        return obj;
+    }
 }
