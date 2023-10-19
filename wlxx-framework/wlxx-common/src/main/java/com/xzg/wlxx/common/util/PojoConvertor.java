@@ -33,8 +33,8 @@ public class PojoConvertor {
         return destBean;
     }
 
-    public static <T> T toVo(Class<T> cls, BasePo<?> po) {
-        T obj = null;
+    public static <V, P extends BasePo<P>> V toVo(Class<V> cls, BasePo<P> po) {
+        V obj = null;
         try {
             obj = cls.getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
