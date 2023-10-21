@@ -42,10 +42,11 @@ tasks.withType<JavaCompile> {
 
 
 dependencies {
-    testImplementation("com.github.jsonzou:jmockdata:4.1.2")
+
     implementation(project(":wlxx-services:wlxx-system:wlxx-system-client"))
     implementation(project(":wlxx-framework:wlxx-common"))
     implementation(project(":wlxx-framework:wlxx-web"))
+    testImplementation(project(":wlxx-framework:wlxx-test"))
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")

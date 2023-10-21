@@ -10,9 +10,9 @@ import java.util.stream.IntStream;
  * @author XiaoZG
  */
 public class CheckPort {
-    public static void main(String[] args) {
-        checkPort("www.baidu.com", 80, 81, 82, 83, 84);
-    }
+//    public static void main(String[] args) {
+//        checkPort("www.baidu.com", 80, 81, 82, 83, 84);
+//    }
 
     public static boolean checkPort(String ip, int... ports) {
         IntStream.of(ports).forEach(p -> {

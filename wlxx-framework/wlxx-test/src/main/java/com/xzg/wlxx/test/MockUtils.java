@@ -1,4 +1,4 @@
-package com.xzg.wlxx.system;
+package com.xzg.wlxx.test;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;

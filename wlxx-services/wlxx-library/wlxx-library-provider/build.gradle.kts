@@ -30,6 +30,7 @@ tasks.withType<JavaCompile> {
 dependencies {
     testImplementation("com.github.jsonzou:jmockdata:4.1.2")
     implementation(project(":wlxx-services:wlxx-library:wlxx-library-client"))
+    testImplementation(project(":wlxx-framework:wlxx-test"))
     implementation(project(":wlxx-framework:wlxx-common"))
     implementation(project(":wlxx-framework:wlxx-web"))
     testCompileOnly("org.projectlombok:lombok")

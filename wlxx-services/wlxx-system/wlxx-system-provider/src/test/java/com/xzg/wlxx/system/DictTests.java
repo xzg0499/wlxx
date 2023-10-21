@@ -1,6 +1,7 @@
 package com.xzg.wlxx.system;
 
 import com.xzg.wlxx.system.client.entity.po.DictPo;
+import com.xzg.wlxx.test.MockUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
