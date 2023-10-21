@@ -79,6 +79,7 @@ CREATE TABLE `tenant` (
   `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del` tinyint(1) default 0,
 
+   tenant_id varchar(100) default null comment '用户TenantId',
   `tenant_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -1,5 +1,6 @@
 package com.xzg.wlxx.system;
 
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
 import com.github.jsonzou.jmockdata.JMockData;
 import com.github.jsonzou.jmockdata.MockConfig;
@@ -12,6 +13,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.net.URI;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.stream.IntStream;
 
 /**
  * @author XiaoZG
@@ -45,5 +49,18 @@ public class MockUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static <T extends BasePo<T>> void mockTreeDate(int size, int deep, Long parentId
+            , BiFunction<Integer, Long, T> supplier
+            , Function<T, Long> consumer) {
+        int leaf = --deep;
+        IntStream.range(0, size).forEach(i -> {
+            var po = supplier.apply(leaf, parentId);
+            po.insert();
+            if (leaf != 0 && RandomUtil.randomBoolean()) {
+                mockTreeDate(RandomUtil.randomInt(5, 8), leaf, consumer.apply(po), supplier, consumer);
+            }
+        });
     }
 }

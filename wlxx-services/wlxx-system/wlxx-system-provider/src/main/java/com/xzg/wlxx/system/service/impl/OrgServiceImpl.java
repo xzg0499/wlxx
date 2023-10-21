@@ -1,10 +1,11 @@
 package com.xzg.wlxx.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.common.exception.BusinessException;
+import com.xzg.wlxx.common.util.IteratorUtils;
+import com.xzg.wlxx.common.util.PojoConvertor;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
 import com.xzg.wlxx.system.client.entity.vo.OrgVo;
 import com.xzg.wlxx.system.mapper.OrgMapper;
@@ -49,23 +50,11 @@ public class OrgServiceImpl extends ServiceImpl<OrgMapper, OrgPo> implements Org
                     BeanUtil.copyProperties(e, vo);
                     return vo;
                 }).collect(Collectors.toList());
-        iterator(list, result);
+        IteratorUtils.iterator(result, list
+                , (v, p) -> Objects.equals(v.getId(), p.getOrgId())
+                , p -> PojoConvertor.toVo(OrgVo.class, p)
+                , OrgVo::setChildren
+        );
         return result;
-    }
-
-    public void iterator(List<OrgPo> list, List<OrgVo> result) {
-        result.forEach(e -> {
-            List<OrgVo> children = list.stream()
-                    .filter(sub -> Objects.equals(e.getId(), sub.getOrgId()))
-                    .map(map -> {
-                        OrgVo vo = new OrgVo();
-                        BeanUtil.copyProperties(map, vo);
-                        return vo;
-                    }).collect(Collectors.toList());
-            if (!CollUtil.isEmpty(children)) {
-                iterator(list, children);
-                e.setChildren(children);
-            }
-        });
     }
 }

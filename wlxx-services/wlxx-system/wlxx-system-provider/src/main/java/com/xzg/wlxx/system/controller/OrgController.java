@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.common.base.BaseController;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
+import com.xzg.wlxx.system.client.entity.vo.OrgVo;
 import com.xzg.wlxx.system.service.OrgService;
 import com.xzg.wlxx.system.service.impl.SearcherService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 
 @RestController
@@ -49,10 +52,16 @@ public class OrgController extends BaseController {
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");
         // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-        String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
+        String fileName = URLEncoder.encode("组织", StandardCharsets.UTF_8)
+                .replaceAll("\\+", "%20");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
         EasyExcel.write(response.getOutputStream(), OrgPo.class)
                 .sheet("模板").doWrite(service.list());
         return ApiResult.success();
+    }
+
+    @GetMapping("list")
+    public ApiResult<List<OrgVo>> list(@RequestParam(required = false) Long orgId) {
+        return ApiResult.success(service.list4Tree(orgId));
     }
 }

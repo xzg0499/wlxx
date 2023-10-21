@@ -2,7 +2,7 @@ package com.xzg.wlxx.system.service.impl;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xzg.wlxx.common.util.ListUtils;
+import com.xzg.wlxx.common.util.IteratorUtils;
 import com.xzg.wlxx.common.util.PojoConvertor;
 import com.xzg.wlxx.system.client.entity.dto.MenuDto;
 import com.xzg.wlxx.system.client.entity.po.MenuPo;
@@ -46,7 +46,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuPo> implements 
                 .list();
         var result = new ArrayList<MenuVo>();
         result.add(PojoConvertor.toVo(MenuVo.class, list.stream().findFirst().orElse(new MenuPo())));
-        ListUtils.iterator(result, list
+        IteratorUtils.iterator(result, list
                 , (e, l) -> Objects.equals(e.getId(), l.getMenuId())
                 , l -> PojoConvertor.toVo(MenuVo.class, l)
                 , MenuVo::setChildren

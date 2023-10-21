@@ -11,7 +11,7 @@ import java.util.function.Function;
 /**
  * @author XiaoZG
  */
-public class ListUtils {
+public class IteratorUtils {
 
 
     /**
