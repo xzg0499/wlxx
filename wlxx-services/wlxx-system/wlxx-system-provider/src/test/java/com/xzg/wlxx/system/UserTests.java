@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 /**
  * @author XiaoZG
  */
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
 @Slf4j
 public class UserTests {
