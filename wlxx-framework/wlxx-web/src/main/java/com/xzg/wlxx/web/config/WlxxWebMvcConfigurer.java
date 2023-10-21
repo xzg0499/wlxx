@@ -34,7 +34,8 @@ public class WlxxWebMvcConfigurer implements WebMvcConfigurer {
         config.setDateFormat(dateFormat);
         config.setCharset(Charset.defaultCharset());
         // 序列化
-        config.setWriterFeatures(JSONWriter.Feature.PrettyFormat);
+        config.setWriterFeatures(JSONWriter.Feature.PrettyFormat
+                , JSONWriter.Feature.NotWriteEmptyArray);
         // 反序列化
         config.setReaderFeatures(
                 JSONReader.Feature.FieldBased,
