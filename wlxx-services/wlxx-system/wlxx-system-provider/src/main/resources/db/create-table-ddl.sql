@@ -53,7 +53,7 @@ CREATE TABLE `token` (
 
 
 -- db_system.`user` definition
-drop table if exists user;
+drop table if exists `user`;
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT NULL,
@@ -62,10 +62,11 @@ CREATE TABLE `user` (
   `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del` tinyint(1) default 0,
 
-  `username` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(100) unique not null,
   `real_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `password` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emp_id` bigint DEFAULT NULL,
+  role_id bigint default null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
