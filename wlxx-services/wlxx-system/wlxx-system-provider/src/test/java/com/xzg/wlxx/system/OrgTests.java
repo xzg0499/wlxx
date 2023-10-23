@@ -1,6 +1,5 @@
 package com.xzg.wlxx.system;
 
-import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONUtil;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
 import com.xzg.wlxx.system.client.entity.vo.OrgVo;
@@ -16,10 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.IntStream;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Slf4j
 public class OrgTests {
@@ -46,34 +43,12 @@ public class OrgTests {
 
     @Test
     void testTree() {
-        var size = RandomUtil.randomInt(5, 8);
-        var deep = RandomUtil.randomInt(2, 5);
-        MockUtils.mockTreeDate(size, deep, null, (l, p) -> {
+        MockUtils.mockTreeDate(5, 5, null, (l, p) -> {
                     var po = MockUtils.mock(OrgPo.class);
                     po.setOrgId(p);
-                    po.setOrgLevel(deep - l - 1);
+                    po.setOrgLevel(5 - l - 1);
                     return po;
                 }, OrgPo::getId
         );
     }
-
-
-    /**
-     * mock tree
-     */
-    private void test(int size, int deep, Object parentId) {
-        int leaf = --deep;
-        int finalDeep = deep;
-        IntStream.range(0, size).forEach(i -> {
-            var po = MockUtils.mock(OrgPo.class);
-            po.setOrgId(Objects.isNull(parentId) ? null : (Long) parentId);
-            po.setOrgLevel(-finalDeep);
-            po.insert();
-            if (leaf != 0 && RandomUtil.randomBoolean()) {
-                test(RandomUtil.randomInt(5, 8), leaf, po.getId());
-            }
-        });
-    }
-
-
 }

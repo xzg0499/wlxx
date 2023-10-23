@@ -15,6 +15,12 @@ tasks.withType<BootJar> {
     }
 }
 
+tasks.build {
+    // 全局build跳过test
+    println("test enabled ${tasks.getByName("test").enabled}")
+    tasks.getByName("test").enabled = false
+    println("test enabled ${tasks.getByName("test").enabled}")
+}
 
 tasks.withType<JavaCompile> {
 //    options.compilerArgs = listOf("-Xlint:unchecked", "-verbose", "-XprintRounds", "-Xmaxerrs", "100000", "-Akey=name")
@@ -86,5 +92,5 @@ tasks.withType<BootBuildImage> {
 }
 
 tasks.withType<Test> {
-    enabled = false
+    enabled = true
 }
