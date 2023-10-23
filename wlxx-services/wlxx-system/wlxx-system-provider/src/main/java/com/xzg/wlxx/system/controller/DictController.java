@@ -1,5 +1,6 @@
 package com.xzg.wlxx.system.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.system.client.entity.dto.DictDto;
 import com.xzg.wlxx.system.client.entity.po.DictPo;
@@ -32,5 +33,10 @@ public class DictController {
     @Operation(summary = "根据code查找字典")
     public ApiResult<List<DictPo>> findByCode(@PathVariable String code) {
         return ApiResult.success(service.findByCode(code));
+    }
+
+    @GetMapping("search")
+    public ApiResult<IPage<DictPo>> search(DictDto dto) {
+        return ApiResult.success();
     }
 }
