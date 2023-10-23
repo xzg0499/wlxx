@@ -130,7 +130,7 @@ CREATE TABLE `role` (
   `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del` tinyint(1) default 0,
 
-  role_code varchar(100) default null,
+  role_code varchar(100) unique not null,
   role_name varchar(100) default null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
