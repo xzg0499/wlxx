@@ -5,6 +5,7 @@ import com.xzg.wlxx.common.base.ApiResult;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Component
+@RequiredArgsConstructor
 public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
+    private final ObjectMapper objectMapper;
 
     @Override
     public void commence(HttpServletRequest request,
@@ -28,11 +31,11 @@ public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
         // 输出流
         PrintWriter out = response.getWriter();
 
-        ApiResult bean = ApiResult.builder()
+        ApiResult<?> result = ApiResult.builder()
                 .code(401)
                 .msg("尚未登录，请登录！")
                 .build();
-        out.write(new ObjectMapper().writeValueAsString(bean));
+        out.write(objectMapper.writeValueAsString(result));
         out.flush();
         out.close();
     }

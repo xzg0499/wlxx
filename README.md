@@ -36,6 +36,7 @@
 - [ ] 数据库id类型int8导致前段JS接收数据超出17位时截断
 - [ ] 基础实现类中不做引入service，统一在扩展类中座引入service
 - [ ] lombok+ast 注入feign客户端
+- [ ] feign fallback不生效
 
 ## idae
 

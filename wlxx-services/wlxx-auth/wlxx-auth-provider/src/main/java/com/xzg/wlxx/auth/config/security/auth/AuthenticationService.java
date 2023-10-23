@@ -30,7 +30,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final TokenProvider tokenService;
-    private final UserProvider userService;
+    private final UserProvider userProvider;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtils jwtService;
     private final AuthenticationManager authenticationManager;
@@ -43,7 +43,7 @@ public class AuthenticationService {
         var user = new UserDto();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        return ApiResult.success(userService.register(user));
+        return ApiResult.success(userProvider.register(user));
     }
 
     public ApiResult<?> authenticate(AuthenticationDto dto) {
@@ -60,7 +60,7 @@ public class AuthenticationService {
         // TODO 考虑不从数据库中查数据
 
         userDetails = (SystemUserDetails) authenticate.getPrincipal();
-        var user = userService.findByUsername(userDetails.getUsername());
+        var user = userProvider.findByUsername(userDetails.getUsername());
         // var user = userService.findByEmail(request.getEmail());
         // var user = userDetailsService.loadUserByUsername(request.getEmail());
 
@@ -92,7 +92,7 @@ public class AuthenticationService {
             // TODO 考虑不从数据库获取用户数据
             // var user = userService.findByEmail(username);
             var userDetails = (SystemUserDetails) userDetailsService.loadUserByUsername(username);
-            var user = userService.findByUsername(userDetails.getUsername());
+            var user = userProvider.findByUsername(userDetails.getUsername());
             if (jwtService.isTokenValid(refreshToken, userDetails)) {
                 var accessToken = jwtService.generateToken(userDetails);
                 log.info("accessToken: {}", accessToken);
