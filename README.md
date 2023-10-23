@@ -104,3 +104,7 @@ graph LR
     B -.-> C
     C --> D
 ```
+
+# 问题记录
+
+1. annotationProcessor 尽可用于代码生成，无法修改现有代码Class。要修改代码需要引入Oracle JDK中的jdk.compiler模块
