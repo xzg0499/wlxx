@@ -10,6 +10,7 @@ CREATE TABLE `emp` (
 
   `emp_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emp_code` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  disabled tinyint(1) default 0,
   `org_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

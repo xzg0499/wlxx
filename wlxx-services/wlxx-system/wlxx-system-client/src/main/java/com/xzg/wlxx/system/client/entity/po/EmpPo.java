@@ -4,6 +4,7 @@ package com.xzg.wlxx.system.client.entity.po;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xzg.wlxx.common.base.BasePo;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,4 +23,8 @@ public class EmpPo extends BasePo<EmpPo> {
     private String empName;
 
     private Long orgId;
+
+    @Schema(description = "是否禁用", defaultValue = "0")
+    private Boolean disabled;
+
 }
