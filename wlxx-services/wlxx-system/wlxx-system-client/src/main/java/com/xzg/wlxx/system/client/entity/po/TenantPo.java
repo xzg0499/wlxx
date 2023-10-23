@@ -17,4 +17,7 @@ public class TenantPo extends BasePo<TenantPo> {
     @Schema(title = "用户TenantId")
     private String tenantId;
     private String tenantName;
+
+    @Schema(description = "是否启用", defaultValue = "1")
+    private Boolean enabled;
 }

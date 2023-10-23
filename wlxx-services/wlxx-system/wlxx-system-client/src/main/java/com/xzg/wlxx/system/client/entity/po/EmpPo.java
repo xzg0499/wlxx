@@ -24,7 +24,7 @@ public class EmpPo extends BasePo<EmpPo> {
 
     private Long orgId;
 
-    @Schema(description = "是否禁用", defaultValue = "0")
-    private Boolean disabled;
+    @Schema(description = "是否启用", defaultValue = "1")
+    private Boolean enabled;
 
 }

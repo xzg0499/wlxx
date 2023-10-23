@@ -23,4 +23,7 @@ public class MenuPo extends BasePo<MenuPo> {
     private Integer menuLevel;
     private Long menuId;
     private Integer sort;
+
+    @Schema(description = "是否启用", defaultValue = "1")
+    private Boolean enabled;
 }

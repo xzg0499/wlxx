@@ -21,4 +21,7 @@ public class UserPo extends BasePo<UserPo> {
     private Long empId;
     @Schema(name = "roleId", title = "角色", description = "ID", example = "0", requiredMode = Schema.RequiredMode.REQUIRED, format = "0")
     private Long roleId;
+
+    @Schema(description = "是否启用", defaultValue = "1")
+    private Boolean enabled;
 }

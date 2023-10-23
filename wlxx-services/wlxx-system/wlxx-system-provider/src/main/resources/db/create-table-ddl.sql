@@ -10,7 +10,7 @@ CREATE TABLE `emp` (
 
   `emp_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emp_code` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  disabled tinyint(1) default 0,
+  enabled tinyint(1) default 1 comment '是否启用',
   `org_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -31,6 +31,7 @@ CREATE TABLE `org` (
   `org_id` bigint DEFAULT NULL,
   `org_type` int DEFAULT NULL,
   `org_level` int DEFAULT NULL,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -68,6 +69,7 @@ CREATE TABLE `user` (
   `password` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emp_id` bigint DEFAULT NULL,
   role_id bigint default null,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -83,6 +85,7 @@ CREATE TABLE `tenant` (
 
    tenant_id varchar(100) default null comment '用户TenantId',
   `tenant_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+   enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -98,6 +101,7 @@ CREATE TABLE `dict` (
 
   dict_code varchar(100) default null,
   dict_name varchar(100) default null,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -119,6 +123,7 @@ CREATE TABLE `menu` (
   menu_level int default 0,
   menu_id bigint default null,
   sort int default 0,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -134,5 +139,6 @@ CREATE TABLE `role` (
 
   role_code varchar(100) unique not null,
   role_name varchar(100) default null,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
