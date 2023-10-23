@@ -2,6 +2,7 @@ package com.xzg.wlxx.web.config;
 
 import cn.hutool.core.util.StrUtil;
 import com.xzg.wlxx.common.base.ApiResult;
+import com.xzg.wlxx.common.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,9 +13,16 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @RestControllerAdvice
 public class ExceptionController {
 
-    @ExceptionHandler(Throwable.class)
-    public ApiResult<Throwable> thr(Throwable ex) {
-        ex.printStackTrace();
+    /**
+     * 不宜抛出Throwable
+     */
+//    @ExceptionHandler(Throwable.class)
+//    public ApiResult<Throwable> thr(Throwable ex) {
+//        ex.printStackTrace();
+//        return ApiResult.exception(ex);
+//    }
+    @ExceptionHandler(BusinessException.class)
+    public ApiResult<BusinessException> business(BusinessException ex) {
         return ApiResult.exception(ex);
     }
 
