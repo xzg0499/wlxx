@@ -36,7 +36,7 @@ public class ExceptionController {
                 msg.append(e.getObjectName());
                 msg.append(StrUtil.C_SPACE);
                 msg.append(e.getDefaultMessage());
-                msg.append(StrUtil.C_SLASH);
+                msg.append(StrUtil.C_SPACE).append(StrUtil.C_LF).append(StrUtil.C_SPACE);
             });
         }
         return ApiResult.message(500, msg.toString(), null, null);
@@ -59,4 +59,13 @@ public class ExceptionController {
 //    public ProblemDetail error(NoHandlerFoundException ex) {
 //        return ProblemDetail.forStatus(404);
 //    }
+
+    /**
+     * 顶层异常放在底层位置
+     */
+    @ExceptionHandler(Throwable.class)
+    public ApiResult<Throwable> thr(Throwable ex) {
+        ex.printStackTrace();
+        return ApiResult.exception(ex);
+    }
 }

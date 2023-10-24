@@ -14,6 +14,7 @@ public class WlxxInterceptor implements HandlerInterceptor {
 
     public static final String[] WHITE_LIST = {
             "/auth/**",
+            "/error",
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",
