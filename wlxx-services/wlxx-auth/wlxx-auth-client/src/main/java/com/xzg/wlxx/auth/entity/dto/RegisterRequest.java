@@ -1,4 +1,4 @@
-package com.xzg.wlxx.auth.config.security.auth;
+package com.xzg.wlxx.auth.entity.dto;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;

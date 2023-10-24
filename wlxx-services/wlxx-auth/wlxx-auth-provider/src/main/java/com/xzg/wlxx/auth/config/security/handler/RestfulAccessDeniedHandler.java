@@ -1,4 +1,4 @@
-package com.xzg.wlxx.auth.config.security.config;
+package com.xzg.wlxx.auth.config.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xzg.wlxx.common.base.ApiResult;

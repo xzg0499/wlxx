@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.support.config.FastJsonConfig;
 import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
-import com.xzg.wlxx.web.config.feign.FeignClientErrorDecoder;
 import com.xzg.wlxx.web.config.feign.FeignInterceptor;
 import com.xzg.wlxx.web.config.feign.WlxxDecoder;
 import feign.RequestInterceptor;
@@ -54,10 +53,10 @@ public class FeignConfiguration {
         return new SpringDecoder(feignHttpMessageConverter(), objectProvider);
     }
 
-    @Bean
-    public FeignClientErrorDecoder feignClientErrorDecoder() {
-        return new FeignClientErrorDecoder(springDecoder());
-    }
+//    @Bean
+//    public FeignClientErrorDecoder feignClientErrorDecoder() {
+//        return new FeignClientErrorDecoder(springDecoder());
+//    }
 
     @Bean
     public Encoder feignEncoder() {

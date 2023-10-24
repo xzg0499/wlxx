@@ -27,6 +27,9 @@ dependencies {
     implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${property("springCloudAlibabaVersion")}")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+    
+    // https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-sentinel
+//    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:2022.0.0.0")
 
 }
 

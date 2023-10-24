@@ -1,7 +1,9 @@
 package com.xzg.wlxx.auth.controller;
 
-import com.xzg.wlxx.auth.config.security.auth.AuthenticationDto;
-import com.xzg.wlxx.auth.config.security.auth.AuthenticationService;
+import com.xzg.wlxx.auth.entity.dto.AuthenticationDto;
+import com.xzg.wlxx.auth.entity.vo.AuthenticationResponse;
+import com.xzg.wlxx.auth.entity.vo.AuthenticationVo;
+import com.xzg.wlxx.auth.service.AuthenticationService;
 import com.xzg.wlxx.common.base.ApiResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,7 +21,7 @@ import java.io.IOException;
  * @author XiaoZG
  */
 @RestController
-@Tag(name = "auth")
+@Tag(name = "认证")
 @RequestMapping("auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
@@ -28,19 +30,25 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @Operation(summary = "注册")
-    public ApiResult<?> register(@RequestBody AuthenticationDto dto) {
+    public ApiResult<Boolean> register(@RequestBody AuthenticationDto dto) {
         return authenticationService.register(dto);
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("")
     @Operation(summary = "认证")
-    public ApiResult<?> authenticate(@RequestBody AuthenticationDto dto) {
+    public ApiResult<AuthenticationVo> authenticate(@RequestBody AuthenticationDto dto) {
         return authenticationService.authenticate(dto);
     }
 
     @PostMapping("/refresh")
     @Operation(summary = "刷新 Token")
-    public ApiResult<?> refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ApiResult<AuthenticationResponse> refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         return authenticationService.refreshToken(request, response);
+    }
+
+    @PostMapping("/logout")
+    @Operation(summary = "注销")
+    public ApiResult<Boolean> logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return ApiResult.success();
     }
 }

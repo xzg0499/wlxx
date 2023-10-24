@@ -1,8 +1,12 @@
-package com.xzg.wlxx.auth.config.security.auth;
+package com.xzg.wlxx.auth.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.Assert;
+import com.xzg.wlxx.auth.config.security.auth.SystemUserDetails;
 import com.xzg.wlxx.auth.config.security.config.JwtTokenUtils;
+import com.xzg.wlxx.auth.entity.dto.AuthenticationDto;
+import com.xzg.wlxx.auth.entity.vo.AuthenticationResponse;
+import com.xzg.wlxx.auth.entity.vo.AuthenticationVo;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.system.client.entity.dto.UserDto;
 import com.xzg.wlxx.system.client.entity.po.TokenPo;
@@ -23,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -36,7 +41,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
 
-    public ApiResult<?> register(AuthenticationDto request) {
+    public ApiResult<Boolean> register(AuthenticationDto request) {
         Assert.notBlank(request.getUsername(), "参数不能为空！");
         Assert.notBlank(request.getPassword(), "参数不能为空");
 
@@ -46,7 +51,7 @@ public class AuthenticationService {
         return ApiResult.success(userProvider.register(user));
     }
 
-    public ApiResult<?> authenticate(AuthenticationDto dto) {
+    public ApiResult<AuthenticationVo> authenticate(AuthenticationDto dto) {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getUsername());
 
@@ -61,8 +66,6 @@ public class AuthenticationService {
 
         userDetails = (SystemUserDetails) authenticate.getPrincipal();
         var user = userProvider.findByUsername(userDetails.getUsername());
-        // var user = userService.findByEmail(request.getEmail());
-        // var user = userDetailsService.loadUserByUsername(request.getEmail());
 
 
         var jwtToken = jwtService.generateToken(userDetails);
@@ -77,8 +80,8 @@ public class AuthenticationService {
 
     }
 
-    public ApiResult<?> refreshToken(HttpServletRequest request,
-                                     HttpServletResponse response) throws IOException {
+    public ApiResult<AuthenticationResponse> refreshToken(HttpServletRequest request,
+                                                          HttpServletResponse response) throws IOException {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String refreshToken;
         final String username;
@@ -93,6 +96,15 @@ public class AuthenticationService {
             // var user = userService.findByEmail(username);
             var userDetails = (SystemUserDetails) userDetailsService.loadUserByUsername(username);
             var user = userProvider.findByUsername(userDetails.getUsername());
+            var validUserToken = tokenService.findToken(TokenPo.builder()
+                    .userId(user.getId())
+                    .expired(false)
+                    .revoked(false)
+                    .build()
+            );
+            if (Objects.isNull(validUserToken)) {
+                return ApiResult.failure("用户已登出");
+            }
             if (jwtService.isTokenValid(refreshToken, userDetails)) {
                 var accessToken = jwtService.generateToken(userDetails);
                 log.info("accessToken: {}", accessToken);
@@ -102,7 +114,6 @@ public class AuthenticationService {
                         .accessToken(accessToken)
                         .refreshToken(refreshToken)
                         .build();
-                // new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
                 return ApiResult.success(authResponse);
             }
             return ApiResult.failure("令牌无效！");
@@ -113,9 +124,6 @@ public class AuthenticationService {
 
     /**
      * 保存用户的 token
-     *
-     * @param userId
-     * @param jwtToken
      */
     private void saveUserToken(Long userId, String jwtToken) {
         var token = TokenPo.builder()
@@ -131,10 +139,6 @@ public class AuthenticationService {
 
     /**
      * 销毁用户的 token
-     * - expired = true
-     * - revoked = true
-     *
-     * @param userId
      */
     private void revokeUserToken(Long userId) {
         var validUserToken = tokenService.findToken(TokenPo.builder()

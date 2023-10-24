@@ -79,6 +79,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.alibaba/easyexcel
     implementation("com.alibaba:easyexcel:3.3.2")
+//    {
+//        exclude(group = "org.apache.commons", module = "commons-compress")
+//    }
 
     // pinyin 三选一
     implementation("com.github.promeg:tinypinyin:2.0.3")
