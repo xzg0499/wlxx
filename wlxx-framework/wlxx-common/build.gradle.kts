@@ -3,23 +3,9 @@ plugins {
 }
 
 tasks.withType<JavaCompile> {
-//    options.compilerArgs = listOf("-Xlint:unchecked", "-verbose", "-XprintRounds", "-Xmaxerrs", "100000", "-Akey=name")
     sourceCompatibility = "17"
     targetCompatibility = "17"
-    options.compilerArgs.addAll(
-        listOf(
-            "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
-            "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
-            "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
-            "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED",
-            "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"
-        )
-    )
+    
 }
 
 dependencies {
