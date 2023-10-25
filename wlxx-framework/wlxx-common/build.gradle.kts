@@ -3,25 +3,33 @@ plugins {
 }
 
 
-//tasks.register<Delete>("deleteGeneratedSources") {
-//    var generatedSrcRoot = file("${buildDir}/generated/source/apt/main")
-//    delete(generatedSrcRoot)
-//}
-
-sourceSets {
-    main {
-        java {
-            srcDirs.add(file("src/main/java"))
-        }
-    }
-    test {
-        java {
-            srcDirs.add(file("src/main/test"))
+tasks.register<Delete>("deleteGeneratedSources") {
+    println("delete generated folder ===")
+    var generatedSrcRoot = file("${buildDir}/generated/source/apt/main")
+    delete(generatedSrcRoot)
+    delete(file("${buildDir}/generated/sources/annotationProcessor/java/main"))
+    delete(file("${buildDir}/generated/sources/annotationProcessor/java/test"))
+}
+tasks.build {
+    dependsOn("deleteGeneratedSources")
+    doLast {
+        sourceSets {
+            main {
+                java {
+                    srcDirs.add(file("src/main/java"))
+                }
+            }
+            test {
+                java {
+                    srcDirs.add(file("src/main/test"))
+                }
+            }
         }
     }
 }
 
 tasks.withType<JavaCompile> {
+    dependsOn("deleteGeneratedSources")
     sourceCompatibility = "17"
     targetCompatibility = "17"
 //    options.isIncremental = false

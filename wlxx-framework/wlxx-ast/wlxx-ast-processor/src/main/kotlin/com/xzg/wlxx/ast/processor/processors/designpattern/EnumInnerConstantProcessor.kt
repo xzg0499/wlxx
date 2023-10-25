@@ -106,55 +106,57 @@ class EnumInnerConstantProcessor : AbstractProcessor() {
              *     重写visitImport方法， 获取到导包信息;
              *     重写visitForeachLoop方法， 获取到for循环的信息;
              *     ......
-             */jcTree.accept(object : TreeTranslator() {
-            override fun visitClassDef(jcClassDecl: JCClassDecl) {
-                // 不要放在 jcClassDecl.defs = jcClassDecl.defs.append(a);之后，否者会递归
-                super.visitClassDef(jcClassDecl)
-                // 生成内部类， 并将内部类写进去
-                val innerClass = generateInnerClass(innerClassName, paramsNameValueMap, paramsNameTypeMap)
-                jcClassDecl.defs = jcClassDecl.defs.append(innerClass)
-            }
-
-            override fun visitVarDef(jcVariableDecl: JCVariableDecl) {
-                val isEnumConstant = className == jcVariableDecl.vartype.type.toString()
-                if (!isEnumConstant) {
-                    super.visitVarDef(jcVariableDecl)
-                    return
+             */
+            jcTree.accept(object : TreeTranslator() {
+                override fun visitClassDef(jcClassDecl: JCClassDecl) {
+                    // 不要放在 jcClassDecl.defs = jcClassDecl.defs.append(a);之后，否者会递归
+                    super.visitClassDef(jcClassDecl)
+                    // 生成内部类， 并将内部类写进去
+                    val innerClass = generateInnerClass(innerClassName, paramsNameValueMap, paramsNameTypeMap)
+                    jcClassDecl.defs = jcClassDecl.defs.append(innerClass)
                 }
-                val name = jcVariableDecl.getName()
-                val paramName = name.toString()
-                /*
+
+                override fun visitVarDef(jcVariableDecl: JCVariableDecl) {
+                    val isEnumConstant = className == jcVariableDecl.vartype.type.toString()
+                    if (!isEnumConstant) {
+                        super.visitVarDef(jcVariableDecl)
+                        return
+                    }
+                    val name = jcVariableDecl.getName()
+                    val paramName = name.toString()
+                    /*
                      * 枚举项本身也属于变量, 每个枚举项里面，可能还有变量。 这里继
                      * 续JCTree.accept(JCTree.Visitor)进入，访问这个枚举项的内部信息。
-                     */jcVariableDecl.accept(object : TreeTranslator() {
-                    override fun visitLiteral(jcLiteral: JCLiteral) {
-                        val paramValue = jcLiteral.getValue() ?: return
-                        val typetag = jcLiteral.typetag
-                        val paramType: JCExpression
-                        paramType = if (isPrimitive(typetag)) {
-                            // 如果是基本类型，那么可以直接生成
-                            treeMaker!!.TypeIdent(typetag)
-                        } else if (paramValue is String) {
-                            // 如果不是基本类型，那么需要拼接生成
-                            generateJcExpression("java.lang.String")
-                        } else {
-                            return
+                     */
+                    jcVariableDecl.accept(object : TreeTranslator() {
+                        override fun visitLiteral(jcLiteral: JCLiteral) {
+                            val paramValue = jcLiteral.getValue() ?: return
+                            val typetag = jcLiteral.typetag
+                            val paramType: JCExpression
+                            paramType = if (isPrimitive(typetag)) {
+                                // 如果是基本类型，那么可以直接生成
+                                treeMaker!!.TypeIdent(typetag)
+                            } else if (paramValue is String) {
+                                // 如果不是基本类型，那么需要拼接生成
+                                generateJcExpression("java.lang.String")
+                            } else {
+                                return
+                            }
+                            var atomicInteger = paramIndexHelper[paramName]
+                            if (atomicInteger == null) {
+                                atomicInteger = AtomicInteger(0)
+                                paramIndexHelper[paramName] = atomicInteger
+                            }
+                            val paramIndex = atomicInteger.getAndIncrement()
+                            val key = paramName + "_" + paramIndex
+                            paramsNameTypeMap[key] = paramType
+                            paramsNameValueMap[key] = paramValue
+                            super.visitLiteral(jcLiteral)
                         }
-                        var atomicInteger = paramIndexHelper[paramName]
-                        if (atomicInteger == null) {
-                            atomicInteger = AtomicInteger(0)
-                            paramIndexHelper[paramName] = atomicInteger
-                        }
-                        val paramIndex = atomicInteger.getAndIncrement()
-                        val key = paramName + "_" + paramIndex
-                        paramsNameTypeMap[key] = paramType
-                        paramsNameValueMap[key] = paramValue
-                        super.visitLiteral(jcLiteral)
-                    }
-                })
-                super.visitVarDef(jcVariableDecl)
-            }
-        })
+                    })
+                    super.visitVarDef(jcVariableDecl)
+                }
+            })
         }
         return false
     }
