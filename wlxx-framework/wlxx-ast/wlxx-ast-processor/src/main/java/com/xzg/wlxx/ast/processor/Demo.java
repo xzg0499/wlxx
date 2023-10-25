@@ -1,4 +1,4 @@
-package com.xzg.wlxx.apt;
+package com.xzg.wlxx.ast.processor;
 
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;

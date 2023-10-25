@@ -1,9 +1,10 @@
-package com.xzg.wlxx.apt;
+package com.xzg.wlxx.ast.processor;
 
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
+import com.xzg.wlxx.ast.annotation.AutoFeign;
 
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;

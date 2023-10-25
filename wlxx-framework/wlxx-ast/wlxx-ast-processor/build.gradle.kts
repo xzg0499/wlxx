@@ -6,20 +6,21 @@ plugins {
 tasks.withType<JavaCompile> {
     sourceCompatibility = "17"
     targetCompatibility = "17"
-//    ALL-UNNAME
-    options.compilerArgs =
+    options.compilerArgs.addAll(
         listOf(
             "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.api=wlxx.apt",
+            "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
             "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.tree=wlxx.apt",
+            "jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
             "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.util=wlxx.apt",
+            "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
             "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.processing=wlxx.apt",
+            "jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED",
             "--add-exports",
-            "jdk.compiler/com.sun.tools.javac.code=wlxx.apt"
+            "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"
         )
+    )
+
 }
 
 
@@ -29,5 +30,6 @@ dependencies {
     annotationProcessor("com.google.auto.service:auto-service:1.1.1")
     // https://mvnrepository.com/artifact/com.squareup/javapoet
     implementation("com.squareup:javapoet:1.13.0")
+    implementation(project(":wlxx-framework:wlxx-ast:wlxx-ast-annotation"))
 
 }

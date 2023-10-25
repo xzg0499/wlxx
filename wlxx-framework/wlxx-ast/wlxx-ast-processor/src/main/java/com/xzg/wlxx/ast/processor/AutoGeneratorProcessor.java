@@ -1,10 +1,11 @@
-package com.xzg.wlxx.apt;
+package com.xzg.wlxx.ast.processor;
 
 /**
  * @author XiaoZG
  */
 
 import com.squareup.javapoet.*;
+import com.xzg.wlxx.ast.annotation.AutoFeign;
 
 import javax.annotation.processing.*;
 import javax.lang.model.element.*;

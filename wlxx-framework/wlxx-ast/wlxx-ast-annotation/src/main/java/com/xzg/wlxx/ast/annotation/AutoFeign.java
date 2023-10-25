@@ -1,4 +1,4 @@
-package com.xzg.wlxx.apt;
+package com.xzg.wlxx.ast.annotation;
 
 import java.lang.annotation.*;
 

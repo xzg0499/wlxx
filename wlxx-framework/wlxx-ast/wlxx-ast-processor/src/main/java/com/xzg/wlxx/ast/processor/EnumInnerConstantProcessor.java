@@ -1,4 +1,4 @@
-package com.xzg.wlxx.apt;
+package com.xzg.wlxx.ast.processor;
 
 
 import com.google.auto.service.AutoService;
@@ -13,6 +13,7 @@ import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.Name;
 import com.sun.tools.javac.util.Names;
+import com.xzg.wlxx.ast.annotation.AutoFeign;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
