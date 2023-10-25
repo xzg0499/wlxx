@@ -8,6 +8,18 @@ plugins {
     kotlin("kapt") version "1.4.20"
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs.add(file("src/main/kotlin"))
+        }
+    }
+    test {
+        java {
+            srcDirs.add(file("src/main/test"))
+        }
+    }
+}
 
 tasks.withType<JavaCompile> {
     sourceCompatibility = "17"
@@ -33,7 +45,9 @@ tasks.withType<JavaCompile> {
 dependencies {
     // https://mvnrepository.com/artifact/com.google.auto.service/auto-service
     implementation("com.google.auto.service:auto-service:1.1.1")
-    kapt("com.google.auto.service:auto-service:1.1.1")
+    kapt("com.google.auto.service:auto-service:1.1.1") {
+        isTransitive = false
+    }
     // https://mvnrepository.com/artifact/com.squareup/javapoet
     implementation("com.squareup:javapoet:1.13.0")
     implementation(project(":wlxx-framework:wlxx-ast:wlxx-ast-annotation"))

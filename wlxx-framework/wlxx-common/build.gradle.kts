@@ -2,10 +2,32 @@ plugins {
     id("wlxx.client")
 }
 
+
+//tasks.register<Delete>("deleteGeneratedSources") {
+//    var generatedSrcRoot = file("${buildDir}/generated/source/apt/main")
+//    delete(generatedSrcRoot)
+//}
+
+sourceSets {
+    main {
+        java {
+            srcDirs.add(file("src/main/java"))
+        }
+    }
+    test {
+        java {
+            srcDirs.add(file("src/main/test"))
+        }
+    }
+}
+
 tasks.withType<JavaCompile> {
     sourceCompatibility = "17"
     targetCompatibility = "17"
-    
+//    options.isIncremental = false
+//    options.compilerArgs.addAll(
+//        listOf("-Xlint:deprecation", "-Xlint:unchecked")
+//    )
 }
 
 dependencies {
