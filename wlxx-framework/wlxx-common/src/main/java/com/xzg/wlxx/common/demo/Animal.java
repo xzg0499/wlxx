@@ -1,4 +1,4 @@
-package com.xzg.wlxx.common;
+package com.xzg.wlxx.common.demo;
 
 import lombok.Data;
 

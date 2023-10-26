@@ -1,6 +1,7 @@
 package com.xzg.wlxx.auth.config.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xzg.wlxx.auth.entity.base.ApiAuthCode;
 import com.xzg.wlxx.common.base.ApiResult;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,9 +29,9 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
         // 输出流
         PrintWriter out = response.getWriter();
 
-        ApiResult bean = ApiResult.builder()
-                .code(403)
-                .msg("您的权限不足！")
+        ApiResult<?> bean = ApiResult.builder()
+                .code(ApiAuthCode.NO_AUTH.code)
+                .msg(ApiAuthCode.NO_AUTH.msg)
                 .build();
         out.write(new ObjectMapper().writeValueAsString(bean));
         out.flush();

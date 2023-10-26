@@ -1,6 +1,7 @@
 package com.xzg.wlxx.auth.config.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xzg.wlxx.auth.entity.base.ApiAuthCode;
 import com.xzg.wlxx.common.base.ApiResult;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,8 +33,8 @@ public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
         PrintWriter out = response.getWriter();
 
         ApiResult<?> result = ApiResult.builder()
-                .code(401)
-                .msg("尚未登录，请登录！")
+                .code(ApiAuthCode.UN_LOGIN.code)
+                .msg(ApiAuthCode.UN_LOGIN.msg)
                 .build();
         out.write(objectMapper.writeValueAsString(result));
         out.flush();
