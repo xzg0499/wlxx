@@ -26,3 +26,11 @@ tasks.register<DefaultTask>("cleanEmptyFolder") {
         it.deleteRecursively()
     }
 }
+
+tasks.register<DefaultTask>("countJavaFile") {
+    val count = rootDir.walkTopDown()
+        .filter { !it.isDirectory }
+        .filter { it.name.endsWith(".java") }
+        .count()
+    println("java file count: $count")
+}
