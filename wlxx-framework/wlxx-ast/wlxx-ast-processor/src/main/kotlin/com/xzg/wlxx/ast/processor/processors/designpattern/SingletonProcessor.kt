@@ -2,7 +2,6 @@
 
 package com.xzg.wlxx.ast.processor.processors.designpattern
 
-import com.google.auto.service.AutoService
 import com.sun.tools.javac.code.Flags
 import com.sun.tools.javac.code.Symbol
 import com.sun.tools.javac.code.TypeTag
@@ -16,12 +15,11 @@ import com.sun.tools.javac.util.Name
 import com.xzg.wlxx.ast.annotation.designpattern.Singleton
 import com.xzg.wlxx.ast.processor.base.SingleAnnotationProcessor
 import com.xzg.wlxx.ast.processor.util.contains
-import javax.annotation.processing.Processor
 import javax.lang.model.element.ExecutableElement
 import javax.lang.model.element.TypeElement
 
-@Suppress("unused")
-@AutoService(Processor::class)
+//@Suppress("unused")
+//@AutoService(Processor::class)
 internal class SingletonProcessor : SingleAnnotationProcessor() {
     override val mAnnotation = Singleton::class.java
 

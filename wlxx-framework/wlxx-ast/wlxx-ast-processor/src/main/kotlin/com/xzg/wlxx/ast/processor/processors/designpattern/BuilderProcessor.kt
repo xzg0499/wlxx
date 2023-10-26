@@ -2,7 +2,6 @@
 
 package com.xzg.wlxx.ast.processor.processors.designpattern
 
-import com.google.auto.service.AutoService
 import com.squareup.javapoet.*
 import com.sun.source.tree.Tree
 import com.sun.tools.javac.code.Flags
@@ -16,12 +15,11 @@ import com.xzg.wlxx.ast.annotation.designpattern.Builder
 import com.xzg.wlxx.ast.processor.base.SingleAnnotationProcessor
 import com.xzg.wlxx.ast.processor.util.asSetter
 import com.xzg.wlxx.ast.processor.util.lowerFirst
-import javax.annotation.processing.Processor
 import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 
-@Suppress("unused")
-@AutoService(Processor::class)
+//@Suppress("unused")
+//@AutoService(Processor::class)
 internal class BuilderProcessor : SingleAnnotationProcessor() {
     override val mAnnotation = Builder::class.java
 

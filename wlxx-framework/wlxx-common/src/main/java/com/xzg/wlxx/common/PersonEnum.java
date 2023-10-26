@@ -1,11 +1,9 @@
 package com.xzg.wlxx.common;
 
-import com.xzg.wlxx.ast.annotation.AutoFeign;
-
 /**
  * @author XiaoZG
  */
-@AutoFeign(name = "HelloWorld")
+//@AutoFeign(name = "HelloWorld")
 public enum PersonEnum {
     NAME(1, "1");
 

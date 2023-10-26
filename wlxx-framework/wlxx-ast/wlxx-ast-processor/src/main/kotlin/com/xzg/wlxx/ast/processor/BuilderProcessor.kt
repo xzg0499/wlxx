@@ -8,9 +8,11 @@ import com.sun.tools.javac.code.Flags
 import com.sun.tools.javac.code.TypeTag
 import com.sun.tools.javac.processing.JavacProcessingEnvironment
 import com.sun.tools.javac.tree.JCTree
+import com.sun.tools.javac.tree.JCTree.*
 import com.sun.tools.javac.tree.TreeMaker
 import com.sun.tools.javac.tree.TreeTranslator
 import com.sun.tools.javac.util.List
+import com.sun.tools.javac.util.Name
 import com.sun.tools.javac.util.Names
 import com.xzg.wlxx.ast.annotation.WlxxBuilder
 import java.util.concurrent.ConcurrentHashMap
@@ -55,28 +57,28 @@ class BuilderProcessor : AbstractProcessor() {
         )
         elementSet.forEach { element: Element ->
             val paramsNameValueMap: MutableMap<String, Any?> = ConcurrentHashMap(8)
-            val paramsNameTypeMap: MutableMap<String, JCTree.JCExpression> = ConcurrentHashMap(8)
+            val paramsNameTypeMap: MutableMap<String, JCExpression> = ConcurrentHashMap(8)
             val paramIndexHelper: MutableMap<String, AtomicInteger> = ConcurrentHashMap(4)
 
-            val innerClassName = "Builder"
+            val innerClassName = "CatBuilder"
             val jcTree = trees!!.getTree(element)
-            val className = "";
+            val className = (jcTree as JCClassDecl).sym.type.toString();
 
             jcTree.accept(object : TreeTranslator() {
-                override fun visitClassDef(jcClassDecl: JCTree.JCClassDecl) {
+                override fun visitClassDef(jcClassDecl: JCClassDecl) {
                     super.visitClassDef(jcClassDecl)
 
                     val innerClass = generateInnerClass(innerClassName, paramsNameValueMap, paramsNameTypeMap)
                     jcClassDecl.defs = jcClassDecl.defs.append(innerClass)
                 }
 
-                override fun visitVarDef(jcVariableDecl: JCTree.JCVariableDecl) {
-
+                override fun visitVarDef(jcVariableDecl: JCVariableDecl) {
                     val name = jcVariableDecl.getName()
                     val paramName = name.toString()
                     val typetag = jcVariableDecl.type
 
-                    val paramType: JCTree.JCExpression = treeMaker!!.TypeIdent(TypeTag.INT)
+
+                    val paramType: JCExpression = treeMaker!!.TypeIdent(TypeTag.INT)
 
 
                     var atomicInteger = paramIndexHelper[paramName]
@@ -87,6 +89,14 @@ class BuilderProcessor : AbstractProcessor() {
                     val key = paramName
                     paramsNameTypeMap[key] = paramType
                     paramsNameValueMap[key] = 1
+
+                    jcVariableDecl.accept(object : TreeTranslator() {
+                        override fun visitVarDef(tree: JCVariableDecl?) {
+                            messager!!.printMessage(Diagnostic.Kind.NOTE, "param -> ${tree!!.name}")
+
+                            super.visitVarDef(tree)
+                        }
+                    })
 
                     super.visitVarDef(jcVariableDecl)
                 }
@@ -102,8 +112,8 @@ class BuilderProcessor : AbstractProcessor() {
     private fun generateInnerClass(
         innerClassName: String,
         paramsInfoMap: Map<String, Any?>,
-        paramsNameTypeMap: Map<String, JCTree.JCExpression>
-    ): JCTree.JCClassDecl {
+        paramsNameTypeMap: Map<String, JCExpression>
+    ): JCClassDecl {
         val jcClassDecl1 = treeMaker!!.ClassDef(
             treeMaker!!.Modifiers((Flags.PUBLIC + Flags.STATIC).toLong()),
             names!!.fromString(innerClassName),
@@ -113,21 +123,24 @@ class BuilderProcessor : AbstractProcessor() {
             List.nil()
         )
         val collection = generateAllParameters(paramsInfoMap, paramsNameTypeMap)
-        collection.forEach(Consumer { x: JCTree.JCVariableDecl? -> jcClassDecl1.defs = jcClassDecl1.defs.append(x) })
+        collection.forEach(Consumer { x: JCVariableDecl? -> jcClassDecl1.defs = jcClassDecl1.defs.append(x) })
+        generateEqualMethod(jcClassDecl1);
+//        val methods = generateAllMethod(paramsInfoMap, paramsNameTypeMap)
+//        methods.forEach(Consumer { x: JCMethodDecl? -> jcClassDecl1.defs = jcClassDecl1.defs.append(x) })
         return jcClassDecl1
     }
 
     private fun generateAllParameters(
         paramNameValueMap: Map<String, Any?>?,
-        paramsNameTypeMap: Map<String, JCTree.JCExpression>
-    ): List<JCTree.JCVariableDecl> {
-        var jcVariableDeclList = List.nil<JCTree.JCVariableDecl>()
-        var statement: JCTree.JCVariableDecl
-        if (paramNameValueMap != null && paramNameValueMap.size != 0) {
+        paramsNameTypeMap: Map<String, JCExpression>
+    ): List<JCVariableDecl> {
+        var jcVariableDeclList = List.nil<JCVariableDecl>()
+        var statement: JCVariableDecl
+        if (!paramNameValueMap.isNullOrEmpty()) {
             for ((key, value) in paramNameValueMap) {
                 // 定义变量
                 statement = treeMaker!!.VarDef( // 访问修饰符
-                    treeMaker!!.Modifiers((Flags.PUBLIC).toLong()),  // 参数名
+                    treeMaker!!.Modifiers((Flags.PRIVATE).toLong()),  // 参数名
                     names!!.fromString(key),  // 参数类型
                     paramsNameTypeMap[key],  // 参数值
                     treeMaker!!.Literal(value)
@@ -137,6 +150,87 @@ class BuilderProcessor : AbstractProcessor() {
         }
         return jcVariableDeclList
     }
+
+    private fun generateAllMethod(
+        paramNameValueMap: Map<String, Any?>?,
+        paramsNameTypeMap: Map<String, JCExpression>
+    ): List<JCMethodDecl> {
+        var jcVariableDeclList = List.nil<JCMethodDecl>()
+        var typeParams = List.nil<JCTree.JCTypeParameter>();
+        var statementList = List.nil<JCVariableDecl>();
+        var statement: JCVariableDecl
+        var method: JCMethodDecl
+        if (!paramNameValueMap.isNullOrEmpty()) {
+            for ((key, value) in paramNameValueMap) {
+                // 定义变量
+                statement = treeMaker!!.VarDef( // 访问修饰符
+                    treeMaker!!.Modifiers(Flags.FINAL.toLong()),  // 参数名
+                    names!!.fromString(key),  // 参数类型
+                    paramsNameTypeMap[key],  // 参数值
+                    treeMaker!!.Literal(value)
+                )
+
+                method = treeMaker!!.MethodDef(
+                    treeMaker!!.Modifiers(Flags.PUBLIC.toLong()),
+                    names!!.fromString(key),
+                    paramsNameTypeMap[key],
+                    List.nil<JCTypeParameter>(),
+                    List.of<JCVariableDecl>(
+                        statement
+                    ),
+                    List.nil<JCExpression>(),
+                    treeMaker!!.Block(
+                        0,
+                        List.of<JCStatement>(
+                            statement
+                        )
+                    ),
+                    null
+                )
+
+                jcVariableDeclList = jcVariableDeclList.append(method)
+            }
+        }
+        return jcVariableDeclList
+    }
+
+    fun generateEqualMethod(classDecl: JCClassDecl): JCMethodDecl {
+        val publicModifier = treeMaker!!.Modifiers(Flags.PUBLIC.toLong())
+        var returnType: JCExpression? = treeMaker!!.Ident(names!!.fromString("java"))
+        returnType = treeMaker!!.Select(returnType, names!!.fromString("lang"))
+        returnType = treeMaker!!.Select(returnType, names!!.fromString("String"))
+        val method: Name = names!!.fromString("sex")
+        var ObjectExpr: JCExpression? = treeMaker!!.Ident(names!!.fromString("java"))
+        ObjectExpr = treeMaker!!.Select(ObjectExpr, names!!.fromString("lang"))
+        ObjectExpr = treeMaker!!.Select(ObjectExpr, names!!.fromString("Object"))
+        val param = treeMaker!!.VarDef(
+            treeMaker!!.Modifiers(Flags.PARAMETER),
+            names!!.fromString("o"),
+            ObjectExpr,
+            null
+        )
+        param.pos = classDecl.pos
+        val params = List.of(param)
+        var statement = List.nil<JCStatement?>()
+        val aNull: JCStatement = treeMaker!!.Return(treeMaker!!.Literal(TypeTag.BOT, this))
+        statement = statement.append(aNull)
+        val block = treeMaker!!.Block(0, statement)
+        val methodDecl =
+            treeMaker!!.MethodDef(
+                publicModifier,
+                method,
+                returnType,
+                List.nil(),
+                params,
+                List.nil(),
+                block,
+                null
+            )
+        println(methodDecl)
+        classDecl.defs = classDecl.defs.append(methodDecl)
+        return methodDecl
+    }
+
 
     private fun isPrimitive(typeTag: TypeTag?): Boolean {
         if (typeTag == null) {
@@ -151,10 +245,10 @@ class BuilderProcessor : AbstractProcessor() {
         return typeKind?.isPrimitive ?: false
     }
 
-    private fun generateJcExpression(fullNameOfTheClass: String): JCTree.JCExpression {
+    private fun generateJcExpression(fullNameOfTheClass: String): JCExpression {
         val fullNameOfTheClassArray =
             fullNameOfTheClass.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        var expr: JCTree.JCExpression = treeMaker!!.Ident(names!!.fromString(fullNameOfTheClassArray[0]))
+        var expr: JCExpression = treeMaker!!.Ident(names!!.fromString(fullNameOfTheClassArray[0]))
         for (i in 1 until fullNameOfTheClassArray.size) {
             expr = treeMaker!!.Select(expr, names!!.fromString(fullNameOfTheClassArray[i]))
         }

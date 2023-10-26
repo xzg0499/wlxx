@@ -2,7 +2,6 @@
 
 package com.xzg.wlxx.ast.processor.processors.lang
 
-import com.google.auto.service.AutoService
 import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.MethodSpec
@@ -20,12 +19,11 @@ import com.xzg.wlxx.ast.processor.base.SingleAnnotationProcessor
 import com.xzg.wlxx.ast.processor.util.appendIf
 import com.xzg.wlxx.ast.processor.util.asGetter
 import com.xzg.wlxx.ast.processor.util.contains
-import javax.annotation.processing.Processor
 import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 
-@Suppress("unused")
-@AutoService(Processor::class)
+//@Suppress("unused")
+//@AutoService(Processor::class)
 internal class GetterProcessor : SingleAnnotationProcessor() {
     override val mAnnotation = Getter::class.java
 

@@ -8,20 +8,19 @@ plugins {
     kotlin("kapt") version "1.4.20"
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs.add(file("src/main/kotlin"))
-        }
-    }
-    test {
-        java {
-            srcDirs.add(file("src/main/test"))
-        }
-    }
+
+tasks.register<Delete>("deleteGeneratedSources") {
+    println("delete generated folder ===$projectDir")
+    val generatedSrcRoot = file("${buildDir}/generated/source/kapt/main")
+    delete(generatedSrcRoot)
+    delete(file("${buildDir}/generated/sources/annotationProcessor/kapt/main"))
+    delete(file("${buildDir}/generated/sources/annotationProcessor/kapt/test"))
+    delete(file("${buildDir}/generated/sources/annotationProcessor/kaptKotlin/main"))
+    delete(file("${buildDir}/generated/sources/annotationProcessor/kaptKotlin/test"))
 }
 
 tasks.withType<JavaCompile> {
+    dependsOn("deleteGeneratedSources")
     sourceCompatibility = "17"
     targetCompatibility = "17"
     options.compilerArgs.addAll(

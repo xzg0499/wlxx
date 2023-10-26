@@ -1,7 +1,6 @@
 package com.xzg.wlxx.common;
 
-import com.xzg.wlxx.ast.annotation.WlxxBuilder;
-import com.xzg.wlxx.ast.annotation.designpattern.Builder;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
