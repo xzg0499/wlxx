@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 @TableName("org")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Schema(name = "组织")
 public class OrgPo extends BasePo<OrgPo> {
 
     @TableField("org_code")

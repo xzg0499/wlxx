@@ -5,10 +5,12 @@ import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.common.base.BaseController;
+import com.xzg.wlxx.system.client.entity.dto.OrgDto;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
 import com.xzg.wlxx.system.client.entity.vo.OrgVo;
 import com.xzg.wlxx.system.service.OrgService;
 import com.xzg.wlxx.system.service.impl.SearcherService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,18 +34,23 @@ public class OrgController extends BaseController {
     private final SearcherService searcherService;
 
     @PostMapping("add")
-    public ApiResult<Boolean> add(@Validated @RequestBody OrgPo org) {
-        return ApiResult.success(service.add(org));
+    public ApiResult<Boolean> add(@Validated @RequestBody OrgDto dto) {
+        return ApiResult.success(service.add(dto));
     }
 
-    @GetMapping("search")
-    public ApiResult<SearchResult<OrgPo>> search(HttpServletRequest request) {
+    /**
+     * TODO knife4j 文档无法处理 @RequestParam 参数格式
+     */
+    @GetMapping("search-bean")
+    @Operation(summary = "bean search 查询")
+    public ApiResult<SearchResult<OrgPo>> search(HttpServletRequest request, @RequestParam OrgDto dto) {
         return ApiResult.success(searcherService.search(OrgPo.class, request));
     }
 
-    @PostMapping("search")
-    public ApiResult<Page<OrgPo>> search(@RequestBody OrgPo po) {
-        return ApiResult.success(service.page(new Page<OrgPo>(0, 10), null));
+    @GetMapping("search")
+    @Operation(summary = "mybatisPlus 分页查询")
+    public ApiResult<Page<OrgPo>> search(@RequestBody OrgDto dto) {
+        return ApiResult.success(service.page(new Page<OrgPo>(dto.getPage(), dto.getSize()), null));
     }
 
     @PostMapping("export")
