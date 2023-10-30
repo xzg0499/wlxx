@@ -25,7 +25,7 @@ import java.util.List;
 
 
 @RestController
-@Tag(name = "org")
+@Tag(name = "组织")
 @RequestMapping("org")
 @RequiredArgsConstructor
 public class OrgController extends BaseController {
@@ -47,9 +47,12 @@ public class OrgController extends BaseController {
         return ApiResult.success(searcherService.search(OrgPo.class, request));
     }
 
+    /**
+     * FIXME knife4j 无法解析RequestParam参数格式
+     */
     @GetMapping("search")
     @Operation(summary = "mybatisPlus 分页查询")
-    public ApiResult<Page<OrgPo>> search(@RequestBody OrgDto dto) {
+    public ApiResult<Page<OrgPo>> search(OrgDto dto) {
         return ApiResult.success(service.page(new Page<OrgPo>(dto.getPage(), dto.getSize()), null));
     }
 
