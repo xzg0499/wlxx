@@ -10,6 +10,8 @@ plugins {
 
 
 tasks.register<Delete>("deleteGeneratedSources") {
+    group = "wlxx"
+    description = "删除generated文件夹"
     println("delete generated folder ===$projectDir")
     val generatedSrcRoot = file("${buildDir}/generated/source/kapt/main")
     delete(generatedSrcRoot)
