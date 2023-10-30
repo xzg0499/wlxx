@@ -1,6 +1,7 @@
 package com.xzg.wlxx.system;
 
 import com.xzg.wlxx.system.client.entity.po.UserPo;
+import com.xzg.wlxx.test.MockUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 /**
  * @author XiaoZG
  */
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
 @Slf4j
 public class UserTests {

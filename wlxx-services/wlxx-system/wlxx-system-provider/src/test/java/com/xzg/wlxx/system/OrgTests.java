@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.xzg.wlxx.system.client.entity.po.OrgPo;
 import com.xzg.wlxx.system.client.entity.vo.OrgVo;
 import com.xzg.wlxx.system.service.OrgService;
+import com.xzg.wlxx.test.MockUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Slf4j
 public class OrgTests {
@@ -38,5 +39,16 @@ public class OrgTests {
     void list4Tree() {
         List<OrgVo> list = orgService.list4Tree(null);
         log.info("===={}", JSONUtil.toJsonStr(list));
+    }
+
+    @Test
+    void testTree() {
+        MockUtils.mockTreeDate(5, 5, null, (l, p) -> {
+                    var po = MockUtils.mock(OrgPo.class);
+                    po.setOrgId(p);
+                    po.setOrgLevel(5 - l - 1);
+                    return po;
+                }, OrgPo::getId
+        );
     }
 }

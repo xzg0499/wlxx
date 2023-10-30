@@ -15,6 +15,7 @@ public class WlxxMetaObjectHandler implements MetaObjectHandler {
         log.info("auto insert");
         this.strictInsertFill(metaObject, "createDate", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "createBy", String.class, "xzg");
+        this.strictInsertFill(metaObject, "del", Boolean.class, false);
     }
 
     @Override

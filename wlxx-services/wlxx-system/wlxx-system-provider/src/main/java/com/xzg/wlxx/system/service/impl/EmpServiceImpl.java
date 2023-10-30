@@ -1,6 +1,10 @@
 package com.xzg.wlxx.system.service.impl;
 
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzg.wlxx.common.exception.BusinessException;
 import com.xzg.wlxx.system.client.entity.dto.EmpDto;
@@ -11,19 +15,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class EmpServiceImpl extends ServiceImpl<EmpMapper, EmpPo> implements EmpService {
 
     @Override
-    public List<EmpPo> listByOrg(Long orgId) {
-        return lambdaQuery()
-                .eq(Objects.nonNull(orgId), EmpPo::getOrgId, orgId)
-                .list();
+    public IPage<EmpPo> searchByOrg(EmpDto dto) {
+        Assert.notNull(dto.getOrgId(), "orgId不能为空");
+        return page(new Page<>(dto.getPage(), dto.getSize())
+                , Wrappers.<EmpPo>lambdaQuery()
+                        .eq(EmpPo::getOrgId, dto.getOrgId())
+        );
     }
 
     @Override

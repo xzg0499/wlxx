@@ -1,6 +1,5 @@
 package com.xzg.wlxx.common.enums;
 
-import cn.hutool.core.util.EnumUtil;
 import lombok.Getter;
 
 /**
@@ -14,15 +13,12 @@ public enum ApiCode {
     ;
 
 
-    private final Integer code;
-    private final String msg;
+    public final Integer code;
+    public final String msg;
 
     ApiCode(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public static ApiCode findByCode(Integer code) {
-        return EnumUtil.getBy(ApiCode::getCode, code, ApiCode.NULL);
-    }
 }

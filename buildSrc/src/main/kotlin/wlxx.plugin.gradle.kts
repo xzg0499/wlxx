@@ -4,5 +4,6 @@ plugins {
     id("io.spring.dependency-management")
 
     id("wlxx.repository")
+    id("maven-publish")
 }
 

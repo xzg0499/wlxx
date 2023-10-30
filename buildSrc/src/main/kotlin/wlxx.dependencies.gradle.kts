@@ -9,8 +9,10 @@ dependencies {
 //    implementation("org.jetbrains.kotlin:kotlin-reflect")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
     runtimeOnly("com.mysql:mysql-connector-j")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
     implementation("com.baomidou:mybatis-plus-boot-starter:${property("mybatisPlusVersion")}")
     implementation("com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:${property("knife4jVersion")}")
     implementation("cn.hutool:hutool-all:${property("hutoolVersion")}")

@@ -28,6 +28,10 @@ public class ApiResult<T> {
         return message(200, msg, null, null);
     }
 
+    public static <T> ApiResult<T> message(boolean isSuccess) {
+        return isSuccess ? success() : failure();
+    }
+
     public static <T> ApiResult<T> success() {
         return message(200, "OK", null, null);
     }

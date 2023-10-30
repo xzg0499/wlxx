@@ -6,9 +6,11 @@ import com.alibaba.fastjson2.support.config.FastJsonConfig;
 import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
 import com.xzg.wlxx.web.config.feign.FeignInterceptor;
 import com.xzg.wlxx.web.config.feign.WlxxDecoder;
+import feign.RequestInterceptor;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
 import feign.optionals.OptionalDecoder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,18 +32,31 @@ import java.util.List;
 @Configuration
 @Import(FeignInterceptor.class)
 @EnableFeignClients(basePackages = "com.xzg.wlxx.**.client.feign")
+@RequiredArgsConstructor
 public class FeignConfiguration {
 
     @Value("${spring.jackson.date-format:yyyy-MM-dd HH:mm:ss.SSS}")
     private String dateFormat;
 
+    private final ObjectProvider<HttpMessageConverterCustomizer> objectProvider;
+
 //    @Autowired
 //    private ObjectFactory<HttpMessageConverters> messageConvertersObjectFactory;
 
     @Bean
-    public Decoder feignDecoder(ObjectProvider<HttpMessageConverterCustomizer> objectFactory) {
-        return new OptionalDecoder(new ResponseEntityDecoder(new WlxxDecoder(new SpringDecoder(feignHttpMessageConverter(), objectFactory))));
+    public Decoder feignDecoder(ObjectProvider<HttpMessageConverterCustomizer> objectProvider) {
+        return new OptionalDecoder(new ResponseEntityDecoder(new WlxxDecoder(springDecoder())));
+//        return new WlxxDecoder(springDecoder());
     }
+
+    private SpringDecoder springDecoder() {
+        return new SpringDecoder(feignHttpMessageConverter(), objectProvider);
+    }
+
+//    @Bean
+//    public FeignClientErrorDecoder feignClientErrorDecoder() {
+//        return new FeignClientErrorDecoder(springDecoder());
+//    }
 
     @Bean
     public Encoder feignEncoder() {
@@ -53,6 +68,12 @@ public class FeignConfiguration {
         final HttpMessageConverters httpMessageConverters = new HttpMessageConverters(this.getFastJsonConverter());
         return () -> httpMessageConverters;
     }
+
+    @Bean
+    public RequestInterceptor requestInterceptor() {
+        return new FeignInterceptor();
+    }
+
 
     private FastJsonHttpMessageConverter getFastJsonConverter() {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
@@ -76,4 +97,6 @@ public class FeignConfiguration {
 
         return converter;
     }
+
+
 }

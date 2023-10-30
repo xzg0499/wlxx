@@ -8,7 +8,7 @@ plugins {
 tasks.withType<BootJar> {
     manifest {
         attributes["Main-Class"] = "org.springframework.boot.loader.JarLauncher"
-        attributes["Start-Class"] = "com.xzg.wlxx.system.SystemApplication"
+        attributes["Start-Class"] = "com.xzg.wlxx.generator.GeneratorApplication"
     }
 }
 

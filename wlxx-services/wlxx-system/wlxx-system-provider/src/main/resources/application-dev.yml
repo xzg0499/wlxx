@@ -124,6 +124,9 @@ bean-searcher:
   sql:
     default-mapping:
       redundant-suffixes: Po
+      ignore-fields:
+        - page
+        - size
   #      ignore-fields: org_grails_datastore_gorm_GormValidateable__errors
   params:
     pagination:

@@ -10,6 +10,7 @@ CREATE TABLE `emp` (
 
   `emp_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emp_code` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  enabled tinyint(1) default 1 comment '是否启用',
   `org_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -30,6 +31,7 @@ CREATE TABLE `org` (
   `org_id` bigint DEFAULT NULL,
   `org_type` int DEFAULT NULL,
   `org_level` int DEFAULT NULL,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -53,7 +55,7 @@ CREATE TABLE `token` (
 
 
 -- db_system.`user` definition
-drop table if exists user;
+drop table if exists `user`;
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT NULL,
@@ -62,10 +64,12 @@ CREATE TABLE `user` (
   `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del` tinyint(1) default 0,
 
-  `username` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(100) unique not null,
   `real_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `password` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emp_id` bigint DEFAULT NULL,
+  role_id bigint default null,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -79,6 +83,62 @@ CREATE TABLE `tenant` (
   `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del` tinyint(1) default 0,
 
+   tenant_id varchar(100) default null comment '用户TenantId',
   `tenant_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+   enabled tinyint(1) default 1 comment '是否启用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+drop table if exists dict;
+CREATE TABLE `dict` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
+
+  dict_code varchar(100) default null,
+  dict_name varchar(100) default null,
+  enabled tinyint(1) default 1 comment '是否启用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+drop table if exists menu;
+CREATE TABLE `menu` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
+
+  code varchar(100) default null,
+  name varchar(100) default null,
+  icon varchar(100) default null,
+  path varchar(200) default null,
+  is_open tinyint(1) default 0,
+  item_label varchar(100) default 0,
+  menu_level int default 0,
+  menu_id bigint default null,
+  sort int default 0,
+  enabled tinyint(1) default 1 comment '是否启用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+drop table if exists role;
+CREATE TABLE `role` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `del` tinyint(1) default 0,
+
+  role_code varchar(100) unique not null,
+  role_name varchar(100) default null,
+  enabled tinyint(1) default 1 comment '是否启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

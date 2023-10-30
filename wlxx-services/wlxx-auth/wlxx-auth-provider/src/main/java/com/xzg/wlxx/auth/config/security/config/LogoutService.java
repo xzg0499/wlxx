@@ -3,6 +3,7 @@ package com.xzg.wlxx.auth.config.security.config;
 
 import cn.hutool.http.Header;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xzg.wlxx.auth.entity.base.ApiAuthCode;
 import com.xzg.wlxx.common.base.ApiResult;
 import com.xzg.wlxx.system.client.entity.po.TokenPo;
 import com.xzg.wlxx.system.client.feign.TokenProvider;
@@ -46,9 +47,9 @@ public class LogoutService implements LogoutHandler {
             storedToken.setRevoked(true);
             tokenService.saveOrUpdate(storedToken);
             SecurityContextHolder.clearContext();
-            handleResult(response, "登出成功");
+            handleResult(response, ApiAuthCode.LOGOUT_SUCCEED.msg);
         } else {
-            handleResult(response, "access_token 错误");
+            handleResult(response, ApiAuthCode.TOKEN_ERROR.msg);
         }
     }
 

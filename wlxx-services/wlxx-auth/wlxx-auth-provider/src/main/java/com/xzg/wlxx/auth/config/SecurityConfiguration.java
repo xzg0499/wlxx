@@ -1,8 +1,8 @@
 package com.xzg.wlxx.auth.config;
 
-import com.xzg.wlxx.auth.config.security.config.JwtAuthenticationFilter;
 import com.xzg.wlxx.auth.config.security.config.RestAuthorizationEntryPoint;
-import com.xzg.wlxx.auth.config.security.config.RestfulAccessDeniedHandler;
+import com.xzg.wlxx.auth.config.security.filter.JwtAuthenticationFilter;
+import com.xzg.wlxx.auth.config.security.handler.RestfulAccessDeniedHandler;
 import com.xzg.wlxx.web.config.WlxxInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

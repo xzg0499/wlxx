@@ -1,5 +1,3 @@
-import org.gradle.api.tasks.bundling.Jar
-import org.gradle.kotlin.dsl.withType
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
@@ -9,6 +7,9 @@ plugins {
 
 tasks.withType<Jar> {
     enabled = true
+    archiveClassifier.set("")
+    // TODO build自动发布maven包
+    tasks.getByName("publishMavenPublicationToMavenLocal")
 }
 
 tasks.withType<BootJar> {

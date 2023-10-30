@@ -1,10 +1,12 @@
 package com.xzg.wlxx.auth.config.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xzg.wlxx.auth.entity.base.ApiAuthCode;
 import com.xzg.wlxx.common.base.ApiResult;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -13,7 +15,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Component
+@RequiredArgsConstructor
 public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
+    private final ObjectMapper objectMapper;
 
     @Override
     public void commence(HttpServletRequest request,
@@ -28,11 +32,11 @@ public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
         // 输出流
         PrintWriter out = response.getWriter();
 
-        ApiResult bean = ApiResult.builder()
-                .code(401)
-                .msg("尚未登录，请登录！")
+        ApiResult<?> result = ApiResult.builder()
+                .code(ApiAuthCode.UN_LOGIN.code)
+                .msg(ApiAuthCode.UN_LOGIN.msg)
                 .build();
-        out.write(new ObjectMapper().writeValueAsString(bean));
+        out.write(objectMapper.writeValueAsString(result));
         out.flush();
         out.close();
     }

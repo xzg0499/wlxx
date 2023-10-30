@@ -36,6 +36,7 @@
 - [ ] 数据库id类型int8导致前段JS接收数据超出17位时截断
 - [ ] 基础实现类中不做引入service，统一在扩展类中座引入service
 - [ ] lombok+ast 注入feign客户端
+- [ ] feign fallback不生效
 
 ## idae
 
@@ -104,3 +105,7 @@ graph LR
     B -.-> C
     C --> D
 ```
+
+# 问题记录
+
+1. annotationProcessor 尽可用于代码生成，无法修改现有代码Class。要修改代码需要引入Oracle JDK中的jdk.compiler模块

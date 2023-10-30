@@ -4,6 +4,8 @@ configure(allprojects) {
 }
 
 tasks.register<DefaultTask>("cleanEmptyFolder") {
+    group = "wlxx"
+    description = "清理空文件夹"
     val file = projectDir
     val list = mutableListOf<File>();
     file.walkTopDown()
@@ -25,4 +27,14 @@ tasks.register<DefaultTask>("cleanEmptyFolder") {
         println(it.name)
         it.deleteRecursively()
     }
+}
+
+tasks.register<DefaultTask>("countJavaFile") {
+    group = "wlxx"
+    description = "统计Java文件数"
+    val count = rootDir.walkTopDown()
+        .filter { !it.isDirectory }
+        .filter { it.name.endsWith(".java") }
+        .count()
+    println("java file count: $count")
 }
