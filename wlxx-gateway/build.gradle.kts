@@ -19,15 +19,9 @@ dependencies {
     implementation(project(":wlxx-framework:wlxx-common"))
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("com.github.xiaoymin:knife4j-gateway-spring-boot-starter:4.3.0")
-    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${property("springCloudAlibabaVersion")}")
-    {
-        exclude("org.springframework.cloud", "spring-cloud-starter-netflix-ribbon")
-        isTransitive = false
-    }
+
     implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${property("springCloudAlibabaVersion")}")
-    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
-    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
-    
+
     // https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-sentinel
 //    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:2022.0.0.0")
 
